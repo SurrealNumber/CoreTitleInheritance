@@ -1,0 +1,36 @@
+# todo: add descriptions or make sure that options show up correctly
+keep_duchies = {
+    default = off_keep_duchies
+    
+    off_keep_duchies = {}
+    
+    one_keep_duchies = {}
+    
+    two_keep_duchies = {}
+    
+    tier_low_keep_duchies = {}
+    
+    tier_high_keep_duchies = {}
+}
+
+designate_core_cost = {
+    default = overtime_designate_core_cost
+    
+    free_designate_core_cost = {}
+    
+    flat_designate_core_cost = {}
+    
+    overtime_designate_core_cost = {}
+}
+
+designate_core_limit = {
+    default = off_designate_core_limit
+    
+    off_designate_core_limit = {}
+
+    domain_designate_core_limit = {}
+    
+    half_domain_designate_core_limit = {}
+    
+    unlimited_designate_core_limit = {}
+}

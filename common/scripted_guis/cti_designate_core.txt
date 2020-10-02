@@ -1,0 +1,33 @@
+designate_core = {
+    scope = character
+    saved_scopes = {
+        title
+    }
+    is_shown = {
+        root is local player
+        player owns title?
+    }
+    
+    is_valid = {
+        check eligible for title
+            if county or barony root core less than limit
+            if duchy check that title beneath is owned - too many duchy limit still in place
+            if kingdom check that duchy title beneath is owned - too many duchy limit still in place
+    }
+    
+    effect = {
+        possible cost depending on game rule
+        set title to be inherited by primary
+        increase core holdings of character by 1
+        #custom_tooltip = ""
+    }
+}
+
+what I need:
+set title as core function
+    - modifier for holding if game rule needs
+    - count of core holdings
+    - Keep as core on inheritance? - figure out how that works
+check eligible title funtion
+possibly tell AI how to use this feature
+kept duchies will ignore core holdings.
