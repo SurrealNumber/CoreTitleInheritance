@@ -1,16 +1,4 @@
-﻿l_english:
- rule_keep_duchies: "Keep Duchies"
- setting_off_keep_duchies: "Off"
- setting_off_keep_duchies_desc: "Primary heirs are not guaranteed to inherit all owned counties in any duchy on partition."   
- setting_one_keep_duchies: "One"
- setting_one_keep_duchies_desc: "Primary heir is guaranteed to inherit all owned counties in primary duchy (if duchy title is owned)."   
- setting_two_keep_duchies: "Two"
- setting_two_keep_duchies_desc: "Primary heir is guaranteed to inherit all owned counties in an additional duchy along with the primary one (if titles are owned)."   
- setting_tier_low_keep_duchies: "Low Tier Based"
- setting_tier_low_keep_duchies_desc: "Primary heir number of duchies with guaranteed county inheritance varies by rank in this way: 0 - Baron, Count, Duke; 1 - King; 2 - Emperor"
- setting_tier_high_keep_duchies: "High Tier Based"
- setting_tier_high_keep_duchies_desc: "Primary heir number of duchies with guaranteed county inheritance varies by rank in this way: 0 - Baron, Count; 1 - Duke; 2 - King; 3 - Emperor"
- 
+﻿l_english: 
  rule_designate_core_cost: "Designate Core Title Cost"
  setting_free_designate_core_cost: "Free"
  setting_free_designate_core_cost_desc: "Designating core titles has no cost."

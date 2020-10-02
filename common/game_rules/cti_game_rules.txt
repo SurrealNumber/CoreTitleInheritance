@@ -1,18 +1,3 @@
-# todo: add descriptions or make sure that options show up correctly
-keep_duchies = {
-    default = off_keep_duchies
-    
-    off_keep_duchies = {}
-    
-    one_keep_duchies = {}
-    
-    two_keep_duchies = {}
-    
-    tier_low_keep_duchies = {}
-    
-    tier_high_keep_duchies = {}
-}
-
 designate_core_cost = {
     default = overtime_designate_core_cost
     

@@ -30,4 +30,3 @@ set title as core function
     - Keep as core on inheritance? - figure out how that works
 check eligible title funtion
 possibly tell AI how to use this feature
-kept duchies will ignore core holdings.
