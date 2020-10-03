@@ -1,0 +1,52 @@
+is_title_core = { # Assume that this will only be called if the title is owned
+    always_follows_primary_heir = yes
+}
+
+is_title_eligible_for_core = { # Assume that this will only be called if the title is owned
+    AND = {
+        save_temporary_scope_as = this_title
+        NOT = { is_title_core }
+        OR = {
+            tier <= tier_county
+            holder.core_titles = {
+                this.de_jure_liege = this_title
+            }
+        }
+    }
+}
+
+# assumes that core title rules are being followed - only checks one tier up
+will_core_loss_break_titles = {
+    de_jure_liege = {save_temporary_scope_as = parent_title}
+    save_temporary_scope_as = this_title
+    OR = {
+        scope:parent_title.is_title_core = no
+        holder.core_titles = {
+            AND = {
+                NOT = {this = this_title}
+                this.de_jure_liege = scope:parent_title
+            }
+        }
+    }
+}
+# Assume the default is false. Otherwise will need to modify.
+is_over_core_limit = { # scope is character
+    trigger_if = {
+        limit = {exists = this.var:core_count}
+        this.var:core_count > this.core_limit
+        }
+}
+
+can_core_title = {
+    AND = {
+        is_title_eligible_for_core
+        holder.is_over_core_limit = no
+    }
+}
+
+can_de_core_title = {
+    AND = {
+        is_title_core = yes
+        will_core_loss_break_titles = no
+    }
+}

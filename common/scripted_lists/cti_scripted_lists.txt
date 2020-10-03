@@ -1,0 +1,13 @@
+core_titles = {
+    base = held_title
+    conditions = {
+        is_title_core = yes
+    }
+}
+
+core_titles_count_to_limit = {
+    base = core_titles
+    conditions = {
+        tier <= tier_county
+    }
+}

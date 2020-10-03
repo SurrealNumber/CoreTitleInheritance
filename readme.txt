@@ -40,9 +40,17 @@ rules: ?
 Communicate recommendations for settings
 only counties and baronies count towards core limit
 only counties and baronies have cost
+Can't designate duchy where you don't own land as core. Might lead to it being lost even if not desired. Out of scope of this mod.
+creating convention: don't use this for base scope of environment
+!!!Possible problem if checking empire tier title-no dejure liege
+Do not know how to get a list of dejure children of a title if it is even possible.
 
 PRIMARY TITLE IS CONSIDERED CORE.
 Make sure that primary title is never removed from cores.
+Need to handle primary title changing
+add decision to show core titles?
+has_primary_title triggers.log line 2180 scopes character, landed title
+variable on character will be named core_count
 
 core flag utilizes
 effects.log:
@@ -56,11 +64,13 @@ on_action:
     on_action for losing core title
     on_action when inheriting core titles
 trigger:
-    trigger for eligible title
-    trigger for if title is core
-    trigger for eligibility requirements
-    trigger for over core title limit
-    trigger for higher tiers breaking
+-    trigger for eligible title
+-    trigger for if title is core
+-    trigger for eligibility requirements
+-    trigger for over core title limit
+-    trigger for higher tiers breaking
+-    trigger for allowed to core title
+-    trigger for allowed to de-core title
 scripted_value:
 -    scripted_value for core limit
 value:
@@ -68,7 +78,7 @@ value:
 scripted_modifier:
 -    scripted_modifier for monthly prestige loss - will add or not depending on game rule
 variable:
-    character scope variable for number of cores
+    character scope variable for number of cores - Could instead build a list of core titles and recalculate each time. like this way better
 scripted_effect:
     scripted_effect to apply flat/scaled cost
     scripted_effect to apply core flag to titles
@@ -80,7 +90,9 @@ scripted_effect:
     scripted_effect to remove/refund all core titles
 scripted_list:
     scripted_list to retrieve core titles
-    AI stuff
+decision:
+    decision to see core titles
+AI stuff
     
     
 
