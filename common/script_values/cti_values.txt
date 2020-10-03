@@ -1,0 +1,20 @@
+core_limit = {
+    if = {
+        limit={ has_game_rule = off_designate_core_limit }
+        value = 0
+    }
+    else_if = {
+        limit={ has_game_rule = half_domain_designate_core_limit }
+        value = domain_limit
+        divide = 2
+        ceiling = yes
+    }
+    else_if = {
+        limit={ has_game_rule = domain_designate_core_limit }
+        value = domain_limit
+    }
+    else_if = {
+        limit={ has_game_rule = unlimited_designate_core_limit }
+        value = 10000
+    }
+}

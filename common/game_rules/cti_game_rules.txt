@@ -5,17 +5,35 @@ designate_core_cost = {
     
     flat_designate_core_cost = {}
     
+    scaled_designate_core_cost = {}
+    
     overtime_designate_core_cost = {}
 }
 
 designate_core_limit = {
-    default = off_designate_core_limit
+    default = half_domain_designate_core_limit
     
     off_designate_core_limit = {}
 
-    domain_designate_core_limit = {}
-    
     half_domain_designate_core_limit = {}
     
+    domain_designate_core_limit = {}
+    
     unlimited_designate_core_limit = {}
+}
+
+core_persist = {
+    default = true_core_persist
+    
+    false_core_persist = {}
+    
+    true_core_persist = {}
+}
+
+ai_designate_cores = {
+    default = false_ai_designate_cores
+    
+    false_ai_designate_cores = {}
+    
+    true_ai_designate_cores = {}
 }

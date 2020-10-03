@@ -22,11 +22,3 @@ designate_core = {
         #custom_tooltip = ""
     }
 }
-
-what I need:
-set title as core function
-    - modifier for holding if game rule needs
-    - count of core holdings
-    - Keep as core on inheritance? - figure out how that works
-check eligible title funtion
-possibly tell AI how to use this feature

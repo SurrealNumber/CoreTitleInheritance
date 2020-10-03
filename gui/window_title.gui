@@ -888,6 +888,7 @@ window = {
                                 datacontext = "[GetScriptedGui('designate_core')]"
 								name = "designate_core_title"
 								text = "TITLE_VIEW_DESIGNATE_CORE"
+                                enabled = ""
 								visible = "[And( Character.IsLocalPlayer, TitleViewWindow.CanMakePrimary )]"
 								onclick = "[TitleViewWindow.MakePrimary]"
 								tooltip = "TITLE_MAKE_PRIMARY_TOOLTIP"

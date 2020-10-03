@@ -1,0 +1,7 @@
+core_titles_cost_modifier = {
+    modifier = {
+        value = held_county_modifier
+        divide = 2
+        desc = CORE_TITLES_HELD_COST_OVERTIME
+    }
+}
