@@ -4,8 +4,6 @@
  setting_free_designate_core_cost_desc: "Designating core titles has no cost."
  setting_flat_designate_core_cost: "Flat"
  setting_flat_designate_core_cost_desc: "Designating core titles has a flat prestige cost."
- setting_flat_designate_core_cost: "Scaled"
- setting_flat_designate_core_cost_desc: "Designating core titles has a prestige cost scaled to current prestige?."
  setting_overtime_designate_core_cost: "Overtime"
  setting_overtime_designate_core_cost_desc: "Designating core titles has a monthly prestige penalty."
  

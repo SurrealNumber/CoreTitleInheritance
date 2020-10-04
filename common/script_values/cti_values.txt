@@ -18,3 +18,13 @@ core_limit = {
         value = 10000
     }
 }
+
+coring_title_cost_flat = major_prestige_loss
+coring_title_refund_flat = medium_prestige_gain
+coring_title_refund_flat_full = major_prestige_gain
+
+# Unused, but put here to remind me that if things go poorly I have an alternate core count here.
+core_count_from_list = {
+    value = 0
+    any_core_title_count_to_limit = { add = 1 }
+}

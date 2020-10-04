@@ -888,10 +888,10 @@ window = {
                                 datacontext = "[GetScriptedGui('designate_core')]"
 								name = "designate_core_title"
 								text = "TITLE_VIEW_DESIGNATE_CORE"
-                                enabled = ""
-								visible = "[And( Character.IsLocalPlayer, TitleViewWindow.CanMakePrimary )]"
-								onclick = "[TitleViewWindow.MakePrimary]"
-								tooltip = "TITLE_MAKE_PRIMARY_TOOLTIP"
+                                enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(Character.MakeScope).AddScope('title_', TitleViewWindow.GetTitle).End )]"
+								visible = "[And( Character.IsLocalPlayer, ScriptedGui.IsShown( GuiScope.SetRoot( Character.MakeScope ).AddScope('title_', TitleViewWindow.GetTitle).End ) )]"
+								onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Character.MakeScope ).AddScope('title_', TitleViewWindow.GetTitle).End )]"
+								tooltip = "TITLE_DESIGNATE_CORE_TOOLTIP"
 							}
                             
 							button_primary = {

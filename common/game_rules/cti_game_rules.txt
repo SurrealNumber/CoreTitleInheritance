@@ -5,8 +5,6 @@ designate_core_cost = {
     
     flat_designate_core_cost = {}
     
-    scaled_designate_core_cost = {}
-    
     overtime_designate_core_cost = {}
 }
 

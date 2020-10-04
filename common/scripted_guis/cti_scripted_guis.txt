@@ -1,0 +1,23 @@
+designate_core = {
+    scope = character
+    saved_scopes = {
+        title_
+    }
+    is_shown = {
+        AND = {
+            title_.holder = root
+            NOT = {title_.is_title_core}
+        }
+    }
+    
+    is_valid = {
+        title_.is_title_eligible_for_core
+    }
+    
+    effect = {
+        possible cost depending on game rule
+        set title to be inherited by primary
+        increase core holdings of character by 1
+        #custom_tooltip = ""
+    }
+}

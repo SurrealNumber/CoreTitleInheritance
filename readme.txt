@@ -1,3 +1,6 @@
+TODO: AI
+TODO: Implement penalty for being over core limit
+
 what I need:
 additional button to remove core
 set title as core function
@@ -82,24 +85,22 @@ trigger:
 -    trigger for allowed to de-core title
 scripted_value:
 -    scripted_value for core limit (core_limit)
-    scripted value for core costs - flat and scaled
+-    scripted value for core costs and refunds - flat and scaled
 value:
     any constants needed - can think of as parameters
 scripted_modifier:
 -    scripted_modifier for monthly prestige loss - will add or not depending on game rule
 variable:
-    character scope variable for number of cores (core_count) - Could instead build a list of core titles and recalculate each time. like this way better
+    character scope variable for number of cores (core_count) - Could instead build a list of core titles and recalculate each time. like this way better - more for me to keep track of, but less iteration over lists
 scripted_effect:
-    scripted_effect to apply flat/scaled cost
-    scripted_effect to apply core flag to titles
-    scripted_effect for refunding flat/scaled cost
-    scripted_effect to remove core flag from titles
-    scripted_effect to remove invalid core titles
-    scripted_effect to check wiping coreness and do it
-    scripted_effect to update character with given cores
-    scripted_effect to remove/refund all core titles
+-    scripted_effect to apply core flag to titles
+-    scripted_effect to remove core flag from titles
+-    scripted_effect to remove invalid core titles
+-    scripted_effect to check wiping coreness and do it
+-    scripted_effect to update character with given cores
+-    scripted_effect to remove/refund all core titles
 scripted_list:
-    scripted_list to retrieve core titles
+-    scripted_list to retrieve core titles
 decision:
     decision to see core titles
 AI stuff
@@ -162,3 +163,38 @@ AI: Low priority
 How to check if a core list is consistent?
 1. check that every title greater than county is dejure liege of another one - requires going through the list twice
 have to go through list twice
+
+It looks like there are no scaled prestige values. Removing option.
+It is possible that inheriting core titles will not work. In this case automatically remove them on inheritance.
+It is possible that primary titles and capital chain titles will not be caught by current check for cores. Fix this if that is the case.
+Need to know if x = no is equivalent to NOT = {x}
+Have to be careful with special titles which do always follow primary heir (especially if they are conquered)
+changing to have a core variable on the core titles, and the coring and de-coring options take care of setting the flag
+don't know if CK3 likes setting previously set variables.
+It is possible that the datacontext for the title is already set in gui. I will ignore the possible optimization due to not understanding how the gui language works
+possibly have to refresh gui after button is clicked to swap it with the other button.
+
+
+Gui Tooltip:
+TITLE_MAKE_PRIMARY_TOOLTIP:1 "#T Make [TitleViewWindow.GetTitle.GetName] your [primary_title|E]#!" - line in localization
+produces: Make _TitleName_ your BLUE[Primary Title]
+_TitleName_ - has tooltip of title.
+BLUE[Primary Title] - has reference to game concept/encyclopedia entry (I am not sure which one it is).
+
+FIND_VASSAL_HEADER:2 "Grant to..."
+FIND_VASSAL_RELEVANCE:0 "Relevance"
+FIND_VASSAL_BUTTON_TOOLTIP:2 "#T $FIND_VASSAL_HEADER$#!\nChoose someone to grant this [title|E] to.\n\n$FIND_VASSAL_BUTTON_TOOLTIP_SEGMENT$"
+FIND_VASSAL_BUTTON_TOOLTIP_SEGMENT:0 "You can grant [titles|E] to one of your [vassals|E], or one of your [guests|E] or any [courtiers|E] in your [realm|E]"
+^ entries in localization file
+produces:
+BIGGERTEXT{Grant To...}
+Choose someone to grant this BLUE{Title} to.
+
+You can grant BLUE{Titles} to one of your BLUE{Vassals}, or one of your |end of box
+BLUE{Guests} or any BLUE{Coutriers} in your BLUE{Realm}
+
+Interpretation:
+[word|E] <- tooltip for encyclopedia entry (most likely from game concepts, has a small icon in top left which would explain image references)
+#T # <- make it into title format
+\n <- standard new line
+$REFERENCE$ <- way to reference another localization entry

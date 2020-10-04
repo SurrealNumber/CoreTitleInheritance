@@ -1,47 +1,114 @@
-pay_for_coring_title_flat = {
-    
+#All of these assume that you have checked that it is proper to call them before making the call.
+
+initialize_core_count = {# scope is a character
+    set_variable = {
+        name = core_count
+        value = 0
+        any_core_title_count_to_limit = {add = 1}
+    }
 }
 
-refund_for_coring_title_flat = {
-    
+
+increment_core_count = {# scope is character
+    if = {
+    limit = {NOT = {exists = var:core_count}}
+        initialize_core_count
+    }
+    change_variable = {
+        name = core_count
+        add = 1
+    }
 }
 
-full_refund_for_coring_title_flat = {
-    
+# assumes that core count is 
+decrement_core_count = {# scope is character
+    if = {
+    limit = {NOT = {exists = var:core_count}}
+        initialize_core_count
+    }
+    change_variable = {
+        name = core_count
+        subtract = 1
+    }
 }
 
-pay_for_coring_title_scaled = {
-    
+#unlike making titles no longer be core, cores should only be made by being designated.
+designate_core_title = {#scope is title
+    set_variable = {
+        name = core
+        value = yes
+    }
+    set_always_follows_primary_heir = yes
+    if = {
+        limit = {has_game_rule = flat_designate_core_cost}
+        holder.add_prestige = coring_title_cost_flat
+    }
+    holder.increment_core_count
 }
 
-refund_for_coring_title_scaled = {
-    
+de_designate_core_title = {# scope is title
+    if = {
+        limit = {has_game_rule = flat_designate_core_cost}
+        holder.add_prestige = coring_title_refund_flat
+    }
+    de_core_title
 }
 
-full_refund_for_coring_title_scaled = {
-    
+#This should not be used to remove bad core titles on inheritance. On inheritance, core titles should not be broken (though capital chain and primary might be removed or changed)
+remove_invalid_core_titles = { #scope is a character. full refund. should happen when a core title is lost if it invalidates the heirarchy
+    save_temporary_scope_as = this_character
+    while = {# Essentially while list is not empty
+        limit = {any_core_title = {NOT = {is_core_consistent}}}# Should fix this later, it in essense calculates the list twice as often as it needs to
+        every_inconsistent_core_title = {
+            if = {
+                limit = {has_game_rule = flat_designate_core_cost}
+                scope:this_character.add_prestige = coring_title_refund_flat_full
+            }
+            de_core_title
+        }
+    }
 }
 
-designate_core_title = {
-    
+de_core_title = { # scope is a title
+    set_variable = {
+        name = core
+        value = no
+    }
+    set_always_follows_primary_heir = no
 }
 
-de_designate_core_title = {
-    # by character - will call automatic one
+re_calculate_cores = { # scope is a character. this is used in cases like inheritance when core titles are preserved
+    save_temporary_scope_as = this_character
+    initialize_core_count
+    every_core_title_count_to_limit = {scope:this_character.increment_core_count}
+    if = {
+        limit = {is_over_core_limit}
+        remove_all_core_titles
+    }
 }
 
-remove_invalid_core_titles = { # should happen when a core title is lost if it invalidates the heirarchy
-    
+remove_all_core_titles = {# scope is character. full refund. this should be used if something brings one over core limit - currently ther is no penalty for being over.
+    every_core_title = {
+        if = {
+            limit = {can_de_core_title}
+            if = {
+                limit = {has_game_rule = flat_designate_core_cost}
+                scope:this_character.add_prestige = coring_title_refund_flat_full
+            }
+            decore_title
+        }
+    }
 }
 
-de_core_title = {# have to be careful this does not occur if it is the new holder's primary or in line from capital. Should check it is not one of those.
-    # automatic
-}
-
-re_calculate_cores = { # this is used in cases like inheritance when core titles are preserved
-    
-}
-
-remove_all_core_titles = {
-    # this should be used if something brings one over core limit - currently ther is no penalty for being over.
+de_designate_all_core_titles = { #scope is character not full refund. should be called by a decision
+    every_core_title = {
+        if = {
+            limit = {can_de_core_title}
+            if = {
+                limit = {has_game_rule = flat_designate_core_cost}
+                scope:this_character.add_prestige = coring_title_refund_flat
+            }
+            decore_title
+        }
+    }
 }
