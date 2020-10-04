@@ -1,13 +1,20 @@
-core_titles = {
+core_title = { # scope is character
     base = held_title
     conditions = {
         is_title_core = yes
     }
 }
 
-core_titles_count_to_limit = {
-    base = core_titles
+core_title_count_to_limit = { # scope is character
+    base = core_title
     conditions = {
         tier <= tier_county
+    }
+}
+
+inconsistent_core_title = {
+    base = core_title
+    conditions = {
+        NOT = {is_core_consistent}
     }
 }

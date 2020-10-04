@@ -1,0 +1,47 @@
+pay_for_coring_title_flat = {
+    
+}
+
+refund_for_coring_title_flat = {
+    
+}
+
+full_refund_for_coring_title_flat = {
+    
+}
+
+pay_for_coring_title_scaled = {
+    
+}
+
+refund_for_coring_title_scaled = {
+    
+}
+
+full_refund_for_coring_title_scaled = {
+    
+}
+
+designate_core_title = {
+    
+}
+
+de_designate_core_title = {
+    # by character - will call automatic one
+}
+
+remove_invalid_core_titles = { # should happen when a core title is lost if it invalidates the heirarchy
+    
+}
+
+de_core_title = {# have to be careful this does not occur if it is the new holder's primary or in line from capital. Should check it is not one of those.
+    # automatic
+}
+
+re_calculate_cores = { # this is used in cases like inheritance when core titles are preserved
+    
+}
+
+remove_all_core_titles = {
+    # this should be used if something brings one over core limit - currently ther is no penalty for being over.
+}

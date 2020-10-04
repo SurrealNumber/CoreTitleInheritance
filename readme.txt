@@ -47,10 +47,19 @@ Do not know how to get a list of dejure children of a title if it is even possib
 
 PRIMARY TITLE IS CONSIDERED CORE.
 Make sure that primary title is never removed from cores.
-Need to handle primary title changing
+****Need to handle primary title changing
+    not sure if this will break if an event changes the primary title
+I THINK I AM GETTING PRIMARY TITLE CONFUSED WITH CAPITAL
+!!!!Need to consider what happens if one of the titles has a different title succession law
+if capital and primary title are different counties, you get both.
+If primary title is not dejure above capital, get capital dejure titles up to one tier below primary title.
+PRIMARY TITLE ONLY EFFECTS CORE THINGS IF YOU ARE A COUNT WITH A DIFFERENT CAPITAL AND PRIMARY TITLE
 add decision to show core titles?
 has_primary_title triggers.log line 2180 scopes character, landed title
 variable on character will be named core_count
+primary title is the only one which breaks the rules of core territories.
+
+
 
 core flag utilizes
 effects.log:
@@ -72,13 +81,14 @@ trigger:
 -    trigger for allowed to core title
 -    trigger for allowed to de-core title
 scripted_value:
--    scripted_value for core limit
+-    scripted_value for core limit (core_limit)
+    scripted value for core costs - flat and scaled
 value:
     any constants needed - can think of as parameters
 scripted_modifier:
 -    scripted_modifier for monthly prestige loss - will add or not depending on game rule
 variable:
-    character scope variable for number of cores - Could instead build a list of core titles and recalculate each time. like this way better
+    character scope variable for number of cores (core_count) - Could instead build a list of core titles and recalculate each time. like this way better
 scripted_effect:
     scripted_effect to apply flat/scaled cost
     scripted_effect to apply core flag to titles
@@ -146,3 +156,9 @@ character dies
 AI: Low priority
     check designate on timed pulse or on title situation change
     check designate core on timed pulse or on title situation change
+    
+    
+    
+How to check if a core list is consistent?
+1. check that every title greater than county is dejure liege of another one - requires going through the list twice
+have to go through list twice

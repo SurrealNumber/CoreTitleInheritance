@@ -1,3 +1,6 @@
+# All scopes are titles unless otherwise noted.
+
+#This catches primary titles and capitals as well (I assume)
 is_title_core = { # Assume that this will only be called if the title is owned
     always_follows_primary_heir = yes
 }
@@ -8,9 +11,9 @@ is_title_eligible_for_core = { # Assume that this will only be called if the tit
         NOT = { is_title_core }
         OR = {
             tier <= tier_county
-            holder.core_titles = {
-                this.de_jure_liege = this_title
-            }
+            holder.any_core_title = {
+                this.de_jure_liege = scope:this_title
+            } # this should mean that one of the core titles is a direct child of this title
         }
     }
 }
@@ -21,14 +24,28 @@ will_core_loss_break_titles = {
     save_temporary_scope_as = this_title
     OR = {
         scope:parent_title.is_title_core = no
-        holder.core_titles = {
+        NOT = {this.holder.primary_title = scope:parent_title} # the primary title breaks the pattern for core titles.
+        holder.any_core_title = {
             AND = {
-                NOT = {this = this_title}
+                NOT = {this = scope:this_title}
                 this.de_jure_liege = scope:parent_title
             }
         }
     }
 }
+
+
+is_core_consistent = {# scope is title, also fed character
+    save_temporary_scope_as = this_title
+    OR = {
+        tier <= tier_county
+        $HOLDER$.primary_title = this
+        $HOLDER$.any_core_title = {
+            this.de_jure_liege = scope:this_title
+        }
+    }
+}
+
 # Assume the default is false. Otherwise will need to modify.
 is_over_core_limit = { # scope is character
     trigger_if = {
@@ -44,9 +61,23 @@ can_core_title = {
     }
 }
 
+is_title_core_from_capital = {
+    OR = {
+            holder.capital_barony = this # capital barony
+            AND = {
+                holder.capital_barony.target_is_de_jure_liege_or_above = this # de_jure above capital barony
+                this.tier < holder.primary_title.tier # not the same tier as the primary title
+            }
+        }
+}
+
 can_de_core_title = {
     AND = {
         is_title_core = yes
         will_core_loss_break_titles = no
+        NOT = {holder.primary_title = this} # not primary title
+        NOT = {# not parent of capital
+            is_title_core_from_capital
+        }
     }
 }
