@@ -1,0 +1,12 @@
+﻿l_english: 
+ TITLE_VIEW_DESIGNATE_CORE: "Designate Core"
+ TITLE_DESIGNATE_CORE_TOOLTIP: "#T Designate [TitleViewWindow.GetTitle.GetName] a [core_title|E]#"
+ TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD: "#T Cannot Designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to no [de_jure|E] title directly beneath it being a [core_title|E]#"
+ TITLE_DESIGNATE_CORE_TOOLTIP_OVER_LIMIT: "#T Cannot Designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to [CHARACTER.GetUIName] being over their [core_title_limit|E]#"
+ 
+ TITLE_VIEW_DE_DESIGNATE_CORE: "De-designate Core"
+ TITLE_DE_DESIGNATE_CORE_TOOLTIP: "#T De-designate [TitleViewWindow.GetTitle.GetName] a [core_title|E]#"
+ TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING: "#T Cannot De-designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to the [de_jure|E] liege title being [core|E] and having no other [core|E] [de_jure|E] titles directly beneath it#"
+ TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN: "#T Cannot De-designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to the title being [core|E] from being in the [de_jure] chain starting at the [realm_capital|E]#"
+ TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE: "#T Cannot De-designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to the title being [core|E] from being the [primary_title|E]#"
+ TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE: "#T Cannot De-designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to the title being [core|E] because it is a special title like a [head_of_faith|E] [title|E].#"

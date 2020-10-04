@@ -1,0 +1,16 @@
+﻿l_english: 
+ game_concept_core_title: "Core Title"
+ game_concept_titles: "Core Titles"
+ game_concept_titlepossessive: "Core Title's"
+ game_concept_core: "Core"
+ game_concept_primary_title_desc: "A [rulerpossessive|E] $game_concept_core_titles$ are the [titles|E] which are guaranteed to pass to the [primary_heir|E] of the current [holder|E] on [succession|E] irregardless of their [succession_laws|E]. To designate title as [core|E] it must have a [de_jure|E] [title|E] beneath it which is a [core_title|E]\n\nDepending on game rule designating a title core or holding a core title might have a [core_title_cost|E].\nDepending on game rule there might be a [core_title_limit|E]"
+ game_concept_core_title_cost: "Core Title Cost"
+ 
+ game_concept_core_title_cost_desc: "The cost of designating or holding a [core_title|E]. The cost depends on the game rule:\n\n#S Free:# There is no cost associated with [core_titles|E]\n#S Flat:# designating a title core costs a flat amount of prestige, and de-desginating a core title refunds a smaller amount of prestige. If a title is refunded for other reasons (except for title loss) a full refund will be received.\n#S Overtime:# There is a monthly prestige cost for holding a title that contributes to [core_title_limit|E] if one would not inherit it due to a reason other than the Core Title Inheritance Mod."
+ 
+ game_concept_core_title_limit: "Core Title Limit"
+ game_concept_core_title_limit_desc: "The maximum number of [core_titles|E] a [character|E] can hold. Only [core_titles|E] of [county|E] and [barony|E] [title_tiers|E] count towards the limit. The limit depends on the game rule:\n\n#S Off:# The limit is 0\n#S Unlimited:# The limit is 10000.\n#S Domain:# The limit is equal to the [character_possessive|E] [domain_limit].\n#S Half Domain:# The limit is equal to half of the [character_possessive|E] [domain_limit]."
+ 
+ game_concept_core_title_persistence: "Core Title Persistence"
+ game_concept_core_title_persistence_desc: "Whether or not [core_titles|E] remain [core_titles|E] upon being passed down to the [primary_heir|E]. Depends on game rule."
+ 

@@ -35,16 +35,24 @@ is_title_core = { # Assume that this will only be called if the title is owned
             var:core
             is_title_core_due_to_capital
             holder.primary_title = this
-            always_follows_primary_heir = yes
+            always_follows_primary_heir
         }
     }
     else = {
         OR = {
             is_title_core_due_to_capital
             holder.primary_title = this
-            always_follows_primary_heir = yes
+            always_follows_primary_heir
         }
     }
+}
+
+does_cti_core_title_have_cost = { # scope is title
+    tier <= tier_county
+}
+# have both even though they are the same in case I want to break this equivalence in the future.
+does_cti_core_title_count_to_limit = { # scope is title
+    tier <= tier_county
 }
 
 is_title_eligible_for_core = { # Assume that this will only be called if the title is owned

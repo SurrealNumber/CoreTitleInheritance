@@ -8,7 +8,7 @@ core_title = { # scope is character
 core_title_count_to_limit = { # scope is character
     base = core_title
     conditions = {
-        tier <= tier_county
+        does_cti_core_title_count_to_limit
     }
 }
 

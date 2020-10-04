@@ -5,19 +5,101 @@ designate_core = {
     }
     is_shown = {
         AND = {
-            title_.holder = root
+            title_.holder = root # might be redundant
             NOT = {title_.is_title_core}
         }
     }
     
     is_valid = {
-        title_.is_title_eligible_for_core
+        title_.can_core_title
     }
     
     effect = {
-        possible cost depending on game rule
-        set title to be inherited by primary
-        increase core holdings of character by 1
-        #custom_tooltip = ""
+        # Generate tooltip
+        if = {
+            limit = {title_.can_core_title}
+            custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP
+        }
+        else = {
+            custom_tooltip = {# Essentially breaking down is elligible for core into it's components
+                first_valid = {
+                    triggered_desc = {
+                        trigger = {
+                            NOT = {title_.is_title_eligible_for_core}
+                        }
+                        desc = TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD
+                    }
+                    triggered_desc = {
+                        trigger = {
+                            root.is_over_core_limit
+                        }
+                        desc = TITLE_DESIGNATE_CORE_TOOLTIP_OVER_LIMIT
+                    }
+                    desc = "This should never appear. Something has gone wrong."
+                }
+            }
+        }
+        
+        # do the coring
+        title_.designate_core_title
+    }
+}
+
+de_designate_core = {
+    scope = character
+    saved_scopes = {
+        title_
+    }
+    is_shown = {
+        AND = {
+            title_.holder = root # might be redundant
+            title_.is_title_core
+        }
+    }
+    
+    is_valid = {
+        title_.can_de_core_title
+    }
+    
+    effect = {
+        # Generate tooltip
+        if = {
+            limit = {title_.can_de_core_title}
+            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP
+        }
+        else = {
+            custom_tooltip = {# Essentially breaking down is elligible for core into it's components
+                first_valid = {
+                    triggered_desc = {
+                        trigger = {
+                            root.is_title_core_due_to_capital
+                        }
+                        desc = TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN
+                    }
+                    triggered_desc = {
+                        trigger = {
+                            root.primary_title = this
+                        }
+                        desc = TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE
+                    }
+                    triggered_desc = {
+                        trigger = {
+                            title_.will_core_loss_break_titles
+                        }
+                        desc = TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING
+                    }
+                    triggered_desc = {
+                        trigger = {
+                            title_.always_follows_primary_heir
+                        }
+                        desc = TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE
+                    }
+                    desc = "This should never appear. Something has gone wrong."
+                }
+            }
+        }
+        
+        # do the de_designating core
+        title_.de_designate_core_title
     }
 }

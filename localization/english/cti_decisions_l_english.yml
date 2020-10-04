@@ -1,0 +1,10 @@
+﻿l_english: 
+ manage_core_titles_decision: "Manage Cores"
+ manage_core_titles_decision_tooltip: "Trigger Event to Manage [core titles|E]"
+ manage_core_titles_decision_desc: "#F The untamed wilds are calling, and all manner of beasts are awaiting my spear and arrow!#!"
+ manage_core_titles_decision_go_on_hunt: "You go on a #V Hunt#! in one of the baronies of your realm"
+ manage_core_titles_decision_tt_header: "A successful Hunt will:"
+ manage_core_titles_decision_prestige: "You may get opportunities to increase your [prestige|E]"
+ manage_core_titles_decision_stress: "#P    Reduce your [stress|E]#!"
+ manage_core_titles_decision_stress_lazy: "#N You will not lose [stress|E] since you are [GetTrait('lazy').GetName( GetPlayer )]#!"
+ manage_core_titles_decision_confirm: "Sound the horn!"

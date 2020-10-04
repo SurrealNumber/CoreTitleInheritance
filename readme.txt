@@ -70,7 +70,7 @@ effects.log:
 
 Need:
 gui:
-    core and de-core gui and scripted gui
+-    core and de-core gui and scripted gui
     notification for core title loss?
 on_action:
     on_action for losing core title
@@ -198,3 +198,57 @@ Interpretation:
 #T # <- make it into title format
 \n <- standard new line
 $REFERENCE$ <- way to reference another localization entry
+
+
+No idea how to change localization based on game rule. Will table for now.
+Possibly change over core limit warning text to say your instead of your character's name
+What if the dejure parent is core, but not for you?
+
+
+Looking into decision gui/localization:
+start_hunt_decision:0 "Call Hunt"
+start_hunt_decision_tooltip:1 "A [hunt|E] will be held"
+start_hunt_decision_desc:0 "#F The untamed wilds are calling, and all manner of beasts are awaiting my spear and arrow!#!"
+start_hunt_decision_go_on_hunt:1 "You go on a #V Hunt#! in one of the baronies of your realm"
+start_hunt_decision_tt_header:0 "A successful Hunt will:"
+start_hunt_decision_prestige:1 "You may get opportunities to increase your [prestige|E]"
+start_hunt_decision_stress:0 "#P    Reduce your [stress|E]#!"
+start_hunt_decision_stress_lazy:0 "#N You will not lose [stress|E] since you are [GetTrait('lazy').GetName( GetPlayer )]#!"
+start_hunt_decision_confirm:0 "Sound the horn!"
+^in localization file. Decision is start_hung_decision^
+
+decision:
+Call Hunt on left with Reversed subset of image on right
+
+tooltip:
+Call Hunt
+a BLUE{Hunt} will be held
+
+Decision Window:
+Call Hunt <-fancy font center of top
+image (most likely one defined in decision) <- full width of window
+greyish-small-minor-text{The untamed wilds are calling, and all manner of beasts are awaiting my spear and arrow}
+new boxlike thing 1
+new boxlike thing 2
+Effects - centered title like
+several blank lines
+
+* You go on a WHITE{Hunt} in one of the baronies of your realm
+* You lose {stress loss image} 30 BLUE{Stress}
+* You may get opportunities to increase your BLUE{Prestige}
+one blank line
+{red exclaimation mark in circle}ITALICS{RED{Call Hunt will be unavailable for} WHITE{5 years}}
+end of box like thing 2
+lots of blank
+end of box like thing 1
+centered
+Cost:{gold icon} 67
+Button with text {Sound the horn!}
+notify when available box.
+
+Interpretation:
+key is reused heavily
+desc goies wher it showed up in window
+#X text# applies an effect to text
+custom tooltip is constructed in decision
+

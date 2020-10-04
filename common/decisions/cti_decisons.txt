@@ -1,0 +1,6 @@
+manage_core_titles_decision = {
+    picture = "CHOOSE IMAGE"
+    ai_check_frequency = 0 # AI should manage cores via prompts from on_actions and the like.
+    
+    
+}

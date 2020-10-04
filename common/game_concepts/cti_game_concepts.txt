@@ -1,0 +1,20 @@
+core_title = {
+	texture = "gfx/interface/icons/message_feed/titles.dds"
+    parent = title
+	alias = { core_titles core_titlepossessive, core}
+}
+
+core_title_cost = {
+	texture = texture = "gfx/interface/icons/currencies/icon_prestige_01.dds"
+    parent = core_title
+}
+
+core_title_limit = {
+	texture = "gfx/interface/icons/icon_domain.dds"
+    parent = domain_limit
+}
+
+core_title_persistence = {
+    texture = "gfx/interface/icons/message_feed/heir.dds"
+	parent = primary_heir
+}
