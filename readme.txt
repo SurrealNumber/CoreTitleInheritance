@@ -298,3 +298,23 @@ Figure out how to put values into encyclopedia entries dynamically.
 Might be able to remove if from every_list and instead use just limit
 can probably use root instead of scope:this_title in most places.
 It looks like some localizations can use the scope to be localized. things like character_scope.GetUIName etc.
+
+RUNNING GAME:
+IT DID NOT CRASH!
+Decision has empty text and image.
+core_titles game concept is broken
+Title and confirmation things in decision are broken. Most of description seems to be working
+Upon decison being used toast for core titles lost was triggered. I am king of france in 1066 with no time passed.
+No event poped up for the decision.
+parent game concepts apear to be shown in the top right of the entry for the child.
+took titles and vassals from brittany and nothing visible happened.
+core title cost list part of description is all bold italics. Look horrible. Same with core title limit.
+core title cost game concept does not have an icon.
+For the duchy of brittany both the designate core and de-designate core buttons are present. Clicking them did nothing visual.
+
+Checking afterwards what the game rules were:
+Overtime Core Title Cost
+Half Domain COre Title Limit
+Persist Core persistence
+Not allowed AI core designation.
+description for ai core designation allowed is broken.
