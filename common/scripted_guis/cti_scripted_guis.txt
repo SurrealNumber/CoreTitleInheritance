@@ -1,4 +1,4 @@
-﻿designate_core = {
+﻿designate_core_button = {
     scope = character
     saved_scopes = {
         title_
@@ -20,24 +20,13 @@
             limit = {title_.can_core_title}
             custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP
         }
-        else = {
-            custom_tooltip = {# Essentially breaking down is elligible for core into it's components
-                first_valid = {
-                    triggered_desc = {
-                        trigger = {
-                            NOT = {is_title_eligible_for_core = {title_}}
-                        }
-                        desc = TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD
-                    }
-                    triggered_desc = {
-                        trigger = {
-                            is_over_core_limit = {root}
-                        }
-                        desc = TITLE_DESIGNATE_CORE_TOOLTIP_OVER_LIMIT
-                    }
-                    desc = "This should never appear. Something has gone wrong."
-                }
-            }
+        else if = {
+            limit = {NOT = {is_title_eligible_for_core = {title_}}}
+            custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD
+        }
+        else if = {
+            limit = {is_over_core_limit = {root}}
+            custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP_OVER_LIMIT
         }
         
         # do the coring
@@ -45,7 +34,7 @@
     }
 }
 
-de_designate_core = {
+de_designate_core_button = {
     scope = character
     saved_scopes = {
         title_
@@ -67,36 +56,21 @@ de_designate_core = {
             limit = {can_de_core_title = {title_}}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP
         }
-        else = {
-            custom_tooltip = {# Essentially breaking down is elligible for core into it's components
-                first_valid = {
-                    triggered_desc = {
-                        trigger = {
-                            is_title_core_due_to_capital = {title_}
-                        }
-                        desc = TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN
-                    }
-                    triggered_desc = {
-                        trigger = {
-                            root.primary_title = this
-                        }
-                        desc = TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE
-                    }
-                    triggered_desc = {
-                        trigger = {
-                            will_core_loss_break_titles = {title_}
-                        }
-                        desc = TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING
-                    }
-                    triggered_desc = {
-                        trigger = {
-                            always_follows_primary_heir = {title_}
-                        }
-                        desc = TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE
-                    }
-                    desc = "This should never appear. Something has gone wrong."
-                }
-            }
+        else if = {
+            limit = {is_title_core_due_to_capital = {title_}}
+            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN
+        }
+        else if = {
+            limit = {root.primary_title = this}
+            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE
+        }
+        else if = {
+            limit = {will_core_loss_break_titles = {title_}}
+            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING
+        }
+        else if = {
+            limit = {always_follows_primary_heir = {title_}}
+            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE
         }
         
         # do the de_designating core

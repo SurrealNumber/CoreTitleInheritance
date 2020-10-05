@@ -1,7 +1,7 @@
 ﻿manage_core_titles_decision = {
     picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
     ai_check_frequency = 0 # AI should manage cores via prompts from on_actions and the like.
-    # description is currently empty. Feel having something there would just be redundant
+    description  = "THIS IS THE DESCRIPTION" #I think I want this to be empty. This is there for debugging purposes
     effect = {
         custom_tooltip = manage_core_titles_decision_info_blurb_start
         custom_tooltip = manage_core_titles_decision_info_blurb_bullet1
