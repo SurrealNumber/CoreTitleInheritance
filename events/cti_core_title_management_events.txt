@@ -3,7 +3,7 @@
 
 # Entry event
 cti_manage_core_titles_event.0001 = {
-    type = character
+    type = character_event
     
     title = cti_manage_core_titles_event.0001.t
     desc = cti_manage_core_titles_event.0001.desc
@@ -45,7 +45,7 @@ cti_manage_core_titles_event.0001 = {
 
 # core limit event
 cti_manage_core_titles_event.0002 = {
-    type = character
+    type = character_event
     
     title = cti_manage_core_titles_event.0002.t
     desc = {
@@ -82,7 +82,7 @@ cti_manage_core_titles_event.0002 = {
 
 # core titles event. Includes breakdown by reason
 cti_manage_core_titles_event.0003 = {
-    type = character
+    type = character_event
     
     title = cti_manage_core_titles_event.0003.t
     desc = {
@@ -145,7 +145,7 @@ cti_manage_core_titles_event.0003 = {
 
 # core titles event. Includes breakdown by counting to limit.
 cti_manage_core_titles_event.0004 = {
-    type = character
+    type = character_event
     
     title = cti_manage_core_titles_event.0004.t
     desc = {
@@ -191,7 +191,7 @@ cti_manage_core_titles_event.0004 = {
 
 # de-designate all cores
 cti_manage_core_titles_event.0005 = {
-    type = character
+    type = character_event
     
     title = cti_manage_core_titles_event.0005.t
     desc = cti_manage_core_titles_event.0005.desc

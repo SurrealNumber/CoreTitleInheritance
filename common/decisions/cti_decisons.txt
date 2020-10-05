@@ -1,5 +1,5 @@
 ﻿manage_core_titles_decision = {
-    picture = "CHOOSE IMAGE"
+    picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
     ai_check_frequency = 0 # AI should manage cores via prompts from on_actions and the like.
     # description is currently empty. Feel having something there would just be redundant
     effect = {

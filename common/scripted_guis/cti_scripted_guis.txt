@@ -4,14 +4,14 @@
         title_
     }
     is_shown = {
-        AND = {
-            title_.holder = root # might be redundant
-            NOT = {title_.is_title_core}
-        }
+        #AND = {
+        #    title_.holder = root # might be redundant
+            NOT = {is_title_core = {title_}}
+        #}
     }
     
     is_valid = {
-        title_.can_core_title
+        can_core_title = {title_}
     }
     
     effect = {
@@ -25,13 +25,13 @@
                 first_valid = {
                     triggered_desc = {
                         trigger = {
-                            NOT = {title_.is_title_eligible_for_core}
+                            NOT = {is_title_eligible_for_core = {title_}}
                         }
                         desc = TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD
                     }
                     triggered_desc = {
                         trigger = {
-                            root.is_over_core_limit
+                            is_over_core_limit = {root}
                         }
                         desc = TITLE_DESIGNATE_CORE_TOOLTIP_OVER_LIMIT
                     }
@@ -41,7 +41,7 @@
         }
         
         # do the coring
-        title_.designate_core_title
+        designate_core_title = {title_}
     }
 }
 
@@ -51,20 +51,20 @@ de_designate_core = {
         title_
     }
     is_shown = {
-        AND = {
-            title_.holder = root # might be redundant
-            title_.is_title_core
-        }
+        #AND = {
+        #    title_.holder = root # might be redundant
+            is_title_core = {title_}
+        #}
     }
     
     is_valid = {
-        title_.can_de_core_title
+        can_de_core_title = {title}
     }
     
     effect = {
         # Generate tooltip
         if = {
-            limit = {title_.can_de_core_title}
+            limit = {can_de_core_title = {title_}}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP
         }
         else = {
@@ -72,7 +72,7 @@ de_designate_core = {
                 first_valid = {
                     triggered_desc = {
                         trigger = {
-                            root.is_title_core_due_to_capital
+                            is_title_core_due_to_capital = {title_}
                         }
                         desc = TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN
                     }
@@ -84,13 +84,13 @@ de_designate_core = {
                     }
                     triggered_desc = {
                         trigger = {
-                            title_.will_core_loss_break_titles
+                            will_core_loss_break_titles = {title_}
                         }
                         desc = TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING
                     }
                     triggered_desc = {
                         trigger = {
-                            title_.always_follows_primary_heir
+                            always_follows_primary_heir = {title_}
                         }
                         desc = TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE
                     }
@@ -100,6 +100,6 @@ de_designate_core = {
         }
         
         # do the de_designating core
-        title_.de_designate_core_title
+        de_designate_core_title = {title_}
     }
 }

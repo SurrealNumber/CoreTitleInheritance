@@ -5,16 +5,16 @@
 }
 
 core_title_cost = {
-	texture = texture = "gfx/interface/icons/currencies/icon_prestige_01.dds"
+	texture = "gfx/interface/icons/currencies/icon_prestige_01.dds"
     parent = core_title
 }
 
 core_title_limit = {
 	texture = "gfx/interface/icons/icon_domain.dds"
-    parent = domain_limit
+    parent = core_title
 }
 
 core_title_persistence = {
     texture = "gfx/interface/icons/message_feed/heir.dds"
-	parent = primary_heir
+	parent = core_title
 }

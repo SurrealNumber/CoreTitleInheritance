@@ -119,6 +119,5 @@ can_de_core_title = {
     AND = {
         is_title_core_due_to_cti
         will_core_loss_break_titles = no
-        }
     }
 }
