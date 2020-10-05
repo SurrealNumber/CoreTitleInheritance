@@ -1,4 +1,4 @@
-core_title = {
+﻿core_title = {
 	texture = "gfx/interface/icons/message_feed/titles.dds"
     parent = title
 	alias = { core_titles core_titlepossessive, core}

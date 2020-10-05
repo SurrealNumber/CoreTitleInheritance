@@ -1,0 +1,54 @@
+﻿#Adding calls to my code to pre-existing on_actions for titles.
+
+on_title_destroyed = {
+    on_actions = {
+        cti_on_title_destroyed
+    }
+}
+
+#on_title_gain = {
+#    on_actions = {
+#        cti_on_title_gain
+#    }
+#}
+
+on_title_loss = {
+    on_actions = {
+        cti_on_title_loss
+    }
+}
+
+# My on_actions which call the rest of my code.
+
+cti_on_title_destroyed = {
+    effects = {
+        scope:landed_title.safe_de_core_title
+        recalculate_cores
+    }
+}
+
+#cti_on_title_gain = {
+#    on_actions = {
+#        cti_on_title_gain
+#    }
+#}
+
+cti_on_title_loss = { # assumes that the title has already changed hands
+    effects = {
+        if = {
+            limit = {
+                AND = {
+                    scope:transfer_type = flag:inheritance
+                    has_game_rule = true_core_persist
+                }
+            }
+            recalculate_cores
+            scope:new_holder.recalculate_cores
+        }
+        else = {
+            scope:title.safe_de_core_title
+            recalculate_cores
+            scope:new_holder.recalculate_cores
+        }
+    }
+}

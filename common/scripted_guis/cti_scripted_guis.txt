@@ -1,4 +1,4 @@
-designate_core = {
+﻿designate_core = {
     scope = character
     saved_scopes = {
         title_

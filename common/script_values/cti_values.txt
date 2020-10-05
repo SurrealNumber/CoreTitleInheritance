@@ -1,4 +1,4 @@
-core_limit = {
+﻿core_limit = {
     if = {
         limit={ has_game_rule = off_designate_core_limit }
         value = 0
@@ -22,6 +22,15 @@ core_limit = {
 coring_title_cost_flat = major_prestige_loss
 coring_title_refund_flat = medium_prestige_gain
 coring_title_refund_flat_full = major_prestige_gain
+
+#Not used
+#get_core_count = { # scope is a character
+#    if = {
+#    limit = {NOT = {exists = var:core_count}}
+#        initialize_core_count
+#    }
+#    var:core_count
+#}
 
 # Unused, but put here to remind me that if things go poorly I have an alternate core count here.
 core_count_from_list = {

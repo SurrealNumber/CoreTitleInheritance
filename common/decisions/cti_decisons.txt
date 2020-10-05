@@ -1,6 +1,14 @@
-manage_core_titles_decision = {
+﻿manage_core_titles_decision = {
     picture = "CHOOSE IMAGE"
     ai_check_frequency = 0 # AI should manage cores via prompts from on_actions and the like.
-    
-    
+    # description is currently empty. Feel having something there would just be redundant
+    effect = {
+        custom_tooltip = manage_core_titles_decision_info_blurb_start
+        custom_tooltip = manage_core_titles_decision_info_blurb_bullet1
+        custom_tooltip = manage_core_titles_decision_info_blurb_bullet2
+        custom_tooltip = manage_core_titles_decision_info_blurb_bullet3
+        custom_tooltip = manage_core_titles_decision_info_blurb_bullet4
+        
+        trigger_event = cti_events.0001
+    }
 }

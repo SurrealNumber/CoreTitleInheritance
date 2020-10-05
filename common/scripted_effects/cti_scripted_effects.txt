@@ -1,4 +1,4 @@
-#All of these assume that you have checked that it is proper to call them before making the call.
+﻿#All of these assume that you have checked that it is proper to call them before making the call.
 
 initialize_core_count = {# scope is a character
     set_variable = {
@@ -14,9 +14,11 @@ increment_core_count = {# scope is character
     limit = {NOT = {exists = var:core_count}}
         initialize_core_count
     }
-    change_variable = {
-        name = core_count
-        add = 1
+    else ={
+        change_variable = {
+            name = core_count
+            add = 1
+        }
     }
 }
 
@@ -26,9 +28,11 @@ decrement_core_count = {# scope is character
     limit = {NOT = {exists = var:core_count}}
         initialize_core_count
     }
-    change_variable = {
-        name = core_count
-        subtract = 1
+    else: = {
+        change_variable = {
+            name = core_count
+            subtract = 1
+        }
     }
 }
 
@@ -43,20 +47,26 @@ designate_core_title = {#scope is title
         limit = {
             AND = {
                 has_game_rule = flat_designate_core_cost
-                does_cti_core_title_have_cost
+                does_core_title_have_cost
             }
         }
         holder.add_prestige = coring_title_cost_flat
+        holder.increment_core_count
     }
-    holder.increment_core_count
 }
 
 de_designate_core_title = {# scope is title
-    if = {
-        limit = {has_game_rule = flat_designate_core_cost}
-        holder.add_prestige = coring_title_refund_flat
-    }
     de_core_title
+    if = {
+        limit = {
+            AND = {
+                has_game_rule = flat_designate_core_cost
+                does_core_title_have_cost
+            }
+        }
+        holder.add_prestige = coring_title_refund_flat
+        holder.decrement_core_count
+    }
 }
 
 #This should not be used to remove bad core titles on inheritance. On inheritance, core titles should not be broken (though capital chain and primary might be removed or changed)
@@ -69,9 +79,10 @@ remove_invalid_core_titles = { #scope is a character. full refund. should happen
                 limit = {
                     AND = {
                         has_game_rule = flat_designate_core_cost
-                        does_cti_core_title_have_cost
+                        does_core_title_have_cost
                     }
                 }
+                scope:this_character.decrement_core_count
                 scope:this_character.add_prestige = coring_title_refund_flat_full
             }
             de_core_title
@@ -79,7 +90,14 @@ remove_invalid_core_titles = { #scope is a character. full refund. should happen
     }
 }
 
-de_core_title = { # scope is a title
+safe_de_core_title = {
+    if = {
+        limit = {can_de_core_title}
+        de_core_title
+    }
+}
+
+de_core_title = { # scope is a title. Will still work even if title is not core.
     set_variable = {
         name = core
         value = no
@@ -87,17 +105,23 @@ de_core_title = { # scope is a title
     set_always_follows_primary_heir = no
 }
 
-re_calculate_cores = { # scope is a character. this is used in cases like inheritance when core titles are preserved
+recalculate_cores = { # scope is a character. this is used in cases like inheritance when core titles are preserved
     save_temporary_scope_as = this_character
     initialize_core_count
-    every_core_title_count_to_limit = {scope:this_character.increment_core_count}
     if = {
+        limit = {any_core_title = {NOT = {is_core_consistent}}}
+        remove_invalid_core_titles
+        recalculate_cores # recursive
+    }
+    else if = {
         limit = {is_over_core_limit}
         remove_all_core_titles
+        recalculate_cores # recursive
     }
 }
 
 remove_all_core_titles = {# scope is character. full refund. this should be used if something brings one over core limit - currently ther is no penalty for being over.
+    save_temporary_scope_as = this_character
     every_core_title = {
         if = {
             limit = {can_de_core_title}
@@ -105,9 +129,10 @@ remove_all_core_titles = {# scope is character. full refund. this should be used
                 limit = {
                     AND = {
                         has_game_rule = flat_designate_core_cost
-                        does_cti_core_title_have_cost
+                        does_core_title_have_cost
                     }
                 }
+                scope:this_character.decrement_core_count
                 scope:this_character.add_prestige = coring_title_refund_flat_full
             }
             decore_title
@@ -123,9 +148,10 @@ de_designate_all_core_titles = { #scope is character not full refund. should be 
                 limit = {
                     AND = {
                         has_game_rule = flat_designate_core_cost
-                        does_cti_core_title_have_cost
+                        does_core_title_have_cost
                     }
                 }
+                scope:this_character.decrement_core_count
                 scope:this_character.add_prestige = coring_title_refund_flat
             }
             decore_title

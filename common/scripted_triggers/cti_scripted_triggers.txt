@@ -1,4 +1,4 @@
-# All scopes are titles unless otherwise noted.
+﻿# All scopes are titles unless otherwise noted.
 
 is_title_core_due_to_capital = { # scope is title
     OR = {
@@ -47,11 +47,11 @@ is_title_core = { # Assume that this will only be called if the title is owned
     }
 }
 
-does_cti_core_title_have_cost = { # scope is title
+does_core_title_have_cost = { # scope is title
     tier <= tier_county
 }
 # have both even though they are the same in case I want to break this equivalence in the future.
-does_cti_core_title_count_to_limit = { # scope is title
+does_core_title_count_to_limit = { # scope is title
     tier <= tier_county
 }
 

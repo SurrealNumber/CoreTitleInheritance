@@ -1,4 +1,4 @@
-core_title = { # scope is character
+﻿core_title = { # scope is character
     base = held_title
     conditions = {
         is_title_core = yes
@@ -8,7 +8,7 @@ core_title = { # scope is character
 core_title_count_to_limit = { # scope is character
     base = core_title
     conditions = {
-        does_cti_core_title_count_to_limit
+        does_core_title_count_to_limit
     }
 }
 

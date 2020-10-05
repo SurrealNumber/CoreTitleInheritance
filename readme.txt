@@ -73,8 +73,8 @@ gui:
 -    core and de-core gui and scripted gui
     notification for core title loss?
 on_action:
-    on_action for losing core title
-    on_action when inheriting core titles
+-    on_action for losing core title
+-    on_action when inheriting core titles
 trigger:
 -    trigger for eligible title
 -    trigger for if title is core
@@ -102,7 +102,7 @@ scripted_effect:
 scripted_list:
 -    scripted_list to retrieve core titles
 decision:
-    decision to see core titles
+-    decision to see core titles
 AI stuff
     
     
@@ -227,15 +227,15 @@ a BLUE{Hunt} will be held
 Decision Window:
 Call Hunt <-fancy font center of top
 image (most likely one defined in decision) <- full width of window
-greyish-small-minor-text{The untamed wilds are calling, and all manner of beasts are awaiting my spear and arrow}
+greyish-small-minor-text{The untamed wilds are calling, and all manner of beasts are awaiting my spear and arrow} <- desc
 new boxlike thing 1
 new boxlike thing 2
 Effects - centered title like
 several blank lines
-
-* You go on a WHITE{Hunt} in one of the baronies of your realm
-* You lose {stress loss image} 30 BLUE{Stress}
-* You may get opportunities to increase your BLUE{Prestige}
+<- line break from custom tooltip start
+* You go on a WHITE{Hunt} in one of the baronies of your realm <- _go_on_hunt
+* You lose {stress loss image} 30 BLUE{Stress} <- stress_impact from custom tooltip?
+* You may get opportunities to increase your BLUE{Prestige} <- _prestige
 one blank line
 {red exclaimation mark in circle}ITALICS{RED{Call Hunt will be unavailable for} WHITE{5 years}}
 end of box like thing 2
@@ -251,4 +251,19 @@ key is reused heavily
 desc goies wher it showed up in window
 #X text# applies an effect to text
 custom tooltip is constructed in decision
+custom tooltip = x appears to be appending x to the tooltip with a new line in between
+ - Unsure of new line consistency will test later and modify scripted gui based on result
+Looks like one can only push with things i.e. things can only be launched from on_actions. There is no way to tell something to look for an on_action
 
+looks like show_as_tooltip = {stuff} executes the stuff and show the tooltip of the stuff being done {some way to print things assumed}
+can't find how to add numbers to descriptions. Will just try to put in desc = value.
+I think there is a nicer way to filter lists, but I don't know what it is right now.
+Might need to make localization for effects, triggers, and modifiers. Don't know yet.
+
+!!!Should let character know when they cores are invalidated and destroyed.
+!!change to safe_de_core_title
+
+
+notifications:
+I’ll start with the notifications and toasts as they are the simplest. You simply make a database entry in the common folder for your notification and then wherever you want to run it from you use the send_interface_message or send_interface_toast effect.
+Want to send toast when de-coring a title. Only should occur if full refund would be given- i.e. the mod removes them for internal reasons.
