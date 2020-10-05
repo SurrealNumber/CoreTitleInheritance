@@ -1,4 +1,4 @@
-designate_core_cost = {
+﻿designate_core_cost = {
     default = overtime_designate_core_cost
     
     free_designate_core_cost = {}

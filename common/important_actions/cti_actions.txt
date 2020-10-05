@@ -1,0 +1,19 @@
+﻿action_over_core_title_limit = { # Scope is character? (or player?)
+    type = alert
+    #icon = default icon is action_key_name
+    is_dangerous = yes
+    
+    check_create_action = { # scope is player character
+        if = {
+            limit = {is_over_core_limit}
+            try_create_important_action = {
+                important_action_type = action_over_core_title_limit
+                #actor = root - Don't think this is necessary
+            }
+        }
+    }
+    
+    effect = {
+        execute_decision = {manage_core_titles_decision}
+    }
+}

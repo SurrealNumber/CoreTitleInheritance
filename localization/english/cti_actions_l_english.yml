@@ -1,0 +1,11 @@
+﻿l_english: 
+ over_core_title_limit:0 "Over Core Title Limit"
+ over_core_title_limit_label:0 "You are over your [core_title_limit|E]"	
+ over_core_title_limit_desc:0 "You are over your [core_title_limit|E]. A penalty is being applied. De-designate some core titles."
+ over_core_title_limit_click:0 "#I Click to open the manage [cores_titles|E] decision#"
+
+# Don't think these are used because I am not allowing this action to group
+# over_core_title_limit_combined_label:0 ""			-Label used if it's combined
+# over_core_title_limit_combined_group_label:0 ""		-Label of the combined group. Includes the number of items as $NUM$
+# over_core_title_limit_combined_group_name:0 ""		-Name of the combined group. For tooltip.
+# over_core_title_limit_combined_group_description:0 ""	-Name of the combined group. For tooltip.

@@ -277,5 +277,24 @@ Titles are only decored on:
 -Removing limitation that one cannot add core titles beyond the core limit.
 -Add check that child title or parent title is actually owned by this character
 
-Toast when a title is de-cored (by mod)
-Alert when over core title limit
+-Toast when a title is de-cored (by mod)
+-Alert when over core title limit
+
+send_interface_toast = {
+    type = message type <- defined in game/common/messages/
+    title = localization thing
+    desc = localization thing
+    left_icon = Seems to be character scope
+    right_icon = also seems to be character scope
+    show_as_tooltip = { can be used like before presumably to show modifiers effects and the like
+    }
+    can also put modifier and effects here and they will presumably show up
+    custom_tooltip = localization thing
+}
+
+
+Figure out how to put values into encyclopedia entries dynamically.
+!!Might have to change scope.trigger to trigger = scope
+Might be able to remove if from every_list and instead use just limit
+can probably use root instead of scope:this_title in most places.
+It looks like some localizations can use the scope to be localized. things like character_scope.GetUIName etc.

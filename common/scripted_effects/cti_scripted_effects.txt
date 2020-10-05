@@ -82,6 +82,7 @@ de_designate_core_title = {# scope is title
 #This should not be used to remove bad core titles on inheritance. On inheritance, core titles should not be broken (though capital chain and primary might be removed or changed)
 remove_invalid_core_titles = { #scope is a character. full refund. should happen when a core title is lost if it invalidates the heirarchy
     save_temporary_scope_as = this_character
+    send_cores_removed_toast
     while = {# Essentially while list is not empty
         limit = {any_core_title = {NOT = {is_core_consistent}}}# Should fix this later, it in essense calculates the list twice as often as it needs to
         every_inconsistent_core_title = {
@@ -118,7 +119,6 @@ recalculate_cores = { # scope is a character. this is used in cases like inherit
     if = {
         limit = {any_core_title = {NOT = {is_core_consistent}}}
         remove_invalid_core_titles
-        recalculate_cores # recursive
     }
 }
 
@@ -147,5 +147,13 @@ de_designate_all_core_titles = { #scope is character not full refund. should be 
                 COST = coring_title_refund_flat
             }
         }
+    }
+}
+
+send_cores_removed_toast = { # scope should not be needed
+    send_interface_toast = {
+        type = event_toast_text_bad # possibly change to msg_title_rank_down
+        title = cores_titles_removed_toast_title
+        desc = cores_titles_removed_toast_desc
     }
 }
