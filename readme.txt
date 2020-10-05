@@ -335,3 +335,49 @@ Making sure I don't for get pattern:
 save_temporary_scope_as = this_title
 scope:this_title available everywhere.
 
+Run 3:
+remove_laws possibly button tooltip example.
+both buttons still appear on all titles, including primary title. Are valid in both cases.
+object browser.
+same problems with decision text
+
+Adding test event and decision.
+Run 4:
+test decision has the same missing localization.
+test decision triggered core titles were removed -both of them did
+putting into the console event cti_test_event.0001 fired cti_manage_core_titles_event.001 and triggered core titles were removed. BUT NO EVENT WINDOW.
+^ makes me think part of the problem lies with the events.
+
+It looks like localization in events MUST be of the form event_name.numbers.thing
+same problem occuring
+figured out problem with namespace.
+
+It looks like for decisions it should be ai_check_interval, not ai_check_frequency as it says in the .info
+In events next line in localization will not trigger a bullet point, while custom_tooltip= will trigger a bullet point.
+It looks like what is failing now is recalculate_cores
+
+
+Looks like having if and else at the base is not valid for scripted triggers. need to use trigger_if or trigger_else
+tried to fix up triggers a bit.
+still same problem with event
+
+
+
+effects:
+every_heir_to_title
+ordered_heir_title
+set_destroy_on_succession
+set_special_title
+order_title_heir
+every_heir_title
+every_held_title
+set_always_follows_primary_heir
+
+Data Type Title has function IsPrimary
+
+is trigger has_primary_title.
+
+exists trigger any_in_de_jure_heirarchy
+exists trigger any_in_de_facto_heirarchy
+exists any_this_title_or_de_jure_above
+ If can't find flag I want (always_follows_primary_heir), then check if seeing if the list of heirs only has one element would work.

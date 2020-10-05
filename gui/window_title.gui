@@ -888,20 +888,20 @@ window = {
                                 datacontext = "[GetScriptedGui('designate_core_button')]"
 								name = "designate_core_title"
 								text = "TITLE_VIEW_DESIGNATE_CORE"
-                                visible = "[And( Character.IsLocalPlayer, ScriptedGui.IsShown( GuiScope.SetRoot( Character.MakeScope ).AddScope('title_', TitleViewWindow.GetTitle).End ) )]"
-                                enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(Character.MakeScope).AddScope('title_', TitleViewWindow.GetTitle).End )]"
-								onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Character.MakeScope ).AddScope('title_', TitleViewWindow.GetTitle).End )]"
-								tooltip = "[ScriptedGui.BuildTooltip( GuiScope.SetRoot( Character.MakeScope ).AddScope('title_', TitleViewWindow.GetTitle).End )]"
+                                visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( TitleViewWindow.GetTitle).AddScope('viewing_character', Character.MakeScope).End )]"
+                                enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( TitleViewWindow.GetTitle).AddScope('viewing_character', Character.MakeScope).End )]"
+								onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( TitleViewWindow.GetTitle).AddScope('viewing_character', Character.MakeScope).End )]"
+								tooltip = "[ScriptedGui.BuildTooltip( GuiScope.SetRoot( TitleViewWindow.GetTitle).AddScope('viewing_character', Character.MakeScope).End )]"
 							}
                             
                             button_tertiary = {
                                 datacontext = "[GetScriptedGui('de_designate_core_button')]"
 								name = "de_designate_core_title"
 								text = "TITLE_VIEW_DE_DESIGNATE_CORE"
-								visible = "[And( Character.IsLocalPlayer, ScriptedGui.IsShown( GuiScope.SetRoot( Character.MakeScope ).AddScope('title_', TitleViewWindow.GetTitle).End ) )]"
-                                enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(Character.MakeScope).AddScope('title_', TitleViewWindow.GetTitle).End )]"
-								onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Character.MakeScope ).AddScope('title_', TitleViewWindow.GetTitle).End )]"
-								tooltip = "[ScriptedGui.BuildTooltip( GuiScope.SetRoot( Character.MakeScope ).AddScope('title_', TitleViewWindow.GetTitle).End )]"
+								visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( TitleViewWindow.GetTitle).AddScope('viewing_character', Character.MakeScope).End )]"
+                                enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( TitleViewWindow.GetTitle).AddScope('viewing_character', Character.MakeScope).End )]"
+								onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( TitleViewWindow.GetTitle).AddScope('viewing_character', Character.MakeScope).End )]"
+								tooltip = "[ScriptedGui.BuildTooltip( GuiScope.SetRoot( TitleViewWindow.GetTitle).AddScope('viewing_character', Character.MakeScope).End )]"
 							}
                             
 							button_primary = {

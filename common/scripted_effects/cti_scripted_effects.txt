@@ -83,7 +83,7 @@ remove_invalid_core_titles = { #scope is a character. full refund. should happen
     send_cores_removed_toast
     while = {# Essentially while list is not empty
         limit = {any_core_title = {NOT = {is_core_consistent}}}# Should fix this later, it in essense calculates the list twice as often as it needs to
-        every_inconsistent_core_title = {
+        every_inconsistent_core_title = { # this should be the title here, and root the character
             if = {
                 limit = {can_de_core_title} # This means this can technically go into an infinite loop, but this should never happen.
                 de_core_title

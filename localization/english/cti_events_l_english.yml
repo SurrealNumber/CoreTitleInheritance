@@ -1,16 +1,27 @@
-﻿l_english: 
- cti_manage_core_titles_event.0001.t:0 "Manage Cores Entry Page"
- cti_manage_core_titles_event.0001.desc:0 "Number of [core_titles|E] which count towards [core_limit|E] have been re-calculated."
- 
+﻿l_english:
  cti_manage_core_titles_events_display_core_limit_option:0 "Display [core_title_limit|E] and the number of [core_titles|E] which count to it"
  cti_manage_core_titles_events_display_core_titles_cause_option:0 "Display [core_titles|E] broken up by the reason for being core"
  cti_manage_core_titles_events_display_core_titles_cost_option:0 "Display [core_titles|E] broken up by [core_title_limit|E] cost"
  cti_manage_core_titles_events_de_designate_all_core_titles_option:0 "De-designate all eligible [core_titles|E]"
  cti_manage_core_titles_events_close_option:0 "Close"
  
+ cti_manage_core_titles_event.0001.t:0 "Manage Cores Entry Page"
+ cti_manage_core_titles_event.0001.desc:0 "Number of [core_titles|E] which count towards [core_limit|E] have been re-calculated."
+ cti_manage_core_titles_event.0001.display_core_limit_option:0 "$cti_manage_core_titles_events_display_core_limit_option$"
+ cti_manage_core_titles_event.0001.display_core_titles_cause_option:0 "$cti_manage_core_titles_events_display_core_titles_cause_option$"
+ cti_manage_core_titles_event.0001.display_core_titles_cost_option:0 "$cti_manage_core_titles_events_display_core_titles_cost_option$"
+ cti_manage_core_titles_event.0001.de_designate_all_core_titles_option:0 "$cti_manage_core_titles_events_de_designate_all_core_titles_option$"
+ cti_manage_core_titles_event.0001.close_option:0 "$cti_manage_core_titles_events_close_option$"
+ 
+ 
+ 
  cti_manage_core_titles_event.0002.t:0 "Core Limit Values"
  cti_manage_core_titles_event.0002.desc1:0 "[core_title_limit|E]:"
  cti_manage_core_titles_event.0002.desc2:0 "Current Costing Core Title Count:"
+ cti_manage_core_titles_event.0002.display_core_titles_cause_option:0 "$cti_manage_core_titles_events_display_core_titles_cause_option$"
+ cti_manage_core_titles_event.0002.display_core_titles_cost_option:0 "$cti_manage_core_titles_events_display_core_titles_cost_option$"
+ cti_manage_core_titles_event.0002.de_designate_all_core_titles_option:0 "$cti_manage_core_titles_events_de_designate_all_core_titles_option$"
+ cti_manage_core_titles_event.0002.close_option:0 "$cti_manage_core_titles_events_close_option$"
  
  cti_manage_core_titles_event.0003.t:0 "Core Titles by Reason for Being Core"
  cti_manage_core_titles_event.0003.desc1a:0 "Due to Core Title Inheritance Mod:"
@@ -20,6 +31,10 @@
  cti_manage_core_titles_event.0003.desc3:0 "Due to Primary Title:"
  cti_manage_core_titles_event.0003.desc4a:0 "Due To Being Special:"
  cti_manage_core_titles_event.0003.desc4b:0 "[Title.GetName]"
+ cti_manage_core_titles_event.0003.display_core_limit_option:0 "$cti_manage_core_titles_events_display_core_limit_option$"
+ cti_manage_core_titles_event.0003.display_core_titles_cost_option:0 "$cti_manage_core_titles_events_display_core_titles_cost_option$"
+ cti_manage_core_titles_event.0003.de_designate_all_core_titles_option:0 "$cti_manage_core_titles_events_de_designate_all_core_titles_option$"
+ cti_manage_core_titles_event.0003.close_option:0 "$cti_manage_core_titles_events_close_option$"
  
  cti_manage_core_titles_event.0004.t:0 "Core Titles by Costing"
  cti_manage_core_titles_event.0004.desc0:0 "The set of [core_titles|E] which count towards the [core_title_limit|E] is the same as the set which have a [core_title_cost|E] if it is enabled"
@@ -27,7 +42,19 @@
  cti_manage_core_titles_event.0004.desc1b:0 "[Title.GetName]"
  cti_manage_core_titles_event.0004.desc2a:0 "Core Titles Which Don't Count Towards Limit:"
  cti_manage_core_titles_event.0004.desc2b:0 "[Title.GetName]"
+ cti_manage_core_titles_event.0004.display_core_limit_option:0 "$cti_manage_core_titles_events_display_core_limit_option$"
+ cti_manage_core_titles_event.0004.display_core_titles_cause_option:0 "$cti_manage_core_titles_events_display_core_titles_cause_option$"
+ cti_manage_core_titles_event.0004.de_designate_all_core_titles_option:0 "$cti_manage_core_titles_events_de_designate_all_core_titles_option$"
+ cti_manage_core_titles_event.0004.close_option:0 "$cti_manage_core_titles_events_close_option$"
 
  
  cti_manage_core_titles_event.0005.t:0 "De-designate All Titles"
  cti_manage_core_titles_event.0005.desc:0 "All eligible [core_titles|E] have been de-designated. You should have recieved a partial refund consistent with de-designating each title individually if applicable."
+ cti_manage_core_titles_event.0005.display_core_limit_option:0 "$cti_manage_core_titles_events_display_core_limit_option$"
+ cti_manage_core_titles_event.0005.display_core_titles_cause_option:0 "$cti_manage_core_titles_events_display_core_titles_cause_option$"
+ cti_manage_core_titles_event.0005.display_core_titles_cost_option:0 "$cti_manage_core_titles_events_display_core_titles_cost_option$"
+ cti_manage_core_titles_event.0005.close_option:0 "$cti_manage_core_titles_events_close_option$"
+ 
+ cti_manage_core_titles_event.0017.t:0 "Test Event"
+ cti_manage_core_titles_event.0017.desc:0 "This is the test event."
+ cti_manage_core_titles_event.0017.close:0 "Close"

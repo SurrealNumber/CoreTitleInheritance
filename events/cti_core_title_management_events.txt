@@ -1,6 +1,17 @@
 ﻿# AI should never see any of these events.
 # Depending on how crowded the events look I might merge the events.
 
+namespace = cti_manage_core_titles_event
+cti_manage_core_titles_event.0017 = {
+    type = character_event
+    title = cti_manage_core_titles_event.0017.t
+    desc = cti_manage_core_titles_event.0017.desc
+    theme = cti_core_management
+    option = {
+        name = cti_manage_core_titles_event.0017.close
+    }
+}
+
 # Entry event
 cti_manage_core_titles_event.0001 = {
     type = character_event
@@ -15,31 +26,31 @@ cti_manage_core_titles_event.0001 = {
     }
     
     option = {
-        name = cti_manage_core_titles_events_display_core_limit_option
+        name = cti_manage_core_titles_event.0001.display_core_limit_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0002
         }
     }
     option = {
-        name = cti_manage_core_titles_events_display_core_titles_cause_option
+        name = cti_manage_core_titles_event.0001.display_core_titles_cause_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0003
         }
     }
     option = {
-        name = cti_manage_core_titles_events_display_core_titles_cost_option
+        name = cti_manage_core_titles_event.0001.display_core_titles_cost_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0004
         }
     }
     option = {
-        name = cti_manage_core_titles_events_de_designate_all_core_titles_option
+        name = cti_manage_core_titles_event.0001.de_designate_all_core_titles_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0005
         }
     }
     option = {
-        name = cti_manage_core_titles_events_close_option
+        name = cti_manage_core_titles_event.0001.close_option
     }
 }
 
@@ -58,25 +69,25 @@ cti_manage_core_titles_event.0002 = {
     theme = cti_core_management
     
     option = {
-        name = cti_manage_core_titles_events_display_core_titles_cause_option
+        name = cti_manage_core_titles_event.0002.display_core_titles_cause_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0003
         }
     }
     option = {
-        name = cti_manage_core_titles_events_display_core_titles_cost_option
+        name = cti_manage_core_titles_event.0002.display_core_titles_cost_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0004
         }
     }
     option = {
-        name = cti_manage_core_titles_events_de_designate_all_core_titles_option
+        name = cti_manage_core_titles_event.0002.de_designate_all_core_titles_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0005
         }
     }
     option = {
-        name = cti_manage_core_titles_events_close_option
+        name = cti_manage_core_titles_event.0002.close_option
     }
 }
 
@@ -121,25 +132,25 @@ cti_manage_core_titles_event.0003 = {
     theme = cti_core_management
     
     option = {
-        name = cti_manage_core_titles_events_display_core_limit_option
+        name = cti_manage_core_titles_event.0003.display_core_limit_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0002
         }
     }
     option = {
-        name = cti_manage_core_titles_events_display_core_titles_cost_option
+        name = cti_manage_core_titles_event.0003.display_core_titles_cost_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0004
         }
     }
     option = {
-        name = cti_manage_core_titles_events_de_designate_all_core_titles_option
+        name = cti_manage_core_titles_event.0003.de_designate_all_core_titles_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0005
         }
     }
     option = {
-        name = cti_manage_core_titles_events_close_option
+        name = cti_manage_core_titles_event.0003.close_option
     }
 }
 
@@ -167,25 +178,25 @@ cti_manage_core_titles_event.0004 = {
     theme = cti_core_management
     
     option = {
-        name = cti_manage_core_titles_events_display_core_limit_option
+        name = cti_manage_core_titles_event.0004.display_core_limit_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0002
         }
     }
     option = {
-        name = cti_manage_core_titles_events_display_core_titles_cause_option
+        name = cti_manage_core_titles_event.0004.display_core_titles_cause_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0003
         }
     }
     option = {
-        name = cti_manage_core_titles_events_de_designate_all_core_titles_option
+        name = cti_manage_core_titles_event.0004.de_designate_all_core_titles_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0005
         }
     }
     option = {
-        name = cti_manage_core_titles_events_close_option
+        name = cti_manage_core_titles_event.0004.close_option
     }
 }
 
@@ -205,24 +216,24 @@ cti_manage_core_titles_event.0005 = {
     }
     
     option = {
-        name = cti_manage_core_titles_events_display_core_limit_option
+        name = cti_manage_core_titles_event.0005.display_core_limit_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0002
         }
     }
     option = {
-        name = cti_manage_core_titles_events_display_core_titles_cause_option
+        name = cti_manage_core_titles_event.0005.display_core_titles_cause_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0003
         }
     }
     option = {
-        name = cti_manage_core_titles_events_display_core_titles_cost_option
+        name = cti_manage_core_titles_event.0005.display_core_titles_cost_option
         effect = { # depending on how this looks I might want to change this to hidden_effect
             trigger_event = cti_manage_core_titles_event.0004
         }
     }
     option = {
-        name = cti_manage_core_titles_events_close_option
+        name = cti_manage_core_titles_event.0005.close_option
     }
 }

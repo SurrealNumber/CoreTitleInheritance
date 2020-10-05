@@ -1,79 +1,80 @@
 ﻿designate_core_button = {
-    scope = character
+    scope = title
+    #[And( Character.IsLocalPlayer,
     saved_scopes = {
-        title_
+        viewing_character
     }
     is_shown = {
-        #AND = {
-        #    title_.holder = root # might be redundant
-            NOT = {is_title_core = {title_}}
-        #}
+        NOT = {is_title_core}
+        trigger = {
+            viewing_character = holder
+        }
     }
     
     is_valid = {
-        can_core_title = {title_}
+        can_core_title
     }
     
     effect = {
         # Generate tooltip
         if = {
-            limit = {title_.can_core_title}
+            limit = {can_core_title}
             custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP
         }
         else if = {
-            limit = {NOT = {is_title_eligible_for_core = {title_}}}
+            limit = {NOT = {is_title_eligible_for_core}}
             custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD
         }
         else if = {
-            limit = {is_over_core_limit = {root}}
+            limit = {is_over_core_limit = {root.holder}}
             custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP_OVER_LIMIT
         }
         
         # do the coring
-        designate_core_title = {title_}
+        designate_core_title
     }
 }
 
 de_designate_core_button = {
-    scope = character
+    scope = title
     saved_scopes = {
-        title_
+        viewing_character
     }
     is_shown = {
-        #AND = {
-        #    title_.holder = root # might be redundant
-            is_title_core = {title_}
-        #}
+        is_title_core
+        trigger = {
+            viewing_character = holder
+        }
     }
     
     is_valid = {
-        can_de_core_title = {title}
+        can_de_core_title
     }
     
     effect = {
         # Generate tooltip
         if = {
-            limit = {can_de_core_title = {title_}}
+            limit = {can_de_core_title}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP
         }
         else if = {
-            limit = {is_title_core_due_to_capital = {title_}}
+            limit = {is_title_core_due_to_capital}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN
         }
         else if = {
-            limit = {root.primary_title = this}
+            limit = {holder.primary_title = root}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE
         }
         else if = {
-            limit = {will_core_loss_break_titles = {title_}}
+            limit = {will_core_loss_break_titles}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING
         }
         else if = {
-            limit = {always_follows_primary_heir = {title_}}
+            limit = {always_follows_primary_heir}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE
         }
         
         # do the de_designating core
-        de_designate_core_title = {title_}
+        de_designate_core_title
     }
 }
