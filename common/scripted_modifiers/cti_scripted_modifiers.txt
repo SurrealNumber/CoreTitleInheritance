@@ -6,3 +6,7 @@
         desc = CORE_TITLES_HELD_COST_OVERTIME
     }
 }
+
+over_core_limit_modifier = {
+    monthly_prestige_gain_mult = over_core_limit_prestige_modifier
+}

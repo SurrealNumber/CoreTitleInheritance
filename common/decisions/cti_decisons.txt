@@ -9,6 +9,6 @@
         custom_tooltip = manage_core_titles_decision_info_blurb_bullet3
         custom_tooltip = manage_core_titles_decision_info_blurb_bullet4
         
-        trigger_event = cti_events.0001
+        trigger_event = cti_manage_core_titles_event.0001
     }
 }

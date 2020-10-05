@@ -112,7 +112,6 @@ de_core_title = { # scope is a title. Will still work even if title is not core.
 }
 
 recalculate_cores = { # scope is a character. this is used in cases like inheritance when core titles are preserved
-    save_temporary_scope_as = this_character
     initialize_core_count
     if = {
         limit = {any_core_title = {NOT = {is_core_consistent}}}

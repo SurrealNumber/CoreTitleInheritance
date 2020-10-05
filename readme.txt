@@ -326,3 +326,12 @@ does not take into account title succession laws
 Need to prevent prestige from refunds from giving fame
 Need to deal with the situation where the de jure duchy title does not exist, or is held by a different character (similarly for other tiers)
 Possibly remove the ability to core titles of the highest tier.
+
+Running game 2nd time:
+Title and on click for decision missing
+both designate and de-designate are showing up again. - also both showing up for other character's titles, and for capital titles.
+
+Making sure I don't for get pattern:
+save_temporary_scope_as = this_title
+scope:this_title available everywhere.
+

@@ -12,16 +12,13 @@ is_title_core_due_to_capital = { # scope is title
 
 # Assume the default is false/no. Otherwise will need to modify.
 is_title_core_due_to_cti = {
-    if = {
-        limit = {exists = var:core}
-        AND = {
-            var:core
-            NOT = {
-                AND = {
-                    is_title_core_due_to_capital
-                    holder.primary_title = this
-                }# I believe that there should be no source always_follows_primary_heir except for during title creation. Titles with this flag cannot be designated core, so they should not have the variable core associated.
-            }
+    AND = {
+        exists = var:core
+        NOT = {
+            AND = {
+                is_title_core_due_to_capital
+                holder.primary_title = this
+            }# I believe that there should be no source always_follows_primary_heir except for during title creation. Titles with this flag cannot be designated core, so they should not have the variable core associated.
         }
     }
 }
@@ -56,13 +53,12 @@ does_core_title_count_to_limit = { # scope is title
 }
 
 is_title_eligible_for_core = { # Assume that this will only be called if the title is owned
-    save_temporary_scope_as = this_title
     AND = {
         NOT = { is_title_core } # not a core title
         OR = {
             tier <= tier_county # county or lower
             holder.any_core_title = { # direct de jure liege of another core title
-                this.de_jure_liege = scope:this_title
+                this.de_jure_liege = root
             }
         }
     }
@@ -71,17 +67,15 @@ is_title_eligible_for_core = { # Assume that this will only be called if the tit
 # assumes that core title rules are being followed - only checks one tier up
 # ignores capital chain because it should always be intact, and one cannot de-core a title in it.
 will_core_loss_break_titles = { # scope is title
-    de_jure_liege = {save_temporary_scope_as = parent_title}
-    save_temporary_scope_as = this_title
     AND = {
-        scope:parent_title.is_title_core # parent title is core
-        scope:parent_title.holder = holder # parent title is held by the same character
-        NOT = {this.holder.primary_title = scope:parent_title} # parent title is not the holder's primary title
+        root.de_jure_liege.is_title_core # parent title is core
+        root.de_jure_liege.holder = holder # parent title is held by the same character
+        NOT = {this.holder.primary_title = root.de_jure_liege} # parent title is not the holder's primary title
         NOT = {# parent title is not de jure liege of any sibling core titles
             holder.any_core_title = { 
                 AND = {
-                    NOT = {this = scope:this_title}
-                    this.de_jure_liege = scope:parent_title
+                    NOT = {this = root}
+                    this.de_jure_liege = root.de_jure_liege
                 }
             }
         }
@@ -90,13 +84,12 @@ will_core_loss_break_titles = { # scope is title
 
 
 is_core_consistent = {# scope is title
-    save_temporary_scope_as = this_title
     OR = {
         tier <= tier_county
         holder.primary_title = this
         is_title_core_due_to_capital
         holder.any_core_title = {
-            this.de_jure_liege = scope:this_title
+            this.de_jure_liege = root
         }
     }
 }
