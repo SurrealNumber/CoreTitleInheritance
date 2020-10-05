@@ -1,4 +1,4 @@
-﻿core_limit = {
+﻿core_limit = { # scope is character
     if = {
         limit={ has_game_rule = off_designate_core_limit }
         value = 0
@@ -22,6 +22,22 @@
 coring_title_cost_flat = major_prestige_loss
 coring_title_refund_flat = medium_prestige_gain
 coring_title_refund_flat_full = major_prestige_gain
+
+over_core_limit = { # scope is character
+    if = {
+        limit = {NOT = {exists = var:core_count}}
+        initialize_core_count
+    }
+    value = var:core_count
+    subtract = core_limit
+    min = 0 # sets lower bound of 0
+}
+
+over_core_limit_prestige_modifier = {
+    value = 0.05
+    multiply = over_core_limit
+    max = 0.5 # sets upper bound
+}
 
 #Not used
 #get_core_count = { # scope is a character

@@ -5,7 +5,7 @@
  setting_flat_designate_core_cost:0 "Flat"
  setting_flat_designate_core_cost_desc:0 "Designating core titles has a flat prestige cost."
  setting_overtime_designate_core_cost:0 "Overtime"
- setting_overtime_designate_core_cost_desc:0 "Designating core titles has a monthly prestige penalty."
+ setting_overtime_designate_core_cost_desc:0 "Core titles have a monthly prestige penalty."
  
  rule_designate_core_limit:0 "Core Title Limit"
  setting_off_designate_core_limit:0 "Off"

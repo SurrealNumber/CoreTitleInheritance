@@ -1,0 +1,3 @@
+﻿over_core_limit_modifier = {
+    monthly_prestige_gain_mult = over_core_limit_prestige_modifier
+}

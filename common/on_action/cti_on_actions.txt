@@ -33,7 +33,7 @@ cti_on_title_destroyed = {
 #    }
 #}
 
-cti_on_title_loss = { # assumes that the title has already changed hands
+cti_on_title_loss = { # assumes that the title has already changed hands. might complain if the title is being created.
     effects = {
         if = {
             limit = {

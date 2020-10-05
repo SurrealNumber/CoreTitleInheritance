@@ -267,3 +267,15 @@ Might need to make localization for effects, triggers, and modifiers. Don't know
 notifications:
 I’ll start with the notifications and toasts as they are the simplest. You simply make a database entry in the common folder for your notification and then wherever you want to run it from you use the send_interface_message or send_interface_toast effect.
 Want to send toast when de-coring a title. Only should occur if full refund would be given- i.e. the mod removes them for internal reasons.
+Add modifier penalty for being over the core limit. Remove decoring titles which are over the limit.
+
+Titles are only decored on:
+    most title transfers
+    invalid core title due to some reason (change capital or lose title)
+!!! No on_action for changing capital or primary title.
+
+-Removing limitation that one cannot add core titles beyond the core limit.
+-Add check that child title or parent title is actually owned by this character
+
+Toast when a title is de-cored (by mod)
+Alert when over core title limit

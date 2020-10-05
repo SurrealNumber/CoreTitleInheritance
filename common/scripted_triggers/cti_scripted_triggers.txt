@@ -56,29 +56,33 @@ does_core_title_count_to_limit = { # scope is title
 }
 
 is_title_eligible_for_core = { # Assume that this will only be called if the title is owned
+    save_temporary_scope_as = this_title
     AND = {
-        save_temporary_scope_as = this_title
-        NOT = { is_title_core }
+        NOT = { is_title_core } # not a core title
         OR = {
-            tier <= tier_county
-            holder.any_core_title = {
+            tier <= tier_county # county or lower
+            holder.any_core_title = { # direct de jure liege of another core title
                 this.de_jure_liege = scope:this_title
-            } # this should mean that one of the core titles is a direct child of this title
+            }
         }
     }
 }
 
 # assumes that core title rules are being followed - only checks one tier up
-will_core_loss_break_titles = {
+# ignores capital chain because it should always be intact, and one cannot de-core a title in it.
+will_core_loss_break_titles = { # scope is title
     de_jure_liege = {save_temporary_scope_as = parent_title}
     save_temporary_scope_as = this_title
-    OR = {
-        scope:parent_title.is_title_core = no
-        NOT = {this.holder.primary_title = scope:parent_title} # the primary title breaks the pattern for core titles.
-        holder.any_core_title = {
-            AND = {
-                NOT = {this = scope:this_title}
-                this.de_jure_liege = scope:parent_title
+    AND = {
+        scope:parent_title.is_title_core # parent title is core
+        scope:parent_title.holder = holder # parent title is held by the same character
+        NOT = {this.holder.primary_title = scope:parent_title} # parent title is not the holder's primary title
+        NOT = {# parent title is not de jure liege of any sibling core titles
+            holder.any_core_title = { 
+                AND = {
+                    NOT = {this = scope:this_title}
+                    this.de_jure_liege = scope:parent_title
+                }
             }
         }
     }
@@ -108,7 +112,6 @@ is_over_core_limit = { # scope is character
 can_core_title = {
     AND = {
         is_title_eligible_for_core
-        holder.is_over_core_limit = no
     }
 }
 
