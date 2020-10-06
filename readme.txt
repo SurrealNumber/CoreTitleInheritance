@@ -483,3 +483,24 @@ TIERED MODIFIER FOR THE OVER CORE LIMIT PENALTY.
 One interpretation is that the titles which count to core limit are exactly core provinces/baronies. <- it is more succinct to say that the same things which count to domain limit count to core limit
 THERE IS A GAME CONCEPT FOR IT -> HOLDING
 any_directly_owned_province <- might give holding number, or restrict to holdings
+^not as useful, given it would then have to be restricted to core titles. 
+set_variable =
+{
+name = test1
+value = {
+value = 0
+any_directly_owned_province = {add = 1}
+}
+}
+
+My mod currently has no grace period. I should probably look into adding it.
+
+comments in triggers.log seem to suggest that holding and province are equivalent. This is useful to know. (Though they aren't quite equivalent, as I think one is a building or title, and the other is a map tile)
+recalculating core titles from the decision _should_ never cause inconsistent core titles to be lost.
+figure out how to do bullet points. especially applicanle in game concepts.
+capitals and the like will have a monthly prestige cost, but probably should not.
+I SHOULD GIVE PROVINCES WHICH ARE CORE TITLES A SMALL CONTROL GROWTH BUFF.
+Really have to figure out how to do dynamic encyclopedia entries.
+It is possible to be over the core limit without including any designated core holdings. Will have to address this.
+NOTE ABOUT CODE: core_count means core_holding_count. Same with core_limit and core_holding_limit
+Have to put in something to trigger over core limit alert.

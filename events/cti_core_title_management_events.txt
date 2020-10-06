@@ -174,16 +174,15 @@ cti_manage_core_titles_event.0004 = {
     
     title = cti_manage_core_titles_event.0004.t
     desc = {
-        desc = cti_manage_core_titles_event.0004.desc0
         desc = cti_manage_core_titles_event.0004.desc1a
-        every_core_title_count_to_limit = {
+        every_core_holding = {
             desc = cti_manage_core_titles_event.0004.desc1b # "[Title.GetName]"
         }
         desc = cti_manage_core_titles_event.0004.desc2a
-        every_core_title_count_to_limit = {
+        every_core_title = {
             if = {
                 limit = {
-                    does_core_title_count_to_limit = no
+                    is_title_holding = no
                 }
                 desc = cti_manage_core_titles_event.0004.desc2b # "[Title.GetName]"
             }

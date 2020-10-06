@@ -5,11 +5,7 @@ initialize_core_count = {# scope is a character
         name = core_count
         value = core_count_from_list
     }
-    over_core_limit_modifier = yes # hope that this does not just apply a snapshot.
-    if = {
-        limit = {has_game_rule = overtime_designate_core_cost}
-        core_titles_cost_modifier = yes
-    }
+    #over_core_limit_modifier = yes # Will change how this is handled later
 }
 
 
@@ -30,7 +26,7 @@ decrement_core_count = {# scope is character
 
 apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value and a boolean.
     if = {
-        limit = {does_core_title_have_cost = yes}
+        limit = {is_title_core = yes}
         if = {
             limit = {NOT = {exists = var:core_count}}
             initialize_core_count
@@ -43,8 +39,8 @@ apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value 
             holder = decrement_core_count# Think this should apply this with scope holder
         }
         if = {
-            limit = {has_game_rule = flat_designate_core_cost }
-            holder.add_prestige = $COST$ 
+            limit = {has_game_rule = flat_designate_core_holding_cost }
+        holder = {add_prestige = $COST$}
         }
     }
 }
@@ -58,7 +54,7 @@ designate_core_title = {#scope is title
     set_always_follows_primary_heir = yes
     apply_cost_and_count_of_title = {
         INCREASE = yes
-        COST = coring_title_cost_flat
+        COST = coring_holding_cost_flat
     }   
 }
 
@@ -66,7 +62,7 @@ de_designate_core_title = {# scope is title
     de_core_title
     apply_cost_and_count_of_title = {
         INCREASE = no
-        COST = coring_title_refund_flat
+        COST = coring_holding_refund_flat
     } 
 }
 
@@ -82,7 +78,7 @@ remove_invalid_core_titles = { #scope is a character. full refund. should happen
                 de_core_title
                 apply_cost_and_count_of_title = {
                     INCREASE = no
-                    COST = coring_title_refund_flat_full
+                    COST = coring_holding_refund_flat_full
                 }
             }
         }
@@ -134,7 +130,7 @@ de_designate_all_core_titles = { #scope is character not full refund. should be 
             decore_title
             apply_cost_and_count_of_title = {
                 INCREASE = no
-                COST = coring_title_refund_flat
+                COST = coring_holding_refund_flat
             }
         }
     }

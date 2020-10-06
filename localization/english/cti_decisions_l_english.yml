@@ -1,12 +1,11 @@
 ﻿l_english: 
  manage_core_titles_decision:0 "Manage Cores"
- manage_core_titles_decision_tooltip:0 "Trigger Event to Manage [core titles|E]"
- manage_core_titles_decision_desc:0 "Open interface to display [core titles|E] information and bulk manage."
+ manage_core_titles_decision_tooltip:0 "Trigger Event to Manage [core_titles|E]"
+ manage_core_titles_decision_desc:0 "Open interface to display [core_titles|E] information and bulk manage."
  manage_core_titles_decision_effect_tooltip_start:0 "Will launch an event to display information on titles and give bulk management options. The event will:"
- manage_core_titles_decision_effect_tooltip_bullet1:0 "Recalculate the [core_titles|E] owned which count towards the [core_title_limit|E]"
- manage_core_titles_decision_effect_tooltip_bullet1:0 "Present the [core_title_limit|E] and the number of counting [cores|E]"
- manage_core_titles_decision_effect_tooltip_bullet2:0 "Display a list of [core_titles|E]"
- manage_core_titles_decision_effect_tooltip_bullet3:0 "Display a list of [core_titles|E] which are [core|E] due to the Core Title Inheritance Mod"
+ manage_core_titles_decision_effect_tooltip_bullet1:0 "Present the [core_holding_limit|E] and the number of [core_holdings|E]"
+ manage_core_titles_decision_effect_tooltip_bullet2:0 "Display a list of [core_titles|E] by reason for being [core|E]"
+ manage_core_titles_decision_effect_tooltip_bullet3:0 "Display a list of [core_titles|E] by whether they are a [holding|E]"
  manage_core_titles_decision_effect_tooltip_bullet4:0 "Offer the oportunity to de-designate all [core_titles|E] which are due to the Core Title Inheritance Mod"
  manage_core_titles_decision_confirm:0 "Trigger Event"
  

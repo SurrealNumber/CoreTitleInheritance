@@ -1,27 +1,23 @@
 ﻿core_limit = { # scope is character
-    if = {
-        limit={ has_game_rule = off_designate_core_limit }
-        value = 0
-    }
     else_if = {
-        limit={ has_game_rule = half_domain_designate_core_limit }
+        limit={ has_game_rule = half_domain_core_holding_limit }
         value = domain_limit
         divide = 2
         ceiling = yes
     }
     else_if = {
-        limit={ has_game_rule = domain_designate_core_limit }
+        limit={ has_game_rule = domain_core_holding_limit }
         value = domain_limit
     }
     else_if = {
-        limit={ has_game_rule = unlimited_designate_core_limit }
+        limit={ has_game_rule = ludicrous_core_holding_limit }
         value = 10000
     }
 }
 
-coring_title_cost_flat = {value = major_prestige_loss}
-coring_title_refund_flat = {value = medium_prestige_gain}
-coring_title_refund_flat_full = {value = major_prestige_gain}
+coring_holding_cost_flat = {value = major_prestige_loss}
+coring_holding_refund_flat = {value = medium_prestige_gain}
+coring_holding_refund_flat_full = {value = major_prestige_gain}
 
 over_core_limit = { # scope is character
     if = {
@@ -52,5 +48,5 @@ over_core_limit_prestige_modifier = {
 
 core_count_from_list = {
     value = 0
-    every_core_title_count_to_limit = { add = 1 }
+    every_core_holding = { add = 1 }
 }

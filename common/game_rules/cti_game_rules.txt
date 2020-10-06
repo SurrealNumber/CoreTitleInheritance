@@ -1,23 +1,29 @@
-﻿designate_core_cost = {
-    default = overtime_designate_core_cost
+﻿core_holding_cost = {
+    default = overtime_core_holding_cost
     
-    free_designate_core_cost = {}
+    no_core_holding_cost = {}
     
-    flat_designate_core_cost = {}
+    overtime_core_holding_cost = {}
     
-    overtime_designate_core_cost = {}
+    flat_designate_core_holding_cost = {}
 }
 
-designate_core_limit = {
-    default = half_domain_designate_core_limit
+core_holding_benefit = {
+    default = control_core_holding_benefit
     
-    off_designate_core_limit = {}
+    none_core_holding_benefit = {}
+    
+    control_core_holding_benefit = {}
+}
 
-    half_domain_designate_core_limit = {}
+core_holding_limit = {
+    default = half_domain_core_holding_limit
+
+    half_domain_core_holding_limit = {}
     
-    domain_designate_core_limit = {}
+    domain_core_holding_limit = {}
     
-    unlimited_designate_core_limit = {}
+    ludicrous_core_holding_limit = {}
 }
 
 core_persist = {

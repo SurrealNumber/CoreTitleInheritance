@@ -22,7 +22,7 @@ on_title_loss = {
 
 cti_on_title_destroyed = {
     effect = {
-        scope:landed_title.safe_de_core_title
+        scope:landed_title = safe_de_core_title
         recalculate_cores
     }
 }

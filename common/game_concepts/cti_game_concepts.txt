@@ -4,17 +4,26 @@
 	alias = { core_titles core_titlepossessive core}
 }
 
-core_title_cost = {
-	texture = "gfx/interface/icons/currencies/icon_prestige_01.dds"
+core_holding = {
+    texture = "gfx/interface/icons/map_icons/onmap_holding_icon.dds"
     parent = core_title
+    alias = {core_holdings}
 }
 
-core_title_limit = {
+core_holding_impact = {
+	texture = "gfx/interface/icons/currencies/icon_prestige_01.dds"
+    parent = core_holding
+    alias = {core_impact core_cost core_holding_cost core_benefit core_holding_benefit}
+}
+
+core_holding_limit = {
 	texture = "gfx/interface/icons/icon_domain.dds"
-    parent = core_title
+    parent = core_holding
+    alias = {core_limit}
 }
 
 core_title_persistence = {
     texture = "gfx/interface/icons/message_feed/heir.dds"
 	parent = core_title
+    alias = {core_persistence}
 }

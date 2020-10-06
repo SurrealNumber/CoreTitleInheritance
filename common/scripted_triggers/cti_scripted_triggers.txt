@@ -10,7 +10,6 @@ is_title_core_due_to_capital = { # scope is title
     }
 }
 
-# Assume the default is false/no. Otherwise will need to modify.
 is_title_core_due_to_cti = {
     exists = var:core
     NOT = {
@@ -22,7 +21,6 @@ is_title_core_due_to_cti = {
 }
 # MUST BE CAREFUL THAT THE TRIGGERS ABOVE AND BELOW THIS AGREE!
 #This catches primary titles and capitals as well (I assume)
-# Assume the default is false/no. Otherwise will need to modify.
 is_title_core = { # Assume that this will only be called if the title is owned
     trigger_if = {
         limit = {exists = var:core}
@@ -40,18 +38,14 @@ is_title_core = { # Assume that this will only be called if the title is owned
     }
 }
 
-does_core_title_have_cost = { # scope is title
-    tier <= tier_county
-}
-# have both even though they are the same in case I want to break this equivalence in the future.
-does_core_title_count_to_limit = { # scope is title
+is_title_holding = { # scope is title
     tier <= tier_county
 }
 
 is_title_eligible_for_core = { # Assume that this will only be called if the title is owned
     is_title_core = no # not a core title
     OR = {
-        tier <= tier_county # county or lower
+        is_title_holding = yes # county or lower
         holder = {# Changes scope to holder
             any_core_title = { # direct de jure liege of another core title
             this.de_jure_liege = root
@@ -83,7 +77,7 @@ will_core_loss_break_titles = { # scope is title
 
 is_core_consistent = {# scope is title
     OR = {
-        tier <= tier_county
+        is_title_holding = yes
         holder.primary_title = root
         is_title_core_due_to_capital = yes
         holder = {

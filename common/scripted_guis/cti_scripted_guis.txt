@@ -23,10 +23,6 @@
             limit = {is_title_eligible_for_core = no}
             custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD
         }
-        else if = {
-            limit = {is_over_core_limit = {root.holder}}
-            custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP_OVER_LIMIT
-        }
         
         # do the coring
         designate_core_title
