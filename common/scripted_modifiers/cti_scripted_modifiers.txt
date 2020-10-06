@@ -1,6 +1,7 @@
 ﻿core_titles_cost_modifier = {
     modifier = {
-        value = held_county_modifier
+        value = 0
+        subtract = held_county_modifier
         divide = 2
         multiply = this.var:core_count
         desc = CORE_TITLES_HELD_COST_OVERTIME
@@ -8,5 +9,7 @@
 }
 
 over_core_limit_modifier = {
-    monthly_prestige_gain_mult = over_core_limit_prestige_modifier
+    modifier = {
+        monthly_prestige_gain_mult = over_core_limit_prestige_modifier
+    }
 }

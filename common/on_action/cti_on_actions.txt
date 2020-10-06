@@ -21,7 +21,7 @@ on_title_loss = {
 # My on_actions which call the rest of my code.
 
 cti_on_title_destroyed = {
-    effects = {
+    effect = {
         scope:landed_title.safe_de_core_title
         recalculate_cores
     }
@@ -34,7 +34,7 @@ cti_on_title_destroyed = {
 #}
 
 cti_on_title_loss = { # assumes that the title has already changed hands. might complain if the title is being created.
-    effects = {
+    effect = {
         if = {
             limit = {
                 AND = {

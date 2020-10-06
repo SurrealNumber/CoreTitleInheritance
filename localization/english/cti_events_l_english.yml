@@ -57,4 +57,6 @@
  
  cti_manage_core_titles_event.0017.t:0 "Test Event"
  cti_manage_core_titles_event.0017.desc:0 "This is the test event."
+ cti_manage_core_titles_event.0017.a:0 "Apply positive modifier"
+ cti_manage_core_titles_event.0017.b:0 "Apply negative modifier"
  cti_manage_core_titles_event.0017.close:0 "Close"

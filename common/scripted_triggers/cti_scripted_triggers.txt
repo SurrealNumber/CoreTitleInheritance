@@ -49,12 +49,12 @@ does_core_title_count_to_limit = { # scope is title
 }
 
 is_title_eligible_for_core = { # Assume that this will only be called if the title is owned
-    AND = {
-        is_title_core = no # not a core title
-        OR = {
-            tier <= tier_county # county or lower
-            holder.any_core_title = { # direct de jure liege of another core title
-                this.de_jure_liege = root
+    is_title_core = no # not a core title
+    OR = {
+        tier <= tier_county # county or lower
+        holder = {# Changes scope to holder
+            any_core_title = { # direct de jure liege of another core title
+            this.de_jure_liege = root
             }
         }
     }
@@ -64,14 +64,16 @@ is_title_eligible_for_core = { # Assume that this will only be called if the tit
 # ignores capital chain because it should always be intact, and one cannot de-core a title in it.
 will_core_loss_break_titles = { # scope is title
     AND = {
-        root.de_jure_liege.is_title_core # parent title is core
+        root.de_jure_liege = {is_title_core = yes} # parent title is core
         root.de_jure_liege.holder = holder # parent title is held by the same character
         NOT = {holder.primary_title = root.de_jure_liege} # parent title is not the holder's primary title
         NOT = {# parent title is not de jure liege of any sibling core titles
-            holder.any_core_title = { 
-                AND = {
-                    NOT = {this = root}
-                    this.de_jure_liege = root.de_jure_liege
+            holder = {
+                any_core_title = { 
+                    AND = {
+                        NOT = {this = root}
+                        this.de_jure_liege = root.de_jure_liege
+                    }
                 }
             }
         }
@@ -84,8 +86,10 @@ is_core_consistent = {# scope is title
         tier <= tier_county
         holder.primary_title = root
         is_title_core_due_to_capital = yes
-        holder.any_core_title = {
-            this.de_jure_liege = root
+        holder = {
+            any_core_title = {
+                this.de_jure_liege = root
+            }
         }
     }
 }

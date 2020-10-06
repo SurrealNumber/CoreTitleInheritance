@@ -419,3 +419,21 @@ Moving away from using this means special titles like religious heads are not ha
 is_shown (and probably other places as well) has an implied AND = {}
 can add custom_descriptions to triggers
 Looks like I might need trigger = yes if I want checking a trigger to work.
+Sooooooooooooooo many syntax errors. I wish there was a better comprehensive guide. I should probably contribute if one is there, but it is beyond me to create one.
+
+Looks like for scripted modifiers there are 4 things one can do with them/give them.
+1. modifier = {} straight value, used in script for things like comparing chances also takes factor
+2. opinion_modifier = {} modifier to opinion, I think it is applied to characters and effects their opinion (presumably has way to specify who it is between)
+    looks like it can take a trigger for when it applies. It also has a who and target arguements
+3. compare_modifier = {} takes factor and multiplier
+4. compatability_modifier = {} takes who, compatability_target, min, max, and trigger
+
+modifiers can use first valid. they can also have `desc = localization_thing`
+exists has_opinion_modifier
+can add to list without initializing
+exists add_character_modifier - the same modifier does not appear to stack. - takes name = <> time = int
+Esists remove_all_character_modifier_instances takes name <- seems to suggest that modifiers can stack.
+remove_character_modifier takes name
+scripted_tests_recalculate_character_modifier
+
+buildings can have character_modifiers

@@ -5,10 +5,10 @@ initialize_core_count = {# scope is a character
         name = core_count
         value = core_count_from_list
     }
-    over_core_limit_modifier # hope that this does not just apply a snapshot.
+    over_core_limit_modifier = yes # hope that this does not just apply a snapshot.
     if = {
         limit = {has_game_rule = overtime_designate_core_cost}
-        core_titles_cost_modifier
+        core_titles_cost_modifier = yes
     }
 }
 
@@ -71,10 +71,11 @@ de_designate_core_title = {# scope is title
 }
 
 #This should not be used to remove bad core titles on inheritance. On inheritance, core titles should not be broken (though capital chain and primary might be removed or changed)
+# should be able to construct list and use it in the limit for the next one.
 remove_invalid_core_titles = { #scope is a character. full refund. should happen when a core title is lost if it invalidates the heirarchy
     send_cores_removed_toast
     while = {# Essentially while list is not empty
-        limit = {any_core_title = {is_core_consistent = no}}# Should fix this later, it in essense calculates the list twice as often as it needs to
+        limit = {any_inconsistent_core_title = {always = no}}# Should fix this later, it in essense calculates the list twice as often as it needs to
         every_inconsistent_core_title = { # this should be the title here, and root the character
             if = {
                 limit = {can_de_core_title = yes} # This means this can technically go into an infinite loop, but this should never happen.

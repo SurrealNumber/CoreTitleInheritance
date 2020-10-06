@@ -26,17 +26,19 @@ coring_title_refund_flat_full = {value = major_prestige_gain}
 over_core_limit = { # scope is character
     if = {
         limit = {NOT = {exists = var:core_count}}
-        initialize_core_count
+        value = 0
     }
-    value = var:core_count
-    subtract = core_limit
-    min = 0 # sets lower bound of 0
+    else = {
+        value = var:core_count
+        subtract = core_limit
+        min = 0 # sets lower bound of 0
+    }
 }
 
 over_core_limit_prestige_modifier = {
-    value = 0.05
+    value = -0.05
     multiply = over_core_limit
-    max = 0.5 # sets upper bound
+    min = -0.5 # sets lower bound
 }
 
 #Not used

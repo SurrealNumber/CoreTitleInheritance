@@ -1,1 +1,9 @@
-﻿
+﻿test_positive_modifier = {
+    icon = prestige_positive
+    domain_limit = 1
+}
+
+test_negative_modifier = {
+    icon = prestige_negative
+    domain_limit = -1
+}
