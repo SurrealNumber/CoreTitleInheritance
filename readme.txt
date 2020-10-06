@@ -504,3 +504,5 @@ Really have to figure out how to do dynamic encyclopedia entries.
 It is possible to be over the core limit without including any designated core holdings. Will have to address this.
 NOTE ABOUT CODE: core_count means core_holding_count. Same with core_limit and core_holding_limit
 Have to put in something to trigger over core limit alert.
+Possibly consider having the modifiers hidden so they only show up for the character.
+it looks like most province modifiers are actually meant for different scopes than provinces.

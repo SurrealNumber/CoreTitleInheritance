@@ -1,11 +1,71 @@
 ﻿#All of these assume that you have checked that it is proper to call them before making the call.
 
+set_over_core_limit_modifier = { # scope is character
+    remove_all_character_modifier_instances = 1_over_core_limit_modifier
+    remove_all_character_modifier_instances = 2_over_core_limit_modifier
+    remove_all_character_modifier_instances = 3_over_core_limit_modifier
+    remove_all_character_modifier_instances = 4_over_core_limit_modifier
+    remove_all_character_modifier_instances = 5_over_core_limit_modifier
+    remove_all_character_modifier_instances = 6_over_core_limit_modifier
+    remove_all_character_modifier_instances = 7_over_core_limit_modifier
+    remove_all_character_modifier_instances = 8_over_core_limit_modifier
+    remove_all_character_modifier_instances = 9_over_core_limit_modifier
+    remove_all_character_modifier_instances = 10+_over_core_limit_modifier
+    ammount_over_core_limit = {save_temorary_scope_as = amount_over_core_limit} #hopefully stores the variable so it is not calculated every time.
+    if = {
+        limit = {scope:amount_over_core_limit = 0}
+        # do nothing
+    }
+    else if = {
+        limit = {scope:amount_over_core_limit = 1}
+        add_character_modifier = 1_over_core_limit_modifier
+    }
+    else if = {
+        limit = {scope:amount_over_core_limit = 2}
+        add_character_modifier = 2_over_core_limit_modifier
+    }
+    else if = {
+        limit = {scope:amount_over_core_limit = 3}
+        add_character_modifier = 3_over_core_limit_modifier
+    }
+    else if = {
+        limit = {scope:amount_over_core_limit = 4}
+        add_character_modifier = 4_over_core_limit_modifier
+    }
+    else if = {
+        limit = {scope:amount_over_core_limit = 5}
+        add_character_modifier = 5_over_core_limit_modifier
+    }
+    else if = {
+        limit = {scope:amount_over_core_limit = 6}
+        add_character_modifier = 6_over_core_limit_modifier
+    }
+    else if = {
+        limit = {scope:amount_over_core_limit = 7}
+        add_character_modifier = 7_over_core_limit_modifier
+    }
+    else if = {
+        limit = {scope:amount_over_core_limit = 8}
+        add_character_modifier = 8_over_core_limit_modifier
+    }
+    else if = {
+        limit = {scope:amount_over_core_limit = 9}
+        add_character_modifier = 9_over_core_limit_modifier
+    }
+    else if = {
+        limit = {scope:amount_over_core_limit >= 10}
+        add_character_modifier = 10+_over_core_limit_modifier
+    }
+}
+
+
+
 initialize_core_count = {# scope is a character
     set_variable = {
         name = core_count
         value = core_count_from_list
     }
-    #over_core_limit_modifier = yes # Will change how this is handled later
+    set_over_core_limit_modifier
 }
 
 
@@ -14,6 +74,7 @@ increment_core_count = {# scope is character
         name = core_count
         add = 1
     }
+    set_over_core_limit_modifier
 }
 
 # assumes that core count is 
@@ -22,6 +83,7 @@ decrement_core_count = {# scope is character
         name = core_count
         subtract = 1
     }
+    set_over_core_limit_modifier
 }
 
 apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value and a boolean.
