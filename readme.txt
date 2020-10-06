@@ -380,4 +380,38 @@ is trigger has_primary_title.
 exists trigger any_in_de_jure_heirarchy
 exists trigger any_in_de_facto_heirarchy
 exists any_this_title_or_de_jure_above
- If can't find flag I want (always_follows_primary_heir), then check if seeing if the list of heirs only has one element would work.
+If can't find flag I want (always_follows_primary_heir), then check if seeing if the list of heirs only has one element would work.
+Need to test to see if it is an actual flag.
+It loooks like flags are only on characters. I will check this.
+
+any_title_heir has scope of title
+when setting variables (and presumably elsewhere) in order to use add and the like one must go 
+value = {
+    value = 0
+    add = x
+}
+
+
+set_variable =
+{
+name = test1
+value = {
+value = 0
+every_title_heir = {add = 1}
+}
+
+}
+
+Looks like many failures return yes, or more accuratly it looks like none evaluates to true
+
+c_brie_francaise (6708)
+214/18558 - character
+always_follows_primary_heir is a line in the save game, and can be set. It looks like unless it is set titles do not have it
+
+game_rules are in settings, so they should be able to be changed.
+
+Could and probably should change to have a curated core title list on the character.
+de_facto_liege and de_jure_liege are titles.
+there is a capital_barony line in the save game
+CANNOT ACCESS always_follows_primary_heir FROM SCRIPT!!!! - Infuruating
+Moving away from using this means special titles like religious heads are not handled.
