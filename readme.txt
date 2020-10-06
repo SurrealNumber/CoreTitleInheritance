@@ -506,3 +506,14 @@ NOTE ABOUT CODE: core_count means core_holding_count. Same with core_limit and c
 Have to put in something to trigger over core limit alert.
 Possibly consider having the modifiers hidden so they only show up for the character.
 it looks like most province modifiers are actually meant for different scopes than provinces.
+
+When to apply province modifier?
+    1. When applying the cost of coring.
+    2. When recalculating the core titles.
+    4. At start of game.
+
+Should add check for if the ai can designate core titles. If they can't then I should disable the functions from applying on them.
+
+I don't know of an on action for changing capitals or primary titles. These are both events which should trigger core titles to recalculate, but I don't know of the on actions for them.
+I realize that recalculate is called alot, and the initializers it calls replace what is there. It should be good enough.
+Due to how the modifiers work I have to apply them at the start of the game and initialize them.

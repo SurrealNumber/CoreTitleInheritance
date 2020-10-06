@@ -1,5 +1,53 @@
 ﻿#All of these assume that you have checked that it is proper to call them before making the call.
 
+
+apply_core_holding_province_modifier = { # scope is a title
+    if = {
+        limit = {is_title_holding = yes}
+        title_province = {
+            if = {
+                limit = {
+                    AND = {
+                        has_game_rule = overtime_core_holding_cost
+                        has_game_rule = control_core_holding_benefit
+                    }
+                }
+                add_province_modifier = core_province_cost_benefit_modifier
+            }
+            else if = {
+                limit = {
+                    has_game_rule = overtime_core_holding_cost
+                }
+                add_province_modifier = core_province_cost_modifier
+            }
+            else if = {
+                limit = {
+                    has_game_rule = control_core_holding_benefit
+                }
+                add_province_modifier = core_province_benefit_modifier
+            }
+        }
+    }
+}
+
+remove_core_holding_province_modifier = { # scope is a title
+    if = {
+        limit = {is_title_holding = yes}
+        title_province = {
+            remove_all_province_modifier_instances = core_province_cost_benefit_modifier
+            remove_all_province_modifier_instances = core_province_cost_modifier
+            remove_all_province_modifier_instances = core_province_benefit_modifier
+        }
+    }
+}
+
+initialize_core_province_modifiers = { # scope is a character
+    every_core_holding = {
+        remove_core_holding_province_modifier
+        apply_core_holding_province_modifier
+    }
+}
+
 set_over_core_limit_modifier = { # scope is character
     remove_all_character_modifier_instances = 1_over_core_limit_modifier
     remove_all_character_modifier_instances = 2_over_core_limit_modifier
@@ -59,7 +107,6 @@ set_over_core_limit_modifier = { # scope is character
 }
 
 
-
 initialize_core_count = {# scope is a character
     set_variable = {
         name = core_count
@@ -88,7 +135,7 @@ decrement_core_count = {# scope is character
 
 apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value and a boolean.
     if = {
-        limit = {is_title_core = yes}
+        limit = {is_title_holding = yes}
         if = {
             limit = {NOT = {exists = var:core_count}}
             initialize_core_count
@@ -96,13 +143,15 @@ apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value 
         else if = {
             limit = {$INCREASE$ = yes}
             holder = increment_core_count# Think this should apply this with scope holder
+            apply_core_holding_province_modifier # redundant check for being a holding in this case. checks game rules in here.
         }
         else = {
             holder = decrement_core_count# Think this should apply this with scope holder
+            remove_core_holding_province_modifier# redundant check for being a holding in this case. checks game rules in here.
         }
         if = {
             limit = {has_game_rule = flat_designate_core_holding_cost }
-        holder = {add_prestige = $COST$}
+            holder = {add_prestige = $COST$}
         }
     }
 }
@@ -117,7 +166,7 @@ designate_core_title = {#scope is title
     apply_cost_and_count_of_title = {
         INCREASE = yes
         COST = coring_holding_cost_flat
-    }   
+    }
 }
 
 de_designate_core_title = {# scope is title
@@ -164,6 +213,7 @@ de_core_title = { # scope is a title. Will still work even if title is not core.
 
 recalculate_cores = { # scope is a character. this is used in cases like inheritance when core titles are preserved
     initialize_core_count
+    initialize_core_province_modifiers
     if = {
         limit = {any_core_title = {is_core_consistent = no}}
         remove_invalid_core_titles
