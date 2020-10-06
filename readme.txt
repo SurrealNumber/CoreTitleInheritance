@@ -437,3 +437,49 @@ remove_character_modifier takes name
 scripted_tests_recalculate_character_modifier
 
 buildings can have character_modifiers
+It looks like it is impossible to stack modifiers. The only way around this I can see is to create a dummy building.
+POD mod (about as close to an official mod as one can get) has tiers of modifiers, but no stacking modifiers.
+possibly just do it without a modifier and be carefully?
+
+over core limit modifier has only a small finite set of values.
+Cost overtime for cores has a potentially infinite set of values (though really limited to under 1000 due to the number of counties.) 
+
+It makes sense that modifiers should not be dynamic/dynamically generated. It is very expensive performance-wise. But to not allow stacking modifiers makes less sense. It would require being a bit more careful, but should be doable relatively easily without a large performance overhead.
+Look into possibility of province/county/title modifiers.
+exist dynasty modifiers
+exist house modifiers
+exist scheme modifiers
+EXIST COUNTY MODIFIERS:
+    add_county_modifier
+        add_county_modifier = name
+        add_county_modifier = {modifier = name days/weeks/months/years = int}
+        supported scopes is landed title <- will need to check if this is in fact only counties, or if it also supports other titles like baronies. Could use it to add text to titles as well with possibly dummy modifiers.
+    remove_all_county_modifier_instances - Remove all instances of a modifier from a county
+        remove_all_county_modifier_instances = name
+        Supported Scopes: landed title
+    remove_county_modifier - Remove a modifier from a county
+        remove_county_modifier = name
+        Supported Scopes: landed title
+EXIST PROVINCE MODIFIERS: - looks to be associated with a barony
+    add_province_modifier - Add a modifier to a province
+        add_province_modifier = name
+        add_province_modifier = { modifier = name days/weeks/months/years = int }
+        Supported Scopes: province
+    remove_all_province_modifier_instances - Remove all instances of a modifier from a province
+        remove_all_province_modifier_instances = name
+        Supported Scopes: province
+    remove_province_modifier - Remove a modifier from a province
+        remove_province_modifier = name
+        Supported Scopes: province
+
+Need to find out if county titles have an associated province. Also it looks like county capitals cannot be moved.
+Idea now:
+county -> county and province
+barony -> province
+
+PROVINCE MODIFIER SEEMS LIKE THE WAY TO GO.
+TIERED MODIFIER FOR THE OVER CORE LIMIT PENALTY.
+
+One interpretation is that the titles which count to core limit are exactly core provinces/baronies. <- it is more succinct to say that the same things which count to domain limit count to core limit
+THERE IS A GAME CONCEPT FOR IT -> HOLDING
+any_directly_owned_province <- might give holding number, or restrict to holdings
