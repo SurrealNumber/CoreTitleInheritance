@@ -5,7 +5,7 @@
     
     check_create_action = { # scope is player character
         if = {
-            limit = {is_over_core_limit}
+            limit = {is_over_core_limit = yes}
             try_create_important_action = {
                 important_action_type = action_over_core_title_limit
                 #actor = root - Don't think this is necessary

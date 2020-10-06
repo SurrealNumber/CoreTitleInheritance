@@ -43,12 +43,12 @@ cti_on_title_loss = { # assumes that the title has already changed hands. might 
                 }
             }
             recalculate_cores
-            scope:new_holder.recalculate_cores
+            scope:new_holder = recalculate_cores
         }
         else = {
-            scope:title.safe_de_core_title
+            scope:title = safe_de_core_title
             recalculate_cores
-            scope:new_holder.recalculate_cores
+            scope:new_holder = recalculate_cores
         }
     }
 }

@@ -14,41 +14,33 @@ initialize_core_count = {# scope is a character
 
 
 increment_core_count = {# scope is character
-    if = {
-    limit = {NOT = {exists = var:core_count}}
-        initialize_core_count
-    }
-    else ={
-        change_variable = {
-            name = core_count
-            add = 1
-        }
+    change_variable = {
+        name = core_count
+        add = 1
     }
 }
 
 # assumes that core count is 
 decrement_core_count = {# scope is character
-    if = {
-    limit = {NOT = {exists = var:core_count}}
-        initialize_core_count
-    }
-    else: = {
-        change_variable = {
-            name = core_count
-            subtract = 1
-        }
+    change_variable = {
+        name = core_count
+        subtract = 1
     }
 }
 
 apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value and a boolean.
     if = {
-        limit = {does_core_title_have_cost}
+        limit = {does_core_title_have_cost = yes}
         if = {
-            limit = {$INCREASE$}
-            holder.increment_core_count
+            limit = {NOT = {exists = var:core_count}}
+            initialize_core_count
+        }
+        else if = {
+            limit = {$INCREASE$ = yes}
+            holder = increment_core_count# Think this should apply this with scope holder
         }
         else = {
-            holder.decrement_core_count
+            holder = decrement_core_count# Think this should apply this with scope holder
         }
         if = {
             limit = {has_game_rule = flat_designate_core_cost }
@@ -82,10 +74,10 @@ de_designate_core_title = {# scope is title
 remove_invalid_core_titles = { #scope is a character. full refund. should happen when a core title is lost if it invalidates the heirarchy
     send_cores_removed_toast
     while = {# Essentially while list is not empty
-        limit = {any_core_title = {NOT = {is_core_consistent}}}# Should fix this later, it in essense calculates the list twice as often as it needs to
+        limit = {any_core_title = {is_core_consistent = no}}# Should fix this later, it in essense calculates the list twice as often as it needs to
         every_inconsistent_core_title = { # this should be the title here, and root the character
             if = {
-                limit = {can_de_core_title} # This means this can technically go into an infinite loop, but this should never happen.
+                limit = {can_de_core_title = yes} # This means this can technically go into an infinite loop, but this should never happen.
                 de_core_title
                 apply_cost_and_count_of_title = {
                     INCREASE = no
@@ -98,7 +90,7 @@ remove_invalid_core_titles = { #scope is a character. full refund. should happen
 
 safe_de_core_title = {
     if = {
-        limit = {can_de_core_title}
+        limit = {can_de_core_title = yes}
         de_core_title
     }
 }
@@ -114,7 +106,7 @@ de_core_title = { # scope is a title. Will still work even if title is not core.
 recalculate_cores = { # scope is a character. this is used in cases like inheritance when core titles are preserved
     initialize_core_count
     if = {
-        limit = {any_core_title = {NOT = {is_core_consistent}}}
+        limit = {any_core_title = {is_core_consistent = no}}
         remove_invalid_core_titles
     }
 }
@@ -137,7 +129,7 @@ recalculate_cores = { # scope is a character. this is used in cases like inherit
 de_designate_all_core_titles = { #scope is character not full refund. should be called by a decision
     every_core_title = {
         if = {
-            limit = {can_de_core_title}
+            limit = {can_de_core_title = yes}
             decore_title
             apply_cost_and_count_of_title = {
                 INCREASE = no

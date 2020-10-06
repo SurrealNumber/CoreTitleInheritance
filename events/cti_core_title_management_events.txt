@@ -100,28 +100,28 @@ cti_manage_core_titles_event.0003 = {
         desc = cti_manage_core_titles_event.0003.desc1a # due to cti
         every_core_title = {
             if = {
-                limit = {is_title_core_due_to_cti}
+                limit = {is_title_core_due_to_cti = yes}
                 desc = cti_manage_core_titles_event.0003.desc1b # "[Title.GetName]"
             }
         }
         desc = cti_manage_core_titles_event.0003.desc2a # capital chain
         every_core_title = {
             if = {
-                limit = {is_title_core_due_to_capital}
+                limit = {is_title_core_due_to_capital = yes}
                 desc = cti_manage_core_titles_event.0003.desc2b # "[Title.GetName]"
             }
         }
         desc = cti_manage_core_titles_event.0003.desc3# primary
         desc = primary_title # hope this works
-        desc = cti_manage_core_titles_event.0003.desc4a# special titles
+        desc = cti_manage_core_titles_event.0003.desc4a# special titles Possibly remove this category.
         every_core_title = {
             if = {
                 limit = {
                     NOT = {
                         OR = {
-                            is_title_core_due_to_capital
+                            is_title_core_due_to_capital = yes
                             holder.primary_title = this
-                            is_title_core_due_to_cti
+                            is_title_core_due_to_cti = yes
                         }
                     }
                 }
@@ -169,7 +169,7 @@ cti_manage_core_titles_event.0004 = {
         every_core_title_count_to_limit = {
             if = {
                 limit = {
-                    NOT = {does_core_title_count_to_limit}
+                    does_core_title_count_to_limit = no
                 }
                 desc = cti_manage_core_titles_event.0004.desc2b # "[Title.GetName]"
             }

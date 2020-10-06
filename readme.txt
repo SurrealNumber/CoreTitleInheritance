@@ -415,3 +415,7 @@ de_facto_liege and de_jure_liege are titles.
 there is a capital_barony line in the save game
 CANNOT ACCESS always_follows_primary_heir FROM SCRIPT!!!! - Infuruating
 Moving away from using this means special titles like religious heads are not handled.
+^ actually only required 3 changes to code. Not as tedious to change as I thought
+is_shown (and probably other places as well) has an implied AND = {}
+can add custom_descriptions to triggers
+Looks like I might need trigger = yes if I want checking a trigger to work.

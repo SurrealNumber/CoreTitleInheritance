@@ -4,7 +4,7 @@ is_title_core_due_to_capital = { # scope is title
     OR = {
         holder.capital_barony = root # capital barony
         AND = {
-            holder.capital_barony.any_this_title_or_de_jure_above = {this = root}}# de_jure above capital barony # I think this trigger is meant for characters.
+            holder.capital_barony = {any_this_title_or_de_jure_above = {this = root}}# de_jure above capital barony # I think this trigger is meant for characters.
             tier < holder.primary_title.tier # not the same tier as the primary title
         }
     }
@@ -12,13 +12,11 @@ is_title_core_due_to_capital = { # scope is title
 
 # Assume the default is false/no. Otherwise will need to modify.
 is_title_core_due_to_cti = {
-    AND = {
-        exists = var:core
-        NOT = {
-            AND = {
-                is_title_core_due_to_capital
-                holder.primary_title = root
-            }# I believe that there should be no source always_follows_primary_heir except for during title creation. Titles with this flag cannot be designated core, so they should not have the variable core associated.
+    exists = var:core
+    NOT = {
+        AND = {
+            is_title_core_due_to_capital = yes
+            holder.primary_title = root
         }
     }
 }
@@ -30,16 +28,14 @@ is_title_core = { # Assume that this will only be called if the title is owned
         limit = {exists = var:core}
         OR = {
             var:core = yes# var:core should be a boolean
-            is_title_core_due_to_capital
+            is_title_core_due_to_capital = yes
             holder.primary_title = root
-            always_follows_primary_heir = yes
         }
     }
     trigger_else = {
         OR = {
-            is_title_core_due_to_capital
+            is_title_core_due_to_capital = yes
             holder.primary_title = root
-            always_follows_primary_heir = yes
         }
     }
 }
@@ -54,7 +50,7 @@ does_core_title_count_to_limit = { # scope is title
 
 is_title_eligible_for_core = { # Assume that this will only be called if the title is owned
     AND = {
-        NOT = { is_title_core } # not a core title
+        is_title_core = no # not a core title
         OR = {
             tier <= tier_county # county or lower
             holder.any_core_title = { # direct de jure liege of another core title
@@ -87,7 +83,7 @@ is_core_consistent = {# scope is title
     OR = {
         tier <= tier_county
         holder.primary_title = root
-        is_title_core_due_to_capital
+        is_title_core_due_to_capital = yes
         holder.any_core_title = {
             this.de_jure_liege = root
         }
@@ -104,15 +100,14 @@ is_over_core_limit = { # scope is character
     }
 }
 
+# Different from the trigger contained within in case one wants to add a character restriction on coring titles. There used to be one that characters were not allowed to go over their core limit.
 can_core_title = {
-    AND = {
-        is_title_eligible_for_core
-    }
+    is_title_eligible_for_core = yes
 }
 
 can_de_core_title = {
     AND = {
-        is_title_core_due_to_cti
-        NOT = {will_core_loss_break_titles}
+        is_title_core_due_to_cti = yes
+        will_core_loss_break_titles = no
     }
 }

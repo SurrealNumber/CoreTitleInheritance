@@ -1,28 +1,26 @@
 ﻿designate_core_button = {
     scope = title
     #[And( Character.IsLocalPlayer,
-    saved_scopes = {
-        viewing_character
-    }
+    #.AddScope('viewing_character', Character.MakeScope)
+    #saved_scopes = {
+    #    viewing_character
+    #}
     is_shown = {
-        NOT = {is_title_core}
-        trigger = {
-            viewing_character = holder
-        }
+        is_title_core = no
     }
     
     is_valid = {
-        can_core_title
+        can_core_title = yes
     }
     
     effect = {
         # Generate tooltip
         if = {
-            limit = {can_core_title}
+            limit = {can_core_title = yes}
             custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP
         }
         else if = {
-            limit = {NOT = {is_title_eligible_for_core}}
+            limit = {is_title_eligible_for_core = no}
             custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD
         }
         else if = {
@@ -37,28 +35,26 @@
 
 de_designate_core_button = {
     scope = title
-    saved_scopes = {
-        viewing_character
-    }
+    #Looks like this is not necessary/detrimental
+    #saved_scopes = {
+    #    viewing_character
+    #}
     is_shown = {
-        is_title_core
-        trigger = {
-            viewing_character = holder
-        }
+        is_title_core = yes
     }
     
     is_valid = {
-        can_de_core_title
+        can_de_core_title = yes
     }
     
     effect = {
         # Generate tooltip
         if = {
-            limit = {can_de_core_title}
+            limit = {can_de_core_title = yes}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP
         }
         else if = {
-            limit = {is_title_core_due_to_capital}
+            limit = {is_title_core_due_to_capital = yes}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN
         }
         else if = {
@@ -66,13 +62,14 @@ de_designate_core_button = {
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE
         }
         else if = {
-            limit = {will_core_loss_break_titles}
+            limit = {will_core_loss_break_titles = yes}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING
         }
-        else if = {
-            limit = {always_follows_primary_heir}
-            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE
-        }
+        #I can't access this value, so special titles like head of faith titles are not counted.
+        #else if = {
+        #    limit = {always_follows_primary_heir}
+        #    custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE
+        #}
         
         # do the de_designating core
         de_designate_core_title
