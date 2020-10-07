@@ -11,15 +11,15 @@
  
  game_concept_core_holding_impact:0 "Core Holding Impact"
  game_concept_core_impact:0 "Core Impact"
-  game_concept_core_holding_cost:0 "Core Holding Cost"
+ game_concept_core_holding_cost:0 "Core Holding Cost"
  game_concept_core_cost:0 "Core Cost"
-  game_concept_core_holding_benefit:0 "Core Holding Benefit"
+ game_concept_core_holding_benefit:0 "Core Holding Benefit"
  game_concept_core_benefit:0 "Core Benefit"
- game_concept_core_title_impact_desc:0 "The impact of [core_holdings|E]. The impact can be instant upon designating a [holding|E] as [core|E], or overtime based on owned [core_holdings|E]. The impact depends on game rules and has two components:\n#T Benefit:#\nNone: [core_holdings|E] have no benefit beyond that of [core_titles|E].\nControl: [core_holdings|E] increase monthly [control|E] gain in their [county|E] in addition to being [core_titles|E].\n#T Cost:#\nNone: [core_holdings|E] have no individual cost.\nOvertime: [core_holdings|E] apply a monthly [prestige|E] penalty.\nFlat: Designating [holdings|E] as [core|E] costs a flat amount of [prestige|E]. De-desginating a [core_holding|E] refunds a smaller amount of [prestige|E]. If a [core_holding|E] is de-cored for a reason other than the player's decision (except for title loss) a full refund will be received."
+ game_concept_core_holding_impact_desc:0 "The impact of [core_holdings|E]. The impact can be instant upon designating a [holding|E] as [core|E], or overtime based on owned [core_holdings|E]. The impact depends on game rules and has two components:\n#T Benefit:#\nNone: [core_holdings|E] have no benefit beyond that of [core_titles|E].\nControl: [core_holdings|E] increase monthly [control|E] gain in their [county|E] in addition to being [core_titles|E].\n#T Cost:#\nNone: [core_holdings|E] have no individual cost.\nOvertime: [core_holdings|E] apply a monthly [prestige|E] penalty.\nFlat: Designating [holdings|E] as [core|E] costs a flat amount of [prestige|E]. De-desginating a [core_holding|E] refunds a smaller amount of [prestige|E]. If a [core_holding|E] is de-cored for a reason other than the player's decision (except for title loss) a full refund will be received."
  
  game_concept_core_holding_limit:0 "Core Holding Limit"
  game_concept_core_limit:0 "Core Limit"
- game_concept_core_title_limit_desc:0 "The core holding limit determines how many [core_holdings|E] it is accepted for a [character|E] to have. Going above the core holding limit incurs a prestige penalty. The limit depends on the game rule:\n#T Ludicrous:# The limit is 10000.\n#T Domain:# The limit is equal to a [character_possessive|E] [domain_limit|E].\n#T Half Domain:# The limit is equal to half of a [character_possessive|E] [domain_limit|E]."
+ game_concept_core_holding_limit_desc:0 "The core holding limit determines how many [core_holdings|E] it is accepted for a [character|E] to have. Going above the core holding limit incurs a prestige penalty. The limit depends on the game rule:\n#T Ludicrous:# The limit is 10000.\n#T Domain:# The limit is equal to a [character_possessive|E] [domain_limit|E].\n#T Half Domain:# The limit is equal to half of a [character_possessive|E] [domain_limit|E]."
  
  game_concept_core_title_persistence:0 "Core Title Persistence"
  game_concept_core_persistence:0 "Core Persistence"

@@ -517,3 +517,18 @@ Should add check for if the ai can designate core titles. If they can't then I s
 I don't know of an on action for changing capitals or primary titles. These are both events which should trigger core titles to recalculate, but I don't know of the on actions for them.
 I realize that recalculate is called alot, and the initializers it calls replace what is there. It should be good enough.
 Due to how the modifiers work I have to apply them at the start of the game and initialize them.
+
+At start of game things to possibly use:
+every_barony
+every_county
+every_independent_ruler
+any_kingdom
+any_living_character
+any_player
+any_province
+any_ruler <- count tier and above
+
+IT IS else_if NOT else if
+
+
+Trying to comment out things until it works.

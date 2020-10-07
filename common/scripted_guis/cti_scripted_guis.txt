@@ -19,7 +19,7 @@
             limit = {can_core_title = yes}
             custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP
         }
-        else if = {
+        else_if = {
             limit = {is_title_eligible_for_core = no}
             custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD
         }
@@ -49,20 +49,20 @@ de_designate_core_button = {
             limit = {can_de_core_title = yes}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP
         }
-        else if = {
+        else_if = {
             limit = {is_title_core_due_to_capital = yes}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN
         }
-        else if = {
+        else_if = {
             limit = {holder.primary_title = root}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE
         }
-        else if = {
+        else_if = {
             limit = {will_core_loss_break_titles = yes}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING
         }
         #I can't access this value, so special titles like head of faith titles are not counted.
-        #else if = {
+        #else_if = {
         #    limit = {always_follows_primary_heir}
         #    custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE
         #}

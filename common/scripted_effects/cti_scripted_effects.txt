@@ -1,110 +1,110 @@
 ﻿#All of these assume that you have checked that it is proper to call them before making the call.
 
 
-apply_core_holding_province_modifier = { # scope is a title
-    if = {
-        limit = {is_title_holding = yes}
-        title_province = {
-            if = {
-                limit = {
-                    AND = {
-                        has_game_rule = overtime_core_holding_cost
-                        has_game_rule = control_core_holding_benefit
-                    }
-                }
-                add_province_modifier = core_province_cost_benefit_modifier
-            }
-            else if = {
-                limit = {
-                    has_game_rule = overtime_core_holding_cost
-                }
-                add_province_modifier = core_province_cost_modifier
-            }
-            else if = {
-                limit = {
-                    has_game_rule = control_core_holding_benefit
-                }
-                add_province_modifier = core_province_benefit_modifier
-            }
-        }
-    }
-}
+# apply_core_holding_province_modifier = { # scope is a title
+    # if = {
+        # limit = {is_title_holding = yes}
+        # title_province = {
+            # if = {
+                # limit = {
+                    # AND = {
+                        # has_game_rule = overtime_core_holding_cost
+                        # has_game_rule = control_core_holding_benefit
+                    # }
+                # }
+                # add_province_modifier = core_province_cost_benefit_modifier
+            # }
+            # else_if = {
+                # limit = {
+                    # has_game_rule = overtime_core_holding_cost
+                # }
+                # add_province_modifier = core_province_cost_modifier
+            # }
+            # else_if = {
+                # limit = {
+                    # has_game_rule = control_core_holding_benefit
+                # }
+                # add_province_modifier = core_province_benefit_modifier
+            # }
+        # }
+    # }
+# }
 
-remove_core_holding_province_modifier = { # scope is a title
-    if = {
-        limit = {is_title_holding = yes}
-        title_province = {
-            remove_all_province_modifier_instances = core_province_cost_benefit_modifier
-            remove_all_province_modifier_instances = core_province_cost_modifier
-            remove_all_province_modifier_instances = core_province_benefit_modifier
-        }
-    }
-}
+# remove_core_holding_province_modifier = { # scope is a title
+    # if = {
+        # limit = {is_title_holding = yes}
+        # title_province = {
+            # remove_all_province_modifier_instances = core_province_cost_benefit_modifier
+            # remove_all_province_modifier_instances = core_province_cost_modifier
+            # remove_all_province_modifier_instances = core_province_benefit_modifier
+        # }
+    # }
+# }
 
-initialize_core_province_modifiers = { # scope is a character
-    every_core_holding = {
-        remove_core_holding_province_modifier
-        apply_core_holding_province_modifier
-    }
-}
+# initialize_core_province_modifiers = { # scope is a character
+    # every_core_holding = {
+        # remove_core_holding_province_modifier
+        # apply_core_holding_province_modifier
+    # }
+# }
 
-set_over_core_limit_modifier = { # scope is character
-    remove_all_character_modifier_instances = 1_over_core_limit_modifier
-    remove_all_character_modifier_instances = 2_over_core_limit_modifier
-    remove_all_character_modifier_instances = 3_over_core_limit_modifier
-    remove_all_character_modifier_instances = 4_over_core_limit_modifier
-    remove_all_character_modifier_instances = 5_over_core_limit_modifier
-    remove_all_character_modifier_instances = 6_over_core_limit_modifier
-    remove_all_character_modifier_instances = 7_over_core_limit_modifier
-    remove_all_character_modifier_instances = 8_over_core_limit_modifier
-    remove_all_character_modifier_instances = 9_over_core_limit_modifier
-    remove_all_character_modifier_instances = 10+_over_core_limit_modifier
-    ammount_over_core_limit = {save_temorary_scope_as = amount_over_core_limit} #hopefully stores the variable so it is not calculated every time.
-    if = {
-        limit = {scope:amount_over_core_limit = 0}
-        # do nothing
-    }
-    else if = {
-        limit = {scope:amount_over_core_limit = 1}
-        add_character_modifier = 1_over_core_limit_modifier
-    }
-    else if = {
-        limit = {scope:amount_over_core_limit = 2}
-        add_character_modifier = 2_over_core_limit_modifier
-    }
-    else if = {
-        limit = {scope:amount_over_core_limit = 3}
-        add_character_modifier = 3_over_core_limit_modifier
-    }
-    else if = {
-        limit = {scope:amount_over_core_limit = 4}
-        add_character_modifier = 4_over_core_limit_modifier
-    }
-    else if = {
-        limit = {scope:amount_over_core_limit = 5}
-        add_character_modifier = 5_over_core_limit_modifier
-    }
-    else if = {
-        limit = {scope:amount_over_core_limit = 6}
-        add_character_modifier = 6_over_core_limit_modifier
-    }
-    else if = {
-        limit = {scope:amount_over_core_limit = 7}
-        add_character_modifier = 7_over_core_limit_modifier
-    }
-    else if = {
-        limit = {scope:amount_over_core_limit = 8}
-        add_character_modifier = 8_over_core_limit_modifier
-    }
-    else if = {
-        limit = {scope:amount_over_core_limit = 9}
-        add_character_modifier = 9_over_core_limit_modifier
-    }
-    else if = {
-        limit = {scope:amount_over_core_limit >= 10}
-        add_character_modifier = 10+_over_core_limit_modifier
-    }
-}
+# set_over_core_limit_modifier = { # scope is character
+    # remove_all_character_modifier_instances = 1_over_core_limit_modifier
+    # remove_all_character_modifier_instances = 2_over_core_limit_modifier
+    # remove_all_character_modifier_instances = 3_over_core_limit_modifier
+    # remove_all_character_modifier_instances = 4_over_core_limit_modifier
+    # remove_all_character_modifier_instances = 5_over_core_limit_modifier
+    # remove_all_character_modifier_instances = 6_over_core_limit_modifier
+    # remove_all_character_modifier_instances = 7_over_core_limit_modifier
+    # remove_all_character_modifier_instances = 8_over_core_limit_modifier
+    # remove_all_character_modifier_instances = 9_over_core_limit_modifier
+    # remove_all_character_modifier_instances = 10_plus_over_core_limit_modifier
+    # ammount_over_core_limit = {save_temorary_scope_as = amount_over_core_limit} #hopefully stores the variable so it is not calculated every time.
+    # if = {
+        # limit = {scope:amount_over_core_limit = 0}
+        # # do nothing
+    # }
+    # else_if = {
+        # limit = {scope:amount_over_core_limit = 1}
+        # add_character_modifier = 1_over_core_limit_modifier
+    # }
+    # else_if = {
+        # limit = {scope:amount_over_core_limit = 2}
+        # add_character_modifier = 2_over_core_limit_modifier
+    # }
+    # else_if = {
+        # limit = {scope:amount_over_core_limit = 3}
+        # add_character_modifier = 3_over_core_limit_modifier
+    # }
+    # else_if = {
+        # limit = {scope:amount_over_core_limit = 4}
+        # add_character_modifier = 4_over_core_limit_modifier
+    # }
+    # else_if = {
+        # limit = {scope:amount_over_core_limit = 5}
+        # add_character_modifier = 5_over_core_limit_modifier
+    # }
+    # else_if = {
+        # limit = {scope:amount_over_core_limit = 6}
+        # add_character_modifier = 6_over_core_limit_modifier
+    # }
+    # else_if = {
+        # limit = {scope:amount_over_core_limit = 7}
+        # add_character_modifier = 7_over_core_limit_modifier
+    # }
+    # else_if = {
+        # limit = {scope:amount_over_core_limit = 8}
+        # add_character_modifier = 8_over_core_limit_modifier
+    # }
+    # else_if = {
+        # limit = {scope:amount_over_core_limit = 9}
+        # add_character_modifier = 9_over_core_limit_modifier
+    # }
+    # else_if = {
+        # limit = {scope:amount_over_core_limit >= 10}
+        # add_character_modifier = 10_plus_over_core_limit_modifier
+    # }
+# }
 
 
 initialize_core_count = {# scope is a character
@@ -112,7 +112,7 @@ initialize_core_count = {# scope is a character
         name = core_count
         value = core_count_from_list
     }
-    set_over_core_limit_modifier
+    #set_over_core_limit_modifier
 }
 
 
@@ -121,7 +121,7 @@ increment_core_count = {# scope is character
         name = core_count
         add = 1
     }
-    set_over_core_limit_modifier
+    #set_over_core_limit_modifier
 }
 
 # assumes that core count is 
@@ -130,7 +130,7 @@ decrement_core_count = {# scope is character
         name = core_count
         subtract = 1
     }
-    set_over_core_limit_modifier
+    #set_over_core_limit_modifier
 }
 
 apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value and a boolean.
@@ -140,14 +140,14 @@ apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value 
             limit = {NOT = {exists = var:core_count}}
             initialize_core_count
         }
-        else if = {
+        else_if = {
             limit = {$INCREASE$ = yes}
             holder = increment_core_count# Think this should apply this with scope holder
-            apply_core_holding_province_modifier # redundant check for being a holding in this case. checks game rules in here.
+            #apply_core_holding_province_modifier # redundant check for being a holding in this case. checks game rules in here.
         }
         else = {
             holder = decrement_core_count# Think this should apply this with scope holder
-            remove_core_holding_province_modifier# redundant check for being a holding in this case. checks game rules in here.
+            #remove_core_holding_province_modifier# redundant check for being a holding in this case. checks game rules in here.
         }
         if = {
             limit = {has_game_rule = flat_designate_core_holding_cost }
