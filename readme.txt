@@ -331,7 +331,7 @@ Running game 2nd time:
 Title and on click for decision missing
 both designate and de-designate are showing up again. - also both showing up for other character's titles, and for capital titles.
 
-Making sure I don't for get pattern:
+******Making sure I don't for get pattern:*********
 save_temporary_scope_as = this_title
 scope:this_title available everywhere.
 
@@ -532,3 +532,143 @@ IT IS else_if NOT else if
 
 
 Trying to comment out things until it works.
+
+Removing while clause - assuming it does not work.
+looks like passing yes or no won't work. Have to pass a trigger -i.e. always or trigger = {always = no} <- need to verify this
+look into possibility of using hidden_effect for options in events.
+LOCALIZATIONS CAN USE SCOPES i.e. scope:xxxx exists in the localization one can have [xxxx.SomethingOnDataTypeToReturnString]
+
+Things which exist:
+remove_character_flag
+remove_localized_text
+remove_from_list
+remove_global_variable
+remove_list_global_variable
+remove_list_local_variable
+remove_list_variable
+remove_local_variable
+remove_variable
+
+
+Can probably get things that are refered to with things like GetPlayer or GetTitle and the like, but will not for now.
+For activities there is a WriteListOfAcceptedGuests.
+Looks like there is a CharacterSelectionList data type
+InteractionOtherEffect has some mention of lists.
+There is a SaveGameAnalyzer data type
+
+To get always_follows_primary_heir aspect of titles, Maybe hijack the autosave and read the save file?
+the Scope datatype has a GetList function
+Esists the Title data type
+Esists VariableList and VariableListEntry (and some more) data types
+interesting
+EventTargetSetupContext = {
+		AccessVariableLists -> VariableListStore
+		AccessVariables -> VariableStore
+		AccessSelf -> [unregistered]
+		Self -> [unregistered]
+	}
+
+Looks like those things won't work. Looking into creating a custom widget to list titles.
+
+
+Title view window looking into for listing/showing titles.
+in the shared gui folder, lists.gui contains types Scrollbar and as a subset of that type scrollbox. The title window is overiding the scrollbox contents to use the overall scrollbox format.
+dejure_tab from title window:
+some rules, centered text heading then a scrollbox.
+In the scrollbox the content is a vbox.
+vbox uses datamodel DeJureVassalGroupItem.GetTitleItems
+it has some layout options.
+item bloc -> presumably for the vassal group
+It prints the [owner of the title]?
+defines an item block.
+The item contains a button_standard_list. The data context for this is TitleItem.GetTitle
+For the title it sets up the onclicks for right and left clicks as defaults for coat of arms. It then defines the tooltip widget as the standard one for titles.
+The button_standard_list contains a hbox which has contains a small coat of arms for the title and the name of the title.
+
+It looks like how lists work is that you set the datamodel to be something with items in it, define an item block, and then it will display that item block for every item in the list.
+There are global promotes? and global function available in the gui language.
+
+It looks like the gui has a variable system, and one way to acces it is GetVariableSystem(.Exists, .Clear, .Toggle, .Set, .HasValue, )
+There is also an ObjectsEqual
+
+Can I re-implement the core title checks in the gui system?
+For titles I have IsPrimary, IsBarony, HasHolder, HasLaws, IsHeldBy, GetTierAsName+several similar tier things, GetHolder, MakeScope
+Can get some list of titles, MakeScope, and pass to a scripted gui to determine if it is core or not.
+global function primary_titles, global function titles, GHWTargetWindow has GetTitles. CharacterInteractionConfirmationWindow has GetTitles, Character Window has get Titles,
+MyRealm window has GetTitleSuccession
+SuccessionEventWIndow has GetInheritedTitles and GetLostTitles
+
+Places with GetTitles:
+GHWTargetWindow
+CharacterInteractionConfirmationWindow
+CharacterWindow
+CreateClaimantFactionAgainstWindow
+FindTitleView
+LeaseOutBaroniesWindow
+SuccessionEventWindowLostTitlesItem
+SuccessionLawChangeWindow
+TitleSuccessionItem
+
+Might be better off modifying the character view to display core titles.
+Sadly succession event is not an actual event.
+
+It looks like I will have to modify the character view.
+Can define windows and call them from elsewhere.
+Will focus on modifying the titles expanded section of the character window.
+As long as I am there, I will try to put core limit below domain limit.
+Looks like a little head of faith icon can appear below the domain limit.
+I think I want to add an entirely seperate line bellow claims. It will not show the core titles unless clicked, but when clicked it will show them in the manner that clicking on a title does, but split up by sections.
+While I am at it I might want to add something to the domain window. and the county/barony view window. <- features to be added later.
+Alternate option would be to add it to the domain tab of the my_realm window thing. Or create a new tab in that window.
+Question of should other players/characters be able to see which titles are core?
+Answer: Yes. It is important for multiplayer or if the AI eventually uses the feature. Otherwise there will be missing information. It should go in the character window for this reason.
+expand seems to be a block that will expand to fill up space if there is some.
+Tight interface, have to squeeze it in there. Barring further redesign I think I can only add the small thing at the bottom and push the rest up. Space will come from ...
+portrait and background at top?
+Traits being slightly smaller?
+There is always room next to where it says titles and where it says claims.
+There might also be room next to where it says claims - a bit more because have the space above and below.
+Could put next to claims at low priority? - Not all characters have a claim. Could also put in a scroll bar, but want to avoid that.
+Replaces claims if they are not present, if they are eventually collapses to just the right part of the claims window.
+Examples: Always assume there are titles.
+______________________________________
+|n Titles                +k|         |
+|T T T T T T T             |         |
+|j Cores                 +w|Diplomacy|
+|T T T T T                 |         |
+======================================
+
+______________________________________
+|n Titles                +k|         |
+|T T T T T T T             |         |
+|j Claims   | m Cores    +w|Diplomacy|
+|T T T T T  | T T T T T T  |         |
+======================================
+
+
+______________________________________
+|n Titles                +k|         |
+|T T T T T T T             |         |
+|j Claims   +q|  m Cores +w|Diplomacy|<- can't tell that the titles there are cores.
+|T T T T T T T T T T T T T |         |
+======================================
+
+
+______________________________________
+|n Titles                +k|         |
+|T T T T T T T             |         |
+|j Claims   +q|  m Cores +w|Diplomacy|I like this
+|T T T T T T T| T T T T T T|         |
+======================================
+
+
+__________________________________________
+ Ban|n Titles                +k|         |
+ ner|T T T T T T T             |         |
+  D |j Claims   +q|  m Cores +w|Diplomacy| How to fit in core limit if it shold be fit in
+  h |T T T T T T T| T T T T T T|         |
+==========================================
+
+Core limit is not crucial information.
+I should add a core titles tab to my_realm to give that information and give some management options.
+Essentially the event is now irrelevent and being replaced by proper gui.

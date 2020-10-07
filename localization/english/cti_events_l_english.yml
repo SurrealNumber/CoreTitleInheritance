@@ -16,8 +16,8 @@
  
  
  cti_manage_core_titles_event.0002.t:0 "Core Limit Values"
- cti_manage_core_titles_event.0002.desc1:0 "[core_holding_limit|E]:"
- cti_manage_core_titles_event.0002.desc2:0 "Number of [core_holdings|E]:"
+ cti_manage_core_titles_event.0002.desc1:0 "[core_holding_limit|E]: [_core_limit.GetValue]"
+ cti_manage_core_titles_event.0002.desc2:0 "Number of [core_holdings|E]: [_core_count.GetValue]"
  cti_manage_core_titles_event.0002.display_core_titles_cause_option:0 "$cti_manage_core_titles_events_display_core_titles_cause_option$"
  cti_manage_core_titles_event.0002.display_core_titles_cost_option:0 "$cti_manage_core_titles_events_display_core_titles_cost_option$"
  cti_manage_core_titles_event.0002.de_designate_all_core_titles_option:0 "$cti_manage_core_titles_events_de_designate_all_core_titles_option$"
