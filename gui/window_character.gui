@@ -3306,41 +3306,83 @@ types CharacterWindow
 			name = "titles"
 			visible = "[Not( IsDataModelEmpty( CharacterWindow.GetTitles ) )]"
 			layoutpolicy_horizontal = expanding
+            
+            hbox = {
+                name = "title_and_core_text"
+                layoutpolicy_horizontal = expanding 
+                
+                button_standard_hover = { # Title text
+                    layoutpolicy_horizontal = expanding
+                    size = { 0 25 }
+                    onclick = "[CharacterWindow.ToggleExpandedTitles]"
+                    down = "[CharacterWindow.AreTitlesExpanded]"
+                    tooltip = "[SelectLocalization( CharacterWindow.AreTitlesExpanded, 'CV_TITLES_HIDE_TT', 'CV_TITLES_SHOW_TT' )]"
 
-			button_standard_hover = {
-				layoutpolicy_horizontal = expanding
-				size = { 0 25 }
-				onclick = "[CharacterWindow.ToggleExpandedTitles]"
-				down = "[CharacterWindow.AreTitlesExpanded]"
-				tooltip = "[SelectLocalization( CharacterWindow.AreTitlesExpanded, 'CV_TITLES_HIDE_TT', 'CV_TITLES_SHOW_TT' )]"
+                    hbox = {
+                        margin = { 5 0 }
+                        margin_bottom = 3
+                        margin_right = 10
 
-				hbox = {
-					margin = { 5 0 }
-					margin_bottom = 3
-					margin_right = 10
+                        text_label_left = {
+                            visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' )]"
+                            text = "CV_TITLES"
+                        }
 
-					text_label_left = {
-						visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' )]"
-						text = "CV_TITLES"
-					}
+                        text_label_left = {
+                            visible = "[Not(GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' ))]"
+                            text = "CV_TITLES_SINGULAR"
+                        }
 
-					text_label_left = {
-						visible = "[Not(GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' ))]"
-						text = "CV_TITLES_SINGULAR"
-					}
+                        expand = {}
 
-					expand = {}
+                        text_single = {
+                            block "titles_extra_items"
+                            {
+                                visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )]"
+                                text = "[GetNumberAbove_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )|=]"
+                            }
+                            default_format = "#weak"
+                        }
+                    }
+                }
+                
+                expand = {}
+                
+                button_standard_hover = { # Core Title Text - Basically everything stays the same except the things are changed to cores. Will need to use a scripted gui and possibly variable system.
+                    layoutpolicy_horizontal = expanding
+                    size = { 0 25 }
+                    onclick = "[CharacterWindow.ToggleExpandedTitles]"
+                    down = "[CharacterWindow.AreTitlesExpanded]"
+                    tooltip = "[SelectLocalization( CharacterWindow.AreTitlesExpanded, 'CV_TITLES_HIDE_TT', 'CV_TITLES_SHOW_TT' )]"
 
-					text_single = {
-						block "titles_extra_items"
-						{
-							visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )]"
-							text = "[GetNumberAbove_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )|=]"
-						}
-						default_format = "#weak"
-					}
-				}
-			}
+                    hbox = {
+                        margin = { 5 0 }
+                        margin_bottom = 3
+                        margin_right = 10
+
+                        text_label_left = {
+                            visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' )]"
+                            text = "CV_TITLES"
+                        }
+
+                        text_label_left = {
+                            visible = "[Not(GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' ))]"
+                            text = "CV_TITLES_SINGULAR"
+                        }
+
+                        expand = {}
+
+                        text_single = {
+                            block "titles_extra_items"
+                            {
+                                visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )]"
+                                text = "[GetNumberAbove_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )|=]"
+                            }
+                            default_format = "#weak"
+                        }
+                    }
+                }
+            }
 
 			hbox = {
 				layoutpolicy_horizontal = expanding
@@ -3381,12 +3423,9 @@ types CharacterWindow
 				}
 			}
 		}
-        
-        ##Claims and Cores
-		hbox = {
-            visible = "CORES OR CLAIMS"
-            ## Claims
-            vbox = {
+
+		## Claims
+		vbox = {
 			name = "claims"
 			visible = "[Not(IsDataModelEmpty(CharacterWindow.GetClaims))]"
 			layoutpolicy_horizontal = expanding
@@ -3490,61 +3529,7 @@ types CharacterWindow
 				expand = {}
 			}
 		}
-            
-            divider = {
-                visible = "CORES AND CLAIMS"
-                layoutpolicy_vertical = expanding
-            }
-            
-            ## Cores
-            vbox = {
-			name = "cores"
-			visible = "CORES"
-			layoutpolicy_horizontal = expanding
 
-			vbox = {
-				layoutpolicy_horizontal = expanding
-
-				button_standard_hover = { # Stays the same, but claims is replaced by cores.
-					layoutpolicy_horizontal = expanding
-					margin_left = 5
-					size = { 0 25 }
-					onclick = "[CharacterWindow.ToggleExpandedClaims]"
-					down = "[CharacterWindow.AreClaimsExpanded]"
-					tooltip = "[SelectLocalization( CharacterWindow.AreClaimsExpanded, 'CV_CLAIMS_HIDE_TT', 'CV_CLAIMS_SHOW_TT' )]"
-
-					hbox = {
-						margin = { 5 0 }
-						margin_bottom = 3
-						margin_right = 10
-
-						text_label_left = {
-							visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetClaims), '(int32)1' )]"
-							text = "CV_CLAIMS"
-						}
-
-						text_label_left = {
-							visible = "[Not(GreaterThan_int32( GetDataModelSize(CharacterWindow.GetClaims), '(int32)1' ))]"
-							text = "CV_CLAIMS_SINGULAR"
-						}
-
-						expand = {}
-
-						text_single = {
-							block "claims_extra_items"
-							{
-								visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetClaims), '(int32)10' )]"
-								text = "[GetNumberAbove_int32(GetDataModelSize(CharacterWindow.GetClaims), '(int32)10' )|=]"
-							}
-							default_format = "#weak"
-						}
-					}
-				}
-
-				expand = {}
-			}
-        }
-        
 		expand = {}
 	}
 

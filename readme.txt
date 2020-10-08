@@ -694,3 +694,32 @@ What happens with factions? - I don't see a difference.
 Plan now: as above, but in case where titles is missing below claims instead. Start by always having it split with claims. (and restricting claims to half the size)
 might have to use variable system to deal with some of the on click things in the gui.
 Possible alternative: add icon to cores - like title laws icon. <- subtle. Less intrusive. Don't have to deal with character window. I like it.
+Looks like the title sub icon is added at stages other than the title coat of arms stage. This means to change it I would have to change those windows.
+Goint with the small icon I would want to probably ideally want to use a flat metal crown texture or interface/icons/event_types/type_magesty or type_generic.
+Or icons/flat_icons/army_raise_assigned or go_to_my_capital or heir or mapmode_duchy or mapmode_empire or war_outcome_victory or
+Or icons/war_status/ war_won_icon
+Or icons/map_icons commander_is_leader or 
+Or icons/message_feed/county_corruption or
+or icons/portraits/hier or heir_small or me or me_small
+Or icons/religion/hellenic
+Or icons/ commander_is_leader*** or
+
+Based on the implementtion the small icon would actually require touching more files and display the information less clearly.
+Will do the character window idea.
+When there are no titles, there will be no core titles. Things will work out then (just need to get limits right).
+When there are titles but no claims it will also work out correctly.
+What bothers me is that the titles will be repeated.
+
+New Plan:
+
+______________________________________
+|n Titles    +k   m Cores  |         |<- same fade for cores as for title.
+|T T T T T T T             |         |
+|j Cores                 +w|Diplomacy|
+|T T T T T                 |         |
+======================================
+
+Might want to change to long fade like in the text below for children, siblings etc.
+I think I want:
+f|n Titles   +k f|Cores (number) <- again, like the ones below. Also want font color like diplomacy, less obtrusive.
+Copy most of text stuff from diplomacy.
