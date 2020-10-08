@@ -1,0 +1,69 @@
+﻿core_display = {
+    scope = character
+
+    is_shown = { # should be shown for every landed character - they will have at least one core title.
+        
+    }
+    
+    is_valid = {
+        can_core_title = yes
+    }
+    
+    effect = {
+        # Generate tooltip
+        if = {
+            limit = {can_core_title = yes}
+            custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP
+        }
+        else_if = {
+            limit = {is_title_eligible_for_core = no}
+            custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD
+        }
+        
+        # do the coring
+        designate_core_title
+    }
+}
+
+de_designate_core_button = {
+    scope = title
+    #Looks like this is not necessary/detrimental
+    #saved_scopes = {
+    #    viewing_character
+    #}
+    is_shown = {
+        is_title_core = yes
+    }
+    
+    is_valid = {
+        can_de_core_title = yes
+    }
+    
+    effect = {
+        # Generate tooltip
+        if = {
+            limit = {can_de_core_title = yes}
+            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP
+        }
+        else_if = {
+            limit = {is_title_core_due_to_capital = yes}
+            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN
+        }
+        else_if = {
+            limit = {holder.primary_title = root}
+            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE
+        }
+        else_if = {
+            limit = {will_core_loss_break_titles = yes}
+            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING
+        }
+        #I can't access this value, so special titles like head of faith titles are not counted.
+        #else_if = {
+        #    limit = {always_follows_primary_heir}
+        #    custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE
+        #}
+        
+        # do the de_designating core
+        de_designate_core_title
+    }
+}

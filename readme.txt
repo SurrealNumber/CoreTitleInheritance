@@ -672,3 +672,25 @@ __________________________________________
 Core limit is not crucial information.
 I should add a core titles tab to my_realm to give that information and give some management options.
 Essentially the event is now irrelevent and being replaced by proper gui.
+
+Scopes have a GetList function. Might be able to use that and items. Looking into the character window change first.
+No idea what the down part of a vbox does.
+max titles depends on other factors
+all are instances of vbox_titles_claims_box defined at bottom of file.
+different title boxes to display.
+The different versions only differ in the cutoff for the number of titles and claims and related factors.
+Conditions for displaying:
+Overall box (vbox)
+if no diplomacy or faction -> 1st one 13
+if diplomacy then in hbox with diplomacy.
+    no faction and diplomacy <=4 -> 2nd one 10
+    no faction and 4<diplomacy<=6 -> 3rd one 9
+    no faction and 6<diplomacy<=8 -> 4th one 8
+    no faction and 8<diplomacy -> 5th one 7
+
+Will have to put in some stuff to make limits play nicely when cores or claims are not present.
+What happens when claims but no titles? - only claims display (still one row)
+What happens with factions? - I don't see a difference.
+Plan now: as above, but in case where titles is missing below claims instead. Start by always having it split with claims. (and restricting claims to half the size)
+might have to use variable system to deal with some of the on click things in the gui.
+Possible alternative: add icon to cores - like title laws icon. <- subtle. Less intrusive. Don't have to deal with character window. I like it.
