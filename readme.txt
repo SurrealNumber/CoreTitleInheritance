@@ -723,3 +723,157 @@ Might want to change to long fade like in the text below for children, siblings 
 I think I want:
 f|n Titles   +k f|Cores (number) <- again, like the ones below. Also want font color like diplomacy, less obtrusive.
 Copy most of text stuff from diplomacy.
+The main or onl difference in the text for diplomacy is that Title links to the encyclopeia, and diplomacy does not.
+Copied from above GetVariableSystem(.Exists, .Clear, .Toggle, .Set, .HasValue, )
+there exists SelectLocalization( bool, loc1 (true), loc2 (false))
+It looks like for the get variable system toggles, it can be toggled on or off, and exists checks for the thing being toggled on.
+Most likely have to put in the variable system conditions elsewhere. Need to hide others when selected, and hide this when others selected.
+Whole relations/family etc hidden when one of the other tabs is open.
+can put in multiple on-clicks.
+Will hijack the is titles expanded to only have to deal with two places.
+down = when butotn is suppressed.
+two versions of core text - One for title window open, the other for the title window not.
+title text - add on click to clear toggle.
+core text, title on, core on - toggle, toggle <- core displayed
+core text, title on, core off - none, toggle <- title displayed
+core text, title off, core off - toggle, toggle. <- other/none displayed
+core text, title off, core on - toggle, none <- other displayed, core not toggled off
+Will need core text for equal, and both non-equals.
+
+What will the breakdown be by?
+Want core by cti and other core reasons. - assume the player can figure out what is a holding.
+cti, capital chain, primary title, special.
+special will most likely never be visible.
+capital chain and primary title should be mutually exclusive unless the capital is the primary title.
+^ Note that is NOT equivalent to being a count or baron.
+primary title and capital chain always visible. Except will hide both when equal and show different category.
+cti core titles visible only if there is a cti reason core title.
+might have to remove gridbox from primary title/capital and primary title.
+Just noticed there is expand none. It would not have been all to useful. It would not reduce the number of cases.
+IN GENERAL I THINK I SHOULD USE DE_FACTO INSTEAD OF DEJURE.
+For titles there is GetDeFactoLiege, GetDeFactoTopLiege, and GetDeJureLiege. None of these are recursive.
+Will do the core limit very much like the character window does domain limit.
+
+**********************I am considering having icons/commander_is_leader.dds as **the** symbol for core titles.
+**********************^ Decided to do this. I like the icon, and think it works well enough for the purpose.
+
+Because I am throwing in the core titles expanded window only shows for alive, landed chracters, it might unexpextedly show up at some points.
+
+Scripted gui things needed:
+    tooltip for core limit box <- should probably include penalty.
+    is over core limit for core limit background
+    text A/B for core limit.
+    is capital chain for displaying cc titles.
+    are any cores special for displaying special section
+    is a core special for displaying special titles
+    are there any cti cores
+    is the title a cti core
+    are there any core titles<- probably actually not necessary because at a minimum the primary title and capital are cores. But possible title succession laws funkiness so will want. have to change conditions for showing core title tab.
+    are there more than 1 core titles?
+    number of core titles
+    
+-Scripted guis to make:
+    core limit box
+        tooltip - character
+        bool is over core limit - character
+    capital chain character
+        bool multiple capital chain - character
+    capital chain title <- not necessary to split, but seems better to do it for consistency.
+        bool is capital chain - title
+    special cores character
+        bool are any special cores - character
+        bool multiple special - character
+    special cores title
+        bool is this special - title
+    cti cores character
+        bool are any cti cores - character
+        bool multiple cti cores - character
+    cti cores title
+        bool is this cti core - title
+    core title text line
+        bool any core titles - character<- might also be used elsewhere.
+        bool multiple core titles - character
+Custom localization or like to make:
+    core limit
+        text A/B - character
+    number of core titles
+        self explainatory
+
+What do I have to work with in a scripted gui?
+    scope
+    saved_scopes
+    is_shown - returns bool
+    is_valid - returns bool
+    effect - can have tooltip or call effects
+    could possibly use custom or scripted localization to do the text.
+These are the only functions on a scripted gui:
+ScriptedGui = {
+    AccessSelf -> [unregistered]
+    BuildTooltip -> CString
+    Execute -> void
+    ExecuteTooltip -> CString
+    IsShown -> bool
+    IsShownTooltip -> CString
+    IsValid -> bool
+    IsValidTooltip -> CString
+    Self -> [unregistered]
+}
+
+Localization needed: # possibly also need singular versions as well and code to support them.
+    CV_CORE_CAPITAL_PRIMARY
+    CV_CORE_PRIMARY
+    CV_CORES_CAPITAL_CHAIN
+    CV_CORES_SPECIAL
+    CV_CORES_MOD
+    CV_CORES_CAPITAL_CHAIN_SINGULAR
+    CV_CORES_SPECIAL_SINGULAR
+    CV_CORES_MOD_SINGULAR
+    CV_CORE_TITLES_HIDE_CTT
+    CV_CORE_TITLES_SHOW_CTT
+    CV_CORE_TITLES
+    CV_CORE_TITLES_SINGULAR
+    CV_CORE_TITLE_TAB_HEADER
+
+
+******************COUNTY != Barony, capital of a county can be moved and is a barony in it.*************************
+******************all titles in capital county are passed together**************************************************
+This means a character can have up to 6 core holdings just from their capital county. Have to find a way to not penalize this.
+I think the way to do it is to say that the capital county only counts as one core holding.
+***********Could also change it so that core holdings is actually core counties. - This would make sense actually as a county is currently the smallest inheritable unit.
+
+Lots of inefficiencies with going through the list of core titles. This can be dealt with later.
+I assume that datacontext is essentially saying that you are setting the global/datatype object of that type to what is specified.
+Possibly add an opinion penalty to being over the core limit.
+
+Scripted gui:
+in is_valid:
+custom_description = {
+text = "stuff(possibly trigger_loc)"
+subject = scope
+trigger
+}
+^ This gives a custom reason for why the decision is not valid in tooltip
+
+customizable location seems to be mainly to differentiate between the elements of the same class of thing or to randomize between equivalent words.
+I am using [xxx|V] asuming it mean value, but apparently that is not true. I have no idea what it means.
+After a regex I have found in between the |]:
+E - encyclopedia
+U - seems to be mostly for ui names or the like
+0
+V - no clue used for all sorts of stuff
+1
+2
+P
+L - seems to be mainly for traits
+D
+N
+no |x at all
+
+trigger localization seems to be about getting first, third, etc person correct for triggers.
+Will have to to the things I thought could be custom localization in the localization system.
+
+visible = "[AND(ScriptedGui.IsShown(GuiScope.SetRoot(CharacterWindow.GetCharacter)).End, And( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), CharacterWindow.AreTitlesExpanded )) ]"
+worst case senario booleans being equal is equivalent to (A and B) or ((not A) and (not B))
+possibly can use script things in localization language. Will not use unless see confirmation.
+
+AND(ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End ), Or(And( VariableSystem.Exists('cv_expanded_core_titles_tab'), CharacterWindow.AreTitlesExpanded ), And( Not(VariableSystem.Exists('cv_expanded_core_titles_tab')), Not(CharacterWindow.AreTitlesExpanded) )) )

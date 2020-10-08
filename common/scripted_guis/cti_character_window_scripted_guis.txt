@@ -1,69 +1,128 @@
-﻿core_display = {
+﻿core_title_text_line = {
     scope = character
 
-    is_shown = { # should be shown for every landed character - they will have at least one core title.
-        
+    is_shown = {
+        has_core_titles = yes
     }
     
-    is_valid = {
-        can_core_title = yes
-    }
-    
-    effect = {
-        # Generate tooltip
-        if = {
-            limit = {can_core_title = yes}
-            custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP
+    is_valid = { # multiple core titles
+        1 < value = {
+            value = 0
+            every_core_title = {add = 1}
         }
-        else_if = {
-            limit = {is_title_eligible_for_core = no}
-            custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD
-        }
-        
-        # do the coring
-        designate_core_title
     }
 }
 
-de_designate_core_button = {
-    scope = title
-    #Looks like this is not necessary/detrimental
-    #saved_scopes = {
-    #    viewing_character
-    #}
+core_limit_display = {
+    scope = character
+    
+   
     is_shown = {
-        is_title_core = yes
+        is_over_core_limit = yes
     }
     
-    is_valid = {
-        can_de_core_title = yes
-    }
     
     effect = {
         # Generate tooltip
+        core_limit = {save_temporary_scope_as = _core_limit}
+        var:core_count = {save_temporary_scope_as = _core_count}
+        custom_tooltip = CORE_LIMIT_TOOLTIP_HEADER
         if = {
-            limit = {can_de_core_title = yes}
-            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP
+            limit = {is_over_core_limit = yes}
+            custom_tooltip = CORE_LIMIT_EXCEEDED_TOOLTIP
+            amount_over_core_limit = {save_temporary_scope_as = _amount_over_core_limit}
+            if = {
+                limit = {
+                    amount_over_core_limit > 1
+                }
+                custom_tooltip = CORE_LIMIT_OVER_EFFECTS_HEADING_TOOLTIP
+            }
+            else = {
+                custom_tooltip = CORE_LIMIT_OVER_EFFECTS_SINGULAR_HEADING_TOOLTIP
+            }
+            value = {
+                value = -0.05
+                multiply = amount_over_core_limit
+            } = {save_temporary_scope_as = _val_over_core_limit_penalty}
+            custom_tooltip = CORE_LIMIT_OVERRUN_EFFECT
         }
-        else_if = {
-            limit = {is_title_core_due_to_capital = yes}
-            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN
+    }
+}
+
+core_capital_chain_character_display = {
+    scope = character
+    
+    is_valid = { # multiple capital chain cores
+        1 < value = {
+            value = 0
+            every_core_title = {
+                if = {
+                    limit = {is_title_core_due_to_capital}
+                    add = 1
+                }
+            }
         }
-        else_if = {
-            limit = {holder.primary_title = root}
-            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE
-        }
-        else_if = {
-            limit = {will_core_loss_break_titles = yes}
-            custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING
-        }
-        #I can't access this value, so special titles like head of faith titles are not counted.
-        #else_if = {
-        #    limit = {always_follows_primary_heir}
-        #    custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE
-        #}
-        
-        # do the de_designating core
-        de_designate_core_title
+    }
+}
+
+core_capital_chain_title_display = {
+    scope = title
+    
+    is_shown = {
+        is_title_core_due_to_capital
+    }
+}
+
+core_special_character_display = {
+    scope = character
+    
+    is_shown = {
+        any_core_title = {is_title_special_core = yes}
+    }
+    
+    is_valid = { # multiple special cores
+        1 < value = {
+            value = 0
+            every_core_title = {
+                if = {
+                    limit = {is_title_special_core}
+                    add = 1
+                }
+    }
+}
+
+core_special_title_display = {
+    scope = title
+    
+    
+    is_shown = {
+        is_title_special_core
+    }
+}
+
+core_mod_character_display = {
+    scope = character
+    
+    is_shown = {
+        any_core_title = {is_title_core_due_to_cti = yes}
+    }
+    
+    is_valid = { # multiple special cores
+        1 < value = {
+            value = 0
+            every_core_title = {
+                if = {
+                    limit = {is_title_core_due_to_cti}
+                    add = 1
+                }
+    }
+}
+
+core_mod_title_display = {
+    scope = title
+    
+    
+    is_shown = {
+        is_title_core_due_to_cti
     }
 }

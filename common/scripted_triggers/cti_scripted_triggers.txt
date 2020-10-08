@@ -109,3 +109,11 @@ can_de_core_title = {
         will_core_loss_break_titles = no
     }
 }
+
+has_core_titles = { # scope is character
+    any_core_title = {always = yes} # inefficient, but good enough for now.
+}
+
+is_title_special_core = {
+    always = no # until I can see the always_follows_primary_heir tag
+}

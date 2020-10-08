@@ -41,7 +41,7 @@ window = {
 	state = {
 		name = translate_hide
 		position_x = -60
-		trigger_when = "[Not(GetVariableSystem.Exists( 'left_sidebar_open'))]"
+		trigger_when = "[Not( GetVariableSystem.Exists( 'left_sidebar_open'))]"
 	}
 
 	state = {
@@ -100,8 +100,8 @@ window = {
 
 				blockoverride "button_me"
 				{
-					visible = "[Not(Character.IsLocalPlayer)]"
-					onclick = "[DefaultOnCharacterClick(GetPlayer.GetID)]"
+					visible = "[Not( Character.IsLocalPlayer)]"
+					onclick = "[DefaultOnCharacterClick( GetPlayer.GetID)]"
 				}
 
 				blockoverride "button_pin" {}
@@ -3133,6 +3133,271 @@ window = {
 				}
 			}
 		}
+        
+        # CORE TITLES EXPANDED
+        vbox = {
+            datacontext = "[GetScriptedGui( 'core_title_text_line' )]"
+            visible = "[And( And( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), CharacterWindow.AreTitlesExpanded ), And(And( Character.HasLandedTitles, Character.IsAlive), ScriptedGui.IsShown( GuiScope.SetRoot(CharacterWindow.GetCharacter).End ) ) )]"
+            layoutpolicy_vertical = expanding
+            layoutpolicy_horizontal = expanding
+            
+            text_label_center = {
+                text = "CV_CORE_TITLE_TAB_HEADER"
+            }
+            
+            vbox = {
+                name = "core_titles_expanded_limit"
+                datacontext = "[CharacterWindow.GetCharacter]"
+                datacontext = "[GetScriptedGui( 'core_limit_display' )]"
+                tooltip = "[ScriptedGui.BuildTooltip( GuiScope.SetRoot( Character ).End )]"
+                spacing = -2
+
+                background = {
+                    visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( Character ).End)]"
+                    using = Status_Bad
+                }
+
+                icon = {
+                    name = "core_title_icon"
+                    size = { 30 30 }
+                    texture = "gfx/interface/icons/commander_is_leader.dds"
+                }
+
+                text_single = {
+                    name = "core_limit"
+                    text = "CORE_LIMIT_C_L" # Custom localization here
+                    default_format = "#high"
+                    align = center|nobaseline
+                }
+            }
+            
+            scrollbox = {
+                name = "core_titles_expanded_scroll"
+                layoutpolicy_vertical = expanding
+                layoutpolicy_horizontal = expanding
+
+                using = Animation_Tab_Switch
+
+                blockoverride "scrollbox_content"
+                {
+                    vbox = {
+                        spacing = 15
+                        
+                        vbox = { # primary and capital
+                            datacontext = "[CharacterWindow.GetCharacter]"
+                            visible = "[ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle)]"
+                            text_label_center = {
+                                text = "CV_CORE_CAPITAL_PRIMARY"
+                            }
+
+                            fixedgridbox = {
+                                name = "titles_box_bishop"
+                                datacontext = "[CharacterWindow.GetCharacter]"
+                                flipdirection = yes
+                                addrow = 90
+                                addcolumn = 270
+                                datamodel_wrap = 2
+
+                                flowcontainer = {
+                                    datacontext = "[Character.GetPrimaryTitle]"
+                                    spacing = 5
+
+                                    coa_title_small_crown = {
+                                        using = tooltip_ne
+                                    }
+
+                                    text_multi = {
+                                        text = "[Title.GetNameNoTooltip]"
+                                        parentanchor = vcenter
+                                        autoresize = yes
+                                        default_format = "#high"
+                                        using = Font_Size_Medium
+                                        max_width = 190
+                                        margin_top = 5
+                                    }
+                                }
+                            }
+                        }
+                        
+                        vbox = { # primary
+                            visible = "[Not( ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle) )]"
+                            text_label_center = {
+                                text = "CV_CORE_PRIMARY"
+                            }
+
+                            fixedgridbox = {
+                                name = "titles_box_bishop"
+                                datacontext = "[CharacterWindow.GetCharacter]"
+                                flipdirection = yes
+                                addrow = 90
+                                addcolumn = 270
+                                datamodel_wrap = 2
+
+                                flowcontainer = {
+                                    datacontext = "[Character.GetPrimaryTitle]"
+                                    spacing = 5
+
+                                    coa_title_small_crown = {
+                                        using = tooltip_ne
+                                    }
+
+                                    text_multi = {
+                                        text = "[Title.GetNameNoTooltip]"
+                                        parentanchor = vcenter
+                                        autoresize = yes
+                                        default_format = "#high"
+                                        using = Font_Size_Medium
+                                        max_width = 190
+                                        margin_top = 5
+                                    }
+                                }
+                            }
+                        }
+                        
+                        vbox = { # capital chain
+                            visible = "[Not( ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle) )]"
+                            datacontext = "[GetScriptedGui( 'core_capital_chain_character_display' )]"
+                            text_label_center = {
+                                visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( Character ).End)]"
+                                text = "CV_CORES_CAPITAL_CHAIN"
+                            }
+                            text_label_center = {
+                                visible = "[Not( ScriptedGui.IsShown( GuiScope.SetRoot( Character ).End) ]"
+                                text = "CV_CORES_CAPITAL_CHAIN_SINGULAR"
+                            }
+
+                            fixedgridbox = {
+                                name = "titles_box_bishop"
+                                datacontext = "[CharacterWindow.GetCharacter]"
+                                flipdirection = yes
+                                addrow = 90
+                                addcolumn = 270
+                                datamodel_wrap = 2
+
+                                datamodel = "[CharacterWindow.GetTitles]"
+
+                                item = {
+                                    flowcontainer = {
+                                        datacontext = "[GetScriptedGui( 'core_capital_chain_title_display' )]"
+                                        visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( TitleItem.GetTitle ).End)]"
+                                        datacontext = "[TitleItem.GetTitle]"
+                                        spacing = 5
+
+                                        coa_title_small_crown = {
+                                            using = tooltip_ne
+                                        }
+
+                                        text_multi = {
+                                            text = "[Title.GetNameNoTooltip]"
+                                            parentanchor = vcenter
+                                            autoresize = yes
+                                            default_format = "#high"
+                                            using = Font_Size_Medium
+                                            max_width = 190
+                                            margin_top = 5
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                        vbox = { # special
+                            datacontext = "[GetScriptedGui( 'core_special_character_display' )]"
+                            visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( Character ).End)]"
+                            text_label_center = {
+                                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( Character ).End)]"
+                                text = "CV_CORES_SPECIAL"
+                            }
+                            text_label_center = {
+                                visible = "[Not( ScriptedGui.IsValid( GuiScope.SetRoot( Character ).End)]"
+                                text = "CV_CORES_SPECIAL_SINGULAR"
+                            }
+
+                            fixedgridbox = {
+                                name = "titles_box_bishop"
+                                datacontext = "[CharacterWindow.GetCharacter]"
+                                flipdirection = yes
+                                addrow = 90
+                                addcolumn = 270
+                                datamodel_wrap = 2
+
+                                datamodel = "[CharacterWindow.GetTitles]"
+
+                                item = {
+                                    flowcontainer = {
+                                        datacontext = "[GetScriptedGui( 'core_special_title_display' )]"
+                                        visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( TitleItem.GetTitle ).End)]"
+                                        datacontext = "[TitleItem.GetTitle]"
+                                        spacing = 5
+
+                                        coa_title_small_crown = {
+                                            using = tooltip_ne
+                                        }
+
+                                        text_multi = {
+                                            text = "[Title.GetNameNoTooltip]"
+                                            parentanchor = vcenter
+                                            autoresize = yes
+                                            default_format = "#high"
+                                            using = Font_Size_Medium
+                                            max_width = 190
+                                            margin_top = 5
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                        vbox = { # cti
+                            datacontext = "[GetScriptedGui( 'core_mod_character_display' )]"
+                            visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( Character ).End)]"
+                            text_label_center = {
+                                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( Character ).End)]"
+                                text = "CV_CORES_MOD"
+                            }
+                            text_label_center = {
+                                visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot( Character ).End)]"
+                                text = "CV_CORES_MOD_SINGULAR"
+                            }
+
+                            fixedgridbox = {
+                                name = "titles_box_bishop"
+                                datacontext = "[CharacterWindow.GetCharacter]"
+                                flipdirection = yes
+                                addrow = 90
+                                addcolumn = 270
+                                datamodel_wrap = 2
+
+                                datamodel = "[CharacterWindow.GetTitles]"
+
+                                item = {
+                                    flowcontainer = {
+                                        datacontext = "[GetScriptedGui( 'core_mod_title_display' )]"
+                                        visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( TitleItem.GetTitle ).End)]"
+                                        datacontext = "[TitleItem.GetTitle]"
+                                        spacing = 5
+
+                                        coa_title_small_crown = {
+                                            using = tooltip_ne
+                                        }
+
+                                        text_multi = {
+                                            text = "[Title.GetNameNoTooltip]"
+                                            parentanchor = vcenter
+                                            autoresize = yes
+                                            default_format = "#high"
+                                            using = Font_Size_Medium
+                                            max_width = 190
+                                            margin_top = 5
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 	}
 }
 
@@ -3315,6 +3580,7 @@ types CharacterWindow
                     layoutpolicy_horizontal = expanding
                     size = { 0 25 }
                     onclick = "[CharacterWindow.ToggleExpandedTitles]"
+                    onclick = "[VariableSystem.Clear( 'cv_expanded_core_titles_tab' )]"
                     down = "[CharacterWindow.AreTitlesExpanded]"
                     tooltip = "[SelectLocalization( CharacterWindow.AreTitlesExpanded, 'CV_TITLES_HIDE_TT', 'CV_TITLES_SHOW_TT' )]"
 
@@ -3348,12 +3614,15 @@ types CharacterWindow
                 
                 expand = {}
                 
-                button_standard_hover = { # Core Title Text - Basically everything stays the same except the things are changed to cores. Will need to use a scripted gui and possibly variable system.
+                button_standard_hover = { # Core Title Text - equal
+                    datacontext = "[GetScriptedGui( 'core_title_text_line' )]"
+                    visible = "[And(ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End ), Or(And( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), CharacterWindow.AreTitlesExpanded ), And( Not(VariableSystem.Exists( 'cv_expanded_core_titles_tab')), Not(CharacterWindow.AreTitlesExpanded) )) ) ]"
                     layoutpolicy_horizontal = expanding
                     size = { 0 25 }
+                    onclick = "[VariableSystem.Toggle( 'cv_expanded_core_titles_tab' )]"
                     onclick = "[CharacterWindow.ToggleExpandedTitles]"
-                    down = "[CharacterWindow.AreTitlesExpanded]"
-                    tooltip = "[SelectLocalization( CharacterWindow.AreTitlesExpanded, 'CV_TITLES_HIDE_TT', 'CV_TITLES_SHOW_TT' )]"
+                    down = "[VariableSystem.Exists( 'cv_expanded_core_titles_tab')]"
+                    tooltip = "[SelectLocalization( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), 'CV_CORE_TITLES_HIDE_CTT', 'CV_CORE_TITLES_SHOW_CTT' )]"
 
                     hbox = {
                         margin = { 5 0 }
@@ -3362,26 +3631,101 @@ types CharacterWindow
 
                         text_label_left = {
                             visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' )]"
-                            text = "CV_TITLES"
+                            text = "CV_CORE_TITLES"
                         }
 
                         text_label_left = {
                             visible = "[Not(GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' ))]"
-                            text = "CV_TITLES_SINGULAR"
+                            text = "CV_CORE_TITLES_SINGULAR"
                         }
 
-                        expand = {}
+                        expand = {}# possibly want to remove this.
 
                         text_single = {
-                            block "titles_extra_items"
+                            block "number_cores"
                             {
-                                visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )]"
-                                text = "[GetNumberAbove_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )|=]"
+                                #visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )]" - always visible when there are core titles
+                                text = "CV_CORE_TITLES_NUMBER"
                             }
                             default_format = "#weak"
                         }
                     }
                 }
+                
+                button_standard_hover = { # Core Title Text - core off, title on
+                    datacontext = "[GetScriptedGui( 'core_title_text_line' )]"
+                    visible = "[AND(ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End ), And( Not(VariableSystem.Exists( 'cv_expanded_core_titles_tab')), CharacterWindow.AreTitlesExpanded )) ]"
+                    layoutpolicy_horizontal = expanding
+                    size = { 0 25 }
+                    onclick = "[VariableSystem.Toggle( 'cv_expanded_core_titles_tab' )]"
+                    down = "[VariableSystem.Exists( 'cv_expanded_core_titles_tab')]"
+                    tooltip = "[SelectLocalization( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), 'CV_CORE_TITLES_HIDE_TT', 'CV_CORE_TITLES_SHOW_TT' )]"
+
+                    hbox = {
+                        margin = { 5 0 }
+                        margin_bottom = 3
+                        margin_right = 10
+
+                        text_label_left = {
+                            visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' )]"
+                            text = "CV_CORE_TITLES"
+                        }
+
+                        text_label_left = {
+                            visible = "[Not(GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' ))]"
+                            text = "CV_CORE_TITLES_SINGULAR"
+                        }
+
+                        expand = {}# possibly want to remove this.
+
+                        text_single = {
+                            block "number_cores"
+                            {
+                                #visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )]" - always visible when there are core titles
+                                text = "CV_CORE_TITLES_NUMBER"
+                            }
+                            default_format = "#weak"
+                        }
+                    }
+                }
+                
+                button_standard_hover = { # Core Title Text - core on, title off
+                    datacontext = "[GetScriptedGui( 'core_title_text_line' )]"
+                    visible = "[AND( ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End ), And( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), Not(CharacterWindow.AreTitlesExpanded ))) ]"
+                    layoutpolicy_horizontal = expanding
+                    size = { 0 25 }
+                    onclick = "[CharacterWindow.ToggleExpandedTitles]"
+                    down = "[VariableSystem.Exists( 'cv_expanded_core_titles_tab')]"
+                    tooltip = "[SelectLocalization( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), 'CV_CORE_TITLES_HIDE_TT', 'CV_CORE_TITLES_SHOW_TT' )]"
+
+                    hbox = {
+                        margin = { 5 0 }
+                        margin_bottom = 3
+                        margin_right = 10
+
+                        text_label_left = {
+                            visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' )]"
+                            text = "CV_CORE_TITLES"
+                        }
+
+                        text_label_left = {
+                            visible = "[Not(GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' ))]"
+                            text = "CV_CORE_TITLES_SINGULAR"
+                        }
+
+                        expand = {}# possibly want to remove this.
+
+                        text_single = {
+                            block "number_cores"
+                            {
+                                #visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )]" - always visible when there are core titles
+                                text = "CV_CORE_TITLES_NUMBER"
+                            }
+                            default_format = "#weak"
+                        }
+                    }
+                }
+                
             }
 
 			hbox = {

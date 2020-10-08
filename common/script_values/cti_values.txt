@@ -50,3 +50,8 @@ core_count_from_list = {
     value = 0
     every_core_holding = { add = 1 }
 }
+
+num_core_titles = {
+    value = 0
+    every_core_title = {add = 1}
+}
