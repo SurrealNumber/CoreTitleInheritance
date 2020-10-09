@@ -918,3 +918,14 @@ fixedgridbox = {
 ^this was there before.
 Removing it and letting titles list one by one. Good enough for now.
 It is possible i use expanded traits. It appears to be unused for now.
+what happens if a county you do not stand to inherit contains a barony which has always_follows_primary_heir = yes? - It does nothing. Counties are the smallest unit of inheritance.
+
+Currently I believe that everything  I want to put in is there at least to some degree (but might not be working or need updating).
+TODO:
+Logic - change from holdings to counties - baronies are meaningless in terms of inheritance.
+Logic - ignore baronies.
+Logic - change dejure to defacto (will mean that creating a duchy title between owned county and kingdom will break kingdom. Think about this. Also check what happens if owned county is in vassal's duchy.)
+Logic - un-comment commented out sections
+Localization and game concepts - change to reflect departure from baronies.
+Debug
+
