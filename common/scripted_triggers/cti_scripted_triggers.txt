@@ -22,20 +22,21 @@ is_title_core_due_to_cti = {
 # MUST BE CAREFUL THAT THE TRIGGERS ABOVE AND BELOW THIS AGREE!
 #This catches primary titles and capitals as well (I assume)
 is_title_core = { # Assume that this will only be called if the title is owned
-    trigger_if = {
-        limit = {exists = var:core}
-        OR = {
-            var:core = yes# var:core should be a boolean
-            is_title_core_due_to_capital = yes
-            holder.primary_title = root
-        }
-    }
-    trigger_else = {
-        OR = {
-            is_title_core_due_to_capital = yes
-            holder.primary_title = root
-        }
-    }
+    # trigger_if = {
+        # limit = {exists = var:core}
+        # OR = {
+            # var:core = yes# var:core should be a boolean
+            # is_title_core_due_to_capital = yes
+            # holder.primary_title = root
+        # }
+    # }
+    # trigger_else = {
+        # OR = {
+            # is_title_core_due_to_capital = yes
+            # holder.primary_title = root
+        # }
+    # }
+    always = yes
 }
 
 is_title_holding = { # scope is title
@@ -47,7 +48,7 @@ is_title_eligible_for_core = { # Assume that this will only be called if the tit
     OR = {
         is_title_holding = yes # county or lower
         holder = {# Changes scope to holder
-            any_core_title = { # direct de jure liege of another core title
+            any_core_title_item = { # direct de jure liege of another core title
             this.de_jure_liege = root
             }
         }
@@ -63,7 +64,7 @@ will_core_loss_break_titles = { # scope is title
         NOT = {holder.primary_title = root.de_jure_liege} # parent title is not the holder's primary title
         NOT = {# parent title is not de jure liege of any sibling core titles
             holder = {
-                any_core_title = { 
+                any_core_title_item = { 
                     AND = {
                         NOT = {this = root}
                         this.de_jure_liege = root.de_jure_liege
@@ -81,7 +82,7 @@ is_core_consistent = {# scope is title
         holder.primary_title = root
         is_title_core_due_to_capital = yes
         holder = {
-            any_core_title = {
+            any_core_title_item = {
                 this.de_jure_liege = root
             }
         }
@@ -91,7 +92,7 @@ is_core_consistent = {# scope is title
 is_over_core_limit = { # scope is character
     trigger_if = {
         limit = {exists = var:core_count}
-        var:core_count > core_limit
+        var:core_count > val_core_limit
     }
     trigger_else = {
         always = no
@@ -111,7 +112,7 @@ can_de_core_title = {
 }
 
 has_core_titles = { # scope is character
-    any_core_title = {always = yes} # inefficient, but good enough for now.
+    any_core_title_item = {always = yes} # inefficient, but good enough for now.
 }
 
 is_title_special_core = {

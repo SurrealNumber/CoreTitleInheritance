@@ -42,7 +42,7 @@
 # }
 
 # initialize_core_province_modifiers = { # scope is a character
-    # every_core_holding = {
+    # every_core_holding_item = {
         # remove_core_holding_province_modifier
         # apply_core_holding_province_modifier
     # }
@@ -179,29 +179,29 @@ designate_core_title = {#scope is title
 de_designate_core_title = {# scope is title
     de_core_title
     apply_cost_and_count_of_title = {
-        INCREASE = trigger = {always = no}
+        INCREASE = {always = no}
         COST = coring_holding_refund_flat
-    } 
+    }
 }
 
 #This should not be used to remove bad core titles on inheritance. On inheritance, core titles should not be broken (though capital chain and primary might be removed or changed)
 # should be able to construct list and use it in the limit for the next one.
 remove_invalid_core_titles = { #scope is a character. full refund. should happen when a core title is lost if it invalidates the heirarchy
-    # send_cores_removed_toast
-    # every_inconsistent_core_title = { # scope should be the title here, and root the character
-        # if = {
-            # limit = {can_de_core_title = yes} # This means this can technically go into an infinite loop, but this should never happen.
-            # de_core_title
-            # apply_cost_and_count_of_title = {
-                # INCREASE = trigger = {always = no}
-                # COST = coring_holding_refund_flat_full
-            # }
-        # }
-    # }
-    # if = {
-        # limit = {any_core_title = {is_core_consistent = no}}
-        # remove_invalid_core_titles # recursive.
-    # }
+    send_cores_removed_toast
+    every_inconsistent_core_title = { # scope should be the title here, and root the character
+        if = {
+            limit = {can_de_core_title = yes} # This means this can technically go into an infinite loop, but this should never happen.
+            de_core_title
+            apply_cost_and_count_of_title = {
+                INCREASE = {always = no}
+                COST = coring_holding_refund_flat_full
+            }
+        }
+    }
+    if = {
+        limit = {any_core_title = {is_core_consistent = no}}
+        remove_invalid_core_titles # recursive.
+    }
 }
 
 safe_de_core_title = {
@@ -221,9 +221,9 @@ de_core_title = { # scope is a title. Will still work even if title is not core.
 
 recalculate_cores = { # scope is a character. this is used in cases like inheritance when core titles are preserved
     initialize_core_count
-    initialize_core_province_modifiers
+    #initialize_core_province_modifiers
     if = {
-        limit = {any_core_title = {is_core_consistent = no}}
+        limit = {any_core_title_item = {is_core_consistent = no}}
         remove_invalid_core_titles
     }
 }
@@ -231,7 +231,7 @@ recalculate_cores = { # scope is a character. this is used in cases like inherit
 # Should never be needed
 #remove_all_core_titles = {# scope is character. full refund. this should be used if something brings one over core limit - currently ther is no penalty for being over.
 #    save_temporary_scope_as = this_character
-#    every_core_title = {
+#    every_core_title_item = {
 #        if = {
 #            limit = {can_de_core_title}
 #            decore_title
@@ -243,16 +243,20 @@ recalculate_cores = { # scope is a character. this is used in cases like inherit
 #    }
 #}
 
-de_designate_all_core_titles = { #scope is character not full refund. should be called by a decision
-    every_core_title = {
+de_designate_all_core_titles = { #scope is character not full refund. should be called by a decision.
+    every_core_title_item = {
         if = {
             limit = {can_de_core_title = yes}
             decore_title
             apply_cost_and_count_of_title = {
-                INCREASE = trigger = {always = no}
+                INCREASE = {always = no}
                 COST = coring_holding_refund_flat
             }
         }
+    }
+    if = {
+        limit = {any_core_title_item = {can_de_core_title = yes}}
+        de_designate_all_core_titles # recursive
     }
 }
 

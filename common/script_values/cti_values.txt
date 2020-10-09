@@ -1,5 +1,5 @@
-﻿core_limit = { # scope is character
-    else_if = {
+﻿val_core_limit = { # scope is character
+    if = {
         limit={ has_game_rule = half_domain_core_holding_limit }
         value = domain_limit
         divide = 2
@@ -20,13 +20,11 @@ coring_holding_refund_flat = {value = medium_prestige_gain}
 coring_holding_refund_flat_full = {value = major_prestige_gain}
 
 amount_over_core_limit = { # scope is character
+    value = 0
     if = {
-        limit = {NOT = {exists = var:core_count}}
-        value = 0
-    }
-    else = {
+        limit = {exists = var:core_count}
         value = var:core_count
-        subtract = core_limit
+        subtract = val_core_limit
         min = 0 # sets lower bound of 0
     }
 }
@@ -48,10 +46,40 @@ amount_over_core_limit = { # scope is character
 
 core_count_from_list = {
     value = 0
-    every_core_holding = { add = 1 }
+    every_core_holding_item = { add = 1 }
 }
 
 num_core_titles = {
     value = 0
-    every_core_title = {add = 1}
+    every_core_title_item = {add = 1}
+}
+# Only used in one place, but think I need it here to accomodate it.
+count_core_due_to_capital = {
+    value = 0
+    every_core_title_item = {
+        if = {
+            limit = {is_title_core_due_to_capital}
+            add = 1
+        }
+    }
+}
+
+count_core_due_to_special = {
+    value = 0
+    every_core_title_item = {
+        if = {
+            limit = {is_title_special_core}
+            add = 1
+        }
+    }
+}
+
+count_core_due_to_mod = {
+    value = 0
+    every_core_title_item = {
+        if = {
+            limit = {is_title_core_due_to_cti}
+            add = 1
+        }
+    }
 }

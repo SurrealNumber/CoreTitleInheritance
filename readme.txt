@@ -877,3 +877,27 @@ worst case senario booleans being equal is equivalent to (A and B) or ((not A) a
 possibly can use script things in localization language. Will not use unless see confirmation.
 
 AND(ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End ), Or(And( VariableSystem.Exists('cv_expanded_core_titles_tab'), CharacterWindow.AreTitlesExpanded ), And( Not(VariableSystem.Exists('cv_expanded_core_titles_tab')), Not(CharacterWindow.AreTitlesExpanded) )) )
+
+
+In script replacing the value core_limit with val_core_limit
+.Var() is actually used frequently. I was just looking for GetVariable, and not finding that.
+
+
+#[And( Character.IsLocalPlayer,
+    #.AddScope('viewing_character', Character.MakeScope)
+    #saved_scopes = {
+    #    viewing_character
+    #}
+    
+Possibly change increase = trigger = {always = no} to increase = {always = no}
+
+    if = {
+        limit = {$INCREASE$ = yes}
+        set_variable = {
+        name = dummy
+        value = $COST$
+        }
+    }
+    
+Clicking on titles in the character view will not act as intended if the expanded core titles view is open.
+Leaving character view or going to a new character un-expands all of the views.

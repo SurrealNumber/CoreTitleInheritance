@@ -28,6 +28,7 @@ window = {
 
 		on_start = "[GetVariableSystem.Clear( 'left_sidebar_open' )]"
 		on_start = "[GetVariableSystem.Clear( 'hide_bottom_left_HUD' )]"
+        on_start = "[GetVariableSystem.Clear( 'cv_expanded_core_titles_tab' )]"
 	}
 
 	state = {
@@ -2894,7 +2895,7 @@ window = {
 		# TITLES EXPANDED
 		scrollbox = {
 			name = "titles_expanded"
-			visible = "[CharacterWindow.AreTitlesExpanded]"
+			visible = "[And(CharacterWindow.AreTitlesExpanded, Not(VariableSystem.Exists('cv_expanded_core_titles_tab')))]"
 			layoutpolicy_vertical = expanding
 			layoutpolicy_horizontal = expanding
 
@@ -3137,7 +3138,7 @@ window = {
         # CORE TITLES EXPANDED
         vbox = {
             datacontext = "[GetScriptedGui( 'core_title_text_line' )]"
-            visible = "[And( And( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), CharacterWindow.AreTitlesExpanded ), And(And( Character.HasLandedTitles, Character.IsAlive), ScriptedGui.IsShown( GuiScope.SetRoot(CharacterWindow.GetCharacter).End ) ) )]"
+            visible = "[And( And( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), CharacterWindow.AreTitlesExpanded ), And(And( Character.HasLandedTitles, Character.IsAlive), ScriptedGui.IsShown( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End ) ) )]"
             layoutpolicy_vertical = expanding
             layoutpolicy_horizontal = expanding
             
@@ -3145,15 +3146,15 @@ window = {
                 text = "CV_CORE_TITLE_TAB_HEADER"
             }
             
-            vbox = {
+            hbox = {
                 name = "core_titles_expanded_limit"
-                datacontext = "[CharacterWindow.GetCharacter]"
                 datacontext = "[GetScriptedGui( 'core_limit_display' )]"
-                tooltip = "[ScriptedGui.BuildTooltip( GuiScope.SetRoot( Character ).End )]"
+                tooltip = "[ScriptedGui.BuildTooltip( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End )]"
                 spacing = -2
 
                 background = {
-                    visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( Character ).End)]"
+                    datacontext = "[GetScriptedGui( 'core_limit_display' )]"
+                    visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
                     using = Status_Bad
                 }
 
@@ -3164,7 +3165,8 @@ window = {
                 }
 
                 text_single = {
-                    name = "core_limit"
+                    name = "core_limit_frac"
+                    datacontext = "[CharacterWindow.GetCharacter]"
                     text = "CORE_LIMIT_C_L" # Custom localization here
                     default_format = "#high"
                     align = center|nobaseline
@@ -3182,8 +3184,10 @@ window = {
                 {
                     vbox = {
                         spacing = 15
+                        layoutpolicy_horizontal = expanding
                         
                         vbox = { # primary and capital
+                            layoutpolicy_horizontal = expanding
                             datacontext = "[CharacterWindow.GetCharacter]"
                             visible = "[ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle)]"
                             text_label_center = {
@@ -3220,6 +3224,8 @@ window = {
                         }
                         
                         vbox = { # primary
+                            layoutpolicy_horizontal = expanding
+                            datacontext = "[CharacterWindow.GetCharacter]"
                             visible = "[Not( ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle) )]"
                             text_label_center = {
                                 text = "CV_CORE_PRIMARY"
@@ -3255,14 +3261,16 @@ window = {
                         }
                         
                         vbox = { # capital chain
+                            layoutpolicy_horizontal = expanding
+                            datacontext = "[CharacterWindow.GetCharacter]"
                             visible = "[Not( ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle) )]"
                             datacontext = "[GetScriptedGui( 'core_capital_chain_character_display' )]"
                             text_label_center = {
-                                visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( Character ).End)]"
+                                visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
                                 text = "CV_CORES_CAPITAL_CHAIN"
                             }
                             text_label_center = {
-                                visible = "[Not( ScriptedGui.IsShown( GuiScope.SetRoot( Character ).End) ]"
+                                visible = "[Not( ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)) ]"
                                 text = "CV_CORES_CAPITAL_CHAIN_SINGULAR"
                             }
 
@@ -3278,9 +3286,8 @@ window = {
 
                                 item = {
                                     flowcontainer = {
-                                        datacontext = "[GetScriptedGui( 'core_capital_chain_title_display' )]"
-                                        visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( TitleItem.GetTitle ).End)]"
                                         datacontext = "[TitleItem.GetTitle]"
+                                        visible = "[GetScriptedGui('core_capital_chain_title_display').IsShown( GuiScope.SetRoot(Title.MakeScope).End)]"
                                         spacing = 5
 
                                         coa_title_small_crown = {
@@ -3302,14 +3309,15 @@ window = {
                         }
                         
                         vbox = { # special
+                            layoutpolicy_horizontal = expanding
                             datacontext = "[GetScriptedGui( 'core_special_character_display' )]"
-                            visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( Character ).End)]"
+                            visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End)]"
                             text_label_center = {
-                                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( Character ).End)]"
+                                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End)]"
                                 text = "CV_CORES_SPECIAL"
                             }
                             text_label_center = {
-                                visible = "[Not( ScriptedGui.IsValid( GuiScope.SetRoot( Character ).End)]"
+                                visible = "[Not( ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End))]"
                                 text = "CV_CORES_SPECIAL_SINGULAR"
                             }
 
@@ -3325,9 +3333,8 @@ window = {
 
                                 item = {
                                     flowcontainer = {
-                                        datacontext = "[GetScriptedGui( 'core_special_title_display' )]"
-                                        visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( TitleItem.GetTitle ).End)]"
                                         datacontext = "[TitleItem.GetTitle]"
+                                        visible = "[GetScriptedGui('core_special_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
                                         spacing = 5
 
                                         coa_title_small_crown = {
@@ -3349,14 +3356,15 @@ window = {
                         }
                         
                         vbox = { # cti
+                            layoutpolicy_horizontal = expanding
                             datacontext = "[GetScriptedGui( 'core_mod_character_display' )]"
-                            visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( Character ).End)]"
+                            visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
                             text_label_center = {
-                                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( Character ).End)]"
+                                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
                                 text = "CV_CORES_MOD"
                             }
                             text_label_center = {
-                                visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot( Character ).End)]"
+                                visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End))]"
                                 text = "CV_CORES_MOD_SINGULAR"
                             }
 
@@ -3372,9 +3380,8 @@ window = {
 
                                 item = {
                                     flowcontainer = {
-                                        datacontext = "[GetScriptedGui( 'core_mod_title_display' )]"
-                                        visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( TitleItem.GetTitle ).End)]"
                                         datacontext = "[TitleItem.GetTitle]"
+                                        visible = "[GetScriptedGui('core_mod_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
                                         spacing = 5
 
                                         coa_title_small_crown = {
@@ -3580,8 +3587,8 @@ types CharacterWindow
                     layoutpolicy_horizontal = expanding
                     size = { 0 25 }
                     onclick = "[CharacterWindow.ToggleExpandedTitles]"
-                    onclick = "[VariableSystem.Clear( 'cv_expanded_core_titles_tab' )]"
-                    down = "[CharacterWindow.AreTitlesExpanded]"
+                    onclick = "[VariableSystem.Clear('cv_expanded_core_titles_tab')]"
+                    down = "[And(CharacterWindow.AreTitlesExpanded, Not(VariableSystem.Exists('cv_expanded_core_titles_tab')))]"
                     tooltip = "[SelectLocalization( CharacterWindow.AreTitlesExpanded, 'CV_TITLES_HIDE_TT', 'CV_TITLES_SHOW_TT' )]"
 
                     hbox = {
@@ -3615,11 +3622,11 @@ types CharacterWindow
                 expand = {}
                 
                 button_standard_hover = { # Core Title Text - equal
-                    datacontext = "[GetScriptedGui( 'core_title_text_line' )]"
-                    visible = "[And(ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End ), Or(And( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), CharacterWindow.AreTitlesExpanded ), And( Not(VariableSystem.Exists( 'cv_expanded_core_titles_tab')), Not(CharacterWindow.AreTitlesExpanded) )) ) ]"
+                    datacontext = "[GetScriptedGui('core_title_text_line')]"
+                    visible = "[And(ScriptedGui.IsShown(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End ), Or(And( VariableSystem.Exists('cv_expanded_core_titles_tab'), CharacterWindow.AreTitlesExpanded ), And(Not(VariableSystem.Exists('cv_expanded_core_titles_tab')), Not(CharacterWindow.AreTitlesExpanded))))]"
                     layoutpolicy_horizontal = expanding
                     size = { 0 25 }
-                    onclick = "[VariableSystem.Toggle( 'cv_expanded_core_titles_tab' )]"
+                    onclick = "[VariableSystem.Toggle('cv_expanded_core_titles_tab')]"
                     onclick = "[CharacterWindow.ToggleExpandedTitles]"
                     down = "[VariableSystem.Exists( 'cv_expanded_core_titles_tab')]"
                     tooltip = "[SelectLocalization( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), 'CV_CORE_TITLES_HIDE_CTT', 'CV_CORE_TITLES_SHOW_CTT' )]"
@@ -3630,12 +3637,12 @@ types CharacterWindow
                         margin_right = 10
 
                         text_label_left = {
-                            visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' )]"
+                            visible = "[ScriptedGui.IsValid( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End)]"
                             text = "CV_CORE_TITLES"
                         }
 
                         text_label_left = {
-                            visible = "[Not(GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' ))]"
+                            visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End))]"
                             text = "CV_CORE_TITLES_SINGULAR"
                         }
 
@@ -3644,7 +3651,7 @@ types CharacterWindow
                         text_single = {
                             block "number_cores"
                             {
-                                #visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )]" - always visible when there are core titles
+                                datacontext = "[CharacterWindow.GetCharacter]"
                                 text = "CV_CORE_TITLES_NUMBER"
                             }
                             default_format = "#weak"
@@ -3654,7 +3661,7 @@ types CharacterWindow
                 
                 button_standard_hover = { # Core Title Text - core off, title on
                     datacontext = "[GetScriptedGui( 'core_title_text_line' )]"
-                    visible = "[AND(ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End ), And( Not(VariableSystem.Exists( 'cv_expanded_core_titles_tab')), CharacterWindow.AreTitlesExpanded )) ]"
+                    visible = "[And(ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End ), And( Not(VariableSystem.Exists( 'cv_expanded_core_titles_tab')), CharacterWindow.AreTitlesExpanded )) ]"
                     layoutpolicy_horizontal = expanding
                     size = { 0 25 }
                     onclick = "[VariableSystem.Toggle( 'cv_expanded_core_titles_tab' )]"
@@ -3667,12 +3674,12 @@ types CharacterWindow
                         margin_right = 10
 
                         text_label_left = {
-                            visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' )]"
+                            visible = "[ScriptedGui.IsValid( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End)]"
                             text = "CV_CORE_TITLES"
                         }
 
                         text_label_left = {
-                            visible = "[Not(GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' ))]"
+                            visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End))]"
                             text = "CV_CORE_TITLES_SINGULAR"
                         }
 
@@ -3681,7 +3688,7 @@ types CharacterWindow
                         text_single = {
                             block "number_cores"
                             {
-                                #visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )]" - always visible when there are core titles
+                                datacontext = "[CharacterWindow.GetCharacter]"
                                 text = "CV_CORE_TITLES_NUMBER"
                             }
                             default_format = "#weak"
@@ -3691,7 +3698,7 @@ types CharacterWindow
                 
                 button_standard_hover = { # Core Title Text - core on, title off
                     datacontext = "[GetScriptedGui( 'core_title_text_line' )]"
-                    visible = "[AND( ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End ), And( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), Not(CharacterWindow.AreTitlesExpanded ))) ]"
+                    visible = "[And( ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End ), And( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), Not(CharacterWindow.AreTitlesExpanded ))) ]"
                     layoutpolicy_horizontal = expanding
                     size = { 0 25 }
                     onclick = "[CharacterWindow.ToggleExpandedTitles]"
@@ -3704,12 +3711,12 @@ types CharacterWindow
                         margin_right = 10
 
                         text_label_left = {
-                            visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' )]"
+                            visible = "[ScriptedGui.IsValid( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End)]"
                             text = "CV_CORE_TITLES"
                         }
 
                         text_label_left = {
-                            visible = "[Not(GreaterThan_int32( GetDataModelSize(CharacterWindow.GetTitles), '(int32)1' ))]"
+                            visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End))]"
                             text = "CV_CORE_TITLES_SINGULAR"
                         }
 
@@ -3718,7 +3725,7 @@ types CharacterWindow
                         text_single = {
                             block "number_cores"
                             {
-                                #visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTitles), '(int32)8' )]" - always visible when there are core titles
+                                datacontext = "[CharacterWindow.GetCharacter]"
                                 text = "CV_CORE_TITLES_NUMBER"
                             }
                             default_format = "#weak"

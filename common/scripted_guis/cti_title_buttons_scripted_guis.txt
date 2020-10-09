@@ -1,10 +1,6 @@
 ﻿designate_core_button = {
     scope = title
-    #[And( Character.IsLocalPlayer,
-    #.AddScope('viewing_character', Character.MakeScope)
-    #saved_scopes = {
-    #    viewing_character
-    #}
+    
     is_shown = {
         is_title_core = no
     }
@@ -31,10 +27,7 @@
 
 de_designate_core_button = {
     scope = title
-    #Looks like this is not necessary/detrimental
-    #saved_scopes = {
-    #    viewing_character
-    #}
+    
     is_shown = {
         is_title_core = yes
     }
@@ -61,13 +54,13 @@ de_designate_core_button = {
             limit = {will_core_loss_break_titles = yes}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING
         }
-        #I can't access this value, so special titles like head of faith titles are not counted.
-        #else_if = {
-        #    limit = {always_follows_primary_heir}
-        #    custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE
-        #}
+        # I can't access this value, so special titles like head of faith titles are not counted.
+        # else_if = {
+        #     limit = {always_follows_primary_heir}
+        #     custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE
+        # }
         
         # do the de_designating core
-        de_designate_core_title
+        #de_designate_core_title
     }
 }

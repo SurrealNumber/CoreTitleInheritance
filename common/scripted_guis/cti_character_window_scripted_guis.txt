@@ -6,10 +6,7 @@
     }
     
     is_valid = { # multiple core titles
-        1 < value = {
-            value = 0
-            every_core_title = {add = 1}
-        }
+        1 < num_core_titles
     }
 }
 
@@ -24,7 +21,7 @@ core_limit_display = {
     
     effect = {
         # Generate tooltip
-        core_limit = {save_temporary_scope_as = _core_limit}
+        val_core_limit = {save_temporary_scope_as = _core_limit}
         var:core_count = {save_temporary_scope_as = _core_count}
         custom_tooltip = CORE_LIMIT_TOOLTIP_HEADER
         if = {
@@ -40,10 +37,14 @@ core_limit_display = {
             else = {
                 custom_tooltip = CORE_LIMIT_OVER_EFFECTS_SINGULAR_HEADING_TOOLTIP
             }
-            value = {
+            set_variable = {
+                name = _val_over_core_limit_penalty
                 value = -0.05
+            }
+            change_variable = {
+                name = _val_over_core_limit_penalty
                 multiply = amount_over_core_limit
-            } = {save_temporary_scope_as = _val_over_core_limit_penalty}
+            }
             custom_tooltip = CORE_LIMIT_OVERRUN_EFFECT
         }
     }
@@ -53,15 +54,7 @@ core_capital_chain_character_display = {
     scope = character
     
     is_valid = { # multiple capital chain cores
-        1 < value = {
-            value = 0
-            every_core_title = {
-                if = {
-                    limit = {is_title_core_due_to_capital}
-                    add = 1
-                }
-            }
-        }
+        1 < count_core_due_to_capital
     }
 }
 
@@ -69,7 +62,7 @@ core_capital_chain_title_display = {
     scope = title
     
     is_shown = {
-        is_title_core_due_to_capital
+        is_title_core_due_to_capital = yes
     }
 }
 
@@ -77,17 +70,11 @@ core_special_character_display = {
     scope = character
     
     is_shown = {
-        any_core_title = {is_title_special_core = yes}
+        any_core_title_item = {is_title_special_core = yes}
     }
     
     is_valid = { # multiple special cores
-        1 < value = {
-            value = 0
-            every_core_title = {
-                if = {
-                    limit = {is_title_special_core}
-                    add = 1
-                }
+        1 < count_core_due_to_special
     }
 }
 
@@ -96,7 +83,7 @@ core_special_title_display = {
     
     
     is_shown = {
-        is_title_special_core
+        is_title_special_core = yes
     }
 }
 
@@ -104,17 +91,11 @@ core_mod_character_display = {
     scope = character
     
     is_shown = {
-        any_core_title = {is_title_core_due_to_cti = yes}
+        any_core_title_item = {is_title_core_due_to_cti = yes}
     }
     
     is_valid = { # multiple special cores
-        1 < value = {
-            value = 0
-            every_core_title = {
-                if = {
-                    limit = {is_title_core_due_to_cti}
-                    add = 1
-                }
+        1 < count_core_due_to_mod
     }
 }
 
