@@ -901,3 +901,20 @@ Possibly change increase = trigger = {always = no} to increase = {always = no}
     
 Clicking on titles in the character view will not act as intended if the expanded core titles view is open.
 Leaving character view or going to a new character un-expands all of the views.
+
+Having both designate and de-esignate buttons visible can exapnd the interface to the point where it stretches off the background.
+It looks like the problem is that the grids are keeping the invisible titles.
+It appears that gridboxes determine the number of rows and columns and their places at the beginning. Setting some things to be invisible will not help with that.
+dynamicgridbox appears to be slightly better or at least behave differently.
+
+fixedgridbox = {
+    name = "special_titles_box"
+    datacontext = "[CharacterWindow.GetCharacter]"
+    flipdirection = yes
+    addrow = 90
+    addcolumn = 270
+    datamodel_wrap = 2
+    
+^this was there before.
+Removing it and letting titles list one by one. Good enough for now.
+It is possible i use expanded traits. It appears to be unused for now.

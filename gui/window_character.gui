@@ -3197,32 +3197,23 @@ window = {
                                 visible = "[Not( ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle) )]"
                                 text = "CV_CORE_PRIMARY"
                             }
+                            
+                            flowcontainer = {
+                                datacontext = "[Character.GetPrimaryTitle]"
+                                spacing = 5
 
-                            fixedgridbox = {
-                                name = "primary_titles_box"
-                                datacontext = "[CharacterWindow.GetCharacter]"
-                                flipdirection = yes
-                                addrow = 90
-                                addcolumn = 270
-                                datamodel_wrap = 2
+                                coa_title_small_crown = {
+                                    using = tooltip_ne
+                                }
 
-                                flowcontainer = {
-                                    datacontext = "[Character.GetPrimaryTitle]"
-                                    spacing = 5
-
-                                    coa_title_small_crown = {
-                                        using = tooltip_ne
-                                    }
-
-                                    text_multi = {
-                                        text = "[Title.GetNameNoTooltip]"
-                                        parentanchor = vcenter
-                                        autoresize = yes
-                                        default_format = "#high"
-                                        using = Font_Size_Medium
-                                        max_width = 190
-                                        margin_top = 5
-                                    }
+                                text_multi = {
+                                    text = "[Title.GetNameNoTooltip]"
+                                    parentanchor = vcenter
+                                    autoresize = yes
+                                    default_format = "#high"
+                                    using = Font_Size_Medium
+                                    max_width = 190
+                                    margin_top = 5
                                 }
                             }
                         }
@@ -3242,35 +3233,27 @@ window = {
                                 text = "CV_CORES_CAPITAL_CHAIN_SINGULAR"
                             }
 
-                            fixedgridbox = {
-                                name = "capital_chain_titles_box"
-                                datacontext = "[CharacterWindow.GetCharacter]"
-                                flipdirection = yes
-                                addrow = 90
-                                addcolumn = 270
-                                datamodel_wrap = 2
+                            
+                            datamodel = "[CharacterWindow.GetTitles]"
 
-                                datamodel = "[CharacterWindow.GetTitles]"
+                            item = {
+                                flowcontainer = {
+                                    datacontext = "[TitleItem.GetTitle]"
+                                    visible = "[GetScriptedGui('core_capital_chain_title_display').IsShown( GuiScope.SetRoot(Title.MakeScope).End)]"
+                                    spacing = 5
 
-                                item = {
-                                    flowcontainer = {
-                                        datacontext = "[TitleItem.GetTitle]"
-                                        visible = "[GetScriptedGui('core_capital_chain_title_display').IsShown( GuiScope.SetRoot(Title.MakeScope).End)]"
-                                        spacing = 5
+                                    coa_title_small_crown = {
+                                        using = tooltip_ne
+                                    }
 
-                                        coa_title_small_crown = {
-                                            using = tooltip_ne
-                                        }
-
-                                        text_multi = {
-                                            text = "[Title.GetNameNoTooltip]"
-                                            parentanchor = vcenter
-                                            autoresize = yes
-                                            default_format = "#high"
-                                            using = Font_Size_Medium
-                                            max_width = 190
-                                            margin_top = 5
-                                        }
+                                    text_multi = {
+                                        text = "[Title.GetNameNoTooltip]"
+                                        parentanchor = vcenter
+                                        autoresize = yes
+                                        default_format = "#high"
+                                        using = Font_Size_Medium
+                                        max_width = 190
+                                        margin_top = 5
                                     }
                                 }
                             }
@@ -3289,35 +3272,27 @@ window = {
                                 text = "CV_CORES_SPECIAL_SINGULAR"
                             }
 
-                            fixedgridbox = {
-                                name = "special_titles_box"
-                                datacontext = "[CharacterWindow.GetCharacter]"
-                                flipdirection = yes
-                                addrow = 90
-                                addcolumn = 270
-                                datamodel_wrap = 2
+                            
+                            datamodel = "[CharacterWindow.GetTitles]"
 
-                                datamodel = "[CharacterWindow.GetTitles]"
+                            item = {
+                                flowcontainer = {
+                                    datacontext = "[TitleItem.GetTitle]"
+                                    visible = "[GetScriptedGui('core_special_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
+                                    spacing = 5
 
-                                item = {
-                                    flowcontainer = {
-                                        datacontext = "[TitleItem.GetTitle]"
-                                        visible = "[GetScriptedGui('core_special_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
-                                        spacing = 5
+                                    coa_title_small_crown = {
+                                        using = tooltip_ne
+                                    }
 
-                                        coa_title_small_crown = {
-                                            using = tooltip_ne
-                                        }
-
-                                        text_multi = {
-                                            text = "[Title.GetNameNoTooltip]"
-                                            parentanchor = vcenter
-                                            autoresize = yes
-                                            default_format = "#high"
-                                            using = Font_Size_Medium
-                                            max_width = 190
-                                            margin_top = 5
-                                        }
+                                    text_multi = {
+                                        text = "[Title.GetNameNoTooltip]"
+                                        parentanchor = vcenter
+                                        autoresize = yes
+                                        default_format = "#high"
+                                        using = Font_Size_Medium
+                                        max_width = 190
+                                        margin_top = 5
                                     }
                                 }
                             }
@@ -3336,35 +3311,27 @@ window = {
                                 text = "CV_CORES_MOD_SINGULAR"
                             }
 
-                            fixedgridbox = {
-                                name = "cti_mod_titles_box"
-                                datacontext = "[CharacterWindow.GetCharacter]"
-                                flipdirection = yes
-                                addrow = 90
-                                addcolumn = 270
-                                datamodel_wrap = 2
 
-                                datamodel = "[CharacterWindow.GetTitles]"
+                            datamodel = "[CharacterWindow.GetTitles]"
 
-                                item = {
-                                    flowcontainer = {
-                                        datacontext = "[TitleItem.GetTitle]"
-                                        visible = "[GetScriptedGui('core_mod_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
-                                        spacing = 5
+                            item = {
+                                flowcontainer = {
+                                    datacontext = "[TitleItem.GetTitle]"
+                                    visible = "[GetScriptedGui('core_mod_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
+                                    spacing = 5
 
-                                        coa_title_small_crown = {
-                                            using = tooltip_ne
-                                        }
+                                    coa_title_small_crown = {
+                                        using = tooltip_ne
+                                    }
 
-                                        text_multi = {
-                                            text = "[Title.GetNameNoTooltip]"
-                                            parentanchor = vcenter
-                                            autoresize = yes
-                                            default_format = "#high"
-                                            using = Font_Size_Medium
-                                            max_width = 190
-                                            margin_top = 5
-                                        }
+                                    text_multi = {
+                                        text = "[Title.GetNameNoTooltip]"
+                                        parentanchor = vcenter
+                                        autoresize = yes
+                                        default_format = "#high"
+                                        using = Font_Size_Medium
+                                        max_width = 190
+                                        margin_top = 5
                                     }
                                 }
                             }
