@@ -3186,16 +3186,20 @@ window = {
                         spacing = 15
                         layoutpolicy_horizontal = expanding
                         
-                        vbox = { # primary and capital
+                        vbox = { # primary
                             layoutpolicy_horizontal = expanding
                             datacontext = "[CharacterWindow.GetCharacter]"
-                            visible = "[ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle)]"
-                            text_label_center = {
+                            text_label_center = { # merge primary and capital if they are the same to avoid duplication
+                                visible = "[ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle)]"
                                 text = "CV_CORE_CAPITAL_PRIMARY"
+                            }
+                            text_label_center = {
+                                visible = "[Not( ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle) )]"
+                                text = "CV_CORE_PRIMARY"
                             }
 
                             fixedgridbox = {
-                                name = "titles_box_bishop"
+                                name = "primary_titles_box"
                                 datacontext = "[CharacterWindow.GetCharacter]"
                                 flipdirection = yes
                                 addrow = 90
@@ -3223,42 +3227,6 @@ window = {
                             }
                         }
                         
-                        vbox = { # primary
-                            layoutpolicy_horizontal = expanding
-                            datacontext = "[CharacterWindow.GetCharacter]"
-                            visible = "[Not( ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle) )]"
-                            text_label_center = {
-                                text = "CV_CORE_PRIMARY"
-                            }
-
-                            fixedgridbox = {
-                                name = "titles_box_bishop"
-                                datacontext = "[CharacterWindow.GetCharacter]"
-                                flipdirection = yes
-                                addrow = 90
-                                addcolumn = 270
-                                datamodel_wrap = 2
-
-                                flowcontainer = {
-                                    datacontext = "[Character.GetPrimaryTitle]"
-                                    spacing = 5
-
-                                    coa_title_small_crown = {
-                                        using = tooltip_ne
-                                    }
-
-                                    text_multi = {
-                                        text = "[Title.GetNameNoTooltip]"
-                                        parentanchor = vcenter
-                                        autoresize = yes
-                                        default_format = "#high"
-                                        using = Font_Size_Medium
-                                        max_width = 190
-                                        margin_top = 5
-                                    }
-                                }
-                            }
-                        }
                         
                         vbox = { # capital chain
                             layoutpolicy_horizontal = expanding
@@ -3275,7 +3243,7 @@ window = {
                             }
 
                             fixedgridbox = {
-                                name = "titles_box_bishop"
+                                name = "capital_chain_titles_box"
                                 datacontext = "[CharacterWindow.GetCharacter]"
                                 flipdirection = yes
                                 addrow = 90
@@ -3310,7 +3278,7 @@ window = {
                         
                         vbox = { # special
                             layoutpolicy_horizontal = expanding
-                            datacontext = "[GetScriptedGui( 'core_special_character_display' )]"
+                            datacontext = "[GetScriptedGui('core_special_character_display')]"
                             visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End)]"
                             text_label_center = {
                                 visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End)]"
@@ -3322,7 +3290,7 @@ window = {
                             }
 
                             fixedgridbox = {
-                                name = "titles_box_bishop"
+                                name = "special_titles_box"
                                 datacontext = "[CharacterWindow.GetCharacter]"
                                 flipdirection = yes
                                 addrow = 90
@@ -3369,7 +3337,7 @@ window = {
                             }
 
                             fixedgridbox = {
-                                name = "titles_box_bishop"
+                                name = "cti_mod_titles_box"
                                 datacontext = "[CharacterWindow.GetCharacter]"
                                 flipdirection = yes
                                 addrow = 90
