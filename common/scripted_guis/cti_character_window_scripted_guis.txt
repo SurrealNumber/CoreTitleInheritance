@@ -50,13 +50,13 @@ core_limit_display = {
     }
 }
 
-core_capital_chain_character_display = {
-    scope = character
+# core_capital_chain_character_display = {
+    # scope = character
     
-    is_valid = { # multiple capital chain cores
-        1 < count_core_due_to_capital
-    }
-}
+    # is_valid = { # multiple capital chain cores
+        # 1 < count_core_due_to_capital
+    # }
+# }
 
 core_capital_chain_title_display = {
     scope = title

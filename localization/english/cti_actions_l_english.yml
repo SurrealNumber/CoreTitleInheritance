@@ -2,7 +2,8 @@
  over_core_title_limit:0 "Over Core County Limit"
  over_core_title_limit_label:0 "You are over your [core_county_limit|E]"	
  over_core_title_limit_desc:0 "You are over your [core_county_limit|E]. A penalty is being applied. De-designate some [core_counties|E]."
- over_core_title_limit_click:0 "#I Click to open the [core_titles|E] tab of your [character|E] window#"
+ over_core_title_limit_click:0 "#I Click to open your [character|E] window and the de-designate all [core_titles|E] decision. Expand the [core_titles|E] tab of your [character|E] window for more information.#"
+#desired effect -> over_core_title_limit_click:0 "#I Click to open the [core_titles|E] tab of your [character|E] window and the de-designate all [core_titles|E] decision.#"
 
 # Don't think these are used because I am not allowing this action to group
 # over_core_title_limit_combined_label:0 ""			-Label used if it's combined

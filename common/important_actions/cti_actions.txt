@@ -13,7 +13,14 @@
         }
     }
     
-    effect = {
-        execute_decision = manage_core_titles_decision
+    effect = { # scope is character with additional targets defined in try_create_important_action above.
+        open_view_data = { # want to expand core titles tab, but don't know how
+            view = character
+        }
+        
+        de_designate_all_core_titles_decision = {
+			open_view_data = decision_detail
+		}
+        #execute_decision = manage_core_titles_decision
     }
 }

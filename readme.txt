@@ -929,8 +929,8 @@ Logic - update for title succession laws
 Logic - update for changing capital or primary title.
 x Logic - un-comment commented out sections
 x Logic - automatically core created titles inserting into middle of heirarchy.
-Localization and game concepts - change to reflect departure from baronies.
-Localization - add missing localization.
+x Localization and game concepts - change to reflect departure from baronies.
+~ Localization - add missing localization.
 x Interface - Add decision for decoring all core titles.
 Debug
 
@@ -943,3 +943,11 @@ continue seems to actually be when should I continue. Some descriptions seem to 
 When I clean up my code I should be sure to change to utilizing assumed ands for triggers and limits.
 assume that continue checks for the next title.
 will have to find in files for holding and for province and purge.
+Declaring head of state special - from what I saw these titles have the flag always_follows_primary_heir.
+Look into holy orders and mercenary companies.
+
+found this note in the code: # interaction effects are executed for all clients, make sure to open the window only for the actor
+^worth keeping in mind.
+
+Can't find way to expand core titles tab in character view from important_action\alert
+Unsure of how to open decision window for specific decision.

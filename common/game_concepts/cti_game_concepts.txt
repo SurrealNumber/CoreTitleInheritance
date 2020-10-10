@@ -1,5 +1,5 @@
 ﻿core_title = {
-	texture = "gfx/interface/icons/comander_is_leader.dds"
+	texture = "gfx/interface/icons/commander_is_leader.dds"
     parent = title
 	alias = { core_titles core_titlepossessive core}
 }

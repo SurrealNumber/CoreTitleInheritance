@@ -3228,10 +3228,10 @@ window = {
                                 visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
                                 text = "CV_CORES_CAPITAL_CHAIN"
                             }
-                            text_label_center = {
-                                visible = "[Not( ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)) ]"
-                                text = "CV_CORES_CAPITAL_CHAIN_SINGULAR"
-                            }
+                            # text_label_center = {
+                                # visible = "[Not( ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)) ]"
+                                # text = "CV_CORES_CAPITAL_CHAIN_SINGULAR"
+                            # }
 
                             
                             datamodel = "[CharacterWindow.GetTitles]"
@@ -3508,7 +3508,7 @@ types CharacterWindow
 
 	type vbox_titles_claims_box = vbox {
 
-		## Titles
+		## Titles and Core Titles
 		vbox = {
 			name = "titles"
 			visible = "[Not( IsDataModelEmpty( CharacterWindow.GetTitles ) )]"

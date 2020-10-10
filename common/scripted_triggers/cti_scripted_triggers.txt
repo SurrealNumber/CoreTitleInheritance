@@ -10,14 +10,20 @@ is_title_core_due_to_capital = { # scope is title
     }
 }
 
+is_title_core_due_to_not_cti = {
+    AND = {
+        is_title_core = yes
+        is_title_core_due_to_capital = yes
+        holder.primary_title = root
+        is_title_special_core = yes
+    }
+}
+
 is_title_core_due_to_cti = {
-    is_title_core = yes
-    exists = var:core
-    NOT = {
-        AND = {
-            is_title_core_due_to_capital = yes
-            holder.primary_title = root
-        }
+    AND = {
+        is_title_core = yes
+        exists = var:core # This condition means that it is technically possible (though it should never happen) that a title is considered neither core due to cti or core due to not cti.
+        is_title_core_due_to_not_cti = no
     }
 }
 # MUST BE CAREFUL THAT THE TRIGGERS ABOVE AND BELOW THIS AGREE!
@@ -29,6 +35,7 @@ is_title_core = { # Assume that this will only be called if the title is owned
             var:core = yes# var:core should be a boolean
             is_title_core_due_to_capital = yes
             holder.primary_title = root
+            is_title_special_core = yes
             tier >= tier_county
         }
     }
@@ -36,6 +43,7 @@ is_title_core = { # Assume that this will only be called if the title is owned
         OR = {
             is_title_core_due_to_capital = yes
             holder.primary_title = root
+            is_title_special_core = yes
             tier >= tier_county
         }
     }
@@ -84,6 +92,7 @@ is_core_consistent = {# scope is title
         is_title_county = yes
         holder.primary_title = root
         is_title_core_due_to_capital = yes
+        is_title_special_core = yes
         holder = {
             any_core_title_item = {
                 this.de_facto_liege = root
@@ -118,6 +127,6 @@ has_core_titles = { # scope is character
     any_core_title_item = {always = yes} # inefficient, but good enough for now.
 }
 
-is_title_special_core = {
-    always = no # until I can see the always_follows_primary_heir tag
+is_title_special_core = { # Incomplete until I can see the always_follows_primary_heir tag
+    is_head_of_faith = yes
 }

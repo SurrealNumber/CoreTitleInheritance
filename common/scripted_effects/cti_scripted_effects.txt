@@ -55,7 +55,7 @@ set_over_core_limit_modifier = { # scope is character
     remove_all_character_modifier_instances = 8_over_core_limit_modifier
     remove_all_character_modifier_instances = 9_over_core_limit_modifier
     remove_all_character_modifier_instances = 10_plus_over_core_limit_modifier
-    ammount_over_core_limit = {save_temorary_scope_as = _amount_over_core_limit} #hopefully stores the variable so it is not calculated every time.
+    amount_over_core_limit = {save_temorary_scope_as = _amount_over_core_limit} #hopefully stores the variable so it is not calculated every time.
     if = {
         limit = {scope:_amount_over_core_limit = 0}
         # do nothing

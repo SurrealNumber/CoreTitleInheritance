@@ -9,9 +9,9 @@
  
  rule_core_county_benefit:0 "Core County Benefit"
  setting_none_core_county_benefit:0 "None"
- setting_none_core_county_benefit_desc:0 "Core counties have no benefit beyond that of core titles."
+ setting_none_core_county_benefit_desc:0 "Core counties have no additional benefits."
  setting_control_core_county_benefit:0 "Control"
- setting_control_core_county_benefit_desc:0 "Core counties have increased monthly control gain in addition to being core titles."
+ setting_control_core_county_benefit_desc:0 "Core counties additionally have increased monthly control gain."
  
  rule_core_county_limit:0 "Core County Limit"
  setting_domain_core_county_limit:0 "Domain"
