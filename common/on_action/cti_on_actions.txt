@@ -12,11 +12,11 @@ on_game_start_after_lobby = {
     }
 }
 
-#on_title_gain = {
-#    on_actions = {
-#        cti_on_title_gain
-#    }
-#}
+on_title_gain = {
+   on_actions = {
+       cti_on_title_gain
+   }
+}
 
 on_title_loss = {
     on_actions = {
@@ -26,38 +26,60 @@ on_title_loss = {
 
 # My on_actions which call the rest of my code.
 
-cti_on_title_destroyed = {
+cti_on_title_destroyed = { # assume this happens after destruction
     effect = {
-        #scope:landed_title = {safe_de_core_title}
-        #recalculate_cores
+        scope:landed_title = {de_core_title}
+        recalculate_cores
     }
 }
 
-#cti_on_title_gain = {
-#    on_actions = {
-#        cti_on_title_gain
-#    }
-#}
-
-cti_on_title_loss = { # assumes that the title has already changed hands. might complain if the title is being created.
+cti_on_title_gain = { # assume this happens after the title changes hands. Also assuming usurpation and inheritance are sub-categories of this.
     effect = {
         if = {
-            limit = {
-                AND = {
-                    scope:transfer_type = flag:inheritance
-                    has_game_rule = true_core_persist
+            limit = {scope:title.tier >= tier_county}
+            if = {
+                limit = {
+                    AND = {
+                        scope:transfer_type = flag:inheritance
+                        has_game_rule = true_core_persist
+                    }
                 }
+                recalculate_cores
+                scope:previous_holder = recalculate_cores # they could have abdicated or some other shenanigans
             }
-            #recalculate_cores
-            #scope:new_holder = recalculate_cores
-        }
-        else = {
-            #scope:title = safe_de_core_title
-            #recalculate_cores
-            #scope:new_holder = recalculate_cores
+            else_if = {
+                limit = {scope:transfer_type = flag:created}
+                check_auto_core_title
+                recalculate_cores
+            }
+            else = {
+                scope:title = de_core_title
+                recalculate_cores
+                scope:previous_holder = recalculate_cores
+            }
         }
     }
 }
+
+# cti_on_title_loss = { # assumes that the title has already changed hands. might complain if the title is being created.
+    # effect = {
+        # if = {
+            # limit = {
+                # AND = {
+                    # scope:transfer_type = flag:inheritance
+                    # has_game_rule = true_core_persist
+                # }
+            # }
+            # recalculate_cores
+            # scope:new_holder = recalculate_cores
+        # }
+        # else = {
+            # scope:title = safe_de_core_title
+            # recalculate_cores
+            # scope:new_holder = recalculate_cores
+        # }
+    # }
+# }
 
 cti_on_game_start_after_lobby = {
     effect = {
@@ -68,7 +90,7 @@ cti_on_game_start_after_lobby = {
                     has_game_rule = control_core_holding_benefit
                 }
             }
-            #every_ruler = {recalculate_cores}# Will ignore baron tier
+            every_ruler = {recalculate_cores}# Will ignore baron tier
         }
     }
 }

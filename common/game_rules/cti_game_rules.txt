@@ -1,29 +1,29 @@
-﻿core_holding_cost = {
-    default = overtime_core_holding_cost
+﻿core_county_cost = {
+    default = overtime_core_county_cost
     
-    no_core_holding_cost = {}
+    no_core_county_cost = {}
     
-    overtime_core_holding_cost = {}
+    overtime_core_county_cost = {}
     
-    flat_designate_core_holding_cost = {}
+    flat_designate_core_county_cost = {}
 }
 
-core_holding_benefit = {
-    default = control_core_holding_benefit
+core_county_benefit = {
+    default = control_core_county_benefit
     
-    none_core_holding_benefit = {}
+    none_core_county_benefit = {}
     
-    control_core_holding_benefit = {}
+    control_core_county_benefit = {}
 }
 
-core_holding_limit = {
-    default = half_domain_core_holding_limit
+core_county_limit = {
+    default = half_domain_core_county_limit
 
-    half_domain_core_holding_limit = {}
+    half_domain_core_county_limit = {}
     
-    domain_core_holding_limit = {}
+    domain_core_county_limit = {}
     
-    ludicrous_core_holding_limit = {}
+    ludicrous_core_county_limit = {}
 }
 
 core_persist = {

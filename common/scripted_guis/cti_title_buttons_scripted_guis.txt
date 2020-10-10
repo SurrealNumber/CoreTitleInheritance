@@ -2,7 +2,10 @@
     scope = title
     
     is_shown = {
-        is_title_core = no
+        And = {
+            is_title_core = no
+            tier >= tier_county
+        }
     }
     
     is_valid = {
@@ -29,7 +32,7 @@ de_designate_core_button = {
     scope = title
     
     is_shown = {
-        is_title_core = yes
+        is_title_core = yes # has built in barony check
     }
     
     is_valid = {
@@ -61,6 +64,6 @@ de_designate_core_button = {
         # }
         
         # do the de_designating core
-        #de_designate_core_title
+        de_designate_core_title
     }
 }

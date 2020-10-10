@@ -16,9 +16,23 @@
  CORE_LIMIT_C_L:0 "[Character.MakeScope.GetVariable('core_count').GetValue|V]/[Character.Custom('val_core_limit')|V]" # I really hope that this works. core_limit potentially conflicts with the encyclopedia entry.
  CV_CORE_TITLES_NUMBER:0 "([Character.Custom('num_core_titles')|V])"
  
- CORE_LIMIT_TOOLTIP_HEADER:0 "#T [domain|E]: [_core_count|V]/[_core_limit|V] [holdings|E]#!"
+ CORE_LIMIT_TOOLTIP_HEADER:0 "#T [core_holdings|E]: [_core_count|V]/[_core_limit|V] [holdings|E]#!"
  CORE_LIMIT_EXCEEDED_TOOLTIP:0 "@warning_icon!#X Above [core_limit|E]. De-designate some [core_titles|E].#!\n"
  CORE_LIMIT_OVER_EFFECTS_HEADING_TOOLTIP:0 "Effects of being [_amount_over_core_limit|E] [holdings|E] above the limit:"
  CORE_LIMIT_OVER_EFFECTS_SINGULAR_HEADING_TOOLTIP:0 "Effects of being [_amount_over_core_limit|V] [holding|E] above the limit:"
  CORE_LIMIT_OVERRUN_EFFECT:0 "   [prestige|E] Gain Multiplier: [GetVariable(_val_over_core_limit_penalty)|V]"
  
+ 
+ CV_CORE_CAPITAL_PRIMARY:0 "[capital|E] And [primary_title|E]"
+ CV_CORE_PRIMARY:0 "[primary_title|E]"
+ CV_CORES_CAPITAL_CHAIN:0 "[de_facto|E] Above [capital|E]"
+ CV_CORES_SPECIAL:0 ""
+ CV_CORES_MOD:0 ""
+ CV_CORES_CAPITAL_CHAIN_SINGULAR:0 ""
+ CV_CORES_SPECIAL_SINGULAR:0 ""
+ CV_CORES_MOD_SINGULAR:0 ""
+ CV_CORE_TITLES_HIDE_CTT:0 ""
+ CV_CORE_TITLES_SHOW_CTT:0 ""
+ CV_CORE_TITLES:0 ""
+ CV_CORE_TITLES_SINGULAR:0 ""
+ CV_CORE_TITLE_TAB_HEADER:0 ""

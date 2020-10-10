@@ -104,6 +104,6 @@ core_mod_title_display = {
     
     
     is_shown = {
-        is_title_core_due_to_cti
+        is_title_core_due_to_cti = yes
     }
 }

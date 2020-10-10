@@ -23,3 +23,18 @@
         # trigger_event = cti_manage_core_titles_event.0001
     # }
 # }
+
+de_designate_all_core_titles_decision = { # scope is presumably character
+    picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
+    ai_check_interval = 0 # AI should manage cores via prompts from on_actions and the like.
+    effect = {
+        custom_tooltip = de_designate_all_core_titles_decision_effect_tooltip_start
+        custom_tooltip = de_designate_all_core_titles_decision_effect_tooltip_bullet1
+        custom_tooltip = de_designate_all_core_titles_decision_effect_tooltip_bullet2
+        custom_tooltip = de_designate_all_core_titles_decision_effect_tooltip_bullet3
+        #custom_tooltip = de_designate_all_core_titles_decision_effect_tooltip_bullet4
+        #custom_tooltip = de_designate_all_core_titles_decision_effect_tooltip_bullet5
+        
+        de_designate_all_core_titles
+    }
+}

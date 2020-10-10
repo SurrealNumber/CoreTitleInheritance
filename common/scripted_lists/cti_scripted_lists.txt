@@ -5,10 +5,10 @@
     }
 }
 
-core_holding_item = { # scope is character
+core_limit_count_item = { # scope is character
     base = core_title_item
     conditions = {
-        is_title_holding = yes
+        does_core_count_to_limit = yes
     }
 }
 

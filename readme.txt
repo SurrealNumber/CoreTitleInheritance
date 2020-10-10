@@ -917,15 +917,29 @@ fixedgridbox = {
     
 ^this was there before.
 Removing it and letting titles list one by one. Good enough for now.
-It is possible i use expanded traits. It appears to be unused for now.
+It is possible to use expanded traits in character window. It appears to be unused for now.
 what happens if a county you do not stand to inherit contains a barony which has always_follows_primary_heir = yes? - It does nothing. Counties are the smallest unit of inheritance.
 
 Currently I believe that everything  I want to put in is there at least to some degree (but might not be working or need updating).
 TODO:
-Logic - change from holdings to counties - baronies are meaningless in terms of inheritance.
-Logic - ignore baronies.
-Logic - change dejure to defacto (will mean that creating a duchy title between owned county and kingdom will break kingdom. Think about this. Also check what happens if owned county is in vassal's duchy.)
-Logic - un-comment commented out sections
+x Logic - change from holdings to counties - baronies are meaningless in terms of inheritance.
+x Logic - ignore baronies.
+x Logic - change dejure to defacto (will mean that creating a duchy title between owned county and kingdom will break kingdom. Think about this. Also check what happens if owned county is in vassal's duchy.)
+Logic - update for title succession laws
+Logic - update for changing capital or primary title.
+x Logic - un-comment commented out sections
+x Logic - automatically core created titles inserting into middle of heirarchy.
 Localization and game concepts - change to reflect departure from baronies.
+Localization - add missing localization.
+x Interface - Add decision for decoring all core titles.
 Debug
 
+NOTE Ignoring baronies means IGNORING them. They are not to be considered in the logic.
+de-facto and de-jure can refer to titles owned by other characters. Need to be careful about this.
+Title succession law titles will never be considered cores.
+need to think if there are cases where core title variable should be changed to no, but set_always follows_primary_heir should not be set to no.
+Is there ever a case where I should not use safe_de_core_title? -- No, merging into de_core_title. - only case this would occur is if the variable is cleared.
+continue seems to actually be when should I continue. Some descriptions seem to suggest that it is when to stop.
+When I clean up my code I should be sure to change to utilizing assumed ands for triggers and limits.
+assume that continue checks for the next title.
+will have to find in files for holding and for province and purge.

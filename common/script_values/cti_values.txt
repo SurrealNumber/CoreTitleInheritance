@@ -1,23 +1,23 @@
 ﻿val_core_limit = { # scope is character
     if = {
-        limit={ has_game_rule = half_domain_core_holding_limit }
+        limit={ has_game_rule = half_domain_core_county_limit }
         value = domain_limit
         divide = 2
         ceiling = yes
     }
     else_if = {
-        limit={ has_game_rule = domain_core_holding_limit }
+        limit={ has_game_rule = domain_core_county_limit }
         value = domain_limit
     }
     else_if = {
-        limit={ has_game_rule = ludicrous_core_holding_limit }
+        limit={ has_game_rule = ludicrous_core_county_limit }
         value = 10000
     }
 }
 
-coring_holding_cost_flat = {value = major_prestige_loss}
-coring_holding_refund_flat = {value = medium_prestige_gain}
-coring_holding_refund_flat_full = {value = major_prestige_gain}
+coring_county_cost_flat = {value = major_prestige_loss}
+coring_county_refund_flat = {value = medium_prestige_gain}
+coring_county_refund_flat_full = {value = major_prestige_gain}
 
 amount_over_core_limit = { # scope is character
     value = 0
@@ -46,7 +46,7 @@ amount_over_core_limit = { # scope is character
 
 core_count_from_list = {
     value = 0
-    every_core_holding_item = { add = 1 }
+    every_core_limit_count_item = { add = 1 }
 }
 
 num_core_titles = {

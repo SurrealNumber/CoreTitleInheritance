@@ -1,24 +1,27 @@
 ﻿core_title = {
-	texture = "gfx/interface/icons/message_feed/titles.dds"
+	texture = "gfx/interface/icons/comander_is_leader.dds"
     parent = title
 	alias = { core_titles core_titlepossessive core}
 }
 
-core_holding = {
-    texture = "gfx/interface/icons/map_icons/onmap_holding_icon.dds"
+core_county = {
+    texture = "gfx/interface/coat_of_arms/crown_strip_115_gameconcept.dds"
+	framesize = { 104 104 }
+
+	frame = 2
     parent = core_title
-    alias = {core_holdings}
+    alias = {core_counties}
 }
 
-core_holding_impact = {
+core_county_impact = {
 	texture = "gfx/interface/icons/currencies/icon_prestige_01.dds"
-    parent = core_holding
-    alias = {core_impact core_cost core_holding_cost core_benefit core_holding_benefit}
+    parent = core_county
+    alias = {core_impact core_cost core_county_cost core_benefit core_county_benefit}
 }
 
-core_holding_limit = {
+core_county_limit = {
 	texture = "gfx/interface/icons/icon_domain.dds"
-    parent = core_holding
+    parent = core_county
     alias = {core_limit}
 }
 
@@ -26,4 +29,10 @@ core_title_persistence = {
     texture = "gfx/interface/icons/message_feed/heir.dds"
 	parent = core_title
     alias = {core_persistence}
+}
+
+# unsure why this is not in vanilla
+de_facto = {
+    texture = "gfx/interface/icons/message_feed/titles.dds"
+    parent = de_jure
 }

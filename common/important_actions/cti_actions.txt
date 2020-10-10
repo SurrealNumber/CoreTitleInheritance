@@ -14,6 +14,6 @@
     }
     
     effect = {
-        #execute_decision = manage_core_titles_decision
+        execute_decision = manage_core_titles_decision
     }
 }
