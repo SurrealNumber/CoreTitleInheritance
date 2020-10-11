@@ -1061,3 +1061,4 @@ designate core title is not working. Will look into.
 != cannot be used when comparing two objects. same with <
 
 Every title (including those you don't own) still has both buttons. Looking into this next.
+nullptr is returned after opening the title window.
