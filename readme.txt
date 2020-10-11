@@ -1062,3 +1062,5 @@ designate core title is not working. Will look into.
 
 Every title (including those you don't own) still has both buttons. Looking into this next.
 nullptr is returned after opening the title window.
+
+IT APPEARS TO BE WORKING (but missing _a_lot_ of localization)
