@@ -71,7 +71,7 @@ is_a_child_title_chain_core = {# scope is title.
     holder = {# Changes scope to holder
         any_core_title_item = { # direct de jure liege of another core title
             AND ={
-                this != $EXLUDED$
+                NOT = {this = $EXCLUDED$}
                 is_de_jure_liege_or_above_target = scope:_title # Assume that this disqualifies the title I am calling this on.
                 NOT = { # need to make sure condition is true for every, so looking for one thing which does not meet it.
                     any_this_title_or_de_jure_above = {
@@ -101,11 +101,11 @@ is_title_eligible_for_core = { # Assume that this will only be called if the tit
 # does not actually check that this title is a core.
 will_core_loss_break_chain = { # scope is title
     save_temporary_scope_as = _title# count in comments will assume that this title is a county
-    holder.primary_title.tier = {save_temporary_scope_as = _tier} # means will not get to the primary_title. Also prevents it from going beyond empire.
+    holder.primary_title = {save_temporary_scope_as = _primary} # means will not get to the primary_title. Also prevents it from going beyond empire.
     trigger_if ={# duchy
         limit = {
             AND = {
-                de_jure_liege.tier < scope:_tier
+                de_jure_liege.tier < scope:_primary.tier
                 de_jure_liege.holder = holder
             }
         }
@@ -117,7 +117,7 @@ will_core_loss_break_chain = { # scope is title
     trigger_else_if = {# kingdom
         limit = {
             AND = {
-                de_jure_liege.de_jure_liege.tier < scope:_tier
+                de_jure_liege.de_jure_liege.tier < scope:_primary.tier
                 de_jure_liege.de_jure_liege.holder = holder
             }
         }
@@ -129,7 +129,7 @@ will_core_loss_break_chain = { # scope is title
     trigger_else_if = {# empire
         limit = {
             AND = {
-                de_jure_liege.de_jure_liege.de_jure_liege.tier < scope:_tier
+                de_jure_liege.de_jure_liege.de_jure_liege.tier < scope:_primary.tier
                 de_jure_liege.de_jure_liege.de_jure_liege.holder = holder
             }
         }
