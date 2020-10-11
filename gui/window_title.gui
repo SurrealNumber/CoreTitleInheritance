@@ -884,11 +884,20 @@ window = {
 								tooltip = "TITLE_MAKE_PRIMARY_TOOLTIP"
 							}
                             
+							button_primary = {
+								name = "usurp_title"
+								text = "TITLE_VIEW_USURP_TITLE"
+								visible = "[And( Not(Character.IsLocalPlayer), TitleViewWindow.ShowUsurp )]"
+								enabled = "[TitleViewWindow.CanTitleBeUsurped]"
+								onclick = "[TitleViewWindow.UsurpTitle]"
+								tooltip = "[TitleViewWindow.GetUsurpTitleButtonTooltip]"
+							}
+                            
                             button_tertiary = {
                                 datacontext = "[GetScriptedGui('designate_core_button')]"
 								name = "designate_core_title"
 								text = "TITLE_VIEW_DESIGNATE_CORE"
-                                visible = "[And( Character.IsLocalPlayer, ScriptedGui.IsShown( GuiScope.SetRoot( TitleViewWindow.GetTitle).End ))]"
+                                visible = "[And( TitleViewWindow.GetTitle.GetHolder.IsLocalPlayer, ScriptedGui.IsShown( GuiScope.SetRoot( TitleViewWindow.GetTitle).End ))]"
                                 enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( TitleViewWindow.GetTitle).End )]"
 								onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( TitleViewWindow.GetTitle).End )]"
 								tooltip = "[ScriptedGui.BuildTooltip( GuiScope.SetRoot( TitleViewWindow.GetTitle).End )]"
@@ -898,19 +907,10 @@ window = {
                                 datacontext = "[GetScriptedGui('de_designate_core_button')]"
 								name = "de_designate_core_title"
 								text = "TITLE_VIEW_DE_DESIGNATE_CORE"
-								visible = "[And( Character.IsLocalPlayer, ScriptedGui.IsShown( GuiScope.SetRoot( TitleViewWindow.GetTitle).End ))]"
+								visible = "[And( TitleViewWindow.GetTitle.GetHolder.IsLocalPlayer, ScriptedGui.IsShown( GuiScope.SetRoot( TitleViewWindow.GetTitle).End ))]"
                                 enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( TitleViewWindow.GetTitle).End )]"
 								onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( TitleViewWindow.GetTitle).End )]"
 								tooltip = "[ScriptedGui.BuildTooltip( GuiScope.SetRoot( TitleViewWindow.GetTitle).End )]"
-							}
-                            
-							button_primary = {
-								name = "usurp_title"
-								text = "TITLE_VIEW_USURP_TITLE"
-								visible = "[And( Not(Character.IsLocalPlayer), TitleViewWindow.ShowUsurp )]"
-								enabled = "[TitleViewWindow.CanTitleBeUsurped]"
-								onclick = "[TitleViewWindow.UsurpTitle]"
-								tooltip = "[TitleViewWindow.GetUsurpTitleButtonTooltip]"
 							}
 						}
 					}

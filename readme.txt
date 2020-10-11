@@ -1059,3 +1059,5 @@ Creating titles dows not always cause toast now.
 Need to change localization for de facto above capital to de jure above capital.
 designate core title is not working. Will look into.
 != cannot be used when comparing two objects. same with <
+
+Every title (including those you don't own) still has both buttons. Looking into this next.
