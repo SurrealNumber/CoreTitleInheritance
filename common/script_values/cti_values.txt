@@ -22,7 +22,7 @@ coring_county_refund_flat_full = {value = major_prestige_gain}
 amount_over_core_limit = { # scope is character
     value = 0
     if = {
-        limit = {exists = var:core_count}
+        limit = {has_variable = core_count}
         value = var:core_count
         subtract = val_core_limit
         min = 0 # sets lower bound of 0
@@ -38,7 +38,7 @@ amount_over_core_limit = { # scope is character
 #Not used
 #get_core_count = { # scope is a character
 #    if = {
-#    limit = {NOT = {exists = var:core_count}}
+#    limit = {NOT = {has_variable = core_count}}
 #        initialize_core_count
 #    }
 #    var:core_count

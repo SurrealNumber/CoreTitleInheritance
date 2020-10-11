@@ -28,14 +28,14 @@ is_title_core_due_to_not_cti = {
 is_title_core_due_to_cti = {
     AND = {
         is_title_core = yes
-        exists = var:core # This condition means that it is technically possible (though it should never happen) that a title is considered neither core due to cti or core due to not cti.
+        has_variable = core # This condition means that it is technically possible (though it should never happen) that a title is considered neither core due to cti or core due to not cti.
         is_title_core_due_to_not_cti = no
     }
 }
 
 is_title_core = { # Assume that this will only be called if the title is owned
     trigger_if = {
-        limit = {exists = var:core}
+        limit = {has_variable = core}
         OR = {
             var:core = yes# var:core should be a boolean
             is_title_core_due_to_capital = yes
@@ -106,7 +106,7 @@ is_core_consistent = {# scope is title
 
 is_over_core_limit = { # scope is character
     trigger_if = {
-        limit = {exists = var:core_count}
+        limit = {has_variable = core_count}
         var:core_count > val_core_limit
     }
     trigger_else = {

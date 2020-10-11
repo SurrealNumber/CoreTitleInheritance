@@ -980,4 +980,20 @@ Logic - update for title succession laws
 Logic - update for changing capital or primary title.
 Localization - add missing localization.
 Clean up code
-Logic - find replacement for removed recursion.
+x Logic - find replacement for removed recursion. (used while loop)
+Gui - Implement janky filtering gridbox?
+
+replaced exists = var: with has_variable = 
+possibly add way to manually recalculate cores.
+
+Save: TestGame
+both desigate and de-designate core are still showing up.
+Creating the duchy title triggered removing invalid cores. Should not have happened.
+Duchy should also be core due to being de-facto above capital.
+Destroying the duchy also triggered it.
+Usurping title also triggered. it. Both buttons also still showing up on other character's titles.
+Need to be careful that no more than three buttons are in a row on title screen, otherwise it stretches it.
+Creating Empire of italy triggered removing cores
+Still no capital chain except for county of capital appearing.
+Special Core Titles still showing up both in singular and plural.
+Looks like there is plenty of error logging for me to look at and debug.
