@@ -4,17 +4,3 @@
         is_title_core = yes
     }
 }
-
-core_limit_count_item = { # scope is character
-    base = core_title_item
-    conditions = {
-        does_core_count_to_limit = yes
-    }
-}
-
-inconsistent_core_title = {
-    base = core_title_item
-    conditions = {
-        is_core_consistent = no
-    }
-}

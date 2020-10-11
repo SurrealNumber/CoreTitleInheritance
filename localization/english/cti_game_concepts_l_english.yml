@@ -23,7 +23,7 @@
  game_concept_core_benefit:0 "Core Benefit"
  game_concept_core_county_impact_desc:0 "$game_concept_core_county_impact_desc1$ $game_concept_core_county_impact_desc2$ $game_concept_core_county_impact_desc3$\n$game_concept_core_county_impact_desc4$\n$game_concept_core_county_impact_desc5$\n$game_concept_core_county_impact_desc6$\n$game_concept_core_county_impact_desc7$ $game_concept_core_county_impact_desc8$"
  game_concept_core_county_impact_desc1:0 "The impact of [core_counties|E]."
- game_concept_core_county_impact_desc2:0 "The impact can be instant upon designating a [county|E] as [core|E], or overtime based on owned [core_countys|E]."
+ game_concept_core_county_impact_desc2:0 "The impact can be instant upon designating a [county|E] as [core|E], or overtime based on owned [core_counties|E]."
  game_concept_core_county_impact_desc3:0 "The impact depends on game rules and has two components:"
  game_concept_core_county_impact_desc4:0 "#T Benefit:#\nNone: [core_counties|E] have no benefit beyond that of [core_titles|E]."
  game_concept_core_county_impact_desc5:0 "Control: [core_counties|E] have increased control gain in addition to being [core_titles|E]."

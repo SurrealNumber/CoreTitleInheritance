@@ -18,9 +18,9 @@
             view = character
         }
         
-        de_designate_all_core_titles_decision = {
-			open_view_data = decision_detail
-		}
+        # de_designate_all_core_titles_decision = {
+			# open_view_data = decision_detail
+		# } Want to expand the decision on clicking this.
         #execute_decision = manage_core_titles_decision
     }
 }

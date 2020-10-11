@@ -10,12 +10,18 @@ is_title_core_due_to_capital = { # scope is title
     }
 }
 
+is_title_special_core = { # Incomplete until I can see the always_follows_primary_heir tag
+    is_head_of_faith = yes
+}
+
 is_title_core_due_to_not_cti = {
     AND = {
         is_title_core = yes
-        is_title_core_due_to_capital = yes
-        holder.primary_title = root
-        is_title_special_core = yes
+        OR = {
+            is_title_core_due_to_capital = yes
+            holder.primary_title = root
+            is_title_special_core = yes
+        }
     }
 }
 
@@ -26,8 +32,7 @@ is_title_core_due_to_cti = {
         is_title_core_due_to_not_cti = no
     }
 }
-# MUST BE CAREFUL THAT THE TRIGGERS ABOVE AND BELOW THIS AGREE!
-#This catches primary titles and capitals as well (I assume)
+
 is_title_core = { # Assume that this will only be called if the title is owned
     trigger_if = {
         limit = {exists = var:core}
@@ -90,9 +95,7 @@ will_core_loss_break_titles = { # scope is title
 is_core_consistent = {# scope is title
     OR = {
         is_title_county = yes
-        holder.primary_title = root
-        is_title_core_due_to_capital = yes
-        is_title_special_core = yes
+        is_title_core_due_to_not_cti= yes
         holder = {
             any_core_title_item = {
                 this.de_facto_liege = root
@@ -125,8 +128,4 @@ can_de_core_title = {
 
 has_core_titles = { # scope is character
     any_core_title_item = {always = yes} # inefficient, but good enough for now.
-}
-
-is_title_special_core = { # Incomplete until I can see the always_follows_primary_heir tag
-    is_head_of_faith = yes
 }

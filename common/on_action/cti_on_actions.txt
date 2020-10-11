@@ -86,8 +86,8 @@ cti_on_game_start_after_lobby = {
         if = {
             limit = {
                 OR = {
-                    has_game_rule = overtime_core_holding_cost
-                    has_game_rule = control_core_holding_benefit
+                    has_game_rule = overtime_core_county_cost
+                    has_game_rule = control_core_county_benefit
                 }
             }
             every_ruler = {recalculate_cores}# Will ignore baron tier

@@ -55,51 +55,55 @@ set_over_core_limit_modifier = { # scope is character
     remove_all_character_modifier_instances = 8_over_core_limit_modifier
     remove_all_character_modifier_instances = 9_over_core_limit_modifier
     remove_all_character_modifier_instances = 10_plus_over_core_limit_modifier
-    amount_over_core_limit = {save_temorary_scope_as = _amount_over_core_limit} #hopefully stores the variable so it is not calculated every time.
+    set_variable = {
+        name = _amount_over_core_limit
+        value = amount_over_core_limit
+    } #hopefully stores the variable so it is not calculated every time.
     if = {
-        limit = {scope:_amount_over_core_limit = 0}
+        limit = {var:_amount_over_core_limit = 0}
         # do nothing
     }
     else_if = {
-        limit = {scope:_amount_over_core_limit = 1}
+        limit = {var:_amount_over_core_limit = 1}
         add_character_modifier = 1_over_core_limit_modifier
     }
     else_if = {
-        limit = {scope:_amount_over_core_limit = 2}
+        limit = {var:_amount_over_core_limit = 2}
         add_character_modifier = 2_over_core_limit_modifier
     }
     else_if = {
-        limit = {scope:_amount_over_core_limit = 3}
+        limit = {var:_amount_over_core_limit = 3}
         add_character_modifier = 3_over_core_limit_modifier
     }
     else_if = {
-        limit = {scope:_amount_over_core_limit = 4}
+        limit = {var:_amount_over_core_limit = 4}
         add_character_modifier = 4_over_core_limit_modifier
     }
     else_if = {
-        limit = {scope:_amount_over_core_limit = 5}
+        limit = {var:_amount_over_core_limit = 5}
         add_character_modifier = 5_over_core_limit_modifier
     }
     else_if = {
-        limit = {scope:_amount_over_core_limit = 6}
+        limit = {var:_amount_over_core_limit = 6}
         add_character_modifier = 6_over_core_limit_modifier
     }
     else_if = {
-        limit = {scope:_amount_over_core_limit = 7}
+        limit = {var:_amount_over_core_limit = 7}
         add_character_modifier = 7_over_core_limit_modifier
     }
     else_if = {
-        limit = {scope:_amount_over_core_limit = 8}
+        limit = {var:_amount_over_core_limit = 8}
         add_character_modifier = 8_over_core_limit_modifier
     }
     else_if = {
-        limit = {scope:_amount_over_core_limit = 9}
+        limit = {var:_amount_over_core_limit = 9}
         add_character_modifier = 9_over_core_limit_modifier
     }
     else_if = {
-        limit = {scope:_amount_over_core_limit >= 10}
+        limit = {var:_amount_over_core_limit >= 10}
         add_character_modifier = 10_plus_over_core_limit_modifier
     }
+    remove_variable = _amount_over_core_limit
 }
 
 
@@ -132,11 +136,11 @@ apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value 
     if = {
         limit = {does_core_count_to_limit = yes}
         if = {
-            limit = {NOT = {exists = holder.var:core_count}}
+            limit = {NOT = {has_variable = core_count}}
             holder = {initialize_core_count}
         }
         else_if = {
-            limit = {$INCREASE$ = yes}
+            limit = {always = $INCREASE$}
             holder = {increment_core_count}# Think this should apply this with scope holder
             apply_core_county_modifier # redundant check for being a county in this case. checks game rules in here.
         }
@@ -168,7 +172,7 @@ set_title_core = {
     set_always_follows_primary_heir = yes
 }
 
-de_designate_core_title = {# scope is title
+de_designate_core_title = {# scope is title, should only be called when it is appropriate/possible.
     de_core_title
     apply_cost_and_count_of_title = {
         INCREASE = no
@@ -180,7 +184,7 @@ de_designate_core_title = {# scope is title
 remove_invalid_core_titles = { #scope is a character. full refund. Not meant to be called via player actions.
     send_cores_removed_toast
     every_inconsistent_core_title = { # scope should be the title here, and root the character
-        de_core_title
+        de_core_title # inconsistent restricts all cores to being cti cores
         apply_cost_and_count_of_title = {
             INCREASE = no
             COST = coring_county_refund_flat_full
@@ -212,27 +216,11 @@ recalculate_cores = { # scope is a character. this is used in cases like inherit
     }
 }
 
-# Should never be needed
-#remove_all_core_titles = {# scope is character. full refund. this should be used if something brings one over core limit - currently ther is no penalty for being over.
-#    save_temporary_scope_as = this_character
-#    every_core_title_item = {
-#        if = {
-#            limit = {can_de_core_title}
-#            decore_title
-#            apply_cost_and_count_of_title = {
-#                INCREASE = no
-#                COST = coring_title_refund_flat_full
-#            }
-#        }
-#    }
-#}
-
 de_designate_all_core_titles = { #scope is character. Not full refund. should be called by character.
     every_core_title_item = {
-        de_core_title
-        apply_cost_and_count_of_title = {
-            INCREASE = no
-            COST = coring_county_refund_flat
+        if = {
+            limit = {is_title_core_due_to_cti = yes}
+            de_designate_core_title
         }
     }
 }

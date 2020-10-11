@@ -951,3 +951,15 @@ found this note in the code: # interaction effects are executed for all clients,
 
 Can't find way to expand core titles tab in character view from important_action\alert
 Unsure of how to open decision window for specific decision.
+looks like lists any_ can have optional count parameter.
+Looks like list every can have alternative limits.
+
+the format every/any_in_list = {
+    list = list_name
+    limit = {limit}
+    add = x/trigger = yes
+}
+^ looks like this format is needed for scripted values.
+
+Exist NOR, NAND which are equivalent to NOT = {OR/AND = {}}
+It looks like there is a has_variable trigger.
