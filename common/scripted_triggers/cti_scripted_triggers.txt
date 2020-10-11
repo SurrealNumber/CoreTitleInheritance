@@ -2,9 +2,9 @@
 
 is_title_core_due_to_capital = { # scope is title
     OR = {
-        holder.capital_county = root # capital barony
+        holder.capital_county = this # capital barony
         AND = {
-            is_de_facto_liege_or_above_target = holder.capital_county
+            is_de_jure_liege_or_above_target = holder.capital_county
             tier < holder.primary_title.tier # not the same tier as the primary title
         }
     }
@@ -19,7 +19,7 @@ is_title_core_due_to_not_cti = {
         is_title_core = yes
         OR = {
             is_title_core_due_to_capital = yes
-            holder.primary_title = root
+            holder.primary_title = this
             is_title_special_core = yes
         }
     }
@@ -36,20 +36,24 @@ is_title_core_due_to_cti = {
 is_title_core = { # Assume that this will only be called if the title is owned
     trigger_if = {
         limit = {has_variable = core}
-        OR = {
-            var:core = yes# var:core should be a boolean
-            is_title_core_due_to_capital = yes
-            holder.primary_title = root
-            is_title_special_core = yes
+        AND = {
             tier >= tier_county
+            OR = {
+                var:core = yes# var:core should be a boolean
+                is_title_core_due_to_capital = yes
+                holder.primary_title = this
+                is_title_special_core = yes
+            }
         }
     }
     trigger_else = {
-        OR = {
-            is_title_core_due_to_capital = yes
-            holder.primary_title = root
-            is_title_special_core = yes
+        AND = {
             tier >= tier_county
+            OR = {
+                is_title_core_due_to_capital = yes
+                holder.primary_title = this
+                is_title_special_core = yes
+            }
         }
     }
 }
@@ -62,28 +66,22 @@ does_core_count_to_limit = { # scope is title
     is_title_county = yes
 }
 
-is_title_eligible_for_core = { # Assume that this will only be called if the title is owned
-    is_title_core = no # not a core title
-    OR = {
-        is_title_county = yes # owned counties can always be dejure
-        holder = {# Changes scope to holder
-            any_core_title_item = { # direct de facto liege of another core title
-            this.de_facto_liege = root
-            }
-        }
-    }
-}
-
-# assumes that core title rules are being followed - only checks one tier up
-will_core_loss_break_titles = { # scope is title
-    AND = {
-        root.de_facto_liege = {is_title_core_due_to_cti = yes} # is core due to mod
-        NOT = {# parent title is not de facto liege of any sibling core titles
-            holder = {
-                any_core_title_item = {
-                    AND = {
-                        NOT = {this = root}
-                        this.de_facto_liege = root.de_facto_liege
+is_a_child_title_chain_core = {# scope is title.
+    save_temporary_scope_as = _title
+    holder = {# Changes scope to holder
+        any_core_title_item = { # direct de jure liege of another core title
+            AND ={
+                this != $EXLUDED$
+                is_de_jure_liege_or_above_target = scope:_title # Assume that this disqualifies the title I am calling this on.
+                NOT = { # need to make sure condition is true for every, so looking for one thing which does not meet it.
+                    any_this_title_or_de_jure_above = {
+                        # nothing in chain is owned by holder (which implies it exists) but is not core.
+                        # will break if there is a title which is held by holder, but is not core between two titles.
+                        OR = {
+                            holder = scope:_title.holder # held by owner. This shold also disqualify titles that don't exist.
+                            tier < scope:_title.tier #in chain between two titles#<- not <- because title itself is presumably in heirarchy
+                            is_title_core = no # not core
+                        }
                     }
                 }
             }
@@ -91,16 +89,66 @@ will_core_loss_break_titles = { # scope is title
     }
 }
 
-
-is_core_consistent = {# scope is title
+is_title_eligible_for_core = { # Assume that this will only be called if the title is owned
+    is_title_core = no # not a core title - will rule out core titles due to non-cti.
     OR = {
-        is_title_county = yes
-        is_title_core_due_to_not_cti= yes
-        holder = {
-            any_core_title_item = {
-                this.de_facto_liege = root
+        is_title_county = yes # owned counties can always be cored
+        is_a_child_title_chain_core = {EXCLUDED = this} # EXCLUDED should do nothing in this case.
+    }
+}
+
+# just checks "one up" so it assumes the rules are followed up to this point.
+# does not actually check that this title is a core.
+will_core_loss_break_chain = { # scope is title
+    save_temporary_scope_as = _title# count in comments will assume that this title is a county
+    holder.primary_title.tier = {save_temporary_scope_as = _tier} # means will not get to the primary_title. Also prevents it from going beyond empire.
+    trigger_if ={# duchy
+        limit = {
+            AND = {
+                de_jure_liege.tier < scope:_tier
+                de_jure_liege.holder = holder
             }
         }
+        AND = {
+            de_jure_liege = {is_title_core = yes}
+            NOT = {de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:_title}}}
+        }
+    }
+    trigger_else_if = {# kingdom
+        limit = {
+            AND = {
+                de_jure_liege.de_jure_liege.tier < scope:_tier
+                de_jure_liege.de_jure_liege.holder = holder
+            }
+        }
+        AND = {
+            de_jure_liege.de_jure_liege = {is_title_core = yes}
+            NOT = {de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:_title}}}
+        }
+    }
+    trigger_else_if = {# empire
+        limit = {
+            AND = {
+                de_jure_liege.de_jure_liege.de_jure_liege.tier < scope:_tier
+                de_jure_liege.de_jure_liege.de_jure_liege.holder = holder
+            }
+        }
+        AND = {
+            de_jure_liege.de_jure_liege.de_jure_liege = {is_title_core = yes}
+            NOT = {de_jure_liege.de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:_title}}}
+        }
+    }
+    trigger_else = {
+        always = no
+    }
+}
+
+is_core_consistent = {# scope is title
+    save_temporary_scope_as = _title
+    OR = {
+        is_title_county = yes
+        is_title_core_due_to_not_cti = yes
+        is_a_child_title_chain_core = {EXCLUDED = this}
     }
 }
 
@@ -122,7 +170,7 @@ can_core_title = {
 can_de_core_title = {
     AND = {
         is_title_core_due_to_cti = yes
-        will_core_loss_break_titles = no
+        will_core_loss_break_chain = no
     }
 }
 

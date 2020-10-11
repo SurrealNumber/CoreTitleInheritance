@@ -25,7 +25,7 @@
  
  CV_CORE_CAPITAL_PRIMARY:0 "[capital|E] And [primary_title|E]"
  CV_CORE_PRIMARY:0 "[primary_title|E]"
- CV_CORES_CAPITAL_CHAIN:0 "[de_facto|E] Above [capital|E]"
+ CV_CORES_CAPITAL_CHAIN:0 "[de_jure|E] Above [capital|E]"
  CV_CORES_SPECIAL:0 "Special [core_titles|E]"
  CV_CORES_MOD:0 "Designated [core_titles|E]"
  # CV_CORES_CAPITAL_CHAIN_SINGULAR:0 ""

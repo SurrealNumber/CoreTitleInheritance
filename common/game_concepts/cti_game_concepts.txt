@@ -31,7 +31,7 @@ core_title_persistence = {
     alias = {core_persistence}
 }
 
-# unsure why this is not in vanilla
+# unsure why this is not in vanilla. My definition of de_facto is different than the one used by the de_facto_liege call on a title.
 de_facto = {
     texture = "gfx/interface/icons/message_feed/titles.dds"
     parent = de_jure

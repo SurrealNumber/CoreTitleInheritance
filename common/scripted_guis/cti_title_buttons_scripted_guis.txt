@@ -28,7 +28,7 @@
     }
 }
 
-de_designate_core_button = {
+de_designate_core_button = {# I am assuming that the root here will be the title.
     scope = title
     
     is_shown = {
@@ -54,7 +54,7 @@ de_designate_core_button = {
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE
         }
         else_if = {
-            limit = {will_core_loss_break_titles = yes}
+            limit = {will_core_loss_break_chain = yes}
             custom_tooltip = TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING
         }
         # I can't access this value, so special titles like head of faith titles are not counted.

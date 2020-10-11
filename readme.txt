@@ -997,3 +997,64 @@ Creating Empire of italy triggered removing cores
 Still no capital chain except for county of capital appearing.
 Special Core Titles still showing up both in singular and plural.
 Looks like there is plenty of error logging for me to look at and debug.
+It looks like root is the root of the calling interaction or event NOT the root of the code block. Will have to fix many things to work with this.
+Unknown new error: promote returned nullptr. <- If I had to guess, I probably for got to check for a variable existing before using it somewhere.
+
+New duchy over capital county is added as designated core, NOT as being part of tha capital chain. Still triggers the removing cores toast.
+Still same effect after checking to make sure not to designate it if it was a core not due to cti.
+Suspect at this point that is core is not picking up on non-cti cores correctly. <- guess was correct. Anything that is above county tier is automatically a core.
+Shoudl change text from de-facto above capital to capital and de-facto above. Also when singular it is just capital. Should fix that localization.
+The de_facto_liege for my capital appears to be either my highest tier or primary title (I am not sure).
+For duke vassal, county -> his duchy, and duchy -> my kingdom (NOT empire)
+My duchy also points to the empire of italy.
+Same occures for county under vassal held duchy.
+Want to check de-jure, and check to see if it exists, and check to see if you own it. Check up if dejure does not exist.
+If dejure exists, but is not owned by you, check de-jure up until reaching primary title tier.
+if reached primary title tier and it is not under you, in my model of de-facto heirarchy it would be a child of your primary title.
+Auto create core when:
+1. my model of de_facto title above it is core, and a de_jure child is core.
+2. as a result of above if primary title tier, do not auto core.
+3. Also as a result of above, do not auto core counties or baronies. (though they should never be created)
+
+For the capital chain, it is strictly de-jure.
+Senario: Emperor of Italy, King of Italy, King of Romagna, no holdings in Kingdom of Italy or Kingdom of Romagna. No other kingdoms or empires.(implied by this is that the capital is elsewhere.)
+Should the character be allowed to designate one of the kingdoms as core? <- I feel like they should be able to designate the "primary" kingdom as core.
+If so which one? <- One which is de-jure capital of empire?
+                         ^What about if it was the Byzantine Empire with all other things being the same. <- mo de-jure capital kingdom.
+Requiring that one has at least *one county* de-jure under a title to declare it as core is not to stringent of a condition.
+
+Auto-coring and eligibility of titles will go back to de-jure. Senarios where it would make sense to have a title which you hold no de-jure territory under as core are covered by that title being your primary title.
+when checking for core loss, we are looking for titles which are de jure leige which do not have a child title chain excluding the current title.
+If possible would like to do this: go to my version of de facto liege. Check for a my version of de facto child which is core.
+tricky situations: de-designating county, ruler is emperor. Duchy above does not exist. Kingdom above is core, and has :
+1. a different de-jure duchy is core.
+2. a different de-jure county without duchy above existing is core.
+3. different de-jure county is core with duchy above that is not core (and there are no other cores de-jure below kingdom)
+Desired outcomes:
+1. will not break.
+2. will not break.
+3. will break.
+
+look for dejure as well. Seem to be some with that instead (probably developer typo).
+To work with have:
+any\every\ordered\random_in_de_jure_hierarchy - iterate from self down all the way (can specify a continue or limit)
+any\every\random\ordered_this_title_or_de_jure_above - iterate through this title and all dejure liege titles.
+is_de_jure_liege_or_above_target - self explainatory <- need to make sure it does not trigger on itself.
+target_is_de_jure_liege_or_above - self explainatory <- need to make sure it does not trigger on itself.
+any\every\ordered\random_realm_de_jure_xxxx - all de-jure ot title in the character's realm
+ordered\random\every_de_jure_county_holder - iterates through characters
+ordered\random\every_de_jure_top_liege - iterates through characters
+any/every\ordered\random_dejure_vassal_title_holder - iterates through characters - all vassal holders of title <- don't know what this description means
+set_de_jure_liege_title - not that relevant here
+
+could do if holder= chain to get to my definition of de-facto liege (I think)
+From there excluded child search
+
+
+I wish I could define a function which returns a scope.
+
+auto coring occurs when child chain is core and my definition of de-facto liege is also core <- these are the conditions for when decoring a title will break a chain.
+
+Creating titles dows not always cause toast now.
+Need to change localization for de facto above capital to de jure above capital.
+designate core title is not working. Will look into.

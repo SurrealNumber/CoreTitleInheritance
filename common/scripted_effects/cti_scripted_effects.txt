@@ -234,25 +234,14 @@ check_auto_core_title = { # scope is title. Assumes that only  one title is bein
         limit = {tier = tier_county}
         text = "check_auto_core_title: County title passed. They should never be created, and that is currently the only entry point."
     }
+    holder = {save_temporary_scope_as = _holder}
+    save_temporary_scope_as = _title
     if = {
         limit = {
             AND = {
                 tier > tier_county
-                de_facto_liege = {
-                    And = {
-                        holder = root.holder
-                        is_title_core = yes
-                    }
-                }
-                any_in_de_facto_hierarchy = {
-                    continue = {
-                        AND = {
-                            holder = root.holder
-                            de_facto_liege = root
-                        }
-                    }
-                    is_title_core = yes
-                }
+                is_title_core_due_to_not_cti = no
+                will_core_loss_break_chain = yes
             }
         }
         set_title_core = yes
