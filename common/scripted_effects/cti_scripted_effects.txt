@@ -38,9 +38,10 @@ remove_core_county_modifier = { # scope is a title
 }
 
 initialize_core_county_modifiers = { # scope is a character
-    every_core_limit_count_item = {
-        remove_core_county_modifier
-        apply_core_county_modifier
+    every_core_title_item = {
+        limit = {does_core_count_to_limit = yes}
+        remove_core_county_modifier = yes
+        apply_core_county_modifier = yes
     }
 }
 
@@ -112,7 +113,7 @@ initialize_core_count = {# scope is a character
         name = core_count
         value = core_count_from_list
     }
-    set_over_core_limit_modifier
+    set_over_core_limit_modifier = yes
 }
 
 
@@ -121,7 +122,7 @@ increment_core_count = {# scope is character
         name = core_count
         add = 1
     }
-    set_over_core_limit_modifier
+    set_over_core_limit_modifier = yes
 }
 
 decrement_core_count = {# scope is character
@@ -129,7 +130,7 @@ decrement_core_count = {# scope is character
         name = core_count
         subtract = 1
     }
-    set_over_core_limit_modifier
+    set_over_core_limit_modifier = yes
 }
 
 apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value and a boolean.
@@ -137,16 +138,16 @@ apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value 
         limit = {does_core_count_to_limit = yes}
         if = {
             limit = {NOT = {has_variable = core_count}}
-            holder = {initialize_core_count}
+            holder = {initialize_core_count = yes}
         }
         else_if = {
             limit = {always = $INCREASE$}
-            holder = {increment_core_count}# Think this should apply this with scope holder
-            apply_core_county_modifier # redundant check for being a county in this case. checks game rules in here.
+            holder = {increment_core_count = yes}# Think this should apply this with scope holder
+            apply_core_county_modifier = yes # redundant check for being a county in this case. checks game rules in here.
         }
         else = {
-            holder = {decrement_core_count}# Think this should apply this with scope holder
-            remove_core_county_modifier# redundant check for being a county in this case. checks game rules in here.
+            holder = {decrement_core_count = yes}# Think this should apply this with scope holder
+            remove_core_county_modifier = yes# redundant check for being a county in this case. checks game rules in here.
         }
         if = {
             limit = {has_game_rule = flat_designate_core_county_cost }
@@ -156,8 +157,8 @@ apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value 
 }
 
 #unlike making titles no longer be core, cores should only be made by being designated. Cannot core beyond core title limit.
-designate_core_title = {#scope is title
-    set_title_core
+designate_core_title = { #scope is title
+    set_title_core = yes
     apply_cost_and_count_of_title = {
         INCREASE = yes
         COST = coring_county_cost_flat
@@ -173,7 +174,7 @@ set_title_core = {
 }
 
 de_designate_core_title = {# scope is title, should only be called when it is appropriate/possible.
-    de_core_title
+    de_core_title = yes
     apply_cost_and_count_of_title = {
         INCREASE = no
         COST = coring_county_refund_flat
@@ -182,17 +183,18 @@ de_designate_core_title = {# scope is title, should only be called when it is ap
 
 # should be able to construct list and use it in the limit for the next one.
 remove_invalid_core_titles = { #scope is a character. full refund. Not meant to be called via player actions.
-    send_cores_removed_toast
-    every_inconsistent_core_title = { # scope should be the title here, and root the character
-        de_core_title # inconsistent restricts all cores to being cti cores
+    send_cores_removed_toast = yes
+    every_core_title_item = { # scope should be the title here, and root the character
+        limit = {is_core_consistent = no}
+        de_core_title = yes # inconsistent restricts all cores to being cti cores
         apply_cost_and_count_of_title = {
             INCREASE = no
             COST = coring_county_refund_flat_full
         }
     }
     if = {
-        limit = {any_core_title = {is_core_consistent = no}}
-        remove_invalid_core_titles # recursive. Can run into problems if core titles from other sources are labeled incosistent.
+        limit = {any_core_title_item = {is_core_consistent = no}}
+        #remove_invalid_core_titles = yes # recursive. Can run into problems if core titles from other sources are labeled incosistent.
     }
 }
 
@@ -208,11 +210,11 @@ de_core_title = { # scope is a title.
 }
 
 recalculate_cores = { # scope is a character. this is used in cases like inheritance when core titles are preserved
-    initialize_core_count
-    initialize_core_county_modifiers
+    initialize_core_count = yes
+    initialize_core_county_modifiers = yes
     if = {
         limit = {any_core_title_item = {is_core_consistent = no}}
-        remove_invalid_core_titles
+        remove_invalid_core_titles = yes
     }
 }
 
@@ -220,7 +222,7 @@ de_designate_all_core_titles = { #scope is character. Not full refund. should be
     every_core_title_item = {
         if = {
             limit = {is_title_core_due_to_cti = yes}
-            de_designate_core_title
+            de_designate_core_title = yes
         }
     }
 }
@@ -248,11 +250,11 @@ check_auto_core_title = { # scope is title. Assumes that only  one title is bein
                             de_facto_liege = root
                         }
                     }
-                    is_core_title = yes
+                    is_title_core = yes
                 }
             }
         }
-        set_title_core
+        set_title_core = yes
         apply_cost_and_count_of_title = { # should never have an effect, but putting it here for consistency.
             INCREASE = yes
             COST = coring_county_cost_flat

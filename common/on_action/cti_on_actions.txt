@@ -18,18 +18,18 @@ on_title_gain = {
    }
 }
 
-on_title_loss = {
-    on_actions = {
-        cti_on_title_loss
-    }
-}
+# on_title_loss = {
+    # on_actions = {
+        # cti_on_title_loss
+    # }
+# }
 
 # My on_actions which call the rest of my code.
 
 cti_on_title_destroyed = { # assume this happens after destruction
     effect = {
-        scope:landed_title = {de_core_title}
-        recalculate_cores
+        scope:landed_title = {de_core_title = yes}
+        recalculate_cores = yes
     }
 }
 
@@ -44,18 +44,18 @@ cti_on_title_gain = { # assume this happens after the title changes hands. Also 
                         has_game_rule = true_core_persist
                     }
                 }
-                recalculate_cores
-                scope:previous_holder = recalculate_cores # they could have abdicated or some other shenanigans
+                recalculate_cores = yes
+                scope:previous_holder = {recalculate_cores = yes} # they could have abdicated or some other shenanigans
             }
             else_if = {
                 limit = {scope:transfer_type = flag:created}
-                check_auto_core_title
-                recalculate_cores
+                check_auto_core_title = yes
+                recalculate_cores = yes
             }
             else = {
-                scope:title = de_core_title
-                recalculate_cores
-                scope:previous_holder = recalculate_cores
+                scope:title = {de_core_title = yes}
+                recalculate_cores = yes
+                scope:previous_holder = {recalculate_cores = yes}
             }
         }
     }
@@ -90,7 +90,7 @@ cti_on_game_start_after_lobby = {
                     has_game_rule = control_core_county_benefit
                 }
             }
-            every_ruler = {recalculate_cores}# Will ignore baron tier
+            every_ruler = {recalculate_cores = yes}# Will ignore baron tier
         }
     }
 }

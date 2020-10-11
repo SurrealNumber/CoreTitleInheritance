@@ -963,3 +963,21 @@ the format every/any_in_list = {
 
 Exist NOR, NAND which are equivalent to NOT = {OR/AND = {}}
 It looks like there is a has_variable trigger.
+
+Keeps on complaining about this wherever it shows up.
+[23:02:56][jomini_effect.cpp:557]: Unknown effect = at  file:  file: common/scripted_guis/cti_title_buttons_scripted_guis.txt line: 28; designate_core_title line: 3
+[23:02:56][jomini_effect.cpp:557]: Unknown effect INCREASE at  file:  file: common/scripted_guis/cti_title_buttons_scripted_guis.txt line: 28; designate_core_title line: 4
+[23:02:56][jomini_effect.cpp:557]: Unknown effect COST at  file:  file: common/scripted_guis/cti_title_buttons_scripted_guis.txt line: 28; designate_core_title line: 5
+
+Seems like something might actually be going wrong in set_title_core. Switching order causes it to complain about else\else_if not following if (when it is)
+looks like effects might have to be called with effect_name = something. Looking into.
+Looks like you do have to. use = yes unless additional things have to be added.
+It looks like CK3 does not like recursion.
+Down to the only error being complaining my core_title_item list does not exist.
+TODO:
+Debug
+Logic - update for title succession laws
+Logic - update for changing capital or primary title.
+Localization - add missing localization.
+Clean up code
+Logic - find replacement for removed recursion.

@@ -35,6 +35,6 @@ de_designate_all_core_titles_decision = { # scope is presumably character
         #custom_tooltip = de_designate_all_core_titles_decision_effect_tooltip_bullet4
         custom_tooltip = de_designate_all_core_titles_decision_effect_tooltip_bullet5
         
-        de_designate_all_core_titles
+        de_designate_all_core_titles = yes
     }
 }
