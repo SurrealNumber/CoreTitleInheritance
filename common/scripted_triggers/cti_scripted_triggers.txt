@@ -70,30 +70,26 @@ is_a_child_title_chain_core = {# scope is title. assumes that rules are being fo
         save_temporary_scope_as = _title
         holder = {# Changes scope to holder
             any_core_title_item = { # goes through core titles of owner.
-                trigger_if = {
-                    limit = {
-                        NOT = {this = $EXCLUDED$} # excludes this title from consideration (used for checking breaking chains or adding cores)
-                        target_is_de_jure_liege_or_above = scope:_title # de_jure_child of this title. Assume that this disqualifies the title I am calling this on.
-                    }
-                                        
-                    NOT = { # need to make sure condition is true for every, so looking for one thing which does not meet it.
-                        any_this_title_or_de_jure_above = {
-                            trigger_if = {
-                                limit = {exists = holder}
-                                # nothing in chain is owned by holder (which implies it exists) but is not core.
-                                # will break if there is a title which is held by holder, but is not core between two titles.
-                                holder = scope:_title.holder # held by owner. This shold also disqualify titles that don't exist.
-                                tier < scope:_title.tier #in chain between two titles <- because title itself is presumably in heirarchy
+                NOT = {this = $EXCLUDED$} # excludes this title from consideration (used for checking breaking chains or adding cores)
+                target_is_de_jure_liege_or_above = scope:_title # de_jure_child of this title. Assume that this disqualifies the title I am calling this on.
+                                    
+                NOT = { # need to make sure condition is true for every, so looking for one thing which does not meet it.
+                    any_this_title_or_de_jure_above = {
+                        trigger_if = {
+                            limit = {exists = holder}
+                            # nothing in chain is owned by holder (which implies it exists) but is not core.
+                            # will break if there is a title which is held by holder, but is not core between two titles.
+                            holder = scope:_title.holder # held by owner. This shold also disqualify titles that don't exist.
+                            tier < scope:_title.tier #in chain between two titles <- because title itself is presumably in heirarchy
+                            OR = {
+                                this = $EXCLUDED$ # for the purposes of this function, excluded is not core.
                                 is_title_core = no # not core
                             }
-                            trigger_else = {
-                                always = no
-                            }
+                        }
+                        trigger_else = {
+                            always = no
                         }
                     }
-                }
-                trigger_else = {
-                    always = no
                 }
             }
         }
@@ -112,31 +108,31 @@ is_title_eligible_for_core = { # Assume that this will only be called if the tit
 # just checks "one up" so it assumes the rules are followed up to this point.
 # does not actually check that this title is a core.
 will_core_loss_break_chain = { # scope is title
-    save_temporary_scope_as = _title# count in comments will assume that this title is a county
+    save_temporary_scope_as = w_title# count in comments will assume that this title is a county
     holder.primary_title = {save_temporary_scope_as = _primary} # means will not get to the primary_title. Also prevents it from going beyond empire.
     trigger_if ={# duchy
         limit = {
-            de_jure_liege.tier < scope:_primary.tier
+            de_jure_liege.tier <= scope:_primary.tier
             de_jure_liege.holder = holder
         }
-        de_jure_liege = {is_title_core = yes}
-        NOT = {de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:_title}}}
+        de_jure_liege = {is_title_core_due_to_cti = yes}
+        NOT = {de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
     }
     trigger_else_if = {# kingdom
         limit = {
-            de_jure_liege.de_jure_liege.tier < scope:_primary.tier
+            de_jure_liege.de_jure_liege.tier <= scope:_primary.tier
             de_jure_liege.de_jure_liege.holder = holder
         }
-        de_jure_liege.de_jure_liege = {is_title_core = yes}
-        NOT = {de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:_title}}}
+        de_jure_liege.de_jure_liege = {is_title_core_due_to_cti = yes}
+        NOT = {de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
     }
     trigger_else_if = {# empire
         limit = {
-            de_jure_liege.de_jure_liege.de_jure_liege.tier < scope:_primary.tier
+            de_jure_liege.de_jure_liege.de_jure_liege.tier <= scope:_primary.tier
             de_jure_liege.de_jure_liege.de_jure_liege.holder = holder
         }
-        de_jure_liege.de_jure_liege.de_jure_liege = {is_title_core = yes}
-        NOT = {de_jure_liege.de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:_title}}}
+        de_jure_liege.de_jure_liege.de_jure_liege = {is_title_core_due_to_cti = yes}
+        NOT = {de_jure_liege.de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
     }
     trigger_else = {
         always = no

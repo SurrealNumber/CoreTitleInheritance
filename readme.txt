@@ -1335,3 +1335,11 @@ Passing in `this` results in the `this` being used, NOT `this_object`
 I am using the same names for temporary scopes everywhere. I have to be careful that I am not overriding it by accident.
 core titles were removed as opposed to a new core being automatically created.
 Prestige modifier and over core limit modifiers do not seem to be working, but otherwise it seems to be mostly functional.
+Possible overriding/colliding scope _title names in will_core_loss_break_chain. Changing scope name.
+auto creating core working properly
+was not calculating correctly for will core loss break chain. K, d, c core -> can decore d. Triggering recalculating cores correctly removes k. Need to figure out why.
+will core loss break chain currently allows for core breakage at the level of the primary title.
+I might run into problems if I try to do things to a title with no de-jure parents/children like a head of faith title or a titular title.
+Problem is in logic of is_a_child_title_chain_core. Need to exclude the title in two places.
+
+extremely non-rigorus testing of ability to core/decore and which titles are eligible is done for now. Next I will try to get all (or as many as I can) of the modifiers to work.

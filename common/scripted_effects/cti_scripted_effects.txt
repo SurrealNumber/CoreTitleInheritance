@@ -240,7 +240,6 @@ check_auto_core_title = { # scope is title. Assumes that only  one title is bein
         limit = {tier = tier_county}
         text = "check_auto_core_title: County title passed. They should never be created, and that is currently the only entry point."
     }
-    holder = {save_temporary_scope_as = _holder}
     save_temporary_scope_as = _title
     if = {
         limit = {
