@@ -137,6 +137,13 @@ apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value 
         if = {
             limit = {NOT = {has_variable = core_count}}
             holder = {initialize_core_count = yes}
+            if = {
+                limit = {always = $INCREASE$}
+                apply_core_county_modifier = yes
+            }
+            else = {
+                remove_core_county_modifier = yes
+            }
         }
         else_if = {
             limit = {always = $INCREASE$}

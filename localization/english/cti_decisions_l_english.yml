@@ -9,11 +9,11 @@
  # manage_core_titles_decision_effect_tooltip_bullet4:0 "Offer the oportunity to de-designate all [core_titles|E] which are due to the Core Title Inheritance Mod"
  # manage_core_titles_decision_confirm:0 "Trigger Event"
  
- # cti_test_decision:0 "Test Decision (Title)"
- # cti_test_decision_tooltip:0 "Trigger Test Event (Tooltip)\nnext line"
- # cti_test_decision_effect_tooltip:0 "Trigger Test Event (Effect Tooltip)\nnext line"
- # cti_test_decision_desc:0 "Invoke Test Event (Description)\nnext line"
- # cti_test_decision_confirm:0 "Trigger Event (Confirm)"
+ cti_test_decision:0 "Test Decision (Title)"
+ cti_test_decision_tooltip:0 "Trigger Test Event (Tooltip)\nnext line"
+ cti_test_decision_effect_tooltip:0 "Trigger Test Event (Effect Tooltip)\nnext line"
+ cti_test_decision_desc:0 "Invoke Test Event (Description)\nnext line"
+ cti_test_decision_confirm:0 "Trigger Event (Confirm)"
  
  de_designate_all_core_titles_decision:0 "De-designate All Core Titles"
  de_designate_all_core_titles_decision_tooltip:0 "De-designate all [core_titles|E]"

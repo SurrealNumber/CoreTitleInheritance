@@ -1249,3 +1249,14 @@ need NOT_LANDED_TITLE_VAR_EQUAL_TRIGGER
 for some reason the localization at least is saying that a county title is not greater or equal to county
 missing title name for is not realm capital and is not primary title.
 Seems when looking for childrent it is looking for the title to be de-jure liege or above the title. <- Actually that looks to be part of will break core chain.<- don't know why that one is being triggered.
+could designate duchy core after I had the empire. Something funky is going on. It looks like either it is looking for a higher tier title, or is checking going too high?
+problem has been reversed - things which I should not be able to core nan now be cored.
+County of pavia is showing up incharacter limit as a core title, but it does not have the modifier.<- fixed this bug (I think)
+prestige modifier on province does not effect the character.
+The check for if I can core the duchy of lombardy seems to be checked based on my _primary_title_!
+beyond problems designating, the duchy in question should have been auto cored.
+
+Looks like de-designating does too much with modifiers
+Need any_this_title_or_de_jure_above
+Need IS_CORE_TITLE_TRIGGER
+It looks like core_title_item is only returning the first core title. <- checked and doing every_core_title_item is returning the right amount of things.

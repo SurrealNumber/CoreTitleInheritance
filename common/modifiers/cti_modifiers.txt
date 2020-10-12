@@ -1,12 +1,12 @@
-﻿# test_positive_modifier = {
-    # icon = prestige_positive
-    # domain_limit = 1
-# }
+﻿test_positive_modifier = {
+    icon = prestige_positive
+    domain_limit = 1
+}
 
-# test_negative_modifier = {
-    # icon = prestige_negative
-    # domain_limit = -1
-# }
+test_negative_modifier = {
+    icon = prestige_negative
+    domain_limit = -1
+}
 # the icons county_modifier_corruption_negative, county_modifier_opinion, and prestige_negative
 # Desire this to be half the core province prestige benefit modifier.
 core_county_cost_modifier = {

@@ -1,13 +1,13 @@
-﻿# cti_test_decision = {
-    # picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
-    # ai_check_interval = 0 # AI should manage cores via prompts from on_actions and the like.
-    # #description  = "THIS IS THE DESCRIPTION" #I think I want this to be empty. This is there for debugging purposes
-    # effect = {
-        # custom_tooltip = cti_test_decision_effect_tooltip
+﻿cti_test_decision = {
+    picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
+    ai_check_interval = 0 # AI should manage cores via prompts from on_actions and the like.
+    #description  = "THIS IS THE DESCRIPTION" #I think I want this to be empty. This is there for debugging purposes
+    effect = {
+        custom_tooltip = cti_test_decision_effect_tooltip
         
-        # trigger_event = cti_manage_core_titles_event.0017
-    # }
-# }
+        trigger_event = cti_manage_core_titles_event.0017
+    }
+}
 
 # manage_core_titles_decision = {
     # picture = "gfx/interface/illustrations/decisions/decision_realm.dds"

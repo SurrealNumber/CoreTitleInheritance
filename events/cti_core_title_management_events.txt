@@ -1,35 +1,36 @@
 ﻿# # AI should never see any of these events.
 # # Depending on how crowded the events look I might merge the events.
 
-# namespace = cti_manage_core_titles_event
+namespace = cti_manage_core_titles_event
 
-# # Test event
-# cti_manage_core_titles_event.0017 = {
-    # type = character_event
+# Test event
+cti_manage_core_titles_event.0017 = {
+    type = character_event
     
-    # title = cti_manage_core_titles_event.0017.t
-    # desc = cti_manage_core_titles_event.0017.desc
+    title = cti_manage_core_titles_event.0017.t
+    desc = cti_manage_core_titles_event.0017.desc
     
-    # theme = cti_core_management
+    theme = cti_core_management
     
-    # option = {
-        # name = cti_manage_core_titles_event.0017.a
-        # add_character_modifier = {
-            # modifier = test_positive_modifier
-        # }
-        # trigger_event = cti_manage_core_titles_event.0017
-    # }
-    # option = {
-        # name = cti_manage_core_titles_event.0017.b
-        # add_character_modifier = {
-            # modifier = test_negative_modifier
-        # }
-        # trigger_event = cti_manage_core_titles_event.0017
-    # }
-    # option = {
-        # name = cti_manage_core_titles_event.0017.close
-    # }
-# }
+    option = {
+        name = cti_manage_core_titles_event.0017.a
+        add_character_modifier = {
+            modifier = test_positive_modifier
+        }
+        trigger_event = cti_manage_core_titles_event.0017
+        every_core_title_item = {custom_tooltip = cti_manage_core_titles_event.0017.x}
+    }
+    option = {
+        name = cti_manage_core_titles_event.0017.b
+        add_character_modifier = {
+            modifier = test_negative_modifier
+        }
+        trigger_event = cti_manage_core_titles_event.0017
+    }
+    option = {
+        name = cti_manage_core_titles_event.0017.close
+    }
+}
 
 # # Entry event
 # cti_manage_core_titles_event.0001 = {
