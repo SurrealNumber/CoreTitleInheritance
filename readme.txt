@@ -1172,3 +1172,26 @@ Localization:
     capital chain single and plural versions
     update de_facto game concept
     other miscelaneous stuff I know I forgot or did not realize existed.
+
+
+If one looses a duchy title due to title succession law, de-jure teritory beneath goes as well including capital.
+Cannot core duchy even though counties beneath it are core. To debug this effectively I should document the triggers and effects.
+ran into error wher is_title_core_due_to_capital caused an error to be raised because the character had no capital. Will have to look into.
+
+documenting triggers:
+
+trigger can have custom_descriptions.
+custom_description = {
+    text = localization or trigger_localization
+    trigger- used in trigger as a whole and when false shows the text.
+}
+
+In trigger_localization key is trigger name, and the options are the person of the trigger.
+Have $COMPARATOR$ and $NUM$ are available in localization text
+CHARACTER, TITLE, PROVINCE seem to be available in localization text in gui language.
+For comparator specializations it is unclear what specifies which one is used.
+Triggers have implied AND at base level. Will change code to utilize this.
+SHOULD BE ABLE TO CORE PRIMARY/CAPITAL CHAIN TITLES - BENEFIT MIGHT BE WANTED.
+^would need ui clarification for when they are/are not cores from the mod.
+^benefit is already applied. Only difference is that the flat cost is not.
+^going to declare good enough as is.

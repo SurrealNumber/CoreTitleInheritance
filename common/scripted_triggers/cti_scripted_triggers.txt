@@ -15,45 +15,37 @@ is_title_special_core = { # Incomplete until I can see the always_follows_primar
 }
 
 is_title_core_due_to_not_cti = {
-    AND = {
-        is_title_core = yes
-        OR = {
-            is_title_core_due_to_capital = yes
-            holder.primary_title = this
-            is_title_special_core = yes
-        }
+    is_title_core = yes
+    OR = {
+        is_title_core_due_to_capital = yes
+        holder.primary_title = this
+        is_title_special_core = yes
     }
 }
 
 is_title_core_due_to_cti = {
-    AND = {
-        is_title_core = yes
-        has_variable = core # This condition means that it is technically possible (though it should never happen) that a title is considered neither core due to cti or core due to not cti.
-        is_title_core_due_to_not_cti = no
-    }
+    is_title_core = yes
+    has_variable = core # This condition means that it is technically possible (though it should never happen) that a title is considered neither core due to cti or core due to not cti.
+    is_title_core_due_to_not_cti = no
 }
 
 is_title_core = { # Assume that this will only be called if the title is owned
     trigger_if = {
         limit = {has_variable = core}
-        AND = {
-            tier >= tier_county
-            OR = {
-                var:core = yes# var:core should be a boolean
-                is_title_core_due_to_capital = yes
-                holder.primary_title = this
-                is_title_special_core = yes
-            }
+        tier >= tier_county
+        OR = {
+            var:core = yes# var:core should be a boolean
+            is_title_core_due_to_capital = yes
+            holder.primary_title = this
+            is_title_special_core = yes
         }
     }
     trigger_else = {
-        AND = {
-            tier >= tier_county
-            OR = {
-                is_title_core_due_to_capital = yes
-                holder.primary_title = this
-                is_title_special_core = yes
-            }
+        tier >= tier_county
+        OR = {
+            is_title_core_due_to_capital = yes
+            holder.primary_title = this
+            is_title_special_core = yes
         }
     }
 }
@@ -104,39 +96,27 @@ will_core_loss_break_chain = { # scope is title
     holder.primary_title = {save_temporary_scope_as = _primary} # means will not get to the primary_title. Also prevents it from going beyond empire.
     trigger_if ={# duchy
         limit = {
-            AND = {
-                de_jure_liege.tier < scope:_primary.tier
-                de_jure_liege.holder = holder
-            }
+            de_jure_liege.tier < scope:_primary.tier
+            de_jure_liege.holder = holder
         }
-        AND = {
-            de_jure_liege = {is_title_core = yes}
-            NOT = {de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:_title}}}
-        }
+        de_jure_liege = {is_title_core = yes}
+        NOT = {de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:_title}}}
     }
     trigger_else_if = {# kingdom
         limit = {
-            AND = {
-                de_jure_liege.de_jure_liege.tier < scope:_primary.tier
-                de_jure_liege.de_jure_liege.holder = holder
-            }
+            de_jure_liege.de_jure_liege.tier < scope:_primary.tier
+            de_jure_liege.de_jure_liege.holder = holder
         }
-        AND = {
-            de_jure_liege.de_jure_liege = {is_title_core = yes}
-            NOT = {de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:_title}}}
-        }
+        de_jure_liege.de_jure_liege = {is_title_core = yes}
+        NOT = {de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:_title}}}
     }
     trigger_else_if = {# empire
         limit = {
-            AND = {
-                de_jure_liege.de_jure_liege.de_jure_liege.tier < scope:_primary.tier
-                de_jure_liege.de_jure_liege.de_jure_liege.holder = holder
-            }
+            de_jure_liege.de_jure_liege.de_jure_liege.tier < scope:_primary.tier
+            de_jure_liege.de_jure_liege.de_jure_liege.holder = holder
         }
-        AND = {
-            de_jure_liege.de_jure_liege.de_jure_liege = {is_title_core = yes}
-            NOT = {de_jure_liege.de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:_title}}}
-        }
+        de_jure_liege.de_jure_liege.de_jure_liege = {is_title_core = yes}
+        NOT = {de_jure_liege.de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:_title}}}
     }
     trigger_else = {
         always = no
@@ -168,10 +148,8 @@ can_core_title = {
 }
 
 can_de_core_title = {
-    AND = {
-        is_title_core_due_to_cti = yes
-        will_core_loss_break_chain = no
-    }
+    is_title_core_due_to_cti = yes
+    will_core_loss_break_chain = no
 }
 
 has_core_titles = { # scope is character

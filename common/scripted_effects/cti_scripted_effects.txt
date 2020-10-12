@@ -6,10 +6,8 @@ apply_core_county_modifier = { # scope is a title
         limit = {is_title_county = yes}
         if = {
             limit = {
-                AND = {
-                    has_game_rule = overtime_core_county_cost
-                    has_game_rule = control_core_county_benefit
-                }
+                has_game_rule = overtime_core_county_cost
+                has_game_rule = control_core_county_benefit
             }
             add_county_modifier = core_county_cost_benefit_modifier
         }
@@ -238,11 +236,9 @@ check_auto_core_title = { # scope is title. Assumes that only  one title is bein
     save_temporary_scope_as = _title
     if = {
         limit = {
-            AND = {
-                tier > tier_county
-                is_title_core_due_to_not_cti = no
-                will_core_loss_break_chain = yes
-            }
+            tier > tier_county
+            is_title_core_due_to_not_cti = no
+            will_core_loss_break_chain = yes
         }
         set_title_core = yes
         apply_cost_and_count_of_title = { # should never have an effect, but putting it here for consistency.
