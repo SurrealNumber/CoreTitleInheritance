@@ -1,28 +1,45 @@
 ﻿l_english: 
  NOT_TITLE_TIER_TRIGGER_THIRD:0 "Rank is not $COMPARATOR$ $TIER|V$"
  NOT_TITLE_TIER_TRIGGER:0 "[TITLE.GetName]'s Rank is not $COMPARATOR$ $TIER|V$"
+ 
  PRIMARY_TITLE_EQUAL_TRIGGER:0 "[TITLE.GetName] is [primary_title|E]"
  NOT_PRIMARY_TITLE_EQUAL_TRIGGER:0 "[TITLE.GetName] is not [primary_title|E]"
+ 
  CAPITAL_COUNTY_EQUAL_TRIGGER:0 "[TITLE.GetName] is [realm_capital|E]"
  NOT_CAPITAL_COUNTY_EQUAL_TRIGGER:0 "[TITLE.GetName] is not [realm_capital|E]"
+ 
  IS_DE_JURE_LIEGE_OR_ABOVE_TARGET_TRIGGER:0 "[TITLE.GetName] is [de_jure|E] [liege|E] or above [TARGET_TITLE.GetName]"
  NOT_IS_DE_JURE_LIEGE_OR_ABOVE_TARGET_TRIGGER:0 "[TITLE.GetName] is not [de_jure|E] [liege|E] or above [TARGET_TITLE.GetName]"
+ 
  TARGET_IS_DE_JURE_LIEGE_OR_ABOVE_TRIGGER:0 "[TARGET_TITLE.GetName] is [de_jure|E] [liege|E] or above [TITLE.GetName]"
- NOT_TARGET_IS_DE_JURE_LIEGE_OR_ABOVE_TRIGGER:0 "[TARGET_TARGET_TITLE.GetName] is not [de_jure|E] [liege|E] or above [TITLE.GetName]"
+ NOT_TARGET_IS_DE_JURE_LIEGE_OR_ABOVE_TRIGGER:0 "[TARGET_TITLE.GetName] is not [de_jure|E] [liege|E] or above [TITLE.GetName]"
+ 
  ALL_THIS_TITLE_OR_DE_JURE_ABOVE_TRIGGER:0 "All of [TITLE.GetName] or [TITLE.GetNamePossessive] [de_jure|E] above:"
  NOT_ALL_THIS_TITLE_OR_DE_JURE_ABOVE_TRIGGER:0 "Some of [TITLE.GetName] or [TITLE.GetNamePossessive] [de_jure|E] above don't:"
+ 
  ANY_THIS_TITLE_OR_DE_JURE_ABOVE_TRIGGER:0 "Any of [TITLE.GetName] or [TITLE.GetNamePossessive] [de_jure|E] above:"
  NOT_ANY_THIS_TITLE_OR_DE_JURE_ABOVE_TRIGGER:0 "None of [TITLE.GetName] or [TITLE.GetNamePossessive] [de_jure|E] above:"
- LANDED_TITLE_THIS_EQUAL_TRIGGER:0 "[TITLE.GetName] is the same as [THIS.GetName]"
+ 
+ LANDED_TITLE_THIS_EQUAL_TRIGGER:0 "[TITLE.GetName] is the same as the scoped title."
+ 
  LANDED_TITLE_VAR_EQUAL_TRIGGER:0 "[TITLE.GetName] is the same as [VAR.GetName]"
  NOT_LANDED_TITLE_VAR_EQUAL_TRIGGER:0 "[TITLE.GetName] is not the same as [VAR.GetName]"
+ 
  IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] is a [head_of_faith|E] [title|E]"
  NOT_IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] is not a [head_of_faith|E] [title|E]"
+ 
  HAS_VARIABLE_TRIGGER:0 "Has Variable Trigger"
  NOT_HAS_VARIABLE_TRIGGER:0 "Not Has Variable Trigger"
  
- IS_CORE_TITLE_TRIGGER:0 "[title|E] is a [core_title|E]"
+ IS_TITLE_CORE_TRIGGER:0 "[TITLE.GetName] is a [core_title|E]"
+ NOT_IS_TITLE_CORE_TRIGGER:0 "[TITLE.GetName] is not a [core_title|E]"
+ 
+ PRINT_TITLE:0 "[TITLE.GetName]"
+ NOT_PRINT_TITLE:0 "[TITLE.GetName] and NOT"
+ 
+ CHILD_CHAIN_EXISTS:0 "There is a chain of [core_titles|E] down to a [core_county|E]"
+ NOT_CHILD_CHAIN_EXISTS:0 "There is not a chain of [core_titles|E] down to a [core_county|E]"
+ 
  
  ANY_CORE_TITLE_ITEM_THIRD:0 "Any of [CHARACTER.GetShortUINamePossessive] [core_titles|E]:"
- 
  ALL_CORE_TITLE_ITEM_THIRD:0 "All of [CHARACTER.GetShortUINamePossessive] [core_titles|E]:"

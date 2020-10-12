@@ -54,55 +54,56 @@ set_over_core_limit_modifier = { # scope is character
     remove_all_character_modifier_instances = 8_over_core_limit_modifier
     remove_all_character_modifier_instances = 9_over_core_limit_modifier
     remove_all_character_modifier_instances = 10_plus_over_core_limit_modifier
-    set_variable = {
-        name = _amount_over_core_limit
-        value = amount_over_core_limit
-    } #hopefully stores the variable so it is not calculated every time.
+    # set_variable = {
+        # name = _amount_over_core_limit
+        # value = amount_over_core_limit
+    # } #hopefully stores the variable so it is not calculated every time.
+    # Will recalculate this value every time. Very inneficient.
     if = {
-        limit = {var:_amount_over_core_limit = 0}
+        limit = {amount_over_core_limit = 0}
         # do nothing
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 1}
+        limit = {amount_over_core_limit = 1}
         add_character_modifier = 1_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 2}
+        limit = {amount_over_core_limit = 2}
         add_character_modifier = 2_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 3}
+        limit = {amount_over_core_limit = 3}
         add_character_modifier = 3_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 4}
+        limit = {amount_over_core_limit = 4}
         add_character_modifier = 4_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 5}
+        limit = {amount_over_core_limit = 5}
         add_character_modifier = 5_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 6}
+        limit = {amount_over_core_limit = 6}
         add_character_modifier = 6_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 7}
+        limit = {amount_over_core_limit = 7}
         add_character_modifier = 7_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 8}
+        limit = {amount_over_core_limit = 8}
         add_character_modifier = 8_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 9}
+        limit = {amount_over_core_limit = 9}
         add_character_modifier = 9_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit >= 10}
+        limit = {amount_over_core_limit >= 10}
         add_character_modifier = 10_plus_over_core_limit_modifier
     }
-    remove_variable = _amount_over_core_limit
+    #remove_variable = _amount_over_core_limit
 }
 
 

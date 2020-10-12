@@ -1260,3 +1260,78 @@ Looks like de-designating does too much with modifiers
 Need any_this_title_or_de_jure_above
 Need IS_CORE_TITLE_TRIGGER
 It looks like core_title_item is only returning the first core title. <- checked and doing every_core_title_item is returning the right amount of things.
+need localization for always?
+
+
+save_temporary_scope_as = _title
+holder = {# Changes scope to holder
+    any_held_title = { # goes through core titles of owner.
+        NOT = {this = scope:_title} # excludes this title from consideration (used for checking breaking chains or adding cores)
+        target_is_de_jure_liege_or_above = scope:_title # de_jure_child of this title. Assume that this disqualifies the title I am calling this on.
+        
+        NOT = { # need to make sure condition is true for every, so looking for one thing which does not meet it.
+            any_this_title_or_de_jure_above = {
+                trigger_if = {
+                    limit = {exists = holder}
+                    # nothing in chain is owned by holder (which implies it exists) but is not core.
+                    # will break if there is a title which is held by holder, but is not core between two titles.
+                    holder = scope:_title.holder # held by owner. This shold also disqualify titles that don't exist.
+                    tier < scope:_title.tier #in chain between two titles <- because title itself is presumably in heirarchy
+                    #is_title_core = no # not core
+                }
+                trigger_else = {
+                    always = no
+                }
+            }
+        }
+    }
+}
+
+If I ever use realm, I might want to use sub_realm instead.
+Looks like what is happening is that the *tooltip* only displays the first entry in the list.
+
+
+#is_a_child_title_chain_core = {EXCLUDED = this}
+save_temporary_scope_as = _title
+save_temporary_scope_as = _excluded
+holder = {
+	any_core_title_item = {
+		trigger_if = {
+			limit = {
+				NOT = {this = scope:_excluded}
+				target_is_de_jure_liege_or_above = scope:_title
+			}
+			NOT = {
+				any_this_title_or_de_jure_above = {
+					trigger_if = {
+						limit = {exists = holder}
+						holder = scope:_title.holder
+						tier < scope:_title.tier
+						is_title_core = no
+					}
+					trigger_else = {
+						always = no
+					}
+				}
+			}
+		}
+		trigger_else ={
+			always = no
+		}
+	}
+}
+
+check if EXCLUDED is messing things up because the logic is working.
+
+test_trigger = {
+    any_held_title = {
+        NOT = {this = $EXCLUDED$}
+    }
+}
+
+test_trigger = {EXCLUDED = this}
+
+Passing in `this` results in the `this` being used, NOT `this_object`
+I am using the same names for temporary scopes everywhere. I have to be careful that I am not overriding it by accident.
+core titles were removed as opposed to a new core being automatically created.
+Prestige modifier and over core limit modifiers do not seem to be working, but otherwise it seems to be mostly functional.

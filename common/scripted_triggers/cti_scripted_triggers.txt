@@ -1,12 +1,18 @@
 ﻿# All scopes are titles unless otherwise noted.
 
 is_title_core_due_to_capital = { # scope is title
-    OR = {
-        holder.capital_county = this # capital county
-        AND = {
-            is_de_jure_liege_or_above_target = holder.capital_county
-            tier < holder.primary_title.tier # not the same tier as the primary title
+    trigger_if = {
+        limit = {exists = holder}
+        OR = {
+            holder.capital_county = this # capital county
+            AND = {
+                is_de_jure_liege_or_above_target = holder.capital_county
+                tier < holder.primary_title.tier # not the same tier as the primary title
+            }
         }
+    }
+    trigger_else = {
+        always = no
     }
 }
 
@@ -15,25 +21,22 @@ is_title_special_core = { # Incomplete until I can see the always_follows_primar
 }
 
 is_title_core = { # Assume that this will only be called if the title is owned
-    custom_description = {
-        text = IS_CORE_TITLE_TRIGGER
-        trigger_if = {
-            limit = {has_variable = core}
-            tier >= tier_county
-            OR = {
-                var:core = yes# var:core should be a boolean
-                is_title_core_due_to_capital = yes
-                holder.primary_title = this
-                is_title_special_core = yes
-            }
+    trigger_if = {
+        limit = {has_variable = core}
+        tier >= tier_county
+        OR = {
+            var:core = yes# var:core should be a boolean
+            is_title_core_due_to_capital = yes
+            holder.primary_title = this
+            is_title_special_core = yes
         }
-        trigger_else = {
-            tier >= tier_county
-            OR = {
-                is_title_core_due_to_capital = yes
-                holder.primary_title = this
-                is_title_special_core = yes
-            }
+    }
+    trigger_else = {
+        tier >= tier_county
+        OR = {
+            is_title_core_due_to_capital = yes
+            holder.primary_title = this
+            is_title_special_core = yes
         }
     }
 }
@@ -62,33 +65,47 @@ does_core_count_to_limit = { # scope is title
 }
 
 is_a_child_title_chain_core = {# scope is title. assumes that rules are being followed up to this point.
-    save_temporary_scope_as = _title
-    holder = {# Changes scope to holder
-        any_core_title_item = { # goes through core titles of owner.
-            NOT = {this = $EXCLUDED$} # excludes this title from consideration (used for checking breaking chains or adding cores)
-            target_is_de_jure_liege_or_above = scope:_title # de_jure_child of this title. Assume that this disqualifies the title I am calling this on.
-            
-            NOT = { # need to make sure condition is true for every, so looking for one thing which does not meet it.
-                any_this_title_or_de_jure_above = {
-                    trigger_if = {
-                        limit = {exists = holder}
-                        # nothing in chain is owned by holder (which implies it exists) but is not core.
-                        # will break if there is a title which is held by holder, but is not core between two titles.
-                        holder = scope:_title.holder # held by owner. This shold also disqualify titles that don't exist.
-                        tier < scope:_title.tier #in chain between two titles <- because title itself is presumably in heirarchy
-                        is_title_core = no # not core
+    # custom_description = {
+        # text = CHILD_CHAIN_EXISTS
+        save_temporary_scope_as = _title
+        holder = {# Changes scope to holder
+            any_core_title_item = { # goes through core titles of owner.
+                trigger_if = {
+                    limit = {
+                        NOT = {this = $EXCLUDED$} # excludes this title from consideration (used for checking breaking chains or adding cores)
+                        target_is_de_jure_liege_or_above = scope:_title # de_jure_child of this title. Assume that this disqualifies the title I am calling this on.
                     }
+                                        
+                    NOT = { # need to make sure condition is true for every, so looking for one thing which does not meet it.
+                        any_this_title_or_de_jure_above = {
+                            trigger_if = {
+                                limit = {exists = holder}
+                                # nothing in chain is owned by holder (which implies it exists) but is not core.
+                                # will break if there is a title which is held by holder, but is not core between two titles.
+                                holder = scope:_title.holder # held by owner. This shold also disqualify titles that don't exist.
+                                tier < scope:_title.tier #in chain between two titles <- because title itself is presumably in heirarchy
+                                is_title_core = no # not core
+                            }
+                            trigger_else = {
+                                always = no
+                            }
+                        }
+                    }
+                }
+                trigger_else = {
+                    always = no
                 }
             }
         }
-    }
+    # }
 }
 
 is_title_eligible_for_core = { # Assume that this will only be called if the title is owned
     is_title_core = no # not a core title - will rule out core titles due to non-cti.
     OR = {
         is_title_county = yes # owned counties can always be cored
-        is_a_child_title_chain_core = {EXCLUDED = this} # EXCLUDED should do nothing in this case.
+        save_temporary_scope_as = _title
+        is_a_child_title_chain_core = {EXCLUDED = scope:_title} # EXCLUDED should do nothing in this case.
     }
 }
 
@@ -131,7 +148,7 @@ is_core_consistent = {# scope is title
     OR = {
         is_title_county = yes
         is_title_core_due_to_not_cti = yes
-        is_a_child_title_chain_core = {EXCLUDED = this}
+        is_a_child_title_chain_core = {EXCLUDED = scope:_title}
     }
 }
 

@@ -45,6 +45,14 @@ any_core_title_item = {
 any_core_title_item_all = {
     third = ALL_CORE_TITLE_ITEM_THIRD
 }
+
+is_title_core = {
+    global = IS_TITLE_CORE_TRIGGER
+}
+
+print_title = {
+    global = PRINT_TITLE
+}
 # is_title_core_due_to_capital
 
 # is_title_special_core
