@@ -3262,13 +3262,13 @@ window = {
                         vbox = { # special
                             layoutpolicy_horizontal = expanding
                             datacontext = "[GetScriptedGui('core_special_character_display')]"
-                            visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End)]"
+                            visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
                             text_label_center = {
-                                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End)]"
+                                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
                                 text = "CV_CORES_SPECIAL"
                             }
                             text_label_center = {
-                                visible = "[Not( ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter ).End))]"
+                                visible = "[Not( ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End))]"
                                 text = "CV_CORES_SPECIAL_SINGULAR"
                             }
 

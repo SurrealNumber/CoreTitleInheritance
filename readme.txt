@@ -1064,3 +1064,78 @@ Every title (including those you don't own) still has both buttons. Looking into
 nullptr is returned after opening the title window.
 
 IT APPEARS TO BE WORKING (but missing _a_lot_ of localization)
+
+
+TODO:
+Debug
+Logic - update for title succession laws
+Logic - update for changing capital or primary title.
+Localization:
+    trigger and effect localization
+    broken localization
+    capital chain single and plural versions
+    fix special cores always showing up.
+    update de_facto game concept
+Clean up code
+x Logic - find replacement for removed recursion. (used while loop)
+Gui - Implement janky filtering gridbox?
+All - implement way to remove system upon single heir succession.
+
+has_title_law - have given title-specific law
+has_title_law_flag - have title-specific law with given flag
+.HasLaws in gui language
+unclear what the difference between the two in scripting language is. Also looks like they both need to be fed a specific law.
+Looks like difference is between specific laws and law groups.
+Flags seen: elective_succession_law, advanced_succession_law
+^ unclear if the scripting things also consider the realm law when checking.
+
+Possibly find a way to iterate through all possible title laws. That or find a way to use the gui system in script.
+I can do that through a scripted gui, but not in the way I need to.
+according to wiki, only duchy and above titles can have title laws.
+It appears that currently the only title laws are for elective succession, and the only realm laws are for partition or single heir.
+^  makes sense, but why can't single heir have ellections?
+head of faith specialness seems to come from two places. when defined or made, and the head of faith succession laws.
+
+What is the difference between player_heir and primary_heir
+There is a gui MyRealmWindow.GetSuccessionExceptions
+MyRealmWindow.GetTitlesCanVote
+
+Found what looks like a bug in the base game. Kingdom of Italia is primary title with elective succession. Kingdom of italy has no title laws. Kingdom of italy does not show up as going to brother who is primary heir in my_realm tab even though it says he will get it in title window.
+^ Kingdom of italy does not show up at all.
+^ kingdom of italy had title succession law, but same as realm. Most likely this caused it to not show up anywhere.
+^ not going to look into further here.
+
+following is stated in _laws.info
+Elective is currently only title succession.
+Partition is currently only realm.
+Single heir can be both.
+
+If single heir and same gender laws as primary title, it will be put into general succession. Otherwise it is treated seperately.
+To check for title laws: 
+If they have the flag elective_succession_law then they are title law.
+If they don't have flag advanced_succession_law they are realm?
+If advanced check if same gender law as realm (somehow).
+
+If primary title has other successor of your dynasty, your primary heir will be them. Flag always_follows_primary_heir still works. Capital and de-jure above also pass to them.
+
+there does nor appear to be a way to get the realm or title laws.
+exists has_realm_law.
+
+This is disapointing - I cannot deal with for instance mod made title or realm laws. I can have to manually check them.
+
+Outline of check for title laws:
+is flag elective -> yes
+is flag advanced -> x
+else -> no
+x - for each gender option, realm has and title has (no -> yes)
+for each single heir option, realm has and title has (no ->yes)
+no
+If there was a list of title laws this would work out.
+
+Need to check if titles when asked laws will give realm laws if they have none.
+
+Before I proceed, what would the effect of title succession laws be?
+    cannot core. <- seems reasonable.
+    ^ means if primary or in capital chain must exclude. or special?
+
+Don't want to deal with this now. Will create issue on github, and leave be for now.
