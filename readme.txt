@@ -1080,6 +1080,7 @@ Clean up code
 x Logic - find replacement for removed recursion. (used while loop)
 Gui - Implement janky filtering gridbox?
 All - implement way to remove system upon single heir succession.
+Misc - Make AI
 
 has_title_law - have given title-specific law
 has_title_law_flag - have title-specific law with given flag
@@ -1139,3 +1140,35 @@ Before I proceed, what would the effect of title succession laws be?
     ^ means if primary or in capital chain must exclude. or special?
 
 Don't want to deal with this now. Will create issue on github, and leave be for now.
+
+
+just found a note in a file saying that |U can only capitalize the first word in a string.
+exists set_realm_capital effect
+exists set_capital_county - meant for titles
+exists set_primary_title_to
+
+setting realm and capital counties through UI might not go through these. I also do not know how I would overwrite them.
+Can't find on actions on them.
+Will also raise issue on github and leave be for now.
+
+TODO:
+Debug
+Localization:
+    trigger and effect localization
+    broken localization
+    capital chain single and plural versions
+    update de_facto game concept
+Clean up code
+Gui - Implement janky filtering gridbox? - put into issue on github
+All - implement way to remove system upon single heir succession. - put into issue on github
+Misc - Make AI - put inot issue on github.
+
+Removing things moved to github issues:
+Debug
+Clean up code
+Localization:
+    trigger and effect localization
+    broken localization
+    capital chain single and plural versions
+    update de_facto game concept
+    other miscelaneous stuff I know I forgot or did not realize existed.
