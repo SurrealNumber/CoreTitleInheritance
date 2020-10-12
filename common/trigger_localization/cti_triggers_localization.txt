@@ -1,0 +1,60 @@
+﻿primary_title_equal = {
+    global = PRIMARY_TITLE_EQUAL_TRIGGER
+}
+
+capital_county_equal = {
+    global = CAPITAL_COUNTY_EQUAL_TRIGGER
+}
+
+is_de_jure_liege_or_above_target = {
+    global = IS_DE_JURE_LIEGE_OR_ABOVE_TARGET_TRIGGER
+}
+
+any_this_title_or_de_jure_above_all = {
+    global = ANY_THIS_TITLE_OR_DE_JURE_ABOVE_ALL_TRIGGER
+}
+
+landed_title_this_equal = {
+    global = LANDED_TITLE_THIS_EQUAL_TRIGGER
+}
+
+landed_title_var_equal = {
+    global = LANDED_TITLE_VAR_EQUAL_TRIGGER
+}
+
+is_head_of_faith = {
+    global = IS_HEAD_OF_FAITH_TRIGGER
+}
+
+has_variable = { # probably want to deal with this in a different manner, but I am trying to just get something to show up now.
+    global = HAS_VARIABLE_TRIGGER
+}
+# is_title_core_due_to_capital
+
+# is_title_special_core
+
+# is_title_core_due_to_not_cti
+
+# is_title_core_due_to_cti
+
+# is_title_core
+
+# is_title_county
+
+# does_core_count_to_limit
+
+# is_a_child_title_chain_core
+
+# is_title_eligible_for_core
+
+# will_core_loss_break_chain
+
+# is_core_consistent
+
+# is_over_core_limit
+
+# can_core_title
+
+# can_de_core_title
+
+# has_core_titles

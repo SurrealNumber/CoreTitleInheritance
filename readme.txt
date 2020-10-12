@@ -1195,3 +1195,57 @@ SHOULD BE ABLE TO CORE PRIMARY/CAPITAL CHAIN TITLES - BENEFIT MIGHT BE WANTED.
 ^would need ui clarification for when they are/are not cores from the mod.
 ^benefit is already applied. Only difference is that the flat cost is not.
 ^going to declare good enough as is.
+
+Localization for triggers game says I am missing:
+NOT_has_variable_trigger (BUG: has_variable missing perspective)
+primary_title_equal
+capital_county_equal
+work on effects for modifier stuff (BUG remove_all_character_modifier_instances missing perspective)
+is_de_jure_liege_or_above_target
+NOT_TITLE_TIER_TRIGGER_THIRD
+core_title_item
+landed_title_this_equal
+any_this_title_or_de_jure_above_all
+NOT_TITLE_TIER_TRIGGER
+is_head_of_faith
+^ these are just for buttons
+add space between icon and numbers in core title tab. Also make icon bigger. Fix core titles - it should be integer/integer. It is currently 0.00/
+break up blob of text in core title encyclopedia entry
+fix too much being bold problem in list encyclopedia entries.
+fix icon for core title persistence
+change icon for core county limit to core title icon. -same with core county
+ck3 possibly does not like setting a variable to a scripted value.
+will definetely want to make use of custom_descriptions for triggers.
+will start with only global trigger localization. Can add more later.
+Suspect that character does not have capital spam is being done at game start. Probably also occuring when titles are transfered, as characters losing titles might not have a capital. Also would be a problem if it was called with a baron or other ruler without a county.
+now I need:
+core_title_item
+NOT_IS_DEJURE_LIEGE_OR_ABOVE_TARGET_TRIGGER
+NOT_ANY_THIS_TITLE_OR_DE_JURE_ABOVE_ALL_TRIGGER
+NOT_CAPITAL_COUNTY_EQUAL_TRIGGER
+NOT_IS_DE_JURE_LIEGE_OR_ABOVE_TRIGGER
+NOT_PRIMARY_TITLE_EQUAL_TRIGGER
+NOT_IS_HEAD_OF_FAITH_TRIGGER
+primary_title_equal and has_variable are missing perspective?
+
+wrong context supplied before TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE error. Says unknown formatting tag 'NAK!'
+
+now says I need:
+NOT_HAS_VARIABLE_TRIGGER
+title.GetName instead of actual name
+NOT_IS_DE_JURE_LIEGE_OR_ABOVE_TARGET_TRIGGER
+missing thing before or De Jure above:
+landed_title_var_equal
+
+removed #T sjfsjdlfjlejlkjdfs# from tooltips for (de)designate cores
+
+
+Unknown formatting tag '"(v' on character window.
+PRIMARY_TITLE_EQUAL_TRIGGER <- prolem here. Says wrong context was provided?
+TARGET_TITLE does not seem to be working
+is de-jure liege or above seems to be negated in child chain even though it is not.
+checking any in a list seems to make the trigger extremely long. will have to look into how to fix it.
+need NOT_LANDED_TITLE_VAR_EQUAL_TRIGGER
+for some reason the localization at least is saying that a county title is not greater or equal to county
+missing title name for is not realm capital and is not primary title.
+Seems when looking for childrent it is looking for the title to be de-jure liege or above the title. <- Actually that looks to be part of will break core chain.<- don't know why that one is being triggered.

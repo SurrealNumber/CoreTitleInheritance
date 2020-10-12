@@ -90,7 +90,10 @@ cti_on_game_start_after_lobby = {
                     has_game_rule = control_core_county_benefit
                 }
             }
-            every_ruler = {recalculate_cores = yes}# Will ignore baron tier
+            every_ruler = {
+                limit = {exists = capital_county}
+                recalculate_cores = yes
+                }# Will ignore baron tier
         }
     }
 }

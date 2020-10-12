@@ -1,20 +1,20 @@
 ﻿l_english: 
  TITLE_VIEW_DESIGNATE_CORE:0 "Designate Core"
- TITLE_DESIGNATE_CORE_TOOLTIP:0 "#T Designate [TitleViewWindow.GetTitle.GetName] a [core_title|E]#"
- TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD:0 "#T Cannot Designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to no [de_facto|E] title directly beneath it being a [core_title|E]#"
+ TITLE_DESIGNATE_CORE_TOOLTIP:0 "Designate [TitleViewWindow.GetTitle.GetName] a [core_title|E]"
+ TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD:0 "Cannot Designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to no [de_facto|E] title directly beneath it being a [core_title|E]"
  
  TITLE_VIEW_DE_DESIGNATE_CORE:0 "De-designate Core"
- TITLE_DE_DESIGNATE_CORE_TOOLTIP:0 "#T De-designate [TitleViewWindow.GetTitle.GetName] as a [core_title|E]#"
- TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING:0 "#T Cannot De-designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to the [de_facto|E] liege title being [core|E] and having no other [core|E] [de_facto|E] titles directly beneath it#"
- TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN:0 "#T Cannot De-designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to the title being [core|E] from being in the [de_jure] chain starting at the [realm_capital|E]#"
- TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE:0 "#T Cannot De-designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to the title being [core|E] from being the [primary_title|E]#"
- TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE:0 "#T Cannot De-designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to the title being [core|E] because it is a special title like a [head_of_faith|E] [title|E]#"
+ TITLE_DE_DESIGNATE_CORE_TOOLTIP:0 "De-designate [TitleViewWindow.GetTitle.GetName] as a [core_title|E]"
+ TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING:0 "Cannot De-designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to the [de_facto|E] liege title being [core|E] and having no other [core|E] [de_facto|E] titles directly beneath it"
+ TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN:0 "Cannot De-designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to the title being [core|E] from being in the [de_jure] chain starting at the [realm_capital|E]"
+ TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE:0 "Cannot De-designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to the title being [core|E] from being the [primary_title|E]"
+ TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE:0 "Cannot De-designate [TitleViewWindow.GetTitle.GetName] as [core|E] due to the title being [core|E] because it is a special title like a [head_of_faith|E] [title|E]"
  
  CV_CORE_TITLES:0 "[core_titles|E]"
  CV_CORE_TITLES_SINGULAR:0 "[core_title|E]"
  
- CORE_LIMIT_C_L:0 "[Character.MakeScope.GetVariable('core_count').GetValue|V]/[Character.Custom('val_core_limit')|V]" # I really hope that this works. core_limit potentially conflicts with the encyclopedia entry.
- CV_CORE_TITLES_NUMBER:0 "([Character.Custom('num_core_titles')|V])"
+ CORE_LIMIT_C_L:0 "CORE_LIMIT_C_L_PLACEHODLER" #"[Character.MakeScope.GetVariable('core_count').GetValue|V]/[Character.Custom('val_core_limit')|V]" # I really hope that this works. core_limit potentially conflicts with the encyclopedia entry.
+ CV_CORE_TITLES_NUMBER:0 "CV_CORE_TITLES_NUMBER_PLACEHOLDER" #"([Character.Custom('num_core_titles')|V])"
  
  CORE_LIMIT_TOOLTIP_HEADER:0 "#T [core_counties|E]: [_core_count|V]/[_core_limit|V] [counties|E]#!"
  CORE_LIMIT_EXCEEDED_TOOLTIP:0 "@warning_icon!#X Above [core_limit|E]. De-designate some [core_counties|E].#!\n"

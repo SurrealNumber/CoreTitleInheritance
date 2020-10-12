@@ -2,7 +2,7 @@
 
 is_title_core_due_to_capital = { # scope is title
     OR = {
-        holder.capital_county = this # capital barony
+        holder.capital_county = this # capital county
         AND = {
             is_de_jure_liege_or_above_target = holder.capital_county
             tier < holder.primary_title.tier # not the same tier as the primary title
