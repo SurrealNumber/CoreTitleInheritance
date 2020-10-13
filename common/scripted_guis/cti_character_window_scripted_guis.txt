@@ -21,7 +21,14 @@ core_limit_display = {
     
     effect = {
         # Generate tooltip
-        val_core_limit = {save_temporary_scope_as = _core_limit}
+        set_variable = {
+            name = _core_limit
+            value = val_core_limit
+        }
+        set_variable = {
+            name = _num_core_titles
+            value = num_core_titles
+        }
         var:core_count = {save_temporary_scope_as = _core_count}
         custom_tooltip = CORE_LIMIT_TOOLTIP_HEADER
         if = {

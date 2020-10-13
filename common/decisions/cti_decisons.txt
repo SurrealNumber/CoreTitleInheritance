@@ -38,3 +38,13 @@ de_designate_all_core_titles_decision = { # scope is presumably character
         de_designate_all_core_titles = yes
     }
 }
+
+recalculate_core_titles_decision = { # scope is presumably character
+    picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
+    ai_check_interval = 0 # AI should manage cores via prompts from on_actions and the like.
+    effect = {
+        custom_tooltip = recalculate_core_titles_decision_effect_tooltip
+        
+        recalculate_cores = yes
+    }
+}

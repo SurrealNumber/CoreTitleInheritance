@@ -65,8 +65,8 @@ does_core_count_to_limit = { # scope is title
 }
 
 is_a_child_title_chain_core = {# scope is title. assumes that rules are being followed up to this point.
-    # custom_description = {
-        # text = CHILD_CHAIN_EXISTS
+    custom_description = {
+        text = CHILD_CHAIN_EXISTS
         save_temporary_scope_as = _title
         holder = {# Changes scope to holder
             any_core_title_item = { # goes through core titles of owner.
@@ -93,7 +93,7 @@ is_a_child_title_chain_core = {# scope is title. assumes that rules are being fo
                 }
             }
         }
-    # }
+    }
 }
 
 is_title_eligible_for_core = { # Assume that this will only be called if the title is owned

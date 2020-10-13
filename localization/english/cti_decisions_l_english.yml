@@ -25,3 +25,9 @@
  #de_designate_all_core_titles_decision_effect_tooltip_bullet4:0 "RESERVED FOR TITLE SUCCESSION LAWS"
  de_designate_all_core_titles_decision_effect_tooltip_bullet5:0 "[head_of_faith|E] [titles|E] are ineligible to de-core."
  de_designate_all_core_titles_decision_confirm:0 "De-designate All Core Titles"
+ 
+ recalculate_core_titles_decision:0 "Recalculate Core Titles"
+ recalculate_core_titles_decision_tooltip:0 "Recalculate [core_titles|E]"
+ recalculate_core_titles_decision_desc:0 "Recalculate [core_titles|E]."
+ recalculate_core_titles_decision_effect_tooltip:0 "Will recalculate [core_title_limit|E], [core_title_impact|E] and eligibility of [core_titles|E] for your character."
+ recalculate_core_titles_decision_confirm:0 "Recalculate Core Titles"

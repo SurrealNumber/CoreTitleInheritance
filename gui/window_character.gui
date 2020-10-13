@@ -2790,7 +2790,8 @@ window = {
 		# TRAITS EXPANDED
 		scrollbox = {
 			name = "traits_expanded"
-			visible = "[CharacterWindow.AreTraitsExpanded]"
+			#visible = "[CharacterWindow.AreTraitsExpanded]"
+            visible = "[Not(IsInGame)]"# I hope that this will always return false.
 			layoutpolicy_vertical = expanding
 			layoutpolicy_horizontal = expanding
 
@@ -3138,7 +3139,7 @@ window = {
         # CORE TITLES EXPANDED
         vbox = {
             datacontext = "[GetScriptedGui( 'core_title_text_line' )]"
-            visible = "[And( And( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), CharacterWindow.AreTitlesExpanded ), And(And( Character.HasLandedTitles, Character.IsAlive), ScriptedGui.IsShown( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End ) ) )]"
+            visible = "[And( CharacterWindow.AreTraitsExpanded, And(And( Character.HasLandedTitles, Character.IsAlive), ScriptedGui.IsShown( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End ) ) )]"
             layoutpolicy_vertical = expanding
             layoutpolicy_horizontal = expanding
             
@@ -3522,7 +3523,6 @@ types CharacterWindow
                     layoutpolicy_horizontal = expanding
                     size = { 0 25 }
                     onclick = "[CharacterWindow.ToggleExpandedTitles]"
-                    onclick = "[VariableSystem.Clear('cv_expanded_core_titles_tab')]"
                     down = "[And(CharacterWindow.AreTitlesExpanded, Not(VariableSystem.Exists('cv_expanded_core_titles_tab')))]"
                     tooltip = "[SelectLocalization( CharacterWindow.AreTitlesExpanded, 'CV_TITLES_HIDE_TT', 'CV_TITLES_SHOW_TT' )]"
 
@@ -3556,15 +3556,14 @@ types CharacterWindow
                 
                 expand = {}
                 
-                button_standard_hover = { # Core Title Text - equal
+                button_standard_hover = { # Core Title Text
                     datacontext = "[GetScriptedGui('core_title_text_line')]"
-                    visible = "[And(ScriptedGui.IsShown(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End ), Or(And( VariableSystem.Exists('cv_expanded_core_titles_tab'), CharacterWindow.AreTitlesExpanded ), And(Not(VariableSystem.Exists('cv_expanded_core_titles_tab')), Not(CharacterWindow.AreTitlesExpanded))))]"
+                    visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End )]"
                     layoutpolicy_horizontal = expanding
                     size = { 0 25 }
-                    onclick = "[VariableSystem.Toggle('cv_expanded_core_titles_tab')]"
-                    onclick = "[CharacterWindow.ToggleExpandedTitles]"
-                    down = "[VariableSystem.Exists( 'cv_expanded_core_titles_tab')]"
-                    tooltip = "[SelectLocalization( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), 'CV_CORE_TITLES_HIDE_CTT', 'CV_CORE_TITLES_SHOW_CTT' )]"
+                    onclick = "[CharacterWindow.ToggleExpandedTraits]"
+                    down = "[CharacterWindow.AreTraitsExpanded]"
+                    tooltip = "[SelectLocalization(CharacterWindow.AreTraitsExpanded, 'CV_CORE_TITLES_HIDE_CTT', 'CV_CORE_TITLES_SHOW_CTT' )]"
 
                     hbox = {
                         margin = { 5 0 }
@@ -3593,81 +3592,6 @@ types CharacterWindow
                         }
                     }
                 }
-                
-                button_standard_hover = { # Core Title Text - core off, title on
-                    datacontext = "[GetScriptedGui( 'core_title_text_line' )]"
-                    visible = "[And(ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End ), And( Not(VariableSystem.Exists( 'cv_expanded_core_titles_tab')), CharacterWindow.AreTitlesExpanded )) ]"
-                    layoutpolicy_horizontal = expanding
-                    size = { 0 25 }
-                    onclick = "[VariableSystem.Toggle( 'cv_expanded_core_titles_tab' )]"
-                    down = "[VariableSystem.Exists( 'cv_expanded_core_titles_tab')]"
-                    tooltip = "[SelectLocalization( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), 'CV_CORE_TITLES_HIDE_TT', 'CV_CORE_TITLES_SHOW_TT' )]"
-
-                    hbox = {
-                        margin = { 5 0 }
-                        margin_bottom = 3
-                        margin_right = 10
-
-                        text_label_left = {
-                            visible = "[ScriptedGui.IsValid( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End)]"
-                            text = "CV_CORE_TITLES"
-                        }
-
-                        text_label_left = {
-                            visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End))]"
-                            text = "CV_CORE_TITLES_SINGULAR"
-                        }
-
-                        expand = {}# possibly want to remove this.
-
-                        text_single = {
-                            block "number_cores"
-                            {
-                                datacontext = "[CharacterWindow.GetCharacter]"
-                                text = "CV_CORE_TITLES_NUMBER"
-                            }
-                            default_format = "#weak"
-                        }
-                    }
-                }
-                
-                button_standard_hover = { # Core Title Text - core on, title off
-                    datacontext = "[GetScriptedGui( 'core_title_text_line' )]"
-                    visible = "[And( ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End ), And( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), Not(CharacterWindow.AreTitlesExpanded ))) ]"
-                    layoutpolicy_horizontal = expanding
-                    size = { 0 25 }
-                    onclick = "[CharacterWindow.ToggleExpandedTitles]"
-                    down = "[VariableSystem.Exists( 'cv_expanded_core_titles_tab')]"
-                    tooltip = "[SelectLocalization( VariableSystem.Exists( 'cv_expanded_core_titles_tab'), 'CV_CORE_TITLES_HIDE_TT', 'CV_CORE_TITLES_SHOW_TT' )]"
-
-                    hbox = {
-                        margin = { 5 0 }
-                        margin_bottom = 3
-                        margin_right = 10
-
-                        text_label_left = {
-                            visible = "[ScriptedGui.IsValid( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End)]"
-                            text = "CV_CORE_TITLES"
-                        }
-
-                        text_label_left = {
-                            visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End))]"
-                            text = "CV_CORE_TITLES_SINGULAR"
-                        }
-
-                        expand = {}# possibly want to remove this.
-
-                        text_single = {
-                            block "number_cores"
-                            {
-                                datacontext = "[CharacterWindow.GetCharacter]"
-                                text = "CV_CORE_TITLES_NUMBER"
-                            }
-                            default_format = "#weak"
-                        }
-                    }
-                }
-                
             }
 
 			hbox = {

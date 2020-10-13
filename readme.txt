@@ -1343,3 +1343,12 @@ I might run into problems if I try to do things to a title with no de-jure paren
 Problem is in logic of is_a_child_title_chain_core. Need to exclude the title in two places.
 
 extremely non-rigorus testing of ability to core/decore and which titles are eligible is done for now. Next I will try to get all (or as many as I can) of the modifiers to work.
+Based off how I am doing things, the core limit will not dynamically update when the character window is open.
+Number of cores and core limit numbers are all showing up as 0.0
+Managed to get rid of the errors, but everything is still 0.0
+Will look in non-debug mode for finishing touches on tooltips.
+Designated Core Title is showing singular even though it is supposed to be plural.
+^Same with Core Title text in realm tab.
+Will be taking over traits expanded.
+************I don't see a way into the expanded traits tab, and it does not appear to display any new information. I will commandeer it. I need to make sure to mention it.
+Possibly is shown when there are too many modifiers?
