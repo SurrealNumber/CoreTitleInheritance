@@ -72,7 +72,7 @@ is_a_child_title_chain_core = {# scope is title. assumes that rules are being fo
             any_core_title_item = { # goes through core titles of owner.
                 NOT = {this = $EXCLUDED$} # excludes this title from consideration (used for checking breaking chains or adding cores)
                 target_is_de_jure_liege_or_above = scope:_title # de_jure_child of this title. Assume that this disqualifies the title I am calling this on.
-                                    
+
                 NOT = { # need to make sure condition is true for every, so looking for one thing which does not meet it.
                     any_this_title_or_de_jure_above = {
                         trigger_if = {
@@ -151,7 +151,7 @@ is_core_consistent = {# scope is title
 is_over_core_limit = { # scope is character
     trigger_if = {
         limit = {has_variable = core_count}
-        var:core_count > val_core_limit
+        var:core_count > this.val_core_limit
     }
     trigger_else = {
         always = no

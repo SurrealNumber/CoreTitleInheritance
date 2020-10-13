@@ -6,7 +6,7 @@
     }
     
     is_valid = { # multiple core titles
-        1 < num_core_titles
+        1 < root.num_core_titles
     }
 }
 
@@ -23,21 +23,21 @@ core_limit_display = {
         # Generate tooltip
         set_variable = {
             name = _core_limit
-            value = val_core_limit
+            value = root.val_core_limit
         }
         set_variable = {
             name = _num_core_titles
-            value = num_core_titles
+            value = root.num_core_titles
         }
         var:core_count = {save_temporary_scope_as = _core_count}
         custom_tooltip = CORE_LIMIT_TOOLTIP_HEADER
         if = {
             limit = {is_over_core_limit = yes}
             custom_tooltip = CORE_LIMIT_EXCEEDED_TOOLTIP
-            amount_over_core_limit = {save_temporary_scope_as = _amount_over_core_limit}
+            root.amount_over_core_limit = {save_temporary_scope_as = _amount_over_core_limit}
             if = {
                 limit = {
-                    amount_over_core_limit > 1
+                    root.amount_over_core_limit > 1
                 }
                 custom_tooltip = CORE_LIMIT_OVER_EFFECTS_HEADING_TOOLTIP
             }
@@ -50,7 +50,7 @@ core_limit_display = {
             }
             change_variable = {
                 name = _val_over_core_limit_penalty
-                multiply = amount_over_core_limit
+                multiply = root.amount_over_core_limit
             }
             custom_tooltip = CORE_LIMIT_OVERRUN_EFFECT
         }
@@ -61,7 +61,7 @@ core_limit_display = {
     # scope = character
     
     # is_valid = { # multiple capital chain cores
-        # 1 < count_core_due_to_capital
+        # 1 < root.count_core_due_to_capital
     # }
 # }
 
@@ -81,7 +81,7 @@ core_special_character_display = {
     }
     
     is_valid = { # multiple special cores
-        1 < count_core_due_to_special
+        1 < root.count_core_due_to_special
     }
 }
 

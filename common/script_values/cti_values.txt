@@ -15,16 +15,16 @@
     }
 }
 
-coring_county_cost_flat = {value = major_prestige_loss}
-coring_county_refund_flat = {value = medium_prestige_gain}
-coring_county_refund_flat_full = {value = major_prestige_gain}
+coring_county_cost_flat = {value = medium_prestige_loss}
+coring_county_refund_flat = {value = minor_prestige_gain}
+coring_county_refund_flat_full = {value = medium_prestige_gain}
 
 amount_over_core_limit = { # scope is character
     value = 0
     if = {
         limit = {has_variable = core_count}
         value = var:core_count
-        subtract = val_core_limit
+        subtract = this.val_core_limit
         min = 0 # sets lower bound of 0
     }
 }
@@ -46,44 +46,47 @@ amount_over_core_limit = { # scope is character
 
 core_count_from_list = {
     value = 0
-    every_in_list = {
-        list = core_title_item
-        limit = {does_core_count_to_limit = yes}
-        add = 1
+    every_core_title_item = {
+        if = {
+            limit = {does_core_count_to_limit = yes}
+            add = 1
+        }
     }
 }
 
 num_core_titles = {
     value = 0
-    every_in_list = {
-        list = core_title_item
+    every_core_title_item = {
         add = 1
     }
 }
 # Only used in one place, but think I need it here to accomodate it.
 count_core_due_to_capital = {
     value = 0
-    every_in_list = {
-        list = core_title_item
-        limit = {is_title_core_due_to_capital = yes}
-        add = 1
+    every_core_title_item = {
+        if = {
+            limit = {is_title_core_due_to_capital = yes}
+            add = 1
+        }
     }
 }
 
 count_core_due_to_special = {
     value = 0
-    every_in_list = {
-        list = core_title_item
-        limit = {is_title_special_core = yes}
-        add = 1
+    every_core_title_item = {
+        if = {
+            limit = {is_title_special_core = yes}
+            add = 1
+        }
     }
 }
 
 count_core_due_to_mod = {
     value = 0
-    every_in_list = {
-        list = core_title_item
-        limit = {is_title_core_due_to_cti = yes}
-        add = 1
+    every_core_title_item = {
+        if = {
+            limit = {is_title_core_due_to_cti = yes}
+            add = 1
+        }
     }
 }

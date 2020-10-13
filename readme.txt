@@ -1352,3 +1352,17 @@ Designated Core Title is showing singular even though it is supposed to be plura
 Will be taking over traits expanded.
 ************I don't see a way into the expanded traits tab, and it does not appear to display any new information. I will commandeer it. I need to make sure to mention it.
 Possibly is shown when there are too many modifiers?
+The problem is that there is actually a problem with calculating the core limit and core count etc.
+It looks like values are referenced by scope.value_name. <- I guess it is like this because they are scopes.
+
+
+Testing in object explorer seems to indicate for values I have to use every_list_name = {add = 1} as opposed to every_in_list.
+What I am looking into right now does not explain core limit. Will have to look into that next.<- it actually does.
+Still wondering/want to know if something is wrong with core list. Possibly load order, will try adding numbers before files - think that effects load order.
+hypothesis for problem is that the *files* refer to each other, even though the individual *functions* don't. Splitting the files and effecting the load order would fix this.
+in testing load order for decisions - 99_ overruled 00_, 01_, and cti_
+will try splitting trigger file.
+
+every_list_name causes an error saying it is an unexpected token.
+It looks like it is just funkiness with scripted lists. It looks like they are not fully working.
+It looks like it is possible to add and remove from a list. This might be preferable to recalculating it every time. Look towards possibility in the future. <- raise on github
