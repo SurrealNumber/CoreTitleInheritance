@@ -1,6 +1,6 @@
 ﻿action_over_core_holding_limit = { # Scope is character? (or player?)
     type = alert
-    icon = action_above_domain_limit
+    icon = action_core_limit_penalty
     is_dangerous = yes
     
     check_create_action = { # scope is player character
@@ -14,8 +14,10 @@
     }
     
     effect = { # scope is character with additional targets defined in try_create_important_action above.
+        # Two set variables are incase I find out how to open the view with a specific tab expanded
         open_view_data = { # want to expand core titles tab, but don't know how
             view = character
+            player = root
         }
         
         # de_designate_all_core_titles_decision = {

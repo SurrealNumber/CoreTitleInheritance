@@ -63,13 +63,16 @@ is_title_county = {
 does_core_count_to_limit = { # scope is title
     is_title_county = yes
 }
-
+#######################################################################################
+######################## End of "Primative" triggers ##################################
+#######################################################################################
 is_a_child_title_chain_core = {# scope is title. assumes that rules are being followed up to this point.
     custom_description = {
         text = CHILD_CHAIN_EXISTS
         save_temporary_scope_as = _title
         holder = {# Changes scope to holder
-            any_core_title_item = { # goes through core titles of owner.
+            any_in_list = {
+                variable = core_title_list
                 NOT = {this = $EXCLUDED$} # excludes this title from consideration (used for checking breaking chains or adding cores)
                 target_is_de_jure_liege_or_above = scope:_title # de_jure_child of this title. Assume that this disqualifies the title I am calling this on.
 
@@ -151,7 +154,7 @@ is_core_consistent = {# scope is title
 is_over_core_limit = { # scope is character
     trigger_if = {
         limit = {has_variable = core_count}
-        var:core_count > this.val_core_limit
+        var:core_count > val_core_limit
     }
     trigger_else = {
         always = no
@@ -169,5 +172,14 @@ can_de_core_title = {
 }
 
 has_core_titles = { # scope is character
-    any_core_title_item = {always = yes} # inefficient, but good enough for now.
+    trigger_if = {
+        limit = {has_variable_list = core_title_list}
+        any_in_list = {
+            variable = core_title_list
+            always = yes
+        }# should check if the list is empty.
+    }
+    trigger_else = {
+        always = no
+    }
 }

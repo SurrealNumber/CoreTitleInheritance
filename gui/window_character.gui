@@ -19,6 +19,10 @@ window = {
 
 		on_start = "[GetVariableSystem.Set( 'left_sidebar_open', 'true' )]"
 		on_start = "[GetVariableSystem.Set( 'hide_bottom_left_HUD', 'true' )]"
+        datacontext = "[GetScriptedGui('core_title_number_calc')]"
+        on_start = "[ScriptedGui.Execute(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End )]"
+        datacontext = "[CharacterWindow.GetCharacter]"
+        
 	}
 
 	state = {
@@ -49,6 +53,9 @@ window = {
 		name = translate_open
 		position_x = 0
 		trigger_when = "[GetVariableSystem.Exists( 'left_sidebar_open')]"
+        datacontext = "[GetScriptedGui('core_title_number_calc')]"
+        on_start = "[ScriptedGui.Execute(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End )]"
+        datacontext = "[CharacterWindow.GetCharacter]"
 	}
 
 	vbox = {
@@ -3561,6 +3568,7 @@ types CharacterWindow
                     visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End )]"
                     layoutpolicy_horizontal = expanding
                     size = { 0 25 }
+                    onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End )]"
                     onclick = "[CharacterWindow.ToggleExpandedTraits]"
                     down = "[CharacterWindow.AreTraitsExpanded]"
                     tooltip = "[SelectLocalization(CharacterWindow.AreTraitsExpanded, 'CV_CORE_TITLES_HIDE_CTT', 'CV_CORE_TITLES_SHOW_CTT' )]"
@@ -3890,10 +3898,14 @@ template Animation_Character_Window_Refresh
 		name = character_window_refresh
 		using = Animation_Refresh_FadeOut
 		alpha = 0.65
+        datacontext = "[GetScriptedGui('core_title_number_calc')]"
+        on_start = "[ScriptedGui.Execute(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End )]"
 	}
 
 	state = {
 		using = Animation_Refresh_FadeIn
+        datacontext = "[GetScriptedGui('core_title_number_calc')]"
+        on_start = "[ScriptedGui.Execute(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End )]"
 	}
 }
 
@@ -3903,10 +3915,14 @@ template Animation_Character_Window_Refresh_Short
 		name = character_window_refresh
 		using = Animation_Refresh_FadeOut
 		alpha = 0.8
+        datacontext = "[GetScriptedGui('core_title_number_calc')]"
+        on_start = "[ScriptedGui.Execute(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End )]"
 	}
 
 	state = {
 		using = Animation_Refresh_FadeIn
 		duration = 0.25
+        datacontext = "[GetScriptedGui('core_title_number_calc')]"
+        on_start = "[ScriptedGui.Execute(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End )]"
 	}
 }

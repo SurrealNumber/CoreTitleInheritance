@@ -38,13 +38,13 @@ has_variable = { # probably want to deal with this in a different manner, but I 
     global = HAS_VARIABLE_TRIGGER
 }
 
-any_core_title_item = {
-    third = ANY_CORE_TITLE_ITEM_THIRD
-}
+# any_core_title_item = {
+    # third = ANY_CORE_TITLE_ITEM_THIRD
+# }
 
-any_core_title_item_all = {
-    third = ALL_CORE_TITLE_ITEM_THIRD
-}
+# any_core_title_item_all = {
+    # third = ALL_CORE_TITLE_ITEM_THIRD
+# }
 
 is_title_core = {
     global = IS_TITLE_CORE_TRIGGER

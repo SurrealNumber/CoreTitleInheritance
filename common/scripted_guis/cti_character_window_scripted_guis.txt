@@ -1,4 +1,14 @@
-﻿core_title_text_line = {
+﻿core_title_number_calc = {
+    scope = character
+    effect = {
+        set_variable = {
+            name = _num_core_titles
+            value = num_core_titles
+        }
+    }
+}
+
+core_title_text_line = {
     scope = character
 
     is_shown = {
@@ -7,6 +17,13 @@
     
     is_valid = { # multiple core titles
         1 < root.num_core_titles
+    }
+    
+    effect = {
+        set_variable = {
+            name = _core_limit
+            value = val_core_limit
+        }
     }
 }
 
@@ -21,15 +38,6 @@ core_limit_display = {
     
     effect = {
         # Generate tooltip
-        set_variable = {
-            name = _core_limit
-            value = root.val_core_limit
-        }
-        set_variable = {
-            name = _num_core_titles
-            value = root.num_core_titles
-        }
-        var:core_count = {save_temporary_scope_as = _core_count}
         custom_tooltip = CORE_LIMIT_TOOLTIP_HEADER
         if = {
             limit = {is_over_core_limit = yes}
@@ -77,7 +85,16 @@ core_special_character_display = {
     scope = character
     
     is_shown = {
-        any_core_title_item = {is_title_special_core = yes}
+        trigger_if = {
+            limit = {has_variable_list = core_title_list}
+            any_in_list = {
+                variable = core_title_list
+                is_title_special_core = yes
+            }# should check if the list is empty.
+        }
+        trigger_else = {
+            always = no
+        }
     }
     
     is_valid = { # multiple special cores
@@ -98,7 +115,16 @@ core_mod_character_display = {
     scope = character
     
     is_shown = {
-        any_core_title_item = {is_title_core_due_to_cti = yes}
+        trigger_if = {
+            limit = {has_variable_list = core_title_list}
+            any_in_list = {
+                variable = core_title_list
+                is_title_core_due_to_cti = yes
+            }# should check if the list is empty.
+        }
+        trigger_else = {
+            always = no
+        }
     }
     
     is_valid = { # multiple special cores

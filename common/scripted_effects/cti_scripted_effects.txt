@@ -35,13 +35,13 @@ remove_core_county_modifier = { # scope is a title
     }
 }
 
-initialize_core_county_modifiers = { # scope is a character
-    every_core_title_item = {
-        limit = {does_core_count_to_limit = yes}
-        remove_core_county_modifier = yes
-        apply_core_county_modifier = yes
-    }
-}
+# initialize_core_county_modifiers = { # scope is a character
+    # every_core_title_item = {
+        # limit = {does_core_count_to_limit = yes}
+        # remove_core_county_modifier = yes
+        # apply_core_county_modifier = yes
+    # }
+# }
 
 set_over_core_limit_modifier = { # scope is character
     remove_all_character_modifier_instances = 1_over_core_limit_modifier
@@ -54,117 +54,167 @@ set_over_core_limit_modifier = { # scope is character
     remove_all_character_modifier_instances = 8_over_core_limit_modifier
     remove_all_character_modifier_instances = 9_over_core_limit_modifier
     remove_all_character_modifier_instances = 10_plus_over_core_limit_modifier
-    set_variable = {
-        name = _amount_over_core_limit
-        value = this.amount_over_core_limit
-    } #hopefully stores the variable so it is not calculated every time.
+    # set_variable = {
+        # name = _amount_over_core_limit
+        # value = amount_over_core_limit
+    # } #hopefully stores the variable so it is not calculated every time.
+    #^this was not working. changing to calculate everytime. inefficient.
     if = {
-        limit = {var:_amount_over_core_limit = 0}
+        limit = {amount_over_core_limit = 0}
         # do nothing
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 1}
+        limit = {amount_over_core_limit = 1}
         add_character_modifier = 1_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 2}
+        limit = {amount_over_core_limit = 2}
         add_character_modifier = 2_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 3}
+        limit = {amount_over_core_limit = 3}
         add_character_modifier = 3_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 4}
+        limit = {amount_over_core_limit = 4}
         add_character_modifier = 4_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 5}
+        limit = {amount_over_core_limit = 5}
         add_character_modifier = 5_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 6}
+        limit = {amount_over_core_limit = 6}
         add_character_modifier = 6_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 7}
+        limit = {amount_over_core_limit = 7}
         add_character_modifier = 7_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 8}
+        limit = {amount_over_core_limit = 8}
         add_character_modifier = 8_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit = 9}
+        limit = {amount_over_core_limit = 9}
         add_character_modifier = 9_over_core_limit_modifier
     }
     else_if = {
-        limit = {var:_amount_over_core_limit >= 10}
+        limit = {amount_over_core_limit >= 10}
         add_character_modifier = 10_plus_over_core_limit_modifier
     }
     remove_variable = _amount_over_core_limit
 }
 
 
-initialize_core_count = {# scope is a character
+initialize_cores = {# scope is a character
+    save_temporary_scope_as = _character
+    every_held_title = {
+        if = {
+            limit = {is_title_core = yes}
+            save_temporary_scope_as = _title
+            scope:_character = {
+                add_to_variable_list = {
+                    name = core_title_list
+                    target = scope:_title
+                }
+            }
+        }
+        if = {
+            limit = {is_title_county = yes}
+            remove_core_county_modifier = yes
+        }
+    }
+    
     set_variable = {
         name = core_count
-        value = this.core_count_from_list
+        value = 0
     }
-    set_over_core_limit_modifier = yes
-}
-
-
-increment_core_count = {# scope is character
-    change_variable = {
-        name = core_count
-        add = 1
-    }
-    set_over_core_limit_modifier = yes
-}
-
-decrement_core_count = {# scope is character
-    change_variable = {
-        name = core_count
-        subtract = 1
-    }
-    set_over_core_limit_modifier = yes
-}
-
-apply_cost_and_count_of_title = { # scope is title. Additionaly expects a value and a boolean.
-    if = {
-        limit = {does_core_count_to_limit = yes}
+    every_in_list = {
+        variable = core_title_list
         if = {
-            limit = {NOT = {has_variable = core_count}}
-            holder = {initialize_core_count = yes}
+            limit = {does_core_count_to_limit = yes}
+            apply_core_county_modifier = yes
+            scope:_character = {
+                change_variable = {
+                    name = core_count
+                    add = 1
+                }
+            }
+        }
+    }
+    set_over_core_limit_modifier = yes
+}
+
+track_added_core = {# scope is title
+    save_temporary_scope_as = _title
+    holder = {
+        add_to_variable_list = {
+            name = core_title_list
+            target = scope:_title
+        }
+        if = {
+            limit = {scope:_title = {does_core_count_to_limit = yes}}
+            change_variable = {
+                name = core_count
+                add = 1
+            }
+            set_over_core_limit_modifier = yes
+            scope:_title = {apply_core_county_modifier = yes} # redundant check for being a county in this case. checks game rules in here.
             if = {
-                limit = {always = $INCREASE$}
-                apply_core_county_modifier = yes
-            }
-            else = {
-                remove_core_county_modifier = yes
+                limit = {has_game_rule = flat_designate_core_county_cost}
+                add_prestige = $COST$
             }
         }
-        else_if = {
-            limit = {always = $INCREASE$}
-            holder = {increment_core_count = yes}# Think this should apply this with scope holder
-            apply_core_county_modifier = yes # redundant check for being a county in this case. checks game rules in here.
-        }
-        else = {
-            holder = {decrement_core_count = yes}# Think this should apply this with scope holder
-            remove_core_county_modifier = yes# redundant check for being a county in this case. checks game rules in here.
+    }
+}
+
+track_removed_core = {# scope is title
+    save_temporary_scope_as = _title
+    holder = {
+        remove_list_variable = {
+            name = core_title_list
+            target = scope:_title
         }
         if = {
-            limit = {has_game_rule = flat_designate_core_county_cost }
-            holder = {add_prestige = $COST$}
+            limit = {scope:_title = {does_core_count_to_limit = yes}}
+            change_variable = {
+                name = core_count
+                subtract = 1
+            }
+            set_over_core_limit_modifier = yes
+            scope:_title = {remove_core_county_modifier = yes} # redundant check for being a county in this case. checks game rules in here.
+            if = {
+                limit = {has_game_rule = flat_designate_core_county_cost}
+                add_prestige = $COST$
+            }
         }
+    }
+}
+
+update_cores = { # scope is title. Additionaly expects a value and a boolean.
+    if = {
+        limit = {
+            NAND = {
+                has_variable = core_count
+                has_variable_list = core_title_list
+            }
+        }
+        holder = {initialize_cores = yes}
+    }
+    else_if = {
+        limit = {always = $INCREASE$}
+        track_added_core = {COST = $COST$}
+    }
+    else = {
+        track_removed_core = {COST = $COST$}
     }
 }
 
 #unlike making titles no longer be core, cores should only be made by being designated. Cannot core beyond core title limit.
 designate_core_title = { #scope is title
     set_title_core = yes
-    apply_cost_and_count_of_title = {
+    update_cores = {
         INCREASE = yes
         COST = coring_county_cost_flat
     }
@@ -180,7 +230,7 @@ set_title_core = {
 
 de_designate_core_title = {# scope is title, should only be called when it is appropriate/possible.
     de_core_title = yes
-    apply_cost_and_count_of_title = {
+    update_cores = {
         INCREASE = no
         COST = coring_county_refund_flat
     }
@@ -193,12 +243,15 @@ remove_invalid_core_titles = { #scope is a character. full refund. Not meant to 
     while = {
         count = 4 # Should need to run no more than 3 times. Adding in extra run incase my thought process is off.
         #limit = {any_core_title_item = {is_core_consistent = no}} Commenting out, should make this more efficient.
-        every_core_title_item = { # scope should be the title here, and root the character
-            limit = {is_core_consistent = no}
-            de_core_title = yes # inconsistent restricts all cores to being cti cores
-            apply_cost_and_count_of_title = {
-                INCREASE = no
-                COST = coring_county_refund_flat_full
+        every_in_list = {
+            variable = core_title_list
+            if = {
+                limit = {is_core_consistent = no}
+                de_core_title = yes # inconsistent restricts all cores to being cti cores
+                update_cores = {
+                    INCREASE = no
+                    COST = coring_county_refund_flat_full
+                }
             }
         }
     }
@@ -216,16 +269,21 @@ de_core_title = { # scope is a title.
 }
 
 recalculate_cores = { # scope is a character. this is used in cases like inheritance when core titles are preserved
-    initialize_core_count = yes
-    initialize_core_county_modifiers = yes
+    initialize_cores = yes
     if = {
-        limit = {any_core_title_item = {is_core_consistent = no}}
+        limit = {
+            any_in_list = {
+                variable = core_title_list
+                is_core_consistent = no
+            }
+        }
         remove_invalid_core_titles = yes
     }
 }
 
 de_designate_all_core_titles = { #scope is character. Not full refund. should be called by character.
-    every_core_title_item = {
+    every_in_list = {
+        variable = core_title_list
         if = {
             limit = {is_title_core_due_to_cti = yes}
             de_designate_core_title = yes
@@ -247,7 +305,7 @@ check_auto_core_title = { # scope is title. Assumes that only  one title is bein
             will_core_loss_break_chain = yes
         }
         set_title_core = yes
-        apply_cost_and_count_of_title = { # should never have an effect, but putting it here for consistency.
+        update_cores = {
             INCREASE = yes
             COST = coring_county_cost_flat
         }

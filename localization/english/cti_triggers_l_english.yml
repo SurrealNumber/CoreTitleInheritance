@@ -41,5 +41,5 @@
  NOT_CHILD_CHAIN_EXISTS:0 "There is not a chain of [core_titles|E] down to a [core_county|E]"
  
  
- ANY_CORE_TITLE_ITEM_THIRD:0 "Any of [CHARACTER.GetShortUINamePossessive] [core_titles|E]:"
- ALL_CORE_TITLE_ITEM_THIRD:0 "All of [CHARACTER.GetShortUINamePossessive] [core_titles|E]:"
+ # ANY_CORE_TITLE_ITEM_THIRD:0 "Any of [CHARACTER.GetShortUINamePossessive] [core_titles|E]:"
+ # ALL_CORE_TITLE_ITEM_THIRD:0 "All of [CHARACTER.GetShortUINamePossessive] [core_titles|E]:"

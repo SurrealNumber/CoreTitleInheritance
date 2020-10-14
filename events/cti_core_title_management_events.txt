@@ -18,7 +18,7 @@ cti_manage_core_titles_event.0017 = {
             modifier = test_positive_modifier
         }
         trigger_event = cti_manage_core_titles_event.0017
-        every_core_title_item = {custom_tooltip = cti_manage_core_titles_event.0017.x}
+        #every_core_title_item = {custom_tooltip = cti_manage_core_titles_event.0017.x}
     }
     option = {
         name = cti_manage_core_titles_event.0017.b

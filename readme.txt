@@ -1366,3 +1366,48 @@ will try splitting trigger file.
 every_list_name causes an error saying it is an unexpected token.
 It looks like it is just funkiness with scripted lists. It looks like they are not fully working.
 It looks like it is possible to add and remove from a list. This might be preferable to recalculating it every time. Look towards possibility in the future. <- raise on github
+^ this looks like it is needed to get around scripted lists not working.
+clear and initialize lists when recalculating, add and remove in applying cost function (outside of if it has a cost). Possibly also rename function to reflect that.
+One problem with this approach is that the core list in the scripting language can be out of sync with the one on the character window due to not being recalculated after the primary title changed or capital moved.
+^Will leave the problem be for now. Seems relatively minor and hard to approach without the on_actions for them.
+
+How to deal with the lists.
+add to\create it: - assume create it.
+add_to_variable_list = { name = variable_name target = scope }
+remove from it:
+remove_list_variable = { name = variable_name target = scope }
+clear_variable_list = variable_name
+
+what do these do?
+variable_list_size, local_variable_list_size and global_variable_list_size
+
+found these in jomini manuscript:
+add_to_variable_list = { name = variable_name target = scope }
+remove_list_variable = { name = variable_name target = scope }
+clear_variable_list = variable_name
+any/every/random/ordered_in_list = {
+    variable = variable_name
+}
+is_target_in_variable_list = { name = variable_name target = scope }
+variable_list_size = { name = variable_name target = value } <- how does this work?
+has_variable_list = variable_name
+
+at some point I have to question the utility of the variable core count.
+
+note that held titles also gives the county capital barony title associated with the owned counties.
+appears to work as expected, however I cannot figure out what variable_list_size does.
+
+
+tasks:
+add/remove core to list
+add/subtract from core count
+apply cost
+
+in gui core_count is working, but core_limit and the count of core_titles is not.
+It looks like "this" behaves attrociously. It seems to be maintained as a pointer to this scope, meaning that a value from it is not actually a value, and anything derived from it cannot be passed or moved between scopes.
+^ I have determined that I should avoid "this." like the plague
+need to add localization for over core limit alert. Possibly also change icon.
+core limit is working. Display of number of core titles and display of core limit still is not. Will work on.
+
+.Custom, .Custom2, .Custom2_Title <- might want to investigate what these calls in the gui language do.
+Most likely being a bit overly zealous about calculating the variable.
