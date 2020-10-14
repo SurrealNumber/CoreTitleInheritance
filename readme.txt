@@ -1418,3 +1418,25 @@ Should switch to using has_title, has_primary_title, highest_held_title_tier,
 apparently special titles exist in the game. Looks like they are related to factions.
 exists holds_landed_title
 CK3 is throwing a lot of "Property cannot be a data property for animation." but it is still working as I intended. I will ignore the errors for now. They might even survive to the end because it is working.
+
+Testing tilte succession:
+title sucession laws overrule always_follows_primary_heir (counties under title law duchy core or not went to title succession inheritor of the duchy).
+Designating a title law title core does not cause it to stay with the character.
+Based on this information I might want to disallow anything with a title law above it from being designated. But what if primary title is the one with the law?
+On inheritance if you don't inherit the title above, you don't inherit the one below (not inheriting duchy means you also don't get provinces).
+Heir which did not get primary title but did get primary duchy got core titles. But the player heir was a different one who got a random duchy.<- reason is that the other duchy was created first. Need to be careful about that.
+
+If primary title not inherited, and inherited by a landless character, they will take de-jure capital.
+when primary title lost by title law, dynasty successor to take capital gets core titles. If your hier is not them then you will not recieve the titles. <- only seems to apply when you lose your primary title
+^assume similar things will only happen for the next highest tier title below the primary.
+Only exception to losing all titles under title inheritance title is primary title.
+
+1. To deal with incorrect primary heir due to duchy order, add button to "remake" duchy <- problem in vanilla. Should be ability to designate primary duchy as well.
+^ same problem exists with counties as well, and they cannot be re-made. Will have to look into solution.
+^ would probably work just the same with removing and then adding the title back.
+^ should only work on capital chain. Can't think of reason to do it otherwise. possible to autodo or check on title creation or stuff.
+2. Disallow all titles which are dejure under title law titles which are not primary title from being core
+^ possibly change to title law titles your primary/player heir is not set to inherit. <- if same as realm folded in, otherwise need to test if cores matter.
+
+
+*************Should recalculate cores on death!
