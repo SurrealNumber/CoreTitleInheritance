@@ -1,0 +1,16 @@
+﻿recalculate_cores_interaction = {
+	category = interaction_debug_main
+	use_diplomatic_range = no
+	ignores_pending_interaction_block = yes
+	is_shown = {
+		scope:recipient = {is_ruler = yes}
+	}
+	
+	on_accept = {
+		scope:recipient = {
+            recalculate_cores = yes
+        }
+	}
+	
+	auto_accept = yes
+}

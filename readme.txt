@@ -1411,3 +1411,10 @@ core limit is working. Display of number of core titles and display of core limi
 
 .Custom, .Custom2, .Custom2_Title <- might want to investigate what these calls in the gui language do.
 Most likely being a bit overly zealous about calculating the variable.
+
+exists trigger has_order_of_succession
+has_revokable_lease <- might have to look in to leases.
+Should switch to using has_title, has_primary_title, highest_held_title_tier,
+apparently special titles exist in the game. Looks like they are related to factions.
+exists holds_landed_title
+CK3 is throwing a lot of "Property cannot be a data property for animation." but it is still working as I intended. I will ignore the errors for now. They might even survive to the end because it is working.
