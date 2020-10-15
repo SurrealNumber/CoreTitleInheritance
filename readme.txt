@@ -1560,3 +1560,38 @@ Could try making a dummy council position?
 Could add it onto a council position. <- problem of unclear source.
 I think I have to go the route of the over council limit.
 Will scrap for now because I don't like the idea of caping it.<- adding issue on github.
+
+TODO:
+Debug
+Localization
+x probably want to auto-core up from title. <- will make sure to communicate, but will not do for 1.0
+document bugs somewhere
+x move cost/refund for designating/de-designating titles to button <- instead will add condition to is valid.
+Look into moving the variable assignments out of the animations - it is annoying to have all the errors.
+
+moving variable assigments out of animations - will play farther into the bug with adding title laws, changing capital or primary title not updating things.
+Will add variable setting to initialize_cores and core_change_effect
+
+The only one which has to move is number of cores. The rest can stay.
+^ actually, all should be set. They could be changed while viewing the window.
+_core_limit could still be a problem. When it is update there is no call that would update the variables.
+^ will have to test if variables reference a static value or a calculation.
+CUSTOM IS A CALL TO CUSTOM LOCALIZATION!!!!!!!!!! I CAN USE THIS FOR THE VALUES!!!!!!
+
+TODO (before 1.0.0): <- remarkably short and not too open ended.
+Debug
+- saying domain_limit is none in cti_values line 4
+- most likely related to above, can still designate titles core if not enough prestige.
+- need to allow coring if character does not have enough prestige as long as the title does not cost prestige to core.
+Localization
+- utilize custom localization to move as much as possible away from variables and from worrying about when they are set
+- above should get rid of setting variables in animation blocks.
+- update encyclopedia and game concepts to reflect current state of mod. Additionally other informative tooltips.
+- fill in missing localization (alert, effects, modifiers, some triggers)
+Documentation:
+- figure out how to present mod to users
+- figure out how to communicate open bugs/finnicky things about mod
+- replace readme with actual readme and move this long one out of repository
+- hopefully at some point in the future process information here into modding guide/help thing.
+Communication:
+- figure out how I want to ask open questions or request additional tools for modders.

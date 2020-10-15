@@ -107,7 +107,6 @@ set_over_core_limit_modifier = { # scope is character
     #remove_variable = _amount_over_core_limit
 }
 
-
 initialize_cores = {# scope is a character
     save_temporary_scope_as = _character
     every_held_title = {
@@ -124,6 +123,18 @@ initialize_cores = {# scope is a character
         }
     }
     set_over_core_limit_modifier = yes
+    set_variable = {
+        name = _num_core_titles
+        value = num_core_titles
+    }
+    set_variable = {
+        name = _core_limit
+        value = val_core_limit
+    }
+    set_variable = {
+        name = _core_count
+        value = core_count
+    }
 }
 
 core_change_effect = { # scope is title. Additionaly expects a value and a boolean.
@@ -144,6 +155,18 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
             }
         }
     }
+    set_variable = {
+        name = _num_core_titles
+        value = num_core_titles
+    }
+    set_variable = {
+        name = _core_limit
+        value = val_core_limit
+    }
+    set_variable = {
+        name = _core_count
+        value = core_count
+    }
 }
 
 set_title_core = {
@@ -152,14 +175,9 @@ set_title_core = {
         value = yes
     }
     set_always_follows_primary_heir = yes
-}
-
-#unlike making titles no longer be core, cores should only be made by being designated. Cannot core beyond core title limit.
-designate_core_title = { #scope is title
-    set_title_core = yes
     core_change_effect = {
         INCREASE = yes
-        COST = coring_county_cost_flat
+        COST = $COST$
     }
 }
 
@@ -171,23 +189,20 @@ de_core_title = { # scope is a title.
             value = no
         }
         set_always_follows_primary_heir = no
+        core_change_effect = {
+            INCREASE = no
+            COST = $COST$
+        }
     }
+}
+
+#unlike making titles no longer be core, cores should only be made by being designated. Cannot core beyond core title limit.
+designate_core_title = { #scope is title
+    set_title_core = {COST = coring_county_cost_flat}
 }
 
 de_designate_core_title = {# scope is title, should only be called when it is appropriate/possible.
-    de_core_title = yes
-    core_change_effect = {
-        INCREASE = no
-        COST = coring_county_refund_flat
-    }
-}
-
-de_core_title_no_refund = {
-    de_core_title = yes
-    core_change_effect = {
-        INCREASE = no
-        COST = 0
-    }    
+    de_core_title = {COST = coring_county_refund_flat}
 }
 
 # should be able to construct list and use it in the limit for the next one.
@@ -203,11 +218,7 @@ remove_invalid_core_titles = { #scope is a character. full refund. Not meant to 
                     is_title_core = yes
                     is_core_consistent = no
                 }
-                de_core_title = yes # inconsistent restricts all cores to being cti cores
-                core_change_effect = {
-                    INCREASE = no
-                    COST = coring_county_refund_flat_full
-                }
+                de_core_title = {COST = coring_county_refund_flat_full} # inconsistent restricts all cores to being cti cores
             }
         }
     }
@@ -251,11 +262,7 @@ check_auto_core_title = { # scope is title. Assumes that only  one title is bein
             is_title_core_due_to_not_cti = no
             will_core_loss_break_chain = yes
         }
-        set_title_core = yes
-        core_change_effect = { # should never do anything, here for consistency
-            INCREASE = yes
-            COST = coring_county_cost_flat
-        }
+        set_title_core = {COST = coring_county_cost_flat}
     }
 }
 

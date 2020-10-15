@@ -34,7 +34,7 @@ on_death = {
 
 cti_on_title_destroyed = { # assume this happens after destruction
     effect = {
-        scope:landed_title = {de_core_title = yes}
+        scope:landed_title = {de_core_title = {COST = 0}}
         recalculate_cores = yes
     }
 }
@@ -59,7 +59,7 @@ cti_on_title_gain = { # assume this happens after the title changes hands. Also 
                 recalculate_cores = yes
             }
             else = {
-                scope:title = {de_core_title_no_refund = yes}
+                scope:title = {de_core_title = {COST = 0}}
                 recalculate_cores = yes
                 scope:previous_holder = {recalculate_cores = yes}
             }

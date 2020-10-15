@@ -1,14 +1,4 @@
-﻿core_title_number_calc = {
-    scope = character
-    effect = {
-        set_variable = {
-            name = _num_core_titles
-            value = num_core_titles
-        }
-    }
-}
-
-core_title_text_line = {
+﻿core_title_text_line = {
     scope = character
 
     is_shown = {
@@ -17,17 +7,6 @@ core_title_text_line = {
     
     is_valid = { # multiple core titles
         1 < num_core_titles
-    }
-    
-    effect = {
-        set_variable = {
-            name = _core_limit
-            value = val_core_limit
-        }
-        set_variable = {
-            name = _core_count
-            value = core_count
-        }
     }
 }
 
