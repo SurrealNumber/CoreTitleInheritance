@@ -3151,7 +3151,12 @@ window = {
             layoutpolicy_horizontal = expanding
             
             text_label_center = {
+                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End )]"
                 text = "CV_CORE_TITLE_TAB_HEADER"
+            }
+            text_label_center = {
+                visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End ))]"
+                text = "CV_CORE_TITLE_TAB_HEADER_SINGULAR"
             }
             
             hbox = {
@@ -3197,12 +3202,13 @@ window = {
                         vbox = { # primary
                             layoutpolicy_horizontal = expanding
                             datacontext = "[CharacterWindow.GetCharacter]"
+                            visible = "[And(Character.GetPrimaryTitle.HasLaws, ObjectsEqual(Character.GetPrimaryTitle.GetHeir.GetDynasty, Character.GetDynasty))]"
                             text_label_center = { # merge primary and capital if they are the same to avoid duplication
-                                visible = "[ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle)]"
+                                visible = "[ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetCounty.GetTitle)]"
                                 text = "CV_CORE_CAPITAL_PRIMARY"
                             }
                             text_label_center = {
-                                visible = "[Not( ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle) )]"
+                                visible = "[Not( ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetCounty.GetTitle) )]"
                                 text = "CV_CORE_PRIMARY"
                             }
                             
@@ -3229,17 +3235,17 @@ window = {
                         
                         vbox = { # capital chain
                             layoutpolicy_horizontal = expanding
-                            datacontext = "[CharacterWindow.GetCharacter]"
-                            visible = "[Not( ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetTitle) )]"
                             datacontext = "[GetScriptedGui( 'core_capital_chain_character_display' )]"
+                            visible = "[And(Not( ObjectsEqual( CharacterWindow.GetCharacter.GetPrimaryTitle, CharacterWindow.GetCharacter.GetCapitalLocation.GetCounty.GetTitle)), ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End))]"
+          
                             text_label_center = {
-                                visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
+                                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
                                 text = "CV_CORES_CAPITAL_CHAIN"
                             }
-                            # text_label_center = {
-                                # visible = "[Not( ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)) ]"
-                                # text = "CV_CORES_CAPITAL_CHAIN_SINGULAR"
-                            # }
+                            text_label_center = {
+                                visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End))]"
+                                text = "CV_CORES_CAPITAL_CHAIN_SINGULAR"
+                            }
 
                             
                             datamodel = "[CharacterWindow.GetTitles]"

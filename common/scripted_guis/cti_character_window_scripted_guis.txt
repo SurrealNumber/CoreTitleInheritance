@@ -72,6 +72,10 @@ core_limit_display = {
 core_capital_chain_character_display = {
     scope = character
     
+    is_shown = {
+        capital_county = {is_title_ineligible_due_to_title_law = no}
+    }
+    
     is_valid = { # multiple capital chain cores
         1 < count_core_due_to_capital
     }
@@ -89,15 +93,9 @@ core_special_character_display = {
     scope = character
     
     is_shown = {
-        trigger_if = {
-            limit = {has_variable_list = core_title_list}
-            any_held_title = {
-                is_core_title = yes
-                is_title_special_core = yes
-            }# should check if the list is empty.
-        }
-        trigger_else = {
-            always = no
+        any_held_title = {
+            is_title_core = yes
+            is_title_special_core = yes
         }
     }
     
@@ -119,15 +117,9 @@ core_mod_character_display = {
     scope = character
     
     is_shown = {
-        trigger_if = {
-            limit = {has_variable_list = core_title_list}
-            any_held_title = {
-                is_title_core = yes
-                is_title_core_due_to_cti = yes
-            }# should check if the list is empty.
-        }
-        trigger_else = {
-            always = no
+        any_held_title = {
+            is_title_core = yes
+            is_title_core_due_to_cti = yes
         }
     }
     

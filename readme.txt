@@ -1497,3 +1497,28 @@ scripted_triggers
 scripted_effects
 scripted_guis
 check others
+
+TODO:
+Debug
+Localization
+x Add singular to capital chain gui
+x account for capital not being core.
+x Add singular to core title tab header gui
+x account for primary title possibly not being core in gui <- Can I do this in the gui language?
+possibly add check for unlanded character taking primary title (or possibly also not primary title) and stealing core due to it being de-jure capital of what they took. <- raising as issue on github
+work on prestige penalty from core provinces.
+probably want to auto-core up from title.
+
+primary title not core -> And(Title.HasLaws, Title.GetHeir.HasDynasty(Title.GetHolder.GetDynasty)) <- still works when title laws get folded into realm laws.
+Thinking about it realm laws are a bit misleading, really it is character laws.
+
+TODO:
+Debug
+Localization
+work on prestige penalty from core provinces.
+probably want to auto-core up from title.
+
+HasDynasty is essentially a check of not being lowborn, NOT a check if you have a specific dynasty.
+
+It looks like there is something wrong with the logic for showing the primary title in expanded core titles tab. - it is not being shown when it should be
+logic is also messing up for a duchy under the primary title - can't designate it as core.

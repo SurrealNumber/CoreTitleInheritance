@@ -53,16 +53,17 @@ is_title_ineligible_due_to_title_law  = { # scope is title
         trigger_if = {
             limit = {exists = holder}
             holder = {has_title = scope:t_title} # held by owner
-            
             has_any_title_law = yes
             OR = {
                 NOT = {holder.primary_title = this} # this title is not the primary title
                 AND = {
                     holder.primary_title = this
                     NOT = {current_heir.dynasty = holder.dynasty} # have to investigate what this does with lowborn characters.
-                    any_held_title = {
-                        tier = holder.primary_title.tier
-                        NOT = {holder.primary_title = this}
+                    holder = {
+                        any_held_title = {
+                            tier = holder.primary_title.tier
+                            NOT = {holder.primary_title = this}
+                        }
                     }
                 }
             }
