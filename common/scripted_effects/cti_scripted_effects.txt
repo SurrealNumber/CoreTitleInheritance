@@ -139,7 +139,7 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
             set_over_core_limit_modifier = yes
             if = {
                 limit = {has_game_rule = flat_designate_core_county_cost}
-                add_prestige = $COST$
+                add_prestige_no_experience = $COST$
             }
         }
     }

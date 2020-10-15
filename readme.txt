@@ -1487,7 +1487,7 @@ Add recalculate cores to death on actions to recalculate cores right before inhe
 possibly add check for unlanded character taking primary title (or possibly also not primary title) and stealing core due to it being de-jure capital of what they took.
 work on prestige penalty from core provinces.
 probably want to auto-core up from title.
-look into preventing fame gain on refunds.
+look into preventing fame gain on refunds. <- add_prestige_no_experience
 
 
 Removing core_count variable and core_title_list variable. Wish I could use a scripted list, but will have to make do with filtering held titles. When I release mod I will raise the question on the forums.
