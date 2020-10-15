@@ -17,13 +17,68 @@ is_title_core_due_to_capital = { # scope is title
 }
 
 is_title_special_core = { # Incomplete until I can see the always_follows_primary_heir tag
-    is_head_of_faith = yes
+    always = no # head of faith was in this category, but it fits better in the category of having a title law that just happens to be always going to the primary heir.
+}
+
+has_any_title_law = { # scope is title (technically this means has a different title law than the realm law).
+    tier >= tier_duchy
+    OR = {
+        is_head_of_faith = yes
+        has_title_law_flag = elective_succession_law
+        NOR = {
+            AND = {
+                has_title_law = male_only_law
+                holder = {has_realm_law = male_only_law}
+            }
+            AND = {
+                has_title_law = male_preference_law
+                holder = {has_realm_law = male_preference_law}
+            }
+            AND = {
+                has_title_law = equal_law
+                holder = {has_realm_law = equal_law}
+            }
+            AND = {
+                has_title_law = female_preference_law
+                holder = {has_realm_law = female_only_law}
+            }
+        }
+        
+    }   
+}
+
+is_title_ineligible_due_to_title_law  = { # scope is title
+    save_temporary_scope_as = t_title
+    any_this_title_or_de_jure_above = {
+        trigger_if = {
+            limit = {exists = holder}
+            holder = {has_title = scope:t_title} # held by owner
+            
+            has_any_title_law = yes
+            OR = {
+                NOT = {holder.primary_title = this} # this title is not the primary title
+                AND = {
+                    holder.primary_title = this
+                    NOT = {current_heir.dynasty = holder.dynasty} # have to investigate what this does with lowborn characters.
+                    any_held_title = {
+                        tier = holder.primary_title.tier
+                        NOT = {holder.primary_title = this}
+                    }
+                }
+            }
+        }
+        trigger_else = {
+            always = no
+        }
+    }
+    
 }
 
 is_title_core = { # Assume that this will only be called if the title is owned
     trigger_if = {
         limit = {has_variable = core}
         tier >= tier_county
+        is_title_ineligible_due_to_title_law = no
         OR = {
             var:core = yes# var:core should be a boolean
             is_title_core_due_to_capital = yes
@@ -33,6 +88,7 @@ is_title_core = { # Assume that this will only be called if the title is owned
     }
     trigger_else = {
         tier >= tier_county
+        is_title_ineligible_due_to_title_law = no
         OR = {
             is_title_core_due_to_capital = yes
             holder.primary_title = this
@@ -101,6 +157,7 @@ is_a_child_title_chain_core = {# scope is title. assumes that rules are being fo
 
 is_title_eligible_for_core = { # Assume that this will only be called if the title is owned
     is_title_core = no # not a core title - will rule out core titles due to non-cti.
+    is_title_ineligible_due_to_title_law = no
     OR = {
         is_title_county = yes # owned counties can always be cored
         save_temporary_scope_as = _title

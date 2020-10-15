@@ -1438,5 +1438,40 @@ Only exception to losing all titles under title inheritance title is primary tit
 2. Disallow all titles which are dejure under title law titles which are not primary title from being core
 ^ possibly change to title law titles your primary/player heir is not set to inherit. <- if same as realm folded in, otherwise need to test if cores matter.
 
+1 - exists get_title, change_title_holder <- does not look to be a good or clean way. Best way I can think of would be usurping your own title (if that even works).
 
-*************Should recalculate cores on death!
+2.
+a. create has_any_title_law based on previous musings.
+b. add check to is eligible for core
+c. add check to is core consistent
+
+*************Should recalculate cores on death! (right before death fires)
+
+exist set_realm_capital and set_primary_title_to
+gui language has function: GetActiveLawInGroupWithFlag( 'flag_name' ). This is what I want, but I don't think I can use it.
+I like the scripted list architecture better - more done when queried means that it is more responsive. Sadly it was not working.
+Thinking about it I will go back to it, I will just move away from the scripted list.
+I will try to store as little as possible on the character.
+
+I will only calculate the numbers for display or calculations.
+
+The problem is applying the modifiers. Other than capital or primary title moving it should work well. 
+head of faith has it's own title succession laws.
+
+Titles only appear to have the laws that are associated with them on them. For instance different gender law titles do not appear to have any succession order law.
+different gender law leads to being ignored and treated entirely seperately for succession, like elective ones are.
+partition vs single heir is irrelevant as far as titles are concerned. Elective ones and ones with different gender laws are treated entirely differently.
+
+Only have to check for elective and gender laws.
+Edge case: Lose primary in title succession to unlanded who takes capital. Who gets core titles?
+It is possible for the primary title to not be core due to title succession laws.
+Same for the capital.
+
+
+Not core if owned title above other than primary title has title succession laws.
+primary not core if it has succession laws, but that does not effect the rest?
+when elective and title goes out of dynasty, keep all-ish domain
+when elective and in dynasty, heir gets inserted at top of succession order and is considered your primary heir.
+can make counties core if primary title has title laws BUT has no peers.
+
+adding a tilte law could also lead to things not breaking. Need to look for an on-action for that.
