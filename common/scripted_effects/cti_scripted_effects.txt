@@ -181,6 +181,14 @@ de_designate_core_title = {# scope is title, should only be called when it is ap
     }
 }
 
+de_core_title_no_refund = {
+    de_core_title = yes
+    core_change_effect = {
+        INCREASE = no
+        COST = 0
+    }    
+}
+
 # should be able to construct list and use it in the limit for the next one.
 # should only be called when there are titles to remove.
 remove_invalid_core_titles = { #scope is a character. full refund. Not meant to be called via player actions.

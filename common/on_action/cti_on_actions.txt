@@ -59,7 +59,7 @@ cti_on_title_gain = { # assume this happens after the title changes hands. Also 
                 recalculate_cores = yes
             }
             else = {
-                scope:title = {de_core_title = yes}
+                scope:title = {de_core_title_no_refund = yes}
                 recalculate_cores = yes
                 scope:previous_holder = {recalculate_cores = yes}
             }

@@ -1532,3 +1532,18 @@ title could possibly not have a gender law associated with it.
 want: need yes from title law.
 if title has law, good if realm also, if title has no law good.
 fixed bugs ^
+
+change icon for over core limit modifier.
+possible ways to deal with not being able to apply character modifiers from a county:
+1. apply and take away modifier when applying/removing county modifiers
+^ problem is that modifiers are sometimes removed from titles which don't already have it.
+2. scrap it
+Will do option 1 -will have to look into localization options.
+
+
+possibly move cost/refund for designating/de-designating titles to button. <- I think the difference to doing it this way is it would disallow going into negative prestige.
+^ I should do this.
+I should also look into moving the variable assignments out of the animations - it is annoying to have all the errors.
+It looks like modifiers CAN have a scale - an example is the prestige from council positions.
+
+I will leave the over core limit modifier as is because it is already implemented, but I will use it for overtime core title cost.
