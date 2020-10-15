@@ -1419,7 +1419,7 @@ apparently special titles exist in the game. Looks like they are related to fact
 exists holds_landed_title
 CK3 is throwing a lot of "Property cannot be a data property for animation." but it is still working as I intended. I will ignore the errors for now. They might even survive to the end because it is working.
 
-Testing tilte succession:
+Testing title succession:
 title sucession laws overrule always_follows_primary_heir (counties under title law duchy core or not went to title succession inheritor of the duchy).
 Designating a title law title core does not cause it to stay with the character.
 Based on this information I might want to disallow anything with a title law above it from being designated. But what if primary title is the one with the law?
@@ -1434,7 +1434,7 @@ Only exception to losing all titles under title inheritance title is primary tit
 1. To deal with incorrect primary heir due to duchy order, add button to "remake" duchy <- problem in vanilla. Should be ability to designate primary duchy as well.
 ^ same problem exists with counties as well, and they cannot be re-made. Will have to look into solution.
 ^ would probably work just the same with removing and then adding the title back.
-^ should only work on capital chain. Can't think of reason to do it otherwise. possible to autodo or check on title creation or stuff.
+^ should only work on capital chain. Can't think of reason to do it otherwise. possible to autodo or check on title creation or stuff. <- will give advice on ways to deal with (creating and destroying titles, grant and revoke, core first relevant titles in list)
 2. Disallow all titles which are dejure under title law titles which are not primary title from being core
 ^ possibly change to title law titles your primary/player heir is not set to inherit. <- if same as realm folded in, otherwise need to test if cores matter.
 
@@ -1474,4 +1474,26 @@ when elective and title goes out of dynasty, keep all-ish domain
 when elective and in dynasty, heir gets inserted at top of succession order and is considered your primary heir.
 can make counties core if primary title has title laws BUT has no peers.
 
-adding a tilte law could also lead to things not breaking. Need to look for an on-action for that.
+adding a title law could also lead to things not breaking. Need to look for an on-action for that.
+
+TODO:
+Debug
+Localization
+Add singular to capital chain gui
+account for primary title possibly not being core in gui <- Can I do this in the gui language?
+look into adding or changing title/realm laws on action as it could break things <- can't find on action for this. adding to similar existing issue on github
+Move away from storing information on variables on the character. Move to only using variables for display/presenting information.
+Add recalculate cores to death on actions to recalculate cores right before inheritance. (might lead to frustration sometimes, but it will probably lead to less frustration overall)
+possibly add check for unlanded character taking primary title (or possibly also not primary title) and stealing core due to it being de-jure capital of what they took.
+work on prestige penalty from core provinces.
+probably want to auto-core up from title.
+look into preventing fame gain on refunds.
+
+
+Removing core_count variable and core_title_list variable. Wish I could use a scripted list, but will have to make do with filtering held titles. When I release mod I will raise the question on the forums.
+Path:
+scripted_values
+scripted_triggers
+scripted_effects
+scripted_guis
+check others

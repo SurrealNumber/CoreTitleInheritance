@@ -19,14 +19,23 @@ coring_county_cost_flat = {value = medium_prestige_loss}
 coring_county_refund_flat = {value = minor_prestige_gain}
 coring_county_refund_flat_full = {value = medium_prestige_gain}
 
-amount_over_core_limit = { # scope is character
+core_count = {
     value = 0
-    if = {
-        limit = {has_variable = core_count}
-        value = var:core_count
-        subtract = val_core_limit
-        min = 0 # sets lower bound of 0
+    every_held_title = {
+        if = {
+            limit = {
+                is_title_core = yes
+                does_core_count_to_limit = yes
+            }
+            add = 1
+        }
     }
+}
+
+amount_over_core_limit = { # scope is character
+    value = core_count
+    subtract = val_core_limit
+    min = 0 # sets lower bound of 0
 }
 
 #over_core_limit_prestige_modifier = {
@@ -44,31 +53,24 @@ amount_over_core_limit = { # scope is character
 #    var:core_count
 #}
 
-core_count_from_list = {
-    value = 0
-    every_in_list = { # if this does not exist this should quietly fail and the value will be 0
-        variable = core_title_list
-        if = {
-            limit = {does_core_count_to_limit = yes}
-            add = 1
-        }
-    }
-}
-
 num_core_titles = {
     value = 0
-    every_in_list = { # if this does not exist this should quietly fail and the value will be 0
-        variable = core_title_list
-        add = 1
+    every_held_title = {
+        if = {
+            limit = {is_title_core = yes}
+            add = 1
+        }
     }
 }
 # Only used in one place, but think I need it here to accomodate it.
 count_core_due_to_capital = {
     value = 0
-    every_in_list = { # if this does not exist this should quietly fail and the value will be 0
-        variable = core_title_list
+    every_held_title = {
         if = {
-            limit = {is_title_core_due_to_capital = yes}
+            limit = {
+                is_title_core = yes
+                is_title_core_due_to_capital = yes
+            }
             add = 1
         }
     }
@@ -76,10 +78,12 @@ count_core_due_to_capital = {
 
 count_core_due_to_special = {
     value = 0
-    every_in_list = { # if this does not exist this should quietly fail and the value will be 0
-        variable = core_title_list
+    every_held_title = {
         if = {
-            limit = {is_title_special_core = yes}
+            limit = {
+                is_title_core = yes
+                is_title_special_core = yes
+                }
             add = 1
         }
     }
@@ -87,10 +91,12 @@ count_core_due_to_special = {
 
 count_core_due_to_mod = {
     value = 0
-    every_in_list = { # if this does not exist this should quietly fail and the value will be 0
-        variable = core_title_list
+    every_held_title = { # if this does not exist this should quietly fail and the value will be 0
         if = {
-            limit = {is_title_core_due_to_cti = yes}
+            limit = {
+                is_title_core = yes
+                is_title_core_due_to_cti = yes
+            }
             add = 1
         }
     }

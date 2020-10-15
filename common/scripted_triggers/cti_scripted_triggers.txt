@@ -98,7 +98,6 @@ is_title_core = { # Assume that this will only be called if the title is owned
 }
 
 is_title_core_due_to_not_cti = {
-    is_title_core = yes
     OR = {
         is_title_core_due_to_capital = yes
         holder.primary_title = this
@@ -107,7 +106,6 @@ is_title_core_due_to_not_cti = {
 }
 
 is_title_core_due_to_cti = {
-    is_title_core = yes
     has_variable = core # This condition means that it is technically possible (though it should never happen) that a title is considered neither core due to cti or core due to not cti.
     is_title_core_due_to_not_cti = no
 }
@@ -127,8 +125,8 @@ is_a_child_title_chain_core = {# scope is title. assumes that rules are being fo
         text = CHILD_CHAIN_EXISTS
         save_temporary_scope_as = _title
         holder = {# Changes scope to holder
-            any_in_list = {
-                variable = core_title_list
+            any_held_title = {
+                is_title_core = yes
                 NOT = {this = $EXCLUDED$} # excludes this title from consideration (used for checking breaking chains or adding cores)
                 target_is_de_jure_liege_or_above = scope:_title # de_jure_child of this title. Assume that this disqualifies the title I am calling this on.
 
@@ -174,7 +172,10 @@ will_core_loss_break_chain = { # scope is title
             de_jure_liege.tier <= holder.highest_held_title_tier
             holder = {has_title = scope:w_title.de_jure_liege}
         }
-        de_jure_liege = {is_title_core_due_to_cti = yes}
+        de_jure_liege = {
+            is_title_core = yes
+            is_title_core_due_to_cti = yes
+        }
         NOT = {de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
     }
     trigger_else_if = {# kingdom
@@ -182,7 +183,10 @@ will_core_loss_break_chain = { # scope is title
             de_jure_liege.de_jure_liege.tier <= holder.highest_held_title_tier
             holder = {has_title = scope:w_title.de_jure_liege.de_jure_liege}
         }
-        de_jure_liege.de_jure_liege = {is_title_core_due_to_cti = yes}
+        de_jure_liege.de_jure_liege = {
+            is_title_core = yes
+            is_title_core_due_to_cti = yes
+        }
         NOT = {de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
     }
     trigger_else_if = {# empire
@@ -190,7 +194,10 @@ will_core_loss_break_chain = { # scope is title
             de_jure_liege.de_jure_liege.de_jure_liege.tier <= holder.highest_held_title_tier
             holder = {has_title = scope:w_title.de_jure_liege.de_jure_liege.de_jure_liege}
         }
-        de_jure_liege.de_jure_liege.de_jure_liege = {is_title_core_due_to_cti = yes}
+        de_jure_liege.de_jure_liege.de_jure_liege = {
+            is_title_core = yes
+            is_title_core_due_to_cti = yes
+        }
         NOT = {de_jure_liege.de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
     }
     trigger_else = {
@@ -208,13 +215,7 @@ is_core_consistent = {# scope is title
 }
 
 is_over_core_limit = { # scope is character
-    trigger_if = {
-        limit = {has_variable = core_count}
-        var:core_count > val_core_limit
-    }
-    trigger_else = {
-        always = no
-    }
+    core_count > val_core_limit
 }
 
 # Different from the trigger contained within in case one wants to add a character restriction on coring titles. There used to be one that characters were not allowed to go over their core limit.
@@ -223,19 +224,13 @@ can_core_title = {
 }
 
 can_de_core_title = {
+    is_title_core = yes
     is_title_core_due_to_cti = yes
     will_core_loss_break_chain = no
 }
 
 has_core_titles = { # scope is character
-    trigger_if = {
-        limit = {has_variable_list = core_title_list}
-        any_in_list = {
-            variable = core_title_list
-            always = yes
-        }# should check if the list is empty.
-    }
-    trigger_else = {
-        always = no
+    any_held_title = {
+        is_title_core = yes
     }
 }

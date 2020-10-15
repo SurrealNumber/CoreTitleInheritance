@@ -103,7 +103,7 @@ set_over_core_limit_modifier = { # scope is character
         limit = {amount_over_core_limit >= 10}
         add_character_modifier = 10_plus_over_core_limit_modifier
     }
-    remove_variable = _amount_over_core_limit
+    #remove_variable = _amount_over_core_limit
 }
 
 
@@ -111,112 +111,37 @@ initialize_cores = {# scope is a character
     save_temporary_scope_as = _character
     every_held_title = {
         if = {
-            limit = {is_title_core = yes}
-            save_temporary_scope_as = _title
-            scope:_character = {
-                add_to_variable_list = {
-                    name = core_title_list
-                    target = scope:_title
-                }
-            }
-        }
-        if = {
             limit = {is_title_county = yes}
             remove_core_county_modifier = yes
         }
-    }
-    
-    set_variable = {
-        name = core_count
-        value = 0
-    }
-    every_in_list = {
-        variable = core_title_list
         if = {
-            limit = {does_core_count_to_limit = yes}
-            apply_core_county_modifier = yes
-            scope:_character = {
-                change_variable = {
-                    name = core_count
-                    add = 1
-                }
+            limit = {
+                is_title_core = yes
+                does_core_count_to_limit = yes
             }
+            apply_core_county_modifier = yes
         }
     }
     set_over_core_limit_modifier = yes
 }
 
-track_added_core = {# scope is title
-    save_temporary_scope_as = _title
-    holder = {
-        add_to_variable_list = {
-            name = core_title_list
-            target = scope:_title
-        }
-        if = {
-            limit = {scope:_title = {does_core_count_to_limit = yes}}
-            change_variable = {
-                name = core_count
-                add = 1
-            }
-            set_over_core_limit_modifier = yes
-            scope:_title = {apply_core_county_modifier = yes} # redundant check for being a county in this case. checks game rules in here.
-            if = {
-                limit = {has_game_rule = flat_designate_core_county_cost}
-                add_prestige = $COST$
-            }
-        }
-    }
-}
-
-track_removed_core = {# scope is title
-    save_temporary_scope_as = _title
-    holder = {
-        remove_list_variable = {
-            name = core_title_list
-            target = scope:_title
-        }
-        if = {
-            limit = {scope:_title = {does_core_count_to_limit = yes}}
-            change_variable = {
-                name = core_count
-                subtract = 1
-            }
-            set_over_core_limit_modifier = yes
-            scope:_title = {remove_core_county_modifier = yes} # redundant check for being a county in this case. checks game rules in here.
-            if = {
-                limit = {has_game_rule = flat_designate_core_county_cost}
-                add_prestige = $COST$
-            }
-        }
-    }
-}
-
-update_cores = { # scope is title. Additionaly expects a value and a boolean.
+core_change_effect = { # scope is title. Additionaly expects a value and a boolean.
     if = {
-        limit = {
-            NAND = {
-                has_variable = core_count
-                has_variable_list = core_title_list
+        limit = {does_core_count_to_limit = yes}
+        if = {
+            limit = {always = $INCREASE$}
+            apply_core_county_modifier = yes
+        }
+        else = {
+            remove_core_county_modifier = yes
+        }
+        holder = {
+            set_over_core_limit_modifier = yes
+            if = {
+                limit = {has_game_rule = flat_designate_core_county_cost}
+                add_prestige = $COST$
             }
         }
-        holder = {initialize_cores = yes}
-    }
-    else_if = {
-        limit = {always = $INCREASE$}
-        track_added_core = {COST = $COST$}
-    }
-    else = {
-        track_removed_core = {COST = $COST$}
-    }
-}
-
-#unlike making titles no longer be core, cores should only be made by being designated. Cannot core beyond core title limit.
-designate_core_title = { #scope is title
-    set_title_core = yes
-    update_cores = {
-        INCREASE = yes
-        COST = coring_county_cost_flat
     }
 }
 
@@ -228,32 +153,12 @@ set_title_core = {
     set_always_follows_primary_heir = yes
 }
 
-de_designate_core_title = {# scope is title, should only be called when it is appropriate/possible.
-    de_core_title = yes
-    update_cores = {
-        INCREASE = no
-        COST = coring_county_refund_flat
-    }
-}
-
-# should be able to construct list and use it in the limit for the next one.
-# should only be called when there are titles to remove.
-remove_invalid_core_titles = { #scope is a character. full refund. Not meant to be called via player actions.
-    send_cores_removed_toast = yes
-    while = {
-        count = 4 # Should need to run no more than 3 times. Adding in extra run incase my thought process is off.
-        #limit = {any_core_title_item = {is_core_consistent = no}} Commenting out, should make this more efficient.
-        every_in_list = {
-            variable = core_title_list
-            if = {
-                limit = {is_core_consistent = no}
-                de_core_title = yes # inconsistent restricts all cores to being cti cores
-                update_cores = {
-                    INCREASE = no
-                    COST = coring_county_refund_flat_full
-                }
-            }
-        }
+#unlike making titles no longer be core, cores should only be made by being designated. Cannot core beyond core title limit.
+designate_core_title = { #scope is title
+    set_title_core = yes
+    core_change_effect = {
+        INCREASE = yes
+        COST = coring_county_cost_flat
     }
 }
 
@@ -268,12 +173,43 @@ de_core_title = { # scope is a title.
     }
 }
 
+de_designate_core_title = {# scope is title, should only be called when it is appropriate/possible.
+    de_core_title = yes
+    core_change_effect = {
+        INCREASE = no
+        COST = coring_county_refund_flat
+    }
+}
+
+# should be able to construct list and use it in the limit for the next one.
+# should only be called when there are titles to remove.
+remove_invalid_core_titles = { #scope is a character. full refund. Not meant to be called via player actions.
+    send_cores_removed_toast = yes
+    while = {
+        count = 4 # Should need to run no more than 3 times. Adding in extra run incase my thought process is off.
+        #limit = {any_core_title_item = {is_core_consistent = no}} Commenting out, should make this more efficient.
+        every_held_title = {
+            if = {
+                limit = {
+                    is_title_core = yes
+                    is_core_consistent = no
+                }
+                de_core_title = yes # inconsistent restricts all cores to being cti cores
+                core_change_effect = {
+                    INCREASE = no
+                    COST = coring_county_refund_flat_full
+                }
+            }
+        }
+    }
+}
+
 recalculate_cores = { # scope is a character. this is used in cases like inheritance when core titles are preserved
     initialize_cores = yes
     if = {
         limit = {
-            any_in_list = {
-                variable = core_title_list
+            any_held_title = {
+                is_title_core = yes
                 is_core_consistent = no
             }
         }
@@ -282,10 +218,12 @@ recalculate_cores = { # scope is a character. this is used in cases like inherit
 }
 
 de_designate_all_core_titles = { #scope is character. Not full refund. should be called by character.
-    every_in_list = {
-        variable = core_title_list
+    every_held_title = {
         if = {
-            limit = {is_title_core_due_to_cti = yes}
+            limit = {
+                is_title_core = yes
+                is_title_core_due_to_cti = yes
+            }
             de_designate_core_title = yes
         }
     }
@@ -305,7 +243,7 @@ check_auto_core_title = { # scope is title. Assumes that only  one title is bein
             will_core_loss_break_chain = yes
         }
         set_title_core = yes
-        update_cores = {
+        core_change_effect = { # should never do anything, here for consistency
             INCREASE = yes
             COST = coring_county_cost_flat
         }

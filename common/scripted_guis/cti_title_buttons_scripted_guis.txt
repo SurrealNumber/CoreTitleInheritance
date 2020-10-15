@@ -20,6 +20,10 @@
             custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP
         }
         else_if = {
+            limit = {is_title_ineligible_due_to_title_law = yes}
+            custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP_TITLE_LAW
+        }
+        else_if = {
             limit = {is_title_eligible_for_core = no}
             custom_tooltip = TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD
         }

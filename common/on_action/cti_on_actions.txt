@@ -24,6 +24,12 @@ on_title_gain = {
     # }
 # }
 
+on_death = {
+    on_actions = {
+        cti_on_death
+    }
+}
+
 # My on_actions which call the rest of my code.
 
 cti_on_title_destroyed = { # assume this happens after destruction
@@ -95,5 +101,11 @@ cti_on_game_start_after_lobby = {
                 recalculate_cores = yes
                 }# Will ignore baron tier
         }
+    }
+}
+
+cti_on_death = { # believe this is right before the character actually dies.
+    effect = {
+        recalculate_cores = yes
     }
 }

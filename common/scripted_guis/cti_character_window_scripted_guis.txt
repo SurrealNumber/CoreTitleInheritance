@@ -16,13 +16,17 @@ core_title_text_line = {
     }
     
     is_valid = { # multiple core titles
-        1 < root.num_core_titles
+        1 < num_core_titles
     }
     
     effect = {
         set_variable = {
             name = _core_limit
             value = val_core_limit
+        }
+        set_variable = {
+            name = _core_count
+            value = core_count
         }
     }
 }
@@ -42,10 +46,10 @@ core_limit_display = {
         if = {
             limit = {is_over_core_limit = yes}
             custom_tooltip = CORE_LIMIT_EXCEEDED_TOOLTIP
-            root.amount_over_core_limit = {save_temporary_scope_as = _amount_over_core_limit}
+            amount_over_core_limit = {save_temporary_scope_as = _amount_over_core_limit}
             if = {
                 limit = {
-                    root.amount_over_core_limit > 1
+                    amount_over_core_limit > 1
                 }
                 custom_tooltip = CORE_LIMIT_OVER_EFFECTS_HEADING_TOOLTIP
             }
@@ -65,13 +69,13 @@ core_limit_display = {
     }
 }
 
-# core_capital_chain_character_display = {
-    # scope = character
+core_capital_chain_character_display = {
+    scope = character
     
-    # is_valid = { # multiple capital chain cores
-        # 1 < root.count_core_due_to_capital
-    # }
-# }
+    is_valid = { # multiple capital chain cores
+        1 < count_core_due_to_capital
+    }
+}
 
 core_capital_chain_title_display = {
     scope = title
@@ -87,8 +91,8 @@ core_special_character_display = {
     is_shown = {
         trigger_if = {
             limit = {has_variable_list = core_title_list}
-            any_in_list = {
-                variable = core_title_list
+            any_held_title = {
+                is_core_title = yes
                 is_title_special_core = yes
             }# should check if the list is empty.
         }
@@ -117,8 +121,8 @@ core_mod_character_display = {
     is_shown = {
         trigger_if = {
             limit = {has_variable_list = core_title_list}
-            any_in_list = {
-                variable = core_title_list
+            any_held_title = {
+                is_title_core = yes
                 is_title_core_due_to_cti = yes
             }# should check if the list is empty.
         }
@@ -137,6 +141,7 @@ core_mod_title_display = {
     
     
     is_shown = {
+        is_title_core = yes
         is_title_core_due_to_cti = yes
     }
 }
