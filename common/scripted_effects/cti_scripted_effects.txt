@@ -4,20 +4,21 @@
 apply_core_county_modifier = { # scope is a title
     if = {
         limit = {is_title_county = yes}
+        # if = {
+            # limit = {
+                # has_game_rule = overtime_core_county_cost
+                # has_game_rule = control_core_county_benefit
+            # }
+            # add_county_modifier = core_county_cost_benefit_modifier
+        # }
+        # else_if = {
+            # limit = {
+                # has_game_rule = overtime_core_county_cost
+            # }
+            # add_county_modifier = core_county_cost_modifier
+        # }
+        # else_
         if = {
-            limit = {
-                has_game_rule = overtime_core_county_cost
-                has_game_rule = control_core_county_benefit
-            }
-            add_county_modifier = core_county_cost_benefit_modifier
-        }
-        else_if = {
-            limit = {
-                has_game_rule = overtime_core_county_cost
-            }
-            add_county_modifier = core_county_cost_modifier
-        }
-        else_if = {
             limit = {
                 has_game_rule = control_core_county_benefit
             }
@@ -29,8 +30,8 @@ apply_core_county_modifier = { # scope is a title
 remove_core_county_modifier = { # scope is a title
     if = {
         limit = {is_title_county = yes}
-        remove_all_county_modifier_instances = core_county_cost_benefit_modifier
-        remove_all_county_modifier_instances = core_county_cost_modifier
+        #remove_all_county_modifier_instances = core_county_cost_benefit_modifier
+        #remove_all_county_modifier_instances = core_county_cost_modifier
         remove_all_county_modifier_instances = core_county_benefit_modifier
     }
 }

@@ -1,5 +1,5 @@
 ﻿core_county_cost = {
-    default = overtime_core_county_cost
+    default = flat_designate_core_county_cost
     
     no_core_county_cost = {}
     
@@ -27,7 +27,7 @@ core_county_limit = {
 }
 
 core_persist = {
-    default = true_core_persist
+    default = false_core_persist
     
     false_core_persist = {}
     

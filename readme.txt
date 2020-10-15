@@ -1547,3 +1547,16 @@ I should also look into moving the variable assignments out of the animations - 
 It looks like modifiers CAN have a scale - an example is the prestige from council positions.
 
 I will leave the over core limit modifier as is because it is already implemented, but I will use it for overtime core title cost.
+False alarm, scale is only for councilor stuff.
+Will have to carefully take care of adding and taking away (if possible. Might only be able to add defined modifiers.)
+
+looks like I can pass strings and reference things with them. Can I do that with values as well?
+It appears to only be strings.
+Either way it looks like only pre-defined modifiers can be added.
+Could try to do the same thing as for over core limit, but don't plan to have a cap.
+Could try to make a dummy building.
+
+Could try making a dummy council position?
+Could add it onto a council position. <- problem of unclear source.
+I think I have to go the route of the over council limit.
+Will scrap for now because I don't like the idea of caping it.<- adding issue on github.

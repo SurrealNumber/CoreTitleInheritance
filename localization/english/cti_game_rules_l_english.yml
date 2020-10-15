@@ -3,7 +3,7 @@
  setting_no_core_county_cost:0 "None"
  setting_no_core_county_cost_desc:0 "Core counties have no individual cost."
  setting_overtime_core_county_cost:0 "Overtime"
- setting_overtime_core_county_cost_desc:0 "Core counties apply a monthly prestige penalty."
+ setting_overtime_core_county_cost_desc:0 "Core counties apply a monthly prestige penalty. Not Implemented."
  setting_flat_designate_core_county_cost:0 "Flat"
  setting_flat_designate_core_county_cost_desc:0 "Designating counties as core costs a flat amount of prestige." 
  
