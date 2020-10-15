@@ -25,22 +25,25 @@ has_any_title_law = { # scope is title (technically this means has a different t
     OR = {
         is_head_of_faith = yes
         has_title_law_flag = elective_succession_law
-        NOR = {
-            AND = {
-                has_title_law = male_only_law
+        NOT = {
+            trigger_if = {
+                limit = {has_title_law = male_only_law}
                 holder = {has_realm_law = male_only_law}
             }
-            AND = {
-                has_title_law = male_preference_law
+            trigger_else_if = {
+                limit = {has_title_law = male_preference_law}
                 holder = {has_realm_law = male_preference_law}
             }
-            AND = {
-                has_title_law = equal_law
+            trigger_else_if = {
+                limit = {has_title_law = equal_law}
                 holder = {has_realm_law = equal_law}
             }
-            AND = {
-                has_title_law = female_preference_law
+            trigger_else_if = {
+                limit = {has_title_law = female_preference_law}
                 holder = {has_realm_law = female_only_law}
+            }
+            trigger_else = {
+                always = yes
             }
         }
         
@@ -49,30 +52,35 @@ has_any_title_law = { # scope is title (technically this means has a different t
 
 is_title_ineligible_due_to_title_law  = { # scope is title
     save_temporary_scope_as = t_title
-    any_this_title_or_de_jure_above = {
-        trigger_if = {
-            limit = {exists = holder}
-            holder = {has_title = scope:t_title} # held by owner
-            has_any_title_law = yes
-            OR = {
-                NOT = {holder.primary_title = this} # this title is not the primary title
-                AND = {
-                    holder.primary_title = this
-                    NOT = {current_heir.dynasty = holder.dynasty} # have to investigate what this does with lowborn characters.
-                    holder = {
-                        any_held_title = {
-                            tier = holder.primary_title.tier
-                            NOT = {holder.primary_title = this}
+    OR = {
+        AND = { # title is primary going to different dynasty and with peer title.
+            holder.primary_title = this # is primary
+            NOT = {current_heir.dynasty = holder.dynasty} #title heir is of different dynasty # have to investigate what this does with lowborn characters.
+        }
+        any_this_title_or_de_jure_above = {
+            trigger_if = { # should be an implied and
+                limit = {exists = holder}
+                holder = {has_title = scope:t_title} # held by owner
+                has_any_title_law = yes # title has a title law
+                OR = {
+                    NOT = {holder.primary_title = this} # this title is not the primary title
+                    AND = { # title is primary going to different dynasty and with peer title.
+                        holder.primary_title = this # is primary
+                        NOT = {current_heir.dynasty = holder.dynasty} #title heir is of different dynasty # have to investigate what this does with lowborn characters.
+                        holder = { # other title of same tier as primary
+                            any_held_title = {
+                                tier = holder.primary_title.tier
+                                NOT = {holder.primary_title = this}
+                            }
                         }
                     }
                 }
             }
-        }
-        trigger_else = {
-            always = no
+            trigger_else = {
+                always = no
+            }
         }
     }
-    
 }
 
 is_title_core = { # Assume that this will only be called if the title is owned

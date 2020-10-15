@@ -1517,8 +1517,18 @@ Debug
 Localization
 work on prestige penalty from core provinces.
 probably want to auto-core up from title.
+add warning for not inheriting cores due to bug?
 
 HasDynasty is essentially a check of not being lowborn, NOT a check if you have a specific dynasty.
 
 It looks like there is something wrong with the logic for showing the primary title in expanded core titles tab. - it is not being shown when it should be
 logic is also messing up for a duchy under the primary title - can't designate it as core.
+
+Patch 1.1.3 came out. Looking at differences:
+Looks like on_title_loss was removed.
+^ appears to still be there.
+
+title could possibly not have a gender law associated with it.
+want: need yes from title law.
+if title has law, good if realm also, if title has no law good.
+fixed bugs ^
