@@ -1678,3 +1678,7 @@ always_follows_primary_heir is actually a misnomer. The titles will not travel o
 
 Code cleanup time.
 Code cleanup done. Will clean up this readme right before release. It is useful to be able to dump thoughts here.
+bug with core titles not going to heir does not apply to the head of faith.
+Title inheritance laws work properly with designation but not with consistent.
+time to make the game concepts entries look better
+Need to check that head of faith title is still considered core.

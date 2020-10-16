@@ -234,6 +234,7 @@ will_core_loss_break_chain = { # scope is title
 
 is_core_consistent = {# scope is title
     save_temporary_scope_as = _title
+    is_title_ineligible_due_to_title_law = no
     OR = {
         is_title_county = yes
         is_title_core_due_to_not_cti = yes
