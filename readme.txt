@@ -1580,7 +1580,7 @@ CUSTOM IS A CALL TO CUSTOM LOCALIZATION!!!!!!!!!! I CAN USE THIS FOR THE VALUES!
 
 TODO (before 1.0.0): <- remarkably short and not too open ended.
 Debug
-- saying domain_limit is none in cti_values line 4
+- saying domain_limit is none in cti_values line 4 <- due to being called in the scope of a title to set a variable.
 - most likely related to above, can still designate titles core if not enough prestige.
 - need to allow coring if character does not have enough prestige as long as the title does not cost prestige to core.
 Localization
@@ -1595,3 +1595,52 @@ Documentation:
 - hopefully at some point in the future process information here into modding guide/help thing.
 Communication:
 - figure out how I want to ask open questions or request additional tools for modders.
+
+Belated to say this but in localization |x where x is a number means show that many decimal places
+exists save_temporary_scope_value_as
+customizable_localization does not function as I wanted or thought it did.
+I am starting to suspect more and more that passing things with $$ just passes the text and puts the text where the $$ is. It does not pass the object or a snapshot of the object.
+Will look into going back to variables, but still using custom localization
+Cannot set scopes or variables in custom localization. Useless for my purposes.
+variables will be:
+_num_core_counties
+_core_limit<- will only update on opening tab
+_num_over_core_limit<- will update both on opening tab and core management.
+_num_core_titles
+
+Header can be misleading. Should change it to core counties or core limit or just remove it or make it bigger and separated.
+Should have number turn red even when not in opened tab. - clearer you are over core limit click here. <- will not do. Too intrusive, out of place, and will also occur for other characters.
+numbers update properly when character screen is open.
+hide modifier for being over core limit.
+
+make core limit box/icon bigger
+Add core limit to tooltip even when not over
+move core titles heading into the scrollbox or remove it.
+Generally looks bad due to being centered with lots of empty space on either side.
+Core titles number can not update for some characters.
+
+could be problems with switching characters but not re-opening tab.
+#R # in localization does in fact make the text big.
+Overcorrected on the size of the icon. Need to also resize the text.
+Should move text below
+
+remove bullet from core limit tooltip
+move core limit up and make box bigger
+look into Jomini for way to have the hover be the tooltip.
+Looks like I can't get the tooltip I want.
+Need to move the gap from being between the crown and the text to being between the text lines.
+^problem is that the gap is in the bottom of the image. Need to overlap the boxes or crop the image.
+
+Wonder if bug with not inheriting core titles would apply to head of faith titles.
+
+missing localizations:
+action_over_core_holding_limit <- also need to change name
+action_over_core_holding_limit_desc
+action_over_core_holding_limit_click
+hide over core limit modifiers
+core_county_benefit_modifier
+custom localization for de-designate core
+custom localization for designate core
+add_prestige_no_experience
+recalculate_cores_interaction
+update all tooltips for current mod mechanics.

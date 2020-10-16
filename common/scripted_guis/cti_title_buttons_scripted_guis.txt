@@ -11,7 +11,10 @@
     is_valid = {
         can_core_title = yes
         trigger_if = {
-            limit = {has_game_rule = flat_designate_core_county_cost}
+            limit = {
+                has_game_rule = flat_designate_core_county_cost
+                does_core_count_to_limit = yes
+            }
             holder = {prestige >= coring_county_cost_flat}
         }
     }

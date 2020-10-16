@@ -6,7 +6,25 @@
     }
     
     is_valid = { # multiple core titles
-        1 < num_core_titles
+        1 < val_core_titles
+    }
+    
+    effect = {
+        set_variable = {
+            name = _core_limit
+            value = val_core_limit
+        }
+        set_variable = {
+            name = _num_over_core_limit
+            value = amount_over_core_limit
+        }
+        set_variable = {
+            name = _val_over_core_limit_penalty
+            value = {
+                value = -0.05
+                multiply = root.amount_over_core_limit
+            }
+        }
     }
 }
 
@@ -25,7 +43,6 @@ core_limit_display = {
         if = {
             limit = {is_over_core_limit = yes}
             custom_tooltip = CORE_LIMIT_EXCEEDED_TOOLTIP
-            amount_over_core_limit = {save_temporary_scope_as = _amount_over_core_limit}
             if = {
                 limit = {
                     amount_over_core_limit > 1
@@ -34,14 +51,6 @@ core_limit_display = {
             }
             else = {
                 custom_tooltip = CORE_LIMIT_OVER_EFFECTS_SINGULAR_HEADING_TOOLTIP
-            }
-            set_variable = {
-                name = _val_over_core_limit_penalty
-                value = -0.05
-            }
-            change_variable = {
-                name = _val_over_core_limit_penalty
-                multiply = root.amount_over_core_limit
             }
             custom_tooltip = CORE_LIMIT_OVERRUN_EFFECT
         }

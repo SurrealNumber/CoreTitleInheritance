@@ -45,66 +45,68 @@ remove_core_county_modifier = { # scope is a title
 # }
 
 set_over_core_limit_modifier = { # scope is character
-    remove_all_character_modifier_instances = 1_over_core_limit_modifier
-    remove_all_character_modifier_instances = 2_over_core_limit_modifier
-    remove_all_character_modifier_instances = 3_over_core_limit_modifier
-    remove_all_character_modifier_instances = 4_over_core_limit_modifier
-    remove_all_character_modifier_instances = 5_over_core_limit_modifier
-    remove_all_character_modifier_instances = 6_over_core_limit_modifier
-    remove_all_character_modifier_instances = 7_over_core_limit_modifier
-    remove_all_character_modifier_instances = 8_over_core_limit_modifier
-    remove_all_character_modifier_instances = 9_over_core_limit_modifier
-    remove_all_character_modifier_instances = 10_plus_over_core_limit_modifier
-    # set_variable = {
-        # name = _amount_over_core_limit
-        # value = amount_over_core_limit
-    # } #hopefully stores the variable so it is not calculated every time.
-    #^this was not working. changing to calculate everytime. inefficient.
-    if = {
-        limit = {amount_over_core_limit = 0}
-        # do nothing
+    hidden_effect = {
+        remove_all_character_modifier_instances = 1_over_core_limit_modifier
+        remove_all_character_modifier_instances = 2_over_core_limit_modifier
+        remove_all_character_modifier_instances = 3_over_core_limit_modifier
+        remove_all_character_modifier_instances = 4_over_core_limit_modifier
+        remove_all_character_modifier_instances = 5_over_core_limit_modifier
+        remove_all_character_modifier_instances = 6_over_core_limit_modifier
+        remove_all_character_modifier_instances = 7_over_core_limit_modifier
+        remove_all_character_modifier_instances = 8_over_core_limit_modifier
+        remove_all_character_modifier_instances = 9_over_core_limit_modifier
+        remove_all_character_modifier_instances = 10_plus_over_core_limit_modifier
+        # set_variable = {
+            # name = _amount_over_core_limit
+            # value = amount_over_core_limit
+        # } #hopefully stores the variable so it is not calculated every time.
+        #^this was not working. changing to calculate everytime. inefficient.
+        if = {
+            limit = {amount_over_core_limit = 0}
+            # do nothing
+        }
+        else_if = {
+            limit = {amount_over_core_limit = 1}
+            add_character_modifier = 1_over_core_limit_modifier
+        }
+        else_if = {
+            limit = {amount_over_core_limit = 2}
+            add_character_modifier = 2_over_core_limit_modifier
+        }
+        else_if = {
+            limit = {amount_over_core_limit = 3}
+            add_character_modifier = 3_over_core_limit_modifier
+        }
+        else_if = {
+            limit = {amount_over_core_limit = 4}
+            add_character_modifier = 4_over_core_limit_modifier
+        }
+        else_if = {
+            limit = {amount_over_core_limit = 5}
+            add_character_modifier = 5_over_core_limit_modifier
+        }
+        else_if = {
+            limit = {amount_over_core_limit = 6}
+            add_character_modifier = 6_over_core_limit_modifier
+        }
+        else_if = {
+            limit = {amount_over_core_limit = 7}
+            add_character_modifier = 7_over_core_limit_modifier
+        }
+        else_if = {
+            limit = {amount_over_core_limit = 8}
+            add_character_modifier = 8_over_core_limit_modifier
+        }
+        else_if = {
+            limit = {amount_over_core_limit = 9}
+            add_character_modifier = 9_over_core_limit_modifier
+        }
+        else_if = {
+            limit = {amount_over_core_limit >= 10}
+            add_character_modifier = 10_plus_over_core_limit_modifier
+        }
+        #remove_variable = _amount_over_core_limit
     }
-    else_if = {
-        limit = {amount_over_core_limit = 1}
-        add_character_modifier = 1_over_core_limit_modifier
-    }
-    else_if = {
-        limit = {amount_over_core_limit = 2}
-        add_character_modifier = 2_over_core_limit_modifier
-    }
-    else_if = {
-        limit = {amount_over_core_limit = 3}
-        add_character_modifier = 3_over_core_limit_modifier
-    }
-    else_if = {
-        limit = {amount_over_core_limit = 4}
-        add_character_modifier = 4_over_core_limit_modifier
-    }
-    else_if = {
-        limit = {amount_over_core_limit = 5}
-        add_character_modifier = 5_over_core_limit_modifier
-    }
-    else_if = {
-        limit = {amount_over_core_limit = 6}
-        add_character_modifier = 6_over_core_limit_modifier
-    }
-    else_if = {
-        limit = {amount_over_core_limit = 7}
-        add_character_modifier = 7_over_core_limit_modifier
-    }
-    else_if = {
-        limit = {amount_over_core_limit = 8}
-        add_character_modifier = 8_over_core_limit_modifier
-    }
-    else_if = {
-        limit = {amount_over_core_limit = 9}
-        add_character_modifier = 9_over_core_limit_modifier
-    }
-    else_if = {
-        limit = {amount_over_core_limit >= 10}
-        add_character_modifier = 10_plus_over_core_limit_modifier
-    }
-    #remove_variable = _amount_over_core_limit
 }
 
 initialize_cores = {# scope is a character
@@ -124,16 +126,16 @@ initialize_cores = {# scope is a character
     }
     set_over_core_limit_modifier = yes
     set_variable = {
-        name = _num_core_titles
-        value = num_core_titles
-    }
-    set_variable = {
-        name = _core_limit
-        value = val_core_limit
-    }
-    set_variable = {
-        name = _core_count
+        name = _num_core_counties
         value = core_count
+    }
+    set_variable = {
+        name = _num_over_core_limit
+        value = amount_over_core_limit
+    }
+    set_variable = {
+        name = _num_core_titles
+        value = val_core_titles
     }
 }
 
@@ -155,17 +157,19 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
             }
         }
     }
-    set_variable = {
-        name = _num_core_titles
-        value = num_core_titles
-    }
-    set_variable = {
-        name = _core_limit
-        value = val_core_limit
-    }
-    set_variable = {
-        name = _core_count
-        value = core_count
+    holder = {
+        set_variable = {
+            name = _num_core_counties
+            value = core_count
+        }
+        set_variable = {
+            name = _num_over_core_limit
+            value = amount_over_core_limit
+        }
+        set_variable = {
+            name = _num_core_titles
+            value = val_core_titles
+        }
     }
 }
 

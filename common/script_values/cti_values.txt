@@ -53,7 +53,7 @@ amount_over_core_limit = { # scope is character
 #    var:core_count
 #}
 
-num_core_titles = {
+val_core_titles = {
     value = 0
     every_held_title = {
         if = {

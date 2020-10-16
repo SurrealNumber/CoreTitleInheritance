@@ -1,14 +1,4 @@
-﻿test_positive_modifier = {
-    icon = prestige_positive
-    domain_limit = 10
-}
-
-test_negative_modifier = {
-    icon = prestige_negative
-    domain_limit = -1
-}
-
-# # the icons county_modifier_corruption_negative, county_modifier_opinion, and prestige_negative
+﻿# # the icons county_modifier_corruption_negative, county_modifier_opinion, and prestige_negative
 # # Desire this to be half the core province prestige benefit modifier.
 # core_county_cost_modifier = {
     # icon = diplomacy_negative
@@ -29,42 +19,32 @@ core_county_benefit_modifier = {
 # could also consider the icons outdoors_negative (fire), prestige_negative, letter_negative, county_modifier_corruption_negative
 # The formula should be a prestige gain multiplier of -0.05 * amount over the core limit with a limit of -0.5
 1_over_core_limit_modifier = {
-    icon = prestige_negative
     monthly_prestige_gain_mult = -0.05
 }
 2_over_core_limit_modifier = {
-    icon = prestige_negative
     monthly_prestige_gain_mult = -0.10
 }
 3_over_core_limit_modifier = {
-    icon = prestige_negative
     monthly_prestige_gain_mult = -0.15
 }
 4_over_core_limit_modifier = {
-    icon = prestige_negative
     monthly_prestige_gain_mult = -0.20
 }
 5_over_core_limit_modifier = {
-    icon = prestige_negative
     monthly_prestige_gain_mult = -0.25
 }
 6_over_core_limit_modifier = {
-    icon = prestige_negative
     monthly_prestige_gain_mult = -0.30
 }
 7_over_core_limit_modifier = {
-    icon = prestige_negative
     monthly_prestige_gain_mult = -0.35
 }
 8_over_core_limit_modifier = {
-    icon = prestige_negative
     monthly_prestige_gain_mult = -0.40
 }
 9_over_core_limit_modifier = {
-    icon = prestige_negative
     monthly_prestige_gain_mult = -0.45
 }
-10_plus_over_core_limit_modifier = {# + might be invalid in the name.
-    icon = prestige_negative
+10_plus_over_core_limit_modifier = {
     monthly_prestige_gain_mult = -0.50
 }

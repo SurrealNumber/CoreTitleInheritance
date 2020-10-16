@@ -1,6 +1,0 @@
-﻿# core_title_item = { # scope is character
-    # base = held_title
-    # conditions = {
-        # is_title_core = yes
-    # }
-# }

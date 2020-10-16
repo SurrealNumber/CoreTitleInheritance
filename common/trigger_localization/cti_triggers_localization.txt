@@ -1,42 +1,42 @@
-﻿primary_title_equal = {
-    global = PRIMARY_TITLE_EQUAL_TRIGGER
-}
+﻿# primary_title_equal = {
+    # global = PRIMARY_TITLE_EQUAL_TRIGGER
+# }
 
-capital_county_equal = {
-    global = CAPITAL_COUNTY_EQUAL_TRIGGER
-}
+# capital_county_equal = {
+    # global = CAPITAL_COUNTY_EQUAL_TRIGGER
+# }
 
-is_de_jure_liege_or_above_target = {
-    global = IS_DE_JURE_LIEGE_OR_ABOVE_TARGET_TRIGGER
-}
+# is_de_jure_liege_or_above_target = {
+    # global = IS_DE_JURE_LIEGE_OR_ABOVE_TARGET_TRIGGER
+# }
 
-target_is_de_jure_liege_or_above = {
-    global = TARGET_IS_DE_JURE_LIEGE_OR_ABOVE_TRIGGER
-}
+# target_is_de_jure_liege_or_above = {
+    # global = TARGET_IS_DE_JURE_LIEGE_OR_ABOVE_TRIGGER
+# }
 
-any_this_title_or_de_jure_above_all = {
-    global = ALL_THIS_TITLE_OR_DE_JURE_ABOVE_TRIGGER
-}
+# any_this_title_or_de_jure_above_all = {
+    # global = ALL_THIS_TITLE_OR_DE_JURE_ABOVE_TRIGGER
+# }
 
-any_this_title_or_de_jure_above = {
-    global = ANY_THIS_TITLE_OR_DE_JURE_ABOVE_TRIGGER
-}
+# any_this_title_or_de_jure_above = {
+    # global = ANY_THIS_TITLE_OR_DE_JURE_ABOVE_TRIGGER
+# }
 
-landed_title_this_equal = {
-    global = LANDED_TITLE_THIS_EQUAL_TRIGGER
-}
+# landed_title_this_equal = {
+    # global = LANDED_TITLE_THIS_EQUAL_TRIGGER
+# }
 
-landed_title_var_equal = {
-    global = LANDED_TITLE_VAR_EQUAL_TRIGGER
+# landed_title_var_equal = {
+    # global = LANDED_TITLE_VAR_EQUAL_TRIGGER
 }
 
 is_head_of_faith = {
     global = IS_HEAD_OF_FAITH_TRIGGER
 }
 
-has_variable = { # probably want to deal with this in a different manner, but I am trying to just get something to show up now.
-    global = HAS_VARIABLE_TRIGGER
-}
+# has_variable = { # probably want to deal with this in a different manner, but I am trying to just get something to show up now.
+    # global = HAS_VARIABLE_TRIGGER
+# }
 
 # any_core_title_item = {
     # third = ANY_CORE_TITLE_ITEM_THIRD
@@ -50,9 +50,9 @@ is_title_core = {
     global = IS_TITLE_CORE_TRIGGER
 }
 
-print_title = {
-    global = PRINT_TITLE
-}
+# print_title = {
+    # global = PRINT_TITLE
+# }
 # is_title_core_due_to_capital
 
 # is_title_special_core

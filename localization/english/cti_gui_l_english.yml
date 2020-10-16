@@ -16,14 +16,14 @@
  CV_CORE_TITLES:0 "[core_titles|E]"
  CV_CORE_TITLES_SINGULAR:0 "[core_title|E]"
  
- CORE_LIMIT_C_L:0 "[Character.MakeScope.Var('_core_count').GetValue|0]/[Character.MakeScope.Var('_core_limit').GetValue|0]" # I really hope that this works. core_limit potentially conflicts with the encyclopedia entry.
+ CORE_LIMIT_C_L:0 "[Character.MakeScope.Var('_num_core_counties').GetValue|0]/[Character.MakeScope.Var('_core_limit').GetValue|0]"
  CV_CORE_TITLES_NUMBER:0 "([Character.MakeScope.Var('_num_core_titles').GetValue|0])"
  
- CORE_LIMIT_TOOLTIP_HEADER:0 "#T [core_counties|E]: [THIS.Var('_core_count').GetValue|0]/[THIS.Var('_core_limit').GetValue|0]#!"
+ CORE_LIMIT_TOOLTIP_HEADER:0 "#T \b[core_limit|E]: [THIS.Var('_num_core_counties').GetValue|0]/[THIS.Var('_core_limit').GetValue|0]#!"
  CORE_LIMIT_EXCEEDED_TOOLTIP:0 "@warning_icon!#X Above [core_limit|E]. De-designate some [core_counties|E].#!\n"
- CORE_LIMIT_OVER_EFFECTS_HEADING_TOOLTIP:0 "Effects of being [_amount_over_core_limit.GetValue] [core_counties|E] above the limit:"
- CORE_LIMIT_OVER_EFFECTS_SINGULAR_HEADING_TOOLTIP:0 "Effects of being [_amount_over_core_limit.GetValue] [core_county|E] above the limit:"
- CORE_LIMIT_OVERRUN_EFFECT:0 "   [prestige|E] Gain Multiplier: [THIS.Var(_val_over_core_limit_penalty).GetValue]"
+ CORE_LIMIT_OVER_EFFECTS_HEADING_TOOLTIP:0 "Effects of being [THIS.Var('_num_over_core_limit').GetValue|0] [core_counties|E] above the limit:"
+ CORE_LIMIT_OVER_EFFECTS_SINGULAR_HEADING_TOOLTIP:0 "Effects of being [THIS.Var('_num_over_core_limit').GetValue|0] [core_county|E] above the limit:"
+ CORE_LIMIT_OVERRUN_EFFECT:0 "   [prestige|E] Gain Multiplier: [THIS.Var('_val_over_core_limit_penalty').GetValue]"
  
  
  CV_CORE_CAPITAL_PRIMARY:0 "[capital|E] And [primary_title|E]"
