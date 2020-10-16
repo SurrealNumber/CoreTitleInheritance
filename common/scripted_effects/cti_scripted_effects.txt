@@ -1,9 +1,7 @@
-﻿#All of these assume that you have checked that it is proper to call them before making the call.
-
-
-apply_core_county_modifier = { # scope is a title
+﻿apply_core_county_modifier = { # scope is a title
     if = {
         limit = {is_title_county = yes}
+        #Leaving in this code in case it can be used in the future.
         # if = {
             # limit = {
                 # has_game_rule = overtime_core_county_cost
@@ -30,19 +28,12 @@ apply_core_county_modifier = { # scope is a title
 remove_core_county_modifier = { # scope is a title
     if = {
         limit = {is_title_county = yes}
+        #Leaving this code in in case it can be used in the future
         #remove_all_county_modifier_instances = core_county_cost_benefit_modifier
         #remove_all_county_modifier_instances = core_county_cost_modifier
         remove_all_county_modifier_instances = core_county_benefit_modifier
     }
 }
-
-# initialize_core_county_modifiers = { # scope is a character
-    # every_core_title_item = {
-        # limit = {does_core_count_to_limit = yes}
-        # remove_core_county_modifier = yes
-        # apply_core_county_modifier = yes
-    # }
-# }
 
 set_over_core_limit_modifier = { # scope is character
     hidden_effect = {
@@ -56,11 +47,6 @@ set_over_core_limit_modifier = { # scope is character
         remove_all_character_modifier_instances = 8_over_core_limit_modifier
         remove_all_character_modifier_instances = 9_over_core_limit_modifier
         remove_all_character_modifier_instances = 10_plus_over_core_limit_modifier
-        # set_variable = {
-            # name = _amount_over_core_limit
-            # value = amount_over_core_limit
-        # } #hopefully stores the variable so it is not calculated every time.
-        #^this was not working. changing to calculate everytime. inefficient.
         if = {
             limit = {amount_over_core_limit = 0}
             # do nothing
@@ -105,7 +91,6 @@ set_over_core_limit_modifier = { # scope is character
             limit = {amount_over_core_limit >= 10}
             add_character_modifier = 10_plus_over_core_limit_modifier
         }
-        #remove_variable = _amount_over_core_limit
     }
 }
 
@@ -202,22 +187,18 @@ de_core_title = { # scope is a title.
     }
 }
 
-#unlike making titles no longer be core, cores should only be made by being designated. Cannot core beyond core title limit.
 designate_core_title = { #scope is title
     set_title_core = {COST = coring_county_cost_flat}
 }
 
-de_designate_core_title = {# scope is title, should only be called when it is appropriate/possible.
+de_designate_core_title = {# scope is title. Should not be called on non-core titles
     de_core_title = {COST = coring_county_refund_flat}
 }
 
-# should be able to construct list and use it in the limit for the next one.
-# should only be called when there are titles to remove.
 remove_invalid_core_titles = { #scope is a character. full refund. Not meant to be called via player actions.
     send_cores_removed_toast = yes
     while = {
-        count = 4 # Should need to run no more than 3 times. Adding in extra run incase my thought process is off.
-        #limit = {any_core_title_item = {is_core_consistent = no}} Commenting out, should make this more efficient.
+        count = 4 # Should need to run no more than 3 times. Adding in extra run in case my thought process is off.
         every_held_title = {
             if = {
                 limit = {
@@ -230,7 +211,7 @@ remove_invalid_core_titles = { #scope is a character. full refund. Not meant to 
     }
 }
 
-recalculate_cores = { # scope is a character. this is used in cases like inheritance when core titles are preserved
+recalculate_cores = { # scope is a character.
     initialize_cores = yes
     if = {
         limit = {
@@ -243,7 +224,7 @@ recalculate_cores = { # scope is a character. this is used in cases like inherit
     }
 }
 
-de_designate_all_core_titles = { #scope is character. Not full refund. should be called by character.
+de_designate_all_core_titles = { #scope is character. Not full refund. Should be called by character.
     every_held_title = {
         if = {
             limit = {
@@ -256,7 +237,7 @@ de_designate_all_core_titles = { #scope is character. Not full refund. should be
 }
 
 # looking for the senario where a core is created in between two existing cores.
-check_auto_core_title = { # scope is title. Assumes that only  one title is being created at once. Used for when titles are created.
+check_auto_core_title = { # scope is title. Assumes that only one title is being created at once. Used for when titles are created.
     assert_if = {
         limit = {tier = tier_county}
         text = "check_auto_core_title: County title passed. They should never be created, and that is currently the only entry point."

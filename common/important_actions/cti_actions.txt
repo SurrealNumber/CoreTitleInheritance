@@ -8,18 +8,17 @@
             limit = {is_over_core_limit = yes}
             try_create_important_action = {
                 important_action_type = action_over_core_county_limit
-                #actor = root - Don't think this is necessary
             }
         }
     }
     
     effect = { # scope is character with additional targets defined in try_create_important_action above.
-        # Two set variables are incase I find out how to open the view with a specific tab expanded
-        open_view_data = { # want to expand core titles tab, but don't know how
+        open_view_data = { # want to expand core titles tab, but don't know how to open with a tab expanded
             view = character
             player = root
         }
         
+        # want to additionally open decision to de-designate all core titles.
         # de_designate_all_core_titles_decision = {
 			# open_view_data = decision_detail
 		# } Want to expand the decision on clicking this.

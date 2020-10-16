@@ -23,7 +23,7 @@ is_title_special_core = { # Incomplete until I can see the always_follows_primar
     always = no # head of faith was in this category, but it fits better in the category of having a title law that just happens to be always going to the primary heir.
 }
 
-has_any_title_law = { # scope is title (technically this means has a different title law than the realm law).
+has_any_title_law = { # scope is title (technically this means has a different title succession law than the realm succession law).
     custom_description = {
         text = "HAS_ANY_TITLE_LAW_TRIGGER"
         tier >= tier_duchy
@@ -97,7 +97,7 @@ is_title_core = { # Assume that this will only be called if the title is owned
         limit = {has_variable = core}
         tier >= tier_county        
         OR = {
-            var:core = yes# var:core should be a boolean
+            var:core = yes
             AND = {
                 is_title_ineligible_due_to_title_law = no
                 OR = {
@@ -142,6 +142,7 @@ does_core_count_to_limit = { # scope is title
 #######################################################################################
 ######################## End of "Primative" triggers ##################################
 #######################################################################################
+
 is_a_child_title_chain_core = {# scope is title. assumes that rules are being followed up to this point.
     custom_description = {
         text = CHILD_CHAIN_EXISTS
@@ -155,10 +156,10 @@ is_a_child_title_chain_core = {# scope is title. assumes that rules are being fo
                 NOT = { # need to make sure condition is true for every, so looking for one thing which does not meet it.
                     any_this_title_or_de_jure_above = {
                         trigger_if = {
-                            limit = {exists = holder}
+                            limit = {exists = holder} # limits to titles which exist.
                             # nothing in chain is owned by holder (which implies it exists) but is not core.
                             # will break if there is a title which is held by holder, but is not core between two titles.
-                            holder = {has_title = scope:_title} # held by owner. This shold also disqualify titles that don't exist.
+                            holder = {has_title = scope:_title} # held by owner.
                             tier < scope:_title.tier #in chain between two titles <- because title itself is presumably in heirarchy
                             OR = {
                                 this = $EXCLUDED$ # for the purposes of this function, excluded is not core.
@@ -179,7 +180,7 @@ is_title_eligible_for_core = { # Assume that this will only be called if the tit
     is_title_core = no # not a core title - will rule out core titles due to non-cti.
     is_title_ineligible_due_to_title_law = no
     OR = {
-        is_title_county = yes # owned counties can always be cored
+        is_title_county = yes # owned counties are always eligible to be cored
         save_temporary_scope_as = _title
         is_a_child_title_chain_core = {EXCLUDED = scope:_title} # EXCLUDED should do nothing in this case.
     }

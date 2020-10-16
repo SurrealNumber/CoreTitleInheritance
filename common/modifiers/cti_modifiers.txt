@@ -1,4 +1,4 @@
-﻿# # the icons county_modifier_corruption_negative, county_modifier_opinion, and prestige_negative
+﻿# # Should also consider the icons county_modifier_corruption_negative, county_modifier_opinion, and prestige_negative
 # # Desire this to be half the core province prestige benefit modifier.
 # core_county_cost_modifier = {
     # icon = diplomacy_negative
@@ -16,7 +16,7 @@ core_county_benefit_modifier = {
     # monthly_prestige = -0.1
     # monthly_county_control_change_add = 0.2
 #}
-# could also consider the icons outdoors_negative (fire), prestige_negative, letter_negative, county_modifier_corruption_negative
+
 # The formula should be a prestige gain multiplier of -0.05 * amount over the core limit with a limit of -0.5
 1_over_core_limit_modifier = {
     monthly_prestige_gain_mult = -0.05

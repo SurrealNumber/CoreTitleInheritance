@@ -1,4 +1,6 @@
-﻿#Adding calls to my code to pre-existing on_actions for titles.
+﻿######################################################################
+####### Adding calls to mod on_actions to existing on_actions ########
+######################################################################
 
 on_title_destroyed = {
     on_actions = {
@@ -32,14 +34,14 @@ on_death = {
 
 quarterly_playable_pulse = {
     effect = {
-        trigger_event = {# like the pattern of calling my on actions.
+        trigger_event = {# like the pattern of calling mod on_actions.
             on_action = cti_quarterly_playable_pulse
         }
     }
 }
-
-# My on_actions which call the rest of my code.
-
+#####################################################################
+######### Mod on_actions which call the rest of code. ###############
+#####################################################################
 cti_on_title_destroyed = { # assume this happens after destruction
     effect = {
         scope:landed_title = {de_core_title = {COST = 0}}

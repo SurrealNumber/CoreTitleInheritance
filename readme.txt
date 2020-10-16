@@ -1675,3 +1675,6 @@ title law leads to no toast for de-coring titles because the titles under the ti
 adding on action for playable on quarterly tick to make sure cores are correctly calculated.
 will need to communicate unused variables and the explaination that they are for display purposes.
 always_follows_primary_heir is actually a misnomer. The titles will not travel outside of the dynasty.
+
+Code cleanup time.
+Code cleanup done. Will clean up this readme right before release. It is useful to be able to dump thoughts here.

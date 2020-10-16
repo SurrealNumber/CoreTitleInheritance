@@ -38,21 +38,6 @@ amount_over_core_limit = { # scope is character
     min = 0 # sets lower bound of 0
 }
 
-#over_core_limit_prestige_modifier = {
-#    value = -0.05
-#    multiply = over_core_limit
-#    min = -0.5 # sets lower bound
-#}
-
-#Not used
-#get_core_count = { # scope is a character
-#    if = {
-#    limit = {NOT = {has_variable = core_count}}
-#        initialize_core_count
-#    }
-#    var:core_count
-#}
-
 val_core_titles = {
     value = 0
     every_held_title = {
