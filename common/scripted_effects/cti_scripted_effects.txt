@@ -174,6 +174,7 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
 }
 
 set_title_core = {
+    custom_tooltip = "CORE_TITLE_EFFECT"
     set_variable = {
         name = core
         value = yes
@@ -187,6 +188,7 @@ set_title_core = {
 
 de_core_title = { # scope is a title.
     if = {
+        custom_tooltip = "DE_CORE_TITLE_EFFECT"
         limit = {has_variable = core}
         set_variable = {
             name = core

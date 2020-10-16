@@ -1,7 +1,7 @@
 ﻿core_title = {
 	texture = "gfx/interface/icons/commander_is_leader.dds"
     parent = title
-	alias = { core_titles core_titlepossessive core}
+	alias = { core_titles core_titlepossessive core de_core}
 }
 
 core_county = {
@@ -29,10 +29,4 @@ core_title_persistence = {
     texture = "gfx/interface/icons/message_feed/heir.dds"
 	parent = core_title
     alias = {core_persistence}
-}
-
-# unsure why this is not in vanilla. My definition of de_facto is different than the one used by the de_facto_liege call on a title.
-de_facto = {
-    texture = "gfx/interface/icons/message_feed/titles.dds"
-    parent = de_jure
 }

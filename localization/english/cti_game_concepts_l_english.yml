@@ -3,11 +3,13 @@
  game_concept_core_titles:0 "Core Titles"
  game_concept_core_titlepossessive:0 "Core Title's"
  game_concept_core:0 "Core"
- game_concept_core_title_desc:0 "$game_concept_core_title_desc1$ $game_concept_core_title_desc2$ $game_concept_core_title_desc3$ $game_concept_core_title_desc4$\n\n$game_concept_core_title_desc5$"
+ game_concept_de_core:0 "De-Core"
+ game_concept_core_title_desc:0 "$game_concept_core_title_desc1$ $game_concept_core_title_desc2$ $game_concept_core_title_desc3$ $game_concept_core_title_desc3.5$ $game_concept_core_title_desc4$\n\n$game_concept_core_title_desc5$"
  game_concept_core_title_desc1:0 "A [rulerpossessive|E] core titles are the [titles|E] which are guaranteed to pass to their [primary_heir|E] on [succession|E] irregardless of their [succession_laws|E]."
- game_concept_core_title_desc2:0 "For a title to be eligible as a [core_title|E] it must be a [county|E], have a [de_facto|E] [title|E] beneath it which is a [core_title|E] or be considered [core|E] for a reason other than being designated as such."
+ game_concept_core_title_desc2:0 "For a title to be eligible as a [core_title|E] it must be a [county|E], have a [de_jure|E] [title|E] beneath it which is a [core_title|E], or be considered [core|E] for a reason other than being designated as such."
  game_concept_core_title_desc3:0 "Only titles of [county|E] [title_tier|E] or higher are eligible to be core titles."
- game_concept_core_title_desc4:0 "The reasons for being a core title not due to having been designated one are: being the [primary_title|E], being [de_facto|E] above the [capital|E], or being a [head_of_faith|E] [title|E]."
+ game_concept_core_title_desc3.5:0 "[titles|E] which have a owned [de_jure|E] [title|E] (that is not the sole owned [title|E] of highest [title_tier|E]) above them which has [title_specific_succession|E] are not eligible to be [core_titles|E]."
+ game_concept_core_title_desc4:0 "The reasons for being a core title not due to having been designated one are: being the [primary_title|E], being [de_jure|E] above the [capital|E], or being a [head_of_faith|E] [title|E]."
  game_concept_core_title_desc5:0 "Derivative Concepts:\n[core_county|E]\n[core_title_persistence|E]"
  
  
@@ -27,7 +29,7 @@
  game_concept_core_county_impact_desc3:0 "The impact depends on game rules and has two components:"
  game_concept_core_county_impact_desc4:0 "#T Benefit:#\nNone: [core_counties|E] have no benefit beyond that of [core_titles|E]."
  game_concept_core_county_impact_desc5:0 "Control: [core_counties|E] have increased control gain in addition to being [core_titles|E]."
- game_concept_core_county_impact_desc6:0 "#T Cost:#\nNone: [core_counties|E] have no individual cost.\nOvertime: [core_counties|E] apply a monthly [prestige|E] penalty."
+ game_concept_core_county_impact_desc6:0 "#T Cost:#\nNone: [core_counties|E] have no individual cost.\nOvertime: [core_counties|E] apply a monthly [prestige|E] penalty (Not implemented)."
  game_concept_core_county_impact_desc7:0 "Flat: Designating [counties|E] as [core|E] costs a flat amount of [prestige|E]. De-desginating a [core_county|E] refunds a smaller amount of [prestige|E]."
  game_concept_core_county_impact_desc8:0 "If a [core_county|E] is de-cored for a reason other than the player's decision (except for as a result of title loss) a full refund will be received."
  
@@ -42,6 +44,3 @@
  game_concept_core_title_persistence:0 "Core Title Persistence"
  game_concept_core_persistence:0 "Core Persistence"
  game_concept_core_title_persistence_desc:0 "Whether or not [core_titles|E] remain [core_titles|E] upon being passed down to the [primary_heir|E]. Depends on game rule."
- 
- game_concept_de_facto:0 "De Facto"
- game_concept_de_facto_desc:0 "Literally meaning "by fact" in this context it means the [title|E] or [ruler|E] which is currently the [liege|E] of the [title|E] or [character|E] in question. It is in contrast with [de_jure|E] which reflects the relationships between [titles|E] "by law"."

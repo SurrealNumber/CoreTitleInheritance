@@ -16,7 +16,7 @@
  de_designate_all_core_titles_decision_desc:0 "De-designate all [core_titles|E]."
  de_designate_all_core_titles_decision_effect_tooltip_start:0 "Will de-designate all [core_titles|E]. Not all [core_titles|E] are eligible to be de-designated."
  de_designate_all_core_titles_decision_effect_tooltip_bullet1:0 "Your [primary_title|E] is ineligible to de-core."
- de_designate_all_core_titles_decision_effect_tooltip_bullet2:0 "Your [realm_capital|E] and all titles [de_facto|E] above it of [tier|E] lower than your [primary_title|E] are ineligible to de-core."
+ de_designate_all_core_titles_decision_effect_tooltip_bullet2:0 "Your [realm_capital|E] and all titles [de_jure|E] above it of [title_tier|E] lower than your [primary_title|E] are ineligible to de-core."
  de_designate_all_core_titles_decision_effect_tooltip_bullet3:0 "You will recieve a partial refund for core titles in line with individually de-designating if applicable."
  #de_designate_all_core_titles_decision_effect_tooltip_bullet4:0 "RESERVED FOR TITLE SUCCESSION LAWS"
  de_designate_all_core_titles_decision_effect_tooltip_bullet5:0 "[head_of_faith|E] [titles|E] are ineligible to de-core."
@@ -38,3 +38,10 @@
  action_over_core_county_limit_click:0 "Opens [character|E] view where you can view your cores."
  
  recalculate_cores_interaction:0 "Recalculate Core Titles"
+ 
+ cores_titles_removed_toast_title:0 "Core Titles Were Removed"
+ cores_titles_removed_toast_desc:0 "[core_titles|E] were de-cored due to some of the titles no longer being eligible. Full refund given if applicable."
+ 
+ CORE_TITLE_EFFECT:0 "Becomes a [core_title|E]"
+ DE_CORE_TITLE_EFFECT:0 "Is No Longer a [core_title|E]"
+ 

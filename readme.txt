@@ -1662,3 +1662,8 @@ change core persisntence none name.
 Only a county can break a chain - other tiers simply have their tier get bypassed.
 need to recalculate cores on game start (loading from a save game) or switching played characters.
 CK3 does not like the backspace character
+
+What is left:
+One bug to handle (toast not appearing)
+Code cleanup
+Documentation for users (mod page/post etc)

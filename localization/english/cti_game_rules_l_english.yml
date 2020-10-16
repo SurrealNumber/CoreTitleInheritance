@@ -22,8 +22,8 @@
  setting_unlimited_core_county_limit_desc:0 "Core county limit is ludicrously high"
  
  rule_core_persist:0 "Core Persistence"
- setting_false_core_persist:0 "Clear"
- setting_false_core_persist_desc:0 "Core titles are cleared on inheritance."
+ setting_false_core_persist:0 "Expire"
+ setting_false_core_persist_desc:0 "Core titles expire (are de-cored) on inheritance."
  setting_true_core_persist:0 "Persist"
  setting_true_core_persist_desc:0 "Core titles are persisted through inheritance."
  

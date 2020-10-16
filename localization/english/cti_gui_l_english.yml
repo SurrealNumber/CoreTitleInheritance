@@ -3,16 +3,16 @@
  
  TITLE_VIEW_DESIGNATE_CORE:0 "Designate Core"
  TITLE_DESIGNATE_CORE_TOOLTIP:0 "Designate [_title.GetName] a [core_title|E]"
- TITLE_DESIGNATE_CORE_TOOLTIP_TITLE_LAW:0 "Cannot Designate [_title.GetName] as [core|E] due a [de_facto|E] title above it having [title_laws|E]"
- TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD:0 "Cannot Designate [_title.GetName] as [core|E] due to no [de_facto|E] title directly beneath it being a [core_title|E]"
- TITLE_DESIGNATE_CORE_TOOLTIP_NO_PRESTIGE:0 "Cannot Designate [_title.GetName] as [core|E] due to not having enough [prestige|E]"
+ # TITLE_DESIGNATE_CORE_TOOLTIP_TITLE_LAW:0 "Cannot Designate [_title.GetName] as [core|E] due a [de_jure|E] title above it having [title_specific_succession|E]"
+ # TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD:0 "Cannot Designate [_title.GetName] as [core|E] due to no [de_facto|E] title directly beneath it being a [core_title|E]"
+ # TITLE_DESIGNATE_CORE_TOOLTIP_NO_PRESTIGE:0 "Cannot Designate [_title.GetName] as [core|E] due to not having enough [prestige|E]"
  
  TITLE_VIEW_DE_DESIGNATE_CORE:0 "De-designate Core"
  TITLE_DE_DESIGNATE_CORE_TOOLTIP:0 "De-designate [_title.GetName] as a [core_title|E]"
- TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING:0 "Cannot De-designate [_title.GetName] as [core|E] due to the [de_facto|E] liege title being [core|E] and having no other [core|E] [de_facto|E] titles directly beneath it"
- TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN:0 "Cannot De-designate [_title.GetName] as [core|E] due to the title being [core|E] from being in the [de_jure] chain starting at the [realm_capital|E]"
- TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE:0 "Cannot De-designate [_title.GetName] as [core|E] due to the title being [core|E] from being the [primary_title|E]"
- TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE:0 "Cannot De-designate [_title.GetName] as [core|E] due to the title being [core|E] because it is a special title like a [head_of_faith|E] [title|E]"
+ # TITLE_DE_DESIGNATE_CORE_TOOLTIP_NO_SIBLING:0 "Cannot De-designate [_title.GetName] as [core|E] due to the [de_facto|E] liege title being [core|E] and having no other [core|E] [de_facto|E] titles directly beneath it"
+ # TITLE_DE_DESIGNATE_CORE_TOOLTIP_CAPITAL_CHAIN:0 "Cannot De-designate [_title.GetName] as [core|E] due to the title being [core|E] from being in the [de_jure] chain starting at the [realm_capital|E]"
+ # TITLE_DE_DESIGNATE_CORE_TOOLTIP_PRIMARY_TITLE:0 "Cannot De-designate [_title.GetName] as [core|E] due to the title being [core|E] from being the [primary_title|E]"
+ # TITLE_DE_DESIGNATE_CORE_TOOLTIP_SPECIAL_TITLE:0 "Cannot De-designate [_title.GetName] as [core|E] due to the title being [core|E] because it is a special title like a [head_of_faith|E] [title|E]"
  
  CV_CORE_TITLES:0 "[core_titles|E]"
  CV_CORE_TITLES_SINGULAR:0 "[core_title|E]"
