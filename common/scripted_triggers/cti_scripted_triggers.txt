@@ -1,18 +1,21 @@
 ﻿# All scopes are titles unless otherwise noted.
 
 is_title_core_due_to_capital = { # scope is title
-    trigger_if = {
-        limit = {exists = holder}
-        OR = {
-            holder.capital_county = this # capital county
-            AND = {
-                is_de_jure_liege_or_above_target = holder.capital_county
-                tier < holder.highest_held_title_tier # not the same tier as the primary title
+    custom_description = {
+        text = "TITLE_CORE_DUE_TO_CAPITAL_CHAIN_TRIGGER"
+        trigger_if = {
+            limit = {exists = holder}
+            OR = {
+                holder.capital_county = this # capital county
+                AND = {
+                    is_de_jure_liege_or_above_target = holder.capital_county
+                    tier < holder.highest_held_title_tier # not the same tier as the primary title
+                }
             }
         }
-    }
-    trigger_else = {
-        always = no
+        trigger_else = {
+            always = no
+        }
     }
 }
 
@@ -21,63 +24,68 @@ is_title_special_core = { # Incomplete until I can see the always_follows_primar
 }
 
 has_any_title_law = { # scope is title (technically this means has a different title law than the realm law).
-    tier >= tier_duchy
-    OR = {
-        is_head_of_faith = yes
-        has_title_law_flag = elective_succession_law
-        NOT = {
-            trigger_if = {
-                limit = {has_title_law = male_only_law}
-                holder = {has_realm_law = male_only_law}
-            }
-            trigger_else_if = {
-                limit = {has_title_law = male_preference_law}
-                holder = {has_realm_law = male_preference_law}
-            }
-            trigger_else_if = {
-                limit = {has_title_law = equal_law}
-                holder = {has_realm_law = equal_law}
-            }
-            trigger_else_if = {
-                limit = {has_title_law = female_preference_law}
-                holder = {has_realm_law = female_only_law}
-            }
-            trigger_else = {
-                always = yes
-            }
+    custom_description = {
+        text = "HAS_ANY_TITLE_LAW_TRIGGER"
+        tier >= tier_duchy
+        OR = {
+            is_head_of_faith = yes
+            has_title_law_flag = elective_succession_law
+            NOT = {
+                trigger_if = {
+                    limit = {has_title_law = male_only_law}
+                    holder = {has_realm_law = male_only_law}
+                }
+                trigger_else_if = {
+                    limit = {has_title_law = male_preference_law}
+                    holder = {has_realm_law = male_preference_law}
+                }
+                trigger_else_if = {
+                    limit = {has_title_law = equal_law}
+                    holder = {has_realm_law = equal_law}
+                }
+                trigger_else_if = {
+                    limit = {has_title_law = female_preference_law}
+                    holder = {has_realm_law = female_only_law}
+                }
+                trigger_else = {
+                    always = yes
+                }
+            }   
         }
-        
-    }   
+    }
 }
 
 is_title_ineligible_due_to_title_law  = { # scope is title
     save_temporary_scope_as = t_title
-    OR = {
-        AND = { # title is primary going to different dynasty and with peer title.
-            holder.primary_title = this # is primary
-            NOT = {current_heir.dynasty = holder.dynasty} #title heir is of different dynasty # have to investigate what this does with lowborn characters.
-        }
-        any_this_title_or_de_jure_above = {
-            trigger_if = { # should be an implied and
-                limit = {exists = holder}
-                holder = {has_title = scope:t_title} # held by owner
-                has_any_title_law = yes # title has a title law
-                OR = {
-                    NOT = {holder.primary_title = this} # this title is not the primary title
-                    AND = { # title is primary going to different dynasty and with peer title.
-                        holder.primary_title = this # is primary
-                        NOT = {current_heir.dynasty = holder.dynasty} #title heir is of different dynasty # have to investigate what this does with lowborn characters.
-                        holder = { # other title of same tier as primary
-                            any_held_title = {
-                                tier = holder.primary_title.tier
-                                NOT = {holder.primary_title = this}
+    custom_description = {
+        text = "TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER"
+        OR = {
+            AND = { # title is primary going to different dynasty and with peer title.
+                holder.primary_title = this # is primary
+                NOT = {current_heir.dynasty = holder.dynasty} #title heir is of different dynasty # have to investigate what this does with lowborn characters.
+            }
+            any_this_title_or_de_jure_above = {
+                trigger_if = { # should be an implied and
+                    limit = {exists = holder}
+                    holder = {has_title = scope:t_title} # held by owner
+                    has_any_title_law = yes # title has a title law
+                    OR = {
+                        NOT = {holder.primary_title = this} # this title is not the primary title
+                        AND = { # title is primary going to different dynasty and with peer title.
+                            holder.primary_title = this # is primary
+                            NOT = {current_heir.dynasty = holder.dynasty} #title heir is of different dynasty # have to investigate what this does with lowborn characters.
+                            holder = { # other title of same tier as primary
+                                any_held_title = {
+                                    tier = holder.primary_title.tier
+                                    NOT = {holder.primary_title = this}
+                                }
                             }
                         }
                     }
                 }
-            }
-            trigger_else = {
-                always = no
+                trigger_else = {
+                    always = no
+                }
             }
         }
     }
@@ -175,42 +183,46 @@ is_title_eligible_for_core = { # Assume that this will only be called if the tit
 # just checks "one up" so it assumes the rules are followed up to this point.
 # does not actually check that this title is a core.
 will_core_loss_break_chain = { # scope is title
-    save_temporary_scope_as = w_title# count in comments will assume that this title is a county
-    trigger_if ={# duchy
-        limit = {
-            de_jure_liege.tier <= holder.highest_held_title_tier
-            holder = {has_title = scope:w_title.de_jure_liege}
+    custom_description = {
+        text = "CORE_LOSS_BREAK_CHAIN_TRIGGER"
+        # is_title_county = yes This would probably make things more efficient by short-circuiting, but will not use as I am not confident I have not forgotten an edge case.
+        save_temporary_scope_as = w_title# count in comments will assume that this title is a county
+        trigger_if ={# duchy
+            limit = {
+                de_jure_liege.tier <= holder.highest_held_title_tier
+                holder = {has_title = scope:w_title.de_jure_liege}
+            }
+            de_jure_liege = {
+                is_title_core = yes
+                is_title_core_due_to_cti = yes
+            }
+            NOT = {de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
         }
-        de_jure_liege = {
-            is_title_core = yes
-            is_title_core_due_to_cti = yes
+        trigger_else_if = {# kingdom
+            limit = {
+                de_jure_liege.de_jure_liege.tier <= holder.highest_held_title_tier
+                holder = {has_title = scope:w_title.de_jure_liege.de_jure_liege}
+            }
+            de_jure_liege.de_jure_liege = {
+                is_title_core = yes
+                is_title_core_due_to_cti = yes
+            }
+            NOT = {de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
         }
-        NOT = {de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
-    }
-    trigger_else_if = {# kingdom
-        limit = {
-            de_jure_liege.de_jure_liege.tier <= holder.highest_held_title_tier
-            holder = {has_title = scope:w_title.de_jure_liege.de_jure_liege}
+        trigger_else_if = {# empire
+            limit = {
+                de_jure_liege.de_jure_liege.de_jure_liege.tier <= holder.highest_held_title_tier
+                holder = {has_title = scope:w_title.de_jure_liege.de_jure_liege.de_jure_liege}
+            }
+            de_jure_liege.de_jure_liege.de_jure_liege = {
+                is_title_core = yes
+                is_title_core_due_to_cti = yes
+            }
+            NOT = {de_jure_liege.de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
         }
-        de_jure_liege.de_jure_liege = {
-            is_title_core = yes
-            is_title_core_due_to_cti = yes
+        trigger_else = {
+            always = no
         }
-        NOT = {de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
-    }
-    trigger_else_if = {# empire
-        limit = {
-            de_jure_liege.de_jure_liege.de_jure_liege.tier <= holder.highest_held_title_tier
-            holder = {has_title = scope:w_title.de_jure_liege.de_jure_liege.de_jure_liege}
-        }
-        de_jure_liege.de_jure_liege.de_jure_liege = {
-            is_title_core = yes
-            is_title_core_due_to_cti = yes
-        }
-        NOT = {de_jure_liege.de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
-    }
-    trigger_else = {
-        always = no
     }
 }
 

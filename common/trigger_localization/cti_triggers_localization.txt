@@ -1,6 +1,10 @@
-﻿# primary_title_equal = {
-    # global = PRIMARY_TITLE_EQUAL_TRIGGER
-# }
+﻿is_head_of_faith = {
+    global = IS_HEAD_OF_FAITH_TRIGGER
+}
+
+primary_title_equal = {
+    global = PRIMARY_TITLE_EQUAL_TRIGGER
+}
 
 # capital_county_equal = {
     # global = CAPITAL_COUNTY_EQUAL_TRIGGER
@@ -28,11 +32,7 @@
 
 # landed_title_var_equal = {
     # global = LANDED_TITLE_VAR_EQUAL_TRIGGER
-}
-
-is_head_of_faith = {
-    global = IS_HEAD_OF_FAITH_TRIGGER
-}
+# }
 
 # has_variable = { # probably want to deal with this in a different manner, but I am trying to just get something to show up now.
     # global = HAS_VARIABLE_TRIGGER
@@ -46,9 +46,9 @@ is_head_of_faith = {
     # third = ALL_CORE_TITLE_ITEM_THIRD
 # }
 
-is_title_core = {
-    global = IS_TITLE_CORE_TRIGGER
-}
+# is_title_core = {
+    # global = IS_TITLE_CORE_TRIGGER
+# }
 
 # print_title = {
     # global = PRINT_TITLE

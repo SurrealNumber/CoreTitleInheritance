@@ -5,6 +5,7 @@
  TITLE_DESIGNATE_CORE_TOOLTIP:0 "Designate [_title.GetName] a [core_title|E]"
  TITLE_DESIGNATE_CORE_TOOLTIP_TITLE_LAW:0 "Cannot Designate [_title.GetName] as [core|E] due a [de_facto|E] title above it having [title_laws|E]"
  TITLE_DESIGNATE_CORE_TOOLTIP_NO_CHILD:0 "Cannot Designate [_title.GetName] as [core|E] due to no [de_facto|E] title directly beneath it being a [core_title|E]"
+ TITLE_DESIGNATE_CORE_TOOLTIP_NO_PRESTIGE:0 "Cannot Designate [_title.GetName] as [core|E] due to not having enough [prestige|E]"
  
  TITLE_VIEW_DE_DESIGNATE_CORE:0 "De-designate Core"
  TITLE_DE_DESIGNATE_CORE_TOOLTIP:0 "De-designate [_title.GetName] as a [core_title|E]"
@@ -19,7 +20,7 @@
  CORE_LIMIT_C_L:0 "[Character.MakeScope.Var('_num_core_counties').GetValue|0]/[Character.MakeScope.Var('_core_limit').GetValue|0]"
  CV_CORE_TITLES_NUMBER:0 "([Character.MakeScope.Var('_num_core_titles').GetValue|0])"
  
- CORE_LIMIT_TOOLTIP_HEADER:0 "#T \b[core_limit|E]: [THIS.Var('_num_core_counties').GetValue|0]/[THIS.Var('_core_limit').GetValue|0]#!"
+ CORE_LIMIT_TOOLTIP_HEADER:0 "#T [core_limit|E]: [THIS.Var('_num_core_counties').GetValue|0]/[THIS.Var('_core_limit').GetValue|0]#!"
  CORE_LIMIT_EXCEEDED_TOOLTIP:0 "@warning_icon!#X Above [core_limit|E]. De-designate some [core_counties|E].#!\n"
  CORE_LIMIT_OVER_EFFECTS_HEADING_TOOLTIP:0 "Effects of being [THIS.Var('_num_over_core_limit').GetValue|0] [core_counties|E] above the limit:"
  CORE_LIMIT_OVER_EFFECTS_SINGULAR_HEADING_TOOLTIP:0 "Effects of being [THIS.Var('_num_over_core_limit').GetValue|0] [core_county|E] above the limit:"

@@ -1644,3 +1644,21 @@ custom localization for designate core
 add_prestige_no_experience
 recalculate_cores_interaction
 update all tooltips for current mod mechanics.
+
+removing -debug_mode -develop because I think they are showing extra text. I don't want to see that right now.
+
+De-designate Core:
+tooltip for capital gives blurb about why I can't, but also has NOT_has_variable_trigger on it.
+Same with primary title.
+Can still go into prestige debt from coring. Need to fix that.
+backspace seems to work, but needs to be moved outside of formatting.
+should color prestige gain multiplier. Possibly just show the modifier I am recieving.
+duchy with no chain show All of these: as reason it does not work.
+toast for de-coring did not pop
+cannot designate due to title law: currently, 3 fulfill this requirement.
+All of these:
+change core persisntence none name.
+
+Only a county can break a chain - other tiers simply have their tier get bypassed.
+need to recalculate cores on game start (loading from a save game) or switching played characters.
+CK3 does not like the backspace character

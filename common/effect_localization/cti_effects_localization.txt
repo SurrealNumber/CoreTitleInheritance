@@ -1,5 +1,5 @@
 ﻿add_prestige_no_experience = {
-    irst_past = I_GAINED_PRESTIGE_EFFECT
+    first_past = I_GAINED_PRESTIGE_EFFECT
 	first_past_neg = I_LOST_PRESTIGE_EFFECT
 	third_past = THEY_GAINED_PRESTIGE_EFFECT
 	third_past_neg = THEY_LOST_PRESTIGE_EFFECT
