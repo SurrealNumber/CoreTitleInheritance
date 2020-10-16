@@ -8,7 +8,7 @@
  game_concept_core_title_desc1:0 "A [rulerpossessive|E] core titles are the [titles|E] which are guaranteed to pass to their [primary_heir|E] on [succession|E] irregardless of their [succession_laws|E]."
  game_concept_core_title_desc2:0 "For a title to be eligible as a [core_title|E] it must be a [county|E], have a [de_jure|E] [title|E] beneath it which is a [core_title|E], or be considered [core|E] for a reason other than being designated as such."
  game_concept_core_title_desc3:0 "Only titles of [county|E] [title_tier|E] or higher are eligible to be core titles."
- game_concept_core_title_desc3.5:0 "[titles|E] which have a owned [de_jure|E] [title|E] (that is not the sole owned [title|E] of highest [title_tier|E]) above them which has [title_specific_succession|E] are not eligible to be [core_titles|E]."
+ game_concept_core_title_desc3.5:0 "[titles|E] which have a owned [de_jure|E] [title|E] (that is not the sole owned [title|E] of highest [title_tier|E]) above them which has [title_specific_succession|E] and different [title_heir|E] than the [player_heir|E] are not eligible to be [core_titles|E]."
  game_concept_core_title_desc4:0 "The reasons for being a core title not due to having been designated one are: being the [primary_title|E], being [de_jure|E] above the [capital|E], or being a [head_of_faith|E] [title|E]."
  game_concept_core_title_desc5:0 "Derivative Concepts:\n[core_county|E]\n[core_title_persistence|E]"
  

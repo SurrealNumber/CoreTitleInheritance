@@ -30,6 +30,14 @@ on_death = {
     }
 }
 
+quarterly_playable_pulse = {
+    effect = {
+        trigger_event = {# like the pattern of calling my on actions.
+            on_action = cti_quarterly_playable_pulse
+        }
+    }
+}
+
 # My on_actions which call the rest of my code.
 
 cti_on_title_destroyed = { # assume this happens after destruction
@@ -105,6 +113,12 @@ cti_on_game_start_after_lobby = {
 }
 
 cti_on_death = { # believe this is right before the character actually dies.
+    effect = {
+        recalculate_cores = yes
+    }
+}
+
+cti_quarterly_playable_pulse = {
     effect = {
         recalculate_cores = yes
     }

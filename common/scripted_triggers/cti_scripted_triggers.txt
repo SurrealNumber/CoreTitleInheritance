@@ -60,7 +60,7 @@ is_title_ineligible_due_to_title_law  = { # scope is title
     custom_description = {
         text = "TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER"
         OR = {
-            AND = { # title is primary going to different dynasty and with peer title.
+            AND = { # title is primary going to different dynasty
                 holder.primary_title = this # is primary
                 NOT = {current_heir.dynasty = holder.dynasty} #title heir is of different dynasty # have to investigate what this does with lowborn characters.
             }
@@ -69,6 +69,7 @@ is_title_ineligible_due_to_title_law  = { # scope is title
                     limit = {exists = holder}
                     holder = {has_title = scope:t_title} # held by owner
                     has_any_title_law = yes # title has a title law
+                    NOT = {current_heir = holder.player_heir}
                     OR = {
                         NOT = {holder.primary_title = this} # this title is not the primary title
                         AND = { # title is primary going to different dynasty and with peer title.
@@ -94,13 +95,17 @@ is_title_ineligible_due_to_title_law  = { # scope is title
 is_title_core = { # Assume that this will only be called if the title is owned
     trigger_if = {
         limit = {has_variable = core}
-        tier >= tier_county
-        is_title_ineligible_due_to_title_law = no
+        tier >= tier_county        
         OR = {
             var:core = yes# var:core should be a boolean
-            is_title_core_due_to_capital = yes
-            holder.primary_title = this
-            is_title_special_core = yes
+            AND = {
+                is_title_ineligible_due_to_title_law = no
+                OR = {
+                    is_title_core_due_to_capital = yes
+                    holder.primary_title = this
+                    is_title_special_core = yes
+                }
+            }
         }
     }
     trigger_else = {

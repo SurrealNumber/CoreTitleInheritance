@@ -1667,3 +1667,11 @@ What is left:
 One bug to handle (toast not appearing)
 Code cleanup
 Documentation for users (mod page/post etc)
+
+Want to allow coring of titles under title law titles that you are set to inherit.
+Bug which leads to losing core titles under certain circumstances when you have a different primary_heir seems to bug out the primary/player heirs. Capital owner is considered primary heir even though they are not, and player heir is based on title order.
+title law leads to no toast for de-coring titles because the titles under the title law are no longer core. Is core should allow inneligible titles under title law *if* they are from the mod.
+^This will lead to a proper toast on cleanup, but it will also lead to cores being out of sync.
+adding on action for playable on quarterly tick to make sure cores are correctly calculated.
+will need to communicate unused variables and the explaination that they are for display purposes.
+always_follows_primary_heir is actually a misnomer. The titles will not travel outside of the dynasty.
