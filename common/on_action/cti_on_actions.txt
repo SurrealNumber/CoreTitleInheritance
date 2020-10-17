@@ -122,6 +122,9 @@ cti_on_death = { # believe this is right before the character actually dies.
 
 cti_quarterly_playable_pulse = {
     effect = {
-        recalculate_cores = yes
+        if = {
+            limit = {exists = capital_county}
+            recalculate_cores = yes
+        }   
     }
 }
