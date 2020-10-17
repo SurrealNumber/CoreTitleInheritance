@@ -55,23 +55,40 @@ cti_on_title_gain = { # assume this happens after the title changes hands. Also 
             limit = {scope:title.tier >= tier_county}
             if = {
                 limit = {
-                    AND = {
-                        scope:transfer_type = flag:inheritance
-                        has_game_rule = true_core_persist
-                    }
+                    scope:transfer_type = flag:inheritance
+                    has_game_rule = true_core_persist
                 }
-                recalculate_cores = yes
-                scope:previous_holder = {recalculate_cores = yes} # they could have abdicated or some other shenanigans
+                if = {
+                    limit = {exists = capital_county}
+                    recalculate_cores = yes
+                }
+                scope:previous_holder = { # they could have abdicated or some other shenanigans
+                    if = {
+                    limit = {exists = capital_county}
+                    recalculate_cores = yes
+                    }   
+                }
             }
             else_if = {
-                limit = {scope:transfer_type = flag:created}
+                limit = {
+                    scope:transfer_type = flag:created
+                    exists = capital_county
+                }
                 scope:title = {check_auto_core_title = yes}
                 recalculate_cores = yes
             }
             else = {
                 scope:title = {de_core_title = {COST = 0}}
-                recalculate_cores = yes
-                scope:previous_holder = {recalculate_cores = yes}
+                if = {
+                    limit = {exists = capital_county}
+                    recalculate_cores = yes
+                }
+                scope:previous_holder = {
+                    if = {
+                    limit = {exists = capital_county}
+                    recalculate_cores = yes
+                    }   
+                }
             }
         }
     }
