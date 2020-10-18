@@ -1712,3 +1712,30 @@ Need to test:
 inherit title with title succession law, but lose parent title due to partition. Do I still get the title and its children? <- still get title and children.
 ^ perhaps guaranteed to get children?
 ^ looks like when they are not getting your primary title they are guaranteed to get children titles.
+
+Steps:
+- xChange definition of core title. <- this can actually stay the same.
+- xFix implementation of title law ineligibility (to reflect tests above)
+- xChange definition of able to be cored
+- xChange definition of counting to core limit
+- Add game concept of core title tree, leaves and branches
+- xAdd trigger for has penalty/cost
+- Check definition of inconsistent titles
+- Add in penalty modifier.
+- Change effect of coring a title (auto core parents)
+- Change recalculation of cores and the like
+- On de-core consider how to deal with it
+    - Add dialogue for how far up should be decored. Only show if applicable.
+    - Add option or game rule to disable dialogue.
+- Change display on character window
+
+!!!!!!Need to check what happens if multiple titles of primary tier are owned, all of which are going out of the dynasty via title succession laws.
+- Lose all titles under titles lost under title succession laws unless _only_ title of the tier is primary title
+
+is_core_leaf essentially translates to is no child a core.
+Question of behavior - if an inconsistent core is found should it be de-cored or should de-jure above be cored.
+^ all cores are actually consistent. The question is if the parents are. Should definitely core parent titles and give the player a toast.
+^ cores ineligible due to title law are actually inconsistent.
+NOTE: Don't have to core up from capital (all the way to primary tier). Get all titles up to but not including primary tier no matter what. <- should communicate this to users clearly.
+exceptions to all held parents should be core - any are above capital. This exempts the highest tier in the chain (but only if a lower tier one is hit.)
+trigger should be is parent core. Will check held titles for if they should be core to core them.

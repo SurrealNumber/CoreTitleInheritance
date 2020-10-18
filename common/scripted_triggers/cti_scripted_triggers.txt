@@ -1,22 +1,24 @@
 ﻿# All scopes are titles unless otherwise noted.
 
-is_title_core_due_to_capital = { # scope is title
+is_title_de_jure_above_capital = { # scope is title
     custom_description = {
-        text = "TITLE_CORE_DUE_TO_CAPITAL_CHAIN_TRIGGER"
+        text = "TITLE_DE_JURE_ABOVE_CAPITAL_TRIGGER"
         trigger_if = {
             limit = {exists = holder}
             OR = {
                 holder.capital_county = this # capital county
-                AND = {
-                    is_de_jure_liege_or_above_target = holder.capital_county
-                    tier < holder.highest_held_title_tier # not the same tier as the primary title
-                }
+                is_de_jure_liege_or_above_target = holder.capital_county
             }
         }
         trigger_else = {
             always = no
         }
     }
+}
+
+is_title_core_due_to_capital = { # scope is title
+    is_title_de_jure_above_capital = yes
+    tier < holder.highest_held_title_tier # not the same tier as the primary title
 }
 
 is_title_special_core = { # Incomplete until I can see the always_follows_primary_heir tag
@@ -69,7 +71,6 @@ is_title_ineligible_due_to_title_law  = { # scope is title
                     limit = {exists = holder}
                     holder = {has_title = scope:t_title} # held by owner
                     has_any_title_law = yes # title has a title law
-                    NOT = {current_heir = holder.player_heir}
                     OR = {
                         NOT = {holder.primary_title = this} # this title is not the primary title
                         AND = { # title is primary going to different dynasty and with peer title.
@@ -119,7 +120,7 @@ is_title_core = { # Assume that this will only be called if the title is owned
     }
 }
 
-is_title_core_due_to_not_cti = {
+is_core_due_to_not_cti = {
     OR = {
         is_title_core_due_to_capital = yes
         holder.primary_title = this
@@ -127,18 +128,15 @@ is_title_core_due_to_not_cti = {
     }
 }
 
-is_title_core_due_to_cti = {
+is_core_due_to_cti = {
     has_variable = core # This condition means that it is technically possible (though it should never happen) that a title is considered neither core due to cti or core due to not cti.
-    is_title_core_due_to_not_cti = no
+    is_core_due_to_not_cti = no
 }
 
 is_title_county = {
     tier = tier_county
 }
 
-does_core_count_to_limit = { # scope is title
-    is_title_county = yes
-}
 #######################################################################################
 ######################## End of "Primative" triggers ##################################
 #######################################################################################
@@ -179,11 +177,6 @@ is_a_child_title_chain_core = {# scope is title. assumes that rules are being fo
 is_title_eligible_for_core = { # Assume that this will only be called if the title is owned
     is_title_core = no # not a core title - will rule out core titles due to non-cti.
     is_title_ineligible_due_to_title_law = no
-    OR = {
-        is_title_county = yes # owned counties are always eligible to be cored
-        save_temporary_scope_as = _title
-        is_a_child_title_chain_core = {EXCLUDED = scope:_title} # EXCLUDED should do nothing in this case.
-    }
 }
 
 # just checks "one up" so it assumes the rules are followed up to this point.
@@ -233,13 +226,39 @@ will_core_loss_break_chain = { # scope is title
 }
 
 is_core_consistent = {# scope is title
-    save_temporary_scope_as = _title
     is_title_ineligible_due_to_title_law = no
-    OR = {
-        is_title_county = yes
-        is_title_core_due_to_not_cti = yes
-        is_a_child_title_chain_core = {EXCLUDED = scope:_title}
+}
+
+is_core_de_jure_liege_consistent = { # scope is title # this does not check if this core is consistent. # need to check titles de-jure above by my def (allowing skipping levels.)
+    save_temporary_scope_as = d_title
+    is_core_due_to_not_cti = yes
+    de_jure_liege = {
+        NOT = {holder = {has_title = scope:d_title}} # held by owner.
+        holder = {has_title = scope:d_title} # held by owner.
+        is_title_core = yes
     }
+}
+
+is_core_leaf = { # scope is title
+    NOT = {
+        save_temporary_scope_as = l_title
+        any_in_de_jure_hierarchy = {
+            limit = {NOT = {this = scope:l_title}}
+            continue = {tier > tier_county} # hope this causes it to iterate through everything except baronies.
+            is_title_core = yes
+        }
+    }
+}
+
+does_core_count_to_limit = { # scope is title
+    #is_core_due_to_cti = yes # will count capital and primary title to core limit.
+    is_title_special_core = no # will not count special titles to core limit. Should also probably not count titular titles.
+    is_core_leaf = yes
+}
+
+does_core_have_cost = { # scope is title
+    is_core_due_to_cti = yes
+    is_core_leaf = yes
 }
 
 is_over_core_limit = { # scope is character
@@ -253,8 +272,8 @@ can_core_title = {
 
 can_de_core_title = {
     is_title_core = yes
-    is_title_core_due_to_cti = yes
-    will_core_loss_break_chain = no
+    is_core_due_to_cti = yes
+    is_core_leaf = yes
 }
 
 has_core_titles = { # scope is character
@@ -262,3 +281,4 @@ has_core_titles = { # scope is character
         is_title_core = yes
     }
 }
+
