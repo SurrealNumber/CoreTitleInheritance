@@ -14,6 +14,9 @@
  CORE_LOSS_BREAK_CHAIN_TRIGGER:0 "De-coring this [core_title|E] would lead to a [core_title|E] [de_jure|E] above no longer having a [core_title|E] chain to a [core_county|E]"
  NOT_CORE_LOSS_BREAK_CHAIN_TRIGGER:0 "De-coring this [core_title|E] would not lead to a [core_title|E] without a chain of [core_titles|E] to a [core_county|E]"
  
+ IS_DE_JURE_LIEGE_CORE_TRIGGER:0 "The closest owned [de_jure|E] [title|E] above this [title|E] is [core|E] or does not exist"
+ NOT_IS_DE_JURE_LIEGE_CORE_TRIGGER:0 "The closest owned [de_jure|E] [title|E] above this [title|E] is not [core|E]"
+ 
  IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] is a [head_of_faith|E] [title|E]"
  NOT_IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] is not a [head_of_faith|E] [title|E]"
  

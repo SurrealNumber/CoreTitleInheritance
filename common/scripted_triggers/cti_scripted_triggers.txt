@@ -229,13 +229,34 @@ is_core_consistent = {# scope is title
     is_title_ineligible_due_to_title_law = no
 }
 
+# just checks one title (not tier) up.
+is_de_jure_liege_core = {
+    custom_description = {
+        text = "IS_DE_JURE_LIEGE_CORE_TRIGGER"
+        save_temporary_scope_as = d_title# label in comments will assume that this title is a county
+        trigger_if ={# duchy
+            limit = {holder = {has_title = scope:d_title.de_jure_liege}}
+            de_jure_liege = {is_title_core = yes}
+        }
+        trigger_else_if = {# kingdom
+            limit = {holder = {has_title = scope:d_title.de_jure_liege.de_jure_liege}}
+            de_jure_liege.de_jure_liege = {is_title_core = yes}
+        }
+        trigger_else_if = {# empire
+            limit = {holder = {has_title = scope:d_title.de_jure_liege.de_jure_liege.de_jure_liege}}
+            de_jure_liege.de_jure_liege.de_jure_liege = {is_title_core = yes}
+        }
+        trigger_else = {
+            always = yes
+        }
+    }    
+}
+
 is_core_de_jure_liege_consistent = { # scope is title # this does not check if this core is consistent. # need to check titles de-jure above by my def (allowing skipping levels.)
-    save_temporary_scope_as = d_title
-    is_core_due_to_not_cti = yes
-    de_jure_liege = {
-        NOT = {holder = {has_title = scope:d_title}} # held by owner.
-        holder = {has_title = scope:d_title} # held by owner.
-        is_title_core = yes
+    OR = {
+        # cores due to reasons other than the mod do not need their de-jure liege to be a core.
+        is_core_due_to_not_cti = yes
+        is_de_jure_liege_core = yes
     }
 }
 

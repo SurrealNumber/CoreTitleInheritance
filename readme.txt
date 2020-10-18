@@ -1739,3 +1739,5 @@ Question of behavior - if an inconsistent core is found should it be de-cored or
 NOTE: Don't have to core up from capital (all the way to primary tier). Get all titles up to but not including primary tier no matter what. <- should communicate this to users clearly.
 exceptions to all held parents should be core - any are above capital. This exempts the highest tier in the chain (but only if a lower tier one is hit.)
 trigger should be is parent core. Will check held titles for if they should be core to core them.
+
+Should more accurately refer to it as de-jure core trees. There can be multiple disjoint trees due to the primary title, capital chain and special titles.
