@@ -1682,3 +1682,33 @@ bug with core titles not going to heir does not apply to the head of faith.
 Title inheritance laws work properly with designation but not with consistent.
 time to make the game concepts entries look better
 Need to check that head of faith title is still considered core.
+
+There is a stacking = yes option on modifiers!!!!!!!!!!
+
+
+I think I want to change it so that only counties (or titles with no de-jure counties beneath them) can be cored.
+Titles de-jure above would have to be auto cored to make inheritance work right.
+I am also considering allowing any title to be cored, and possibly add the penalty for the number of leaves in a core tree.
+^ I like the sound of that.
+
+Reasons for switching to new architecture:
+- Under current architecture core titles could be lost on inheritance
+- There are senarios where someone might want to hold onto a duchy for sentimental reasons even if they hold no counties in it.
+- To some degree the previous archetecture forced (or at least encouraged) this.
+
+New Architecture:
+- Any title can be cored.
+- When a title is cored any title de-jure above it is also cored.
+- The previous point creates a "core title tree"
+- Costs are only applied for the leaves of the tree
+- Moving a leaf down a tier does not cost anything.
+- Primary title, realm capital, and special titles (like head of faith) are exempt from the penalty.
+- Only core counties get the control benefit.
+- Same inneligibility rules for title succession laws. Additionally titles with different title succession laws or parents with different succession laws cannot themselves be cored unless they have the same succession as the realm (Exception is with primary title with no peers).
+- Display on character page will split mod core titles into leaves and branches.
+- Baronies are still excluded (counties are the minimal inheritable unit)
+
+Need to test:
+inherit title with title succession law, but lose parent title due to partition. Do I still get the title and its children? <- still get title and children.
+^ perhaps guaranteed to get children?
+^ looks like when they are not getting your primary title they are guaranteed to get children titles.
