@@ -1720,7 +1720,7 @@ Steps:
 - xChange definition of counting to core limit
 - Add game concept of core title tree, leaves and branches
 - xAdd trigger for has penalty/cost
-- Check definition of inconsistent titles
+- xCheck definition of inconsistent titles
 - Add in penalty modifier.
 - Change effect of coring a title (auto core parents)
 - Change recalculation of cores and the like
@@ -1741,3 +1741,57 @@ exceptions to all held parents should be core - any are above capital. This exem
 trigger should be is parent core. Will check held titles for if they should be core to core them.
 
 Should more accurately refer to it as de-jure core trees. There can be multiple disjoint trees due to the primary title, capital chain and special titles.
+When coring should always core all above i.e. designating core automatically cores all above if they are not already core.
+When de-coring will get option i.e. de-designating core only does the title, need separate effect for de-coring above.
+
+every_list_name = {limit = {} effects} works. Should change to using this at some point.
+ordered goes in decreasing order.
+need to re-jigger how the core change effect works and when it is applied.
+Decided to count titular titles to core limit and giving them a cost. This deserves a deeper look at a later time. <- opened github issue.
+I believe that core titles will only effect the core limit or have a cost if they count to the core limit (are a leaf). <- question is about when designating, so non-cit-cores are irrelevant
+^The oposite is not true.
+core cost modifier must be entirely reset on each change because whether something has a cost does not depend on the title alone but the core title trees.
+Would like to optimize so that cores which are auto cored above do not trigger the recalculation.
+Possibly consider changing over core limit modifier to be stacking <- no b/c it should not be called for all titles which count to the core limit.
+
+reconsidering that core modifiers needs to be recalculated every time. Tooltip will be better if it is applied/taken away carefully.
+applied: always unless it is a descendant of a leaf that is due to cti (in other words a core which has a cost).
+when is the modifier removed/when is a refund applicable? <- depends on if auto de-core up or not.
+- parent has other core descendant
+- no parent
+if auto de-core up then always yes.
+
+Need to figure out how I will implement the auto de-core. Save as global scope or save as global variable? Will do scope, but will look into if a global toggle or flag exists.
+^ toggles exist in the gui language. Should only be called from gui, and doing it in the gui language means that it will be specific to each player.
+^ will have to look into how to implement this. <- need to have the button press from de-designating trigger the event or dialogue if the variable has not been set.
+Actully need two variables - one which is the decision if made, and the other which is if the decision has been made.
+Or could do only one variable and depend on existence.
+Want:
+de-designate core press
+exists decision -> de-designate with decision passed to function
+does not exist decision -> open dialogue with 4 options
+    de-designate up -> de-designate up
+    de-designate only -> de-designate only
+    de-designate up and remember -> set and de-designate up
+    de-designate only and remember -> set and de-designate only
+
+Possibilities:
+press -> event if not set, does thing with passed if set -> does thing and possibly sets.
+gui      script            script                           script           gui
+
+press -> dialogue -> do thing and possibly set.
+gui      gui         script       gui
+
+Unsure how to get the bottom one to work. Don't see an easy way to add a new window. Also an event seems more appropriate.
+
+possible way of doing it:
+press in title window -> scripted gui (passed existance and value) -> opens interaction window -> do things there -> go back to scripted gui (possibly new one)
+can I define an interaction window? 
+interactions have a localization_values field. Would be useful elsewhere as well.
+looks like interactions can have options.
+Will design it around using an interaction with options. Will have to work out tooltip <- will work if skipping interaction is done via a shortcircuit.
+Doesn't solve problem - still need to do something in the gui language from scripting language.
+Advantage to interaction options is that I can make do with 3 - up, only, remember <- need to make sure up and only are not both selected.
+looks like localization cannot execute things.
+could have it player specific if it is a variable on a character. It would be lost on succession though.
+At this point I think I have to create my own window and open it when appropriate. Other option is showing something in the title window, but that would most likely break the window and would not be clear/obvious.

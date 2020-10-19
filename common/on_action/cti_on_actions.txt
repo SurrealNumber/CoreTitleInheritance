@@ -44,7 +44,7 @@ quarterly_playable_pulse = {
 #####################################################################
 cti_on_title_destroyed = { # assume this happens after destruction
     effect = {
-        scope:landed_title = {de_core_title = {COST = 0}}
+        scope:landed_title = {de_core_title = yes} # should never be called on a county, other effects taken care of in recalculate_cores
         recalculate_cores = yes
     }
 }
@@ -78,7 +78,13 @@ cti_on_title_gain = { # assume this happens after the title changes hands. Also 
                 recalculate_cores = yes
             }
             else = {
-                scope:title = {de_core_title = {COST = 0}}
+                scope:title = {
+                    de_core_title = yes
+                    core_change_effect = {
+                        INCREASE = no
+                        COST = 0
+                    }
+                }
                 if = {
                     limit = {exists = capital_county}
                     recalculate_cores = yes

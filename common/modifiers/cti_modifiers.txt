@@ -1,21 +1,14 @@
-﻿# # Should also consider the icons county_modifier_corruption_negative, county_modifier_opinion, and prestige_negative
-# # Desire this to be half the core province prestige benefit modifier.
-# core_county_cost_modifier = {
-    # icon = diplomacy_negative
-    # monthly_prestige = -0.1
-# }
+﻿core_cost_modifier = {
+    monthly_prestige_gain_mult = -0.1 # This should be half the prestige gain from holding a county
+    stacking = yes
+}
+
 #the icon county_modifier_control_positive also exists
 # takes 500 months ~41.66 years to go  from 0 to 100. Matches modifier from disease_spreading_modifier
 core_county_benefit_modifier = {
     icon = diplomacy_positive
     monthly_county_control_change_add = 0.2
 }
-
-# core_county_cost_benefit_modifier = {
-    # icon = diplomacy_positive
-    # monthly_prestige = -0.1
-    # monthly_county_control_change_add = 0.2
-#}
 
 # The formula should be a prestige gain multiplier of -0.05 * amount over the core limit with a limit of -0.5
 1_over_core_limit_modifier = {

@@ -271,13 +271,36 @@ is_core_leaf = { # scope is title
     }
 }
 
+is_ancestor_leaf = { # scope is a title
+    save_temporary_scope_as = a_title
+    any_this_title_or_de_jure_above = {
+        holder = {has_title = scope:a_title}
+        is_title_core = yes
+        is_core_leaf = yes
+    }
+}
+
+does_ancestor_have_cost = {
+    save_temporary_scope_as = a_title
+    any_this_title_or_de_jure_above = {
+        holder = {has_title = scope:a_title}
+        is_title_core = yes
+        does_core_have_cost = yes
+    }
+}
+
 does_core_count_to_limit = { # scope is title
-    #is_core_due_to_cti = yes # will count capital and primary title to core limit.
-    is_title_special_core = no # will not count special titles to core limit. Should also probably not count titular titles.
+    #is_core_due_to_cti = yes # will count capital and primary title to core limit unless they are titular
+    # is_titular = no # will count titular titles to core limit.
     is_core_leaf = yes
 }
 
+will_coring_have_cost = { # scope is title
+    is_ancestor_leaf = no
+}
+
 does_core_have_cost = { # scope is title
+    # is_titular = no # titular titles will have a cost.
     is_core_due_to_cti = yes
     is_core_leaf = yes
 }

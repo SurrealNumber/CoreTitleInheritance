@@ -16,7 +16,7 @@ core_county = {
 core_county_impact = {
 	texture = "gfx/interface/icons/currencies/icon_prestige_01.dds"
     parent = core_county
-    alias = {core_impact core_cost core_county_cost core_benefit core_county_benefit}
+    alias = {core_impact core_cost core_cost core_benefit core_county_benefit}
 }
 
 core_county_limit = {
