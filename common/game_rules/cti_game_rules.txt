@@ -1,11 +1,11 @@
-﻿core_county_cost = {
-    default = flat_designate_core_county_cost
+﻿core_title_leaf_cost = {
+    default = flat_designate_core_cost
     
-    no_core_county_cost = {}
+    no_core_cost = {}
     
-    overtime_core_county_cost = {}
+    overtime_core_cost = {}
     
-    flat_designate_core_county_cost = {}
+    flat_designate_core_cost = {}
 }
 
 core_county_benefit = {
@@ -16,14 +16,14 @@ core_county_benefit = {
     control_core_county_benefit = {}
 }
 
-core_county_limit = {
-    default = half_domain_core_county_limit
+core_leaf_limit = {
+    default = half_domain_core_leaf_limit
 
-    half_domain_core_county_limit = {}
+    half_domain_core_leaf_limit = {}
     
-    domain_core_county_limit = {}
+    domain_core_leaf_limit = {}
     
-    ludicrous_core_county_limit = {}
+    ludicrous_core_leaf_limit = {}
 }
 
 core_persist = {

@@ -12,8 +12,8 @@
         can_core_title = yes
         trigger_if = {
             limit = {
-                has_game_rule = flat_designate_core_county_cost
-                does_core_count_to_limit = yes
+                has_game_rule = flat_designate_core_cost
+                will_coring_have_cost = yes
             }
             holder = {prestige >= coring_county_refund_flat_full}
         }

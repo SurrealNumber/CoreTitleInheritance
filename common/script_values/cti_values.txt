@@ -1,16 +1,16 @@
 ﻿val_core_limit = { # scope is character
     if = {
-        limit={ has_game_rule = half_domain_core_county_limit }
+        limit={ has_game_rule = half_domain_core_leaf_limit }
         value = domain_limit
         divide = 2
         ceiling = yes
     }
     else_if = {
-        limit={ has_game_rule = domain_core_county_limit }
+        limit={ has_game_rule = domain_core_leaf_limit }
         value = domain_limit
     }
     else_if = {
-        limit={ has_game_rule = ludicrous_core_county_limit }
+        limit={ has_game_rule = ludicrous_core_leaf_limit }
         value = 10000
     }
 }

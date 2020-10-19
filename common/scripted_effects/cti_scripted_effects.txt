@@ -37,7 +37,7 @@ remove_core_county_modifier = { # scope is a title
 
 set_core_cost_modifier = {
     if = {
-        limit = {has_game_rule = overtime_core_county_cost}
+        limit = {has_game_rule = overtime_core_cost}
         remove_all_character_modifier_instances = core_cost_modifier
         every_held_title = {
             limit = {
@@ -166,10 +166,11 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
             will_coring_have_cost = yes
         }
         if = {
-            limit = {has_game_rule = overtime_core_county_cost}
+            limit = {has_game_rule = overtime_core_cost}
             holder = {add_character_modifier = core_cost_modifier}
         }
         else_if = {
+            limit = {has_game_rule = flat_designate_core_cost}
             add_prestige_no_experience = $COST$
         }
     }
@@ -179,11 +180,11 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
             will_de_coring_give_refund = yes
         }
         if = {
-            limit = {has_game_rule = overtime_core_county_cost}
+            limit = {has_game_rule = overtime_core_cost}
             holder = {remove_character_modifier = core_cost_modifier}
         }
         else_if = {
-            limit = {has_game_rule = flat_designate_core_county_cost}
+            limit = {has_game_rule = flat_designate_core_cost}
             holder = {add_prestige_no_experience = $COST$}
         }
     }

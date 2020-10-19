@@ -1723,8 +1723,8 @@ Steps:
 - xCheck definition of inconsistent titles
 - xAdd in penalty modifier.
 - xChange effect of coring a title (auto core parents)
-- Change recalculation of cores and the like
-- On de-core consider how to deal with it
+- xChange recalculation of cores and the like
+- xOn de-core consider how to deal with it
     - Add dialogue for how far up should be decored. Only show if applicable.
     - Add option or game rule to disable dialogue.
 - Change display on character window
@@ -1869,3 +1869,12 @@ is_title_core = { # Assume that this will only be called if the title is owned
 when to auto core?
 when inserting will break chain. This will only occur if a child is core.
 answer is if a descendant is core.
+
+TODO:
+Debug
+Code cleanup (some triggers/effects might be left over from last architecture)
+Documentation for users (mod page/post etc)
+Change display on character window.
+xUpdate function calls from entrypoints.
+Localization work (game concepts and others)
+xGame rule name changes (did not do localization)
