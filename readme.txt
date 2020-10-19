@@ -1795,3 +1795,30 @@ Advantage to interaction options is that I can make do with 3 - up, only, rememb
 looks like localization cannot execute things.
 could have it player specific if it is a variable on a character. It would be lost on succession though.
 At this point I think I have to create my own window and open it when appropriate. Other option is showing something in the title window, but that would most likely break the window and would not be clear/obvious.
+
+Found method. Based on Advanced Cheat Menu mod
+https://forum.paradoxplaza.com/forum/threads/mod-advanced-cheat-menu-gui-based-cheat-menu.1417707/
+https://steamcommunity.com/sharedfiles/filedetails/?id=2218867072
+Make sure to give credit.
+
+possibly want to change to doing console commands for effects.
+^ problem is not sure about passing objects.
+^ also prefer scripted guis because they seem to be more "supported" <- they seem to be used as intended in this case as opposed to not used as intended.
+checking if the console command method works in ironman. <- it does work.
+
+Problem with console command method: it can open multiple copies of the window. need to add a is_valid check to prevent this.
+other problem with console command method: Window can persist beyond where it is supposed to (for example to main menu screen if it is not closed.)
+All things considered I am not going to use the console command method.
+
+Options:
+1. create a window as a child of the hud. Then find a way to open or show it when appropriate. Also make sure it has the right title.
+2. event to variable on character to applied in script system on next check. <- need buttonpress or similar for this to work.
+3. Event with widget, buttons in widget
+4. Event with widget, remember buttons in widget, other buttons not in it.
+
+Like option 4.
+Either way want way to bring event/dialog up again.
+Could be via decision, but I do not want to clutter up decisions.
+If this does not work out and I need a default, I should use only as the default.
+Maybe only allow only. Otherwise operation of moving the core up will necessarily have cost.
+Don't want to deal with all this, will have only be the only option give. Need to be clear on what is happening.
