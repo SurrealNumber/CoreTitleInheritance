@@ -14,15 +14,33 @@ core_county = {
 }
 
 core_county_impact = {
-	texture = "gfx/interface/icons/currencies/icon_prestige_01.dds"
+	texture = "gfx/interface/icons/message_feed/diplomacy.dds"
     parent = core_county
-    alias = {core_impact core_cost core_cost core_benefit core_county_benefit}
+    alias = { core_benefit core_county_benefit}
 }
 
-core_county_limit = {
-	texture = "gfx/interface/icons/icon_domain.dds"
+core_title_tree = {
+    texture = "gfx/interface/icons/character_interactions/dynast_claim_title_interaction.dds"
+    parent = core_title
+    alias = {core_tree core_title_trees core_trees}
+}
+
+core_title_leaf = {
+    texture = "gfx/interface/icons/character_interactions/dynast_claim_title_interaction.dds"
+    parent = core_title_tree
+    alias = {core_title_leaves core_leaf core_leaves}
+}
+
+core_title_leaf_impact = {
+    texture = "gfx/interface/icons/currencies/icon_prestige_01.dds"
+    parent = core_title_leaf
+    alias = {core_leaf_impact core_title_impact core_impact core_title_leaf_cost core_leaf_cost core_title_cost core_cost}
+}
+
+core_leaf_limit = {
+	texture = "gfx/interface/icons/message_feed/titles.dds"
     parent = core_county
-    alias = {core_limit}
+    alias = {core_limit core_leaves_limit}
 }
 
 core_title_persistence = {

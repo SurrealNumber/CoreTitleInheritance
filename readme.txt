@@ -1822,3 +1822,12 @@ Could be via decision, but I do not want to clutter up decisions.
 If this does not work out and I need a default, I should use only as the default.
 Maybe only allow only. Otherwise operation of moving the core up will necessarily have cost.
 Don't want to deal with all this, will have only be the only option give. Need to be clear on what is happening.
+
+can I make a trigger like 
+owned_de_jure_parent = {
+    big structure with $TRIGGER$ checked
+}? Worth looking into in the future.
+
+Looking into icon for core_leaf concept.
+Ideas so far:
+custom_faith_6 waaqism flat dynasty core_tenet_nudism core_tenet_marriage core_tenet_holy_tree restore_inheritance_interaction forgive_interaction icon_building_royal_forest

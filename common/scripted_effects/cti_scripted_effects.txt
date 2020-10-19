@@ -209,6 +209,7 @@ designate_core_title = { #scope is title
         INCREASE = yes
         COST = coring_county_cost_flat
     }
+    core_parent_titles = yes
 }
 
 de_designate_core_title = {# scope is title. Should not be called on non-core titles

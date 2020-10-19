@@ -260,11 +260,19 @@ is_core_de_jure_liege_consistent = { # scope is title # this does not check if t
     }
 }
 
-is_core_leaf = { # scope is title
+is_core_leaf = { # scope is title # assumes that coring parents is persisted.
+    save_temporary_scope_as = l_title
+    is_core_leaf_excluding = {EXCLUDED = scope:l_title}# Will techinally double up on ignoring this title, but want code to only be in one place.
+}
+
+is_core_leaf_excluding = { # scope is title # assumes that coring parents is persisted.
     NOT = {
         save_temporary_scope_as = l_title
         any_in_de_jure_hierarchy = {
-            limit = {NOT = {this = scope:l_title}}
+            limit = {
+                NOT = {this = scope:l_title}
+                NOT = {$EXCLUDED$ = this}
+            }
             continue = {tier > tier_county} # hope this causes it to iterate through everything except baronies.
             is_title_core = yes
         }
@@ -303,6 +311,33 @@ does_core_have_cost = { # scope is title
     # is_titular = no # titular titles will have a cost.
     is_core_due_to_cti = yes
     is_core_leaf = yes
+}
+
+will_de_coring_give_refund = {
+    custom_description = {
+        text = "CORE_REFUND_TRIGGER"
+        NOT = {
+            save_temporary_scope_as = r_title# label in comments will assume that this title is a county
+            trigger_if ={# duchy
+                limit = {holder = {has_title = scope:d_title.de_jure_liege}}
+                de_jure_liege = {is_core_leaf_excluding = {EXCLUDED = scope:r_title}}
+            }
+            trigger_else_if = {# kingdom
+                limit = {holder = {has_title = scope:d_title.de_jure_liege.de_jure_liege}}
+                de_jure_liege.de_jure_liege = {is_core_leaf_excluding = {EXCLUDED = scope:r_title}}
+            }
+            trigger_else_if = {# empire
+                limit = {holder = {has_title = scope:d_title.de_jure_liege.de_jure_liege.de_jure_liege}}
+                de_jure_liege.de_jure_liege.de_jure_liege = {is_core_leaf_excluding = {EXCLUDED = scope:r_title}}
+            }
+            trigger_else = {
+                always = no
+            }
+        }
+    }  
+    
+    no parent
+    parent has other core descendant == parent will not become leaf
 }
 
 is_over_core_limit = { # scope is character
