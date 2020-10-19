@@ -140,6 +140,7 @@ initialize_cores = {# scope is a character
 }
 
 core_change_effect = { # scope is title. Additionaly expects a value and a boolean. should be called after batch of cores is done if cores are batched.
+    # county modifiers
     if = {
         limit = {is_title_county = yes}
         if = {
@@ -149,14 +150,8 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
         else = {
             remove_core_county_modifier = yes
         }
-        holder = {
-            set_over_core_limit_modifier = yes
-            if = {
-                limit = {has_game_rule = flat_designate_core_county_cost}
-                add_prestige_no_experience = $COST$
-            }
-        }
     }
+    # core limit setting - could change to more precise conditions
     if = {
         limit = {
             does_core_count_to_limit = yes 
@@ -165,7 +160,34 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
             set_over_core_limit_modifier = yes
         }
     }
-
+    if = {
+        limit = {
+            always = $INCREASE$
+            will_coring_have_cost = yes
+        }
+        if = {
+            limit = {has_game_rule = overtime_core_county_cost}
+            holder = {add_character_modifier = core_cost_modifier}
+        }
+        else_if = {
+            add_prestige_no_experience = $COST$
+        }
+    }
+    else_if = {
+        limit = {
+            NOT = {always = $INCREASE$}
+            will_de_coring_give_refund = yes
+        }
+        if = {
+            limit = {has_game_rule = overtime_core_county_cost}
+            holder = {remove_character_modifier = core_cost_modifier}
+        }
+        else_if = {
+            limit = {has_game_rule = flat_designate_core_county_cost}
+            holder = {add_prestige_no_experience = $COST$}
+        }
+    }
+    # setting variables for display
     holder = {
         set_variable = {
             name = _num_core_counties
@@ -222,23 +244,29 @@ de_designate_core_title = {# scope is title. Should not be called on non-core ti
 
 remove_invalid_core_titles = { #scope is a character. full refund. Not meant to be called via player actions. should only be called when inconsistent titles are detected.
     send_cores_removed_toast = yes
-    every_held_title = {
-        if = {
-            limit = {
-                is_title_core = yes
-                is_core_consistent = no
-            }
-            de_core_title = yes # inconsistent restricts all cores to being cti cores
-            core_change_effect = {
-                INCREASE = no
-                COST = coring_county_refund_flat_full
-            }
+    ordered_held_title = {
+        limit = {
+            is_title_core = yes
+            is_core_consistent = no
+        }
+        order_by = {# from lowest tier to highest
+            value = 0
+            subtract = tier
+        }
+        de_core_title = yes # inconsistent restricts all cores to being cti cores
+        core_change_effect = {
+            INCREASE = no
+            COST = coring_county_refund_flat_full
         }
     }
 }
 
 recalculate_cores = { # scope is a character.
     initialize_cores = yes
+    every_held_title = {
+        limit = {is_title_core = yes}
+        core_parent_titles = yes
+    }
     if = {
         limit = {
             any_held_title = {
@@ -251,36 +279,42 @@ recalculate_cores = { # scope is a character.
 }
 
 de_designate_all_core_titles = { #scope is character. Not full refund. Should be called by character.
-    every_held_title = {
-        if = {
-            limit = {
-                is_title_core = yes
-                is_title_core_due_to_cti = yes
-            }
-            de_designate_core_title = yes
+    ordered_held_title = {
+        limit = {
+            is_title_core = yes
+            is_title_core_due_to_cti = yes
         }
+        order_by = { # from lowest tier to highest
+            value = 0
+            subtract = tier
+        }
+        de_designate_core_title = yes
     }
 }
 
 core_parent_titles = { # scope is title. Should only be called on a core title.
-    no = {save_temporary_scope_as = hit_core}
-    save_temporary_scope_as = p_title
-    ordered_this_title_or_de_jure_above = {
-        limit = {
-            scope:hit_core = no
-            exists = holder
-            holder = {has_title = scope:p_title}
-        }
-        order_by = { # order from lowest tier up
-            value = 0
-            subtract = tier
-        }
-        if = {
-            limit = {is_title_core = yes}
-            yes = {save_temporary_scope_as = hit_core}
-        }
-        else = {
-            set_title_core = yes # should never effect core limit, core costs, or be called on a county.
+    if = {
+        limit = {is_core_due_to_cti = yes}
+        no = {save_temporary_scope_as = hit_core}
+        save_temporary_scope_as = p_title
+        ordered_this_title_or_de_jure_above = {
+            limit = {
+                scope:hit_core = no
+                exists = holder
+                holder = {has_title = scope:p_title}
+                NOT = {this = scope:p_title}
+            }
+            order_by = { # order from lowest tier up
+                value = 0
+                subtract = tier
+            }
+            if = {
+                limit = {is_title_core = yes}
+                yes = {save_temporary_scope_as = hit_core}
+            }
+            else = {
+                set_title_core = yes # should never effect core limit, core costs, or be called on a county.
+            }
         }
     }
 }
@@ -296,7 +330,7 @@ check_auto_core_title = { # scope is title. Assumes that only one title is being
         limit = {
             tier > tier_county
             is_title_core_due_to_not_cti = no
-            will_core_loss_break_chain = yes
+            has_child_core = yes
         }
         set_title_core = yes # should never effect core limit, core costs, or be called on a county.
     }

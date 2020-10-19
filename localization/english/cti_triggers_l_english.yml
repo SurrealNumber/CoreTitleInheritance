@@ -17,8 +17,8 @@
  IS_DE_JURE_LIEGE_CORE_TRIGGER:0 "The closest owned [de_jure|E] [title|E] above this [title|E] is [core|E] or does not exist"
  NOT_IS_DE_JURE_LIEGE_CORE_TRIGGER:0 "The closest owned [de_jure|E] [title|E] above this [title|E] is not [core|E]"
  
- CORE_REFUND_TRIGGER:0 "De-designating [TITLE.GetName] as [coring|E] will give a refund due to the loss reducing the number of [leaf_cores|E]"
- NOT_CORE_REFUND_TRIGGER:0 ""
+ CORE_REFUND_TRIGGER:0 "De-designating [TITLE.GetName] as [core|E] will give a refund due to the change reducing the number of [core_leaves|E]"
+ NOT_CORE_REFUND_TRIGGER:0 "De-designating [TITLE.GetName] as [core|E] will give a refund due to the change not effecting the number of [core_leaves|E]"
  
  IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] is a [head_of_faith|E] [title|E]"
  NOT_IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] is not a [head_of_faith|E] [title|E]"

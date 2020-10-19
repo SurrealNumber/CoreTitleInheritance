@@ -93,38 +93,24 @@ is_title_ineligible_due_to_title_law  = { # scope is title
     }
 }
 
-is_title_core = { # Assume that this will only be called if the title is owned
-    trigger_if = {
-        limit = {has_variable = core}
-        tier >= tier_county        
-        OR = {
-            var:core = yes
-            AND = {
-                is_title_ineligible_due_to_title_law = no
-                OR = {
-                    is_title_core_due_to_capital = yes
-                    holder.primary_title = this
-                    is_title_special_core = yes
-                }
-            }
-        }
-    }
-    trigger_else = {
-        tier >= tier_county
-        is_title_ineligible_due_to_title_law = no
-        OR = {
-            is_title_core_due_to_capital = yes
-            holder.primary_title = this
-            is_title_special_core = yes
-        }
-    }
-}
-
-is_core_due_to_not_cti = {
+is_title_core_due_to_not_cti = {# scope is title
+    tier >= tier_county
+    is_title_ineligible_due_to_title_law = no
     OR = {
         is_title_core_due_to_capital = yes
         holder.primary_title = this
         is_title_special_core = yes
+    }
+}
+
+is_title_core = { # Assume that this will only be called if the title is owned
+    OR = {
+        AND = { # can't move this out to is_core_due_to_cti because there is overlap between the two statements.
+            has_variable = core
+            tier >= tier_county
+            var:core = yes
+        }
+        is_core_due_to_not_cti = yes
     }
 }
 
@@ -260,23 +246,29 @@ is_core_de_jure_liege_consistent = { # scope is title # this does not check if t
     }
 }
 
-is_core_leaf = { # scope is title # assumes that coring parents is persisted.
+has_child_core_excluding = {
     save_temporary_scope_as = l_title
-    is_core_leaf_excluding = {EXCLUDED = scope:l_title}# Will techinally double up on ignoring this title, but want code to only be in one place.
+    any_in_de_jure_hierarchy = {
+        continue = {tier > tier_county} # hope this causes it to iterate through everything except baronies.
+        NOT = {this = scope:l_title}
+        NOT = {$EXCLUDED$ = this}
+        holder = {has_title = scope:l_title}
+        is_title_core = yes
+    }
 }
 
-is_core_leaf_excluding = { # scope is title # assumes that coring parents is persisted.
-    NOT = {
-        save_temporary_scope_as = l_title
-        any_in_de_jure_hierarchy = {
-            limit = {
-                NOT = {this = scope:l_title}
-                NOT = {$EXCLUDED$ = this}
-            }
-            continue = {tier > tier_county} # hope this causes it to iterate through everything except baronies.
-            is_title_core = yes
-        }
-    }
+has_child_core = {
+    save_temporary_scope_as = l_title
+    has_child_core_excluding = {EXCLUDED = scope:l_title}# Will techinally double up on ignoring this title, but want code to only be in one place.
+}
+
+is_core_leaf_excluding = { # scope is title # also works with non-cores to check if they have core descendants
+    NOT = {has_child_core_excluding = {EXCLUDED = $EXCLUDED$}}
+}
+
+is_core_leaf = { # scope is title # also works with non-cores to check if they have core descendants
+    save_temporary_scope_as = l_title
+    is_core_leaf_excluding = {EXCLUDED = scope:l_title}# Will techinally double up on ignoring this title, but want code to only be in one place.
 }
 
 is_ancestor_leaf = { # scope is a title
@@ -288,6 +280,27 @@ is_ancestor_leaf = { # scope is a title
     }
 }
 
+is_ancestor_leaf_excluding_self = { # scope is a title
+    save_temporary_scope_as = a_title
+    any_this_title_or_de_jure_above = {
+        holder = {has_title = scope:a_title}
+        is_title_core = yes
+        is_core_leaf_excluding = {EXCLUDED = scope:a_title}
+    }
+}
+
+does_core_have_cost = { # scope is title
+    # is_titular = no # titular titles will have a cost.
+    is_core_due_to_cti = yes
+    is_core_leaf = yes
+}
+
+does_core_have_cost_excluding = { # scope is title
+    # is_titular = no # titular titles will have a cost.
+    is_core_due_to_cti = yes
+    is_core_leaf_excluding = {EXCLUDED = $EXCLUDED$}
+}
+
 does_ancestor_have_cost = {
     save_temporary_scope_as = a_title
     any_this_title_or_de_jure_above = {
@@ -297,20 +310,23 @@ does_ancestor_have_cost = {
     }
 }
 
+does_ancestor_have_cost_excluding_self = {
+    save_temporary_scope_as = a_title
+    any_this_title_or_de_jure_above = {
+        holder = {has_title = scope:a_title}
+        is_title_core = yes
+        does_core_have_cost_excluding = {EXCLUDED = scope:a_title}
+    }
+}
+
 does_core_count_to_limit = { # scope is title
     #is_core_due_to_cti = yes # will count capital and primary title to core limit unless they are titular
     # is_titular = no # will count titular titles to core limit.
     is_core_leaf = yes
 }
 
-will_coring_have_cost = { # scope is title
-    is_ancestor_leaf = no
-}
-
-does_core_have_cost = { # scope is title
-    # is_titular = no # titular titles will have a cost.
-    is_core_due_to_cti = yes
-    is_core_leaf = yes
+will_coring_have_cost = { # scope is title # can be called before or after title is cored.
+    does_ancestor_have_cost_excluding_self = no
 }
 
 will_de_coring_give_refund = {
@@ -334,10 +350,7 @@ will_de_coring_give_refund = {
                 always = no
             }
         }
-    }  
-    
-    no parent
-    parent has other core descendant == parent will not become leaf
+    }
 }
 
 is_over_core_limit = { # scope is character

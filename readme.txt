@@ -1718,11 +1718,11 @@ Steps:
 - xFix implementation of title law ineligibility (to reflect tests above)
 - xChange definition of able to be cored
 - xChange definition of counting to core limit
-- Add game concept of core title tree, leaves and branches
+- ~Add game concept of core title tree, leaves and branches
 - xAdd trigger for has penalty/cost
 - xCheck definition of inconsistent titles
-- Add in penalty modifier.
-- Change effect of coring a title (auto core parents)
+- xAdd in penalty modifier.
+- xChange effect of coring a title (auto core parents)
 - Change recalculation of cores and the like
 - On de-core consider how to deal with it
     - Add dialogue for how far up should be decored. Only show if applicable.
@@ -1831,3 +1831,41 @@ owned_de_jure_parent = {
 Looking into icon for core_leaf concept.
 Ideas so far:
 custom_faith_6 waaqism flat dynasty core_tenet_nudism core_tenet_marriage core_tenet_holy_tree restore_inheritance_interaction forgive_interaction icon_building_royal_forest
+
+figuring out how to determine when something has vs does not have a cost.
+Things to keep in mind - will probably happen after designating/de-designating core.
+will have cost if no ancestor has a cost.
+will give a refund if parent will not become leaf.
+
+Want these to work whether before or after coring is done. ancestor has cost excluding this title. parent is leaf excluding this title.
+Wish I could pass note for excluded. <-missing keyword arguments.
+Could make more precise conditions for when a core will change the core limit.
+Will out of order de-coring work properly with respect to costs? - No need to de-core from bottom up.
+
+can possibly simplify is_title_core to:
+OR = {
+    AND = {
+        has_variable = core
+        tier >= tier_county
+        var:core = yes
+    }
+    is_core_due_to_not_cti = yes
+}
+Will do this. Will record current implementation here.
+is_title_core = { # Assume that this will only be called if the title is owned
+    trigger_if = {
+        limit = {has_variable = core}
+        tier >= tier_county
+        OR = {
+            var:core = yes
+            is_core_due_to_not_cti = yes
+        }
+    }
+    trigger_else = {
+        is_core_due_to_not_cti = yes
+    }
+}
+
+when to auto core?
+when inserting will break chain. This will only occur if a child is core.
+answer is if a descendant is core.
