@@ -1878,3 +1878,30 @@ Change display on character window.
 xUpdate function calls from entrypoints.
 Localization work (game concepts and others)
 xGame rule name changes (did not do localization)
+Look into whether head of faith should be a special title.
+
+Could I display a tree? - will look at dynasty tree.
+Looks like I can't (at least not easily).
+
+Categories:
+currently have:
+primary title, capital chain, special, cti
+Plan for new Architecture:
+Need to convey which are leaves and which are branch
+want to convey reason for core
+Can I change border/highlight colors? That would allow me to convey reason while only splitting into leaves and branch
+It looks like I can change the border color, but it will require some re-jiggering.
+To do it I will add a block which I can overide for the frame. I will have to make some recolored frames.
+Colors need to signify: Primary, Capital Chain, Special, Mod
+Primary: Purple
+Capital Chain: Blue
+Special: Orange
+Mod: Normal title frame
+Color_Bright_Yellow is used for highlight on hover.
+Will use colors defined in colors.gui - should be curated for the game. - will only use as inspiration, don't think I will be able to actually use the exact colors. - Didn't end up using them at all.
+Could I use a mask or something for it? - Do not know how to do it.
+How to communicate what the highlights mean? - should modify (add to) the tooltip if possible. <-  looks like it might be possible, but most likely not without a lot of work with the possibility of changing a lot of things.
+I don't like it, but I will have to communicate it in the encyclopedia and mod pages. It irks me that the information will not be available at a glance. On the plus side, once learned they should hopefully be easy to remember.
+
+
+Terminology: Core title forest (there can be multiple trees). Will have to change terminology to this.

@@ -3215,6 +3215,12 @@ window = {
 
                                 coa_title_small_crown = {
                                     using = tooltip_ne
+                                    blockoverride "border" {
+                                        coa_title_frame = {
+                                            texture = "gfx/interface/coat_of_arms/title_primary_44.dds"
+                                            size = { 50 50 }
+                                        }
+                                    }
                                 }
 
                                 text_multi = {
