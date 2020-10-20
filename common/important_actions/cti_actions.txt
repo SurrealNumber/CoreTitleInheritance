@@ -1,4 +1,4 @@
-﻿action_over_core_county_limit = { # Scope is character? (or player?)
+﻿action_over_core_limit = { # Scope is character? (or player?)
     type = alert
     icon = action_core_limit_penalty
     is_dangerous = yes
@@ -7,7 +7,7 @@
         if = {
             limit = {is_over_core_limit = yes}
             try_create_important_action = {
-                important_action_type = action_over_core_county_limit
+                important_action_type = action_over_core_limit
             }
         }
     }

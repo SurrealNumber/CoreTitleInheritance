@@ -15,9 +15,9 @@
     }
 }
 
-coring_county_cost_flat = {value = medium_prestige_loss}
-coring_county_refund_flat = {value = minor_prestige_gain}
-coring_county_refund_flat_full = {value = medium_prestige_gain}
+coring_cost_flat = {value = medium_prestige_loss}
+coring_refund_flat = {value = minor_prestige_gain}
+coring_refund_flat_full = {value = medium_prestige_gain}
 
 core_count = {
     value = 0

@@ -1,4 +1,4 @@
-﻿core_title_leaf_cost = {
+﻿core_title_cost = {
     default = flat_designate_core_cost
     
     no_core_cost = {}

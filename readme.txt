@@ -1932,3 +1932,13 @@ Looks like ordered_list_name also has a position variable which can be used to c
 Based on looking in code to make sure the iteration goes through all of them just set a quite high max.
 ^ fixed problem.
 Need to reduce text or add image/portrait to cores removed toast.
+Need to make sure head of faith titles are considered at least special cores. Or at least change localization to reflect them not.
+Went through localization.
+Everything seems to be working. Need to take closer look and see if things look good.
+
+TODO:
+Debug
+Code cleanup
+Documentation for users (mod page/post etc)
+Check to see if localization for over core limit alert is indeed duplicated and keep favorite version
+Look into whether head of faith should be a special title.

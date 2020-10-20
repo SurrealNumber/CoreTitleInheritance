@@ -15,7 +15,7 @@
                 has_game_rule = flat_designate_core_cost
                 will_coring_have_cost = yes
             }
-            holder = {prestige >= coring_county_refund_flat_full}
+            holder = {prestige >= coring_refund_flat_full}
         }
     }
     

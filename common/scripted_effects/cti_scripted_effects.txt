@@ -126,7 +126,7 @@ initialize_cores = {# scope is a character
     set_over_core_limit_modifier = yes
     set_core_cost_modifier = yes
     set_variable = {
-        name = _num_core_counties
+        name = _core_count
         value = core_count
     }
     set_variable = {
@@ -195,7 +195,7 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
     # setting variables for display
     holder = {
         set_variable = {
-            name = _num_core_counties
+            name = _core_count
             value = core_count
         }
         set_variable = {
@@ -234,7 +234,7 @@ designate_core_title = { #scope is title
     set_title_core = yes
     core_change_effect = {
         INCREASE = yes
-        COST = coring_county_cost_flat
+        COST = coring_cost_flat
     }
     core_parent_titles = yes
 }
@@ -243,7 +243,7 @@ de_designate_core_title = {# scope is title. Should not be called on non-core ti
     de_core_title = yes
     core_change_effect = {
         INCREASE = no
-        COST = coring_county_refund_flat
+        COST = coring_refund_flat
     }
 }
 
@@ -263,7 +263,7 @@ remove_invalid_core_titles = { #scope is a character. full refund. Not meant to 
         de_core_title = yes # inconsistent restricts all cores to being cti cores
         core_change_effect = {
             INCREASE = no
-            COST = coring_county_refund_flat_full
+            COST = coring_refund_flat_full
         }
     }
 }

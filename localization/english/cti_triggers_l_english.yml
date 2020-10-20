@@ -1,15 +1,12 @@
 ﻿l_english: 
- HAS_ANY_TITLE_LAW_TRIGGER:0 "[TITLE.GetName] has a [title_specific_succession|E] which is different from the [rulerpossessive|E] [succession_laws]"
+ HAS_ANY_TITLE_LAW_TRIGGER:0 "[TITLE.GetName] has [title_succession|E] which is different from the [rulerpossessive|E] [succession_laws]"
  NOT_HAS_ANY_TITLE_LAW_TRIGGER:0 "[TITLE.GetName] follows the [rulerpossessive|E] [succession_laws]"
  
- TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER:0 "There is a owned [title|E] this [title|E] or [de_jure|E] above [TITLE.GetName] with [title_specific_succession|E] which does not match the [rulerpossessive|E] [succession_laws] and has a different [title_heir|E] than the [player_heir|E]"
- NOT_TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER:0 "The owned [titles|E] this [title|E] or [de_jure|E] above [TITLE.GetName] match the [rulerpossessive|E] [succession_laws] or the [title_heir|E] matches the [player_heir|E]"
+ TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER:0 "There is a owned [title|E] this [title|E] or [de_jure|E] above [TITLE.GetName] with [title_succession|E] that is not the [primary_title|E] with a [title_heir|E] of the [rulerpossessive|E] [dynasty|E]"
+ NOT_TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER:0 "The owned [titles|E] this [title|E] or [de_jure|E] above [TITLE.GetName] match the [rulerpossessive|E] [succession_laws] or is the [primary_title|E] with a [title_heir|E] of the [rulerpossessive|E] [dynasty|E]"
  
- TITLE_DE_JURE_ABOVE_CAPITAL_TRIGGER:0 "[TITLE.GetName] is [de_jure|E] above the [realm_capital|E]"
- NOT_TITLE_DE_JURE_ABOVE_CAPITAL_TRIGGER:0 "[TITLE.GetName] is not [de_jure|E] above the [realm_capital|E]"
- 
- CHILD_CHAIN_EXISTS:0 "There is a chain of [core_titles|E] from [TITLE.GetName] down to a [core_county|E]"
- NOT_CHILD_CHAIN_EXISTS:0 "There is not a chain of [core_titles|E] from [TITLE.GetName] down to a [core_county|E]"
+ TITLE_DE_JURE_ABOVE_CAPITAL_TRIGGER:0 "[TITLE.GetName] is [de_jure|E] above the [realm_capital|E] of [title_tier|E] less than the [primary_title|E]"
+ NOT_TITLE_DE_JURE_ABOVE_CAPITAL_TRIGGER:0 "[TITLE.GetName] is not [de_jure|E] above the [realm_capital|E] or is of the same [title_tier|E] as the [primary_title|E]"
   
  CORE_REFUND_TRIGGER:0 "De-designating [TITLE.GetName] as [core|E] will give a refund due to the change reducing the number of [core_leaves|E]"
  NOT_CORE_REFUND_TRIGGER:0 "De-designating [TITLE.GetName] as [core|E] will give a refund due to the change not effecting the number of [core_leaves|E]"
@@ -20,7 +17,7 @@
  IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] is a [head_of_faith|E] [title|E]"
  NOT_IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] is not a [head_of_faith|E] [title|E]"
  
- PRIMARY_TITLE_EQUAL_TRIGGER:0 "[TITLE.GetName] is [primary_title|E]"
- NOT_PRIMARY_TITLE_EQUAL_TRIGGER:0 "[TITLE.GetName] is not [primary_title|E]"
+ PRIMARY_TITLE_EQUAL_TRIGGER:0 "[TARGET_TITLE.GetName] is [primary_title|E]"
+ NOT_PRIMARY_TITLE_EQUAL_TRIGGER:0 "[TARGET_TITLE.GetName] is not [primary_title|E]"
  
  NOT_TITLE_TIER_TRIGGER_THIRD:0 "Rank is not $COMPARATOR$ $TIER|V$"
