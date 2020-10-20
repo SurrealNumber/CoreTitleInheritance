@@ -3223,7 +3223,7 @@ window = {
                                         
                                         blockoverride "border" {
                                             coa_title_frame = {
-                                                visible = "[ObjectsEqual(Title, CharacterWindow.GetCharacter.GetPrimaryTitle)]"
+                                                visible = "[GetScriptedGui('core_primary_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
                                                 texture = "gfx/interface/coat_of_arms/title_primary_44.dds"
                                                 size = { 50 50 }
                                             }
@@ -3282,7 +3282,7 @@ window = {
                                         
                                         blockoverride "border" {
                                             coa_title_frame = {
-                                                visible = "[ObjectsEqual(Title, CharacterWindow.GetCharacter.GetPrimaryTitle)]"
+                                                visible = "[GetScriptedGui('core_primary_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
                                                 texture = "gfx/interface/coat_of_arms/title_primary_44.dds"
                                                 size = { 50 50 }
                                             }

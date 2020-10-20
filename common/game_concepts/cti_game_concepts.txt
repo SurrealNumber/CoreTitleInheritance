@@ -19,39 +19,39 @@ core_county_impact = {
     alias = { core_benefit core_county_benefit}
 }
 
-core_title_forest = {
+core_forest = {
     texture = "gfx/interface/icons/character_interactions/dynast_claim_title_interaction.dds"
     parent = core_title
-    alias = {core_forest core_title_forests core_forests}
+    alias = {core_title_forest core_title_forests core_forests}
 }
 
-core_title_tree = {
+core_tree = {
     texture = "gfx/interface/icons/character_interactions/dynast_claim_title_interaction.dds"
     parent = core_forest
-    alias = {core_tree core_title_trees core_trees}
+    alias = {core_title_tree core_title_trees core_trees}
 }
 
-core_title_leaf = {
+core_leaf = {
     texture = "gfx/interface/icons/character_interactions/dynast_claim_title_interaction.dds"
-    parent = core_title_tree
-    alias = {core_title_leaves core_leaf core_leaves}
+    parent = core_tree
+    alias = {core_title_leaves core_title_leaf core_leaves}
 }
 
-core_title_branch = {
+core_branch = {
     texture = "gfx/interface/icons/character_interactions/dynast_claim_title_interaction.dds"
-    parent = core_title_tree
-    alias = {core_title_branches core_branch core_branches}
+    parent = core_tree
+    alias = {core_title_branches core_title_branch core_branches}
 }
 
-core_title_leaf_impact = {
+core_leaf_impact = {
     texture = "gfx/interface/icons/currencies/icon_prestige_01.dds"
-    parent = core_title_leaf
-    alias = {core_leaf_impact core_title_impact core_impact core_title_leaf_cost core_leaf_cost core_title_cost core_cost}
+    parent = core_leaf
+    alias = {core_title_leaf_impact core_title_impact core_impact core_title_leaf_cost core_leaf_cost core_title_cost core_cost}
 }
 
 core_leaf_limit = {
 	texture = "gfx/interface/icons/message_feed/titles.dds"
-    parent = core_county
+    parent = core_leaf
     alias = {core_limit core_leaves_limit}
 }
 

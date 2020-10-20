@@ -1909,3 +1909,4 @@ I believe I am done with the new character window display for now.
 Terminology: Core title forest (there can be multiple trees). Will have to change terminology to this.
 
 Focus will be on making things work - this also means just fixing localization to work not be finalized.
+CK3 complaining about Title in ObjectsEqual. Changing to scripted gui.

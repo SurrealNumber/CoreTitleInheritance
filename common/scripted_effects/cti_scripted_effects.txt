@@ -283,7 +283,7 @@ de_designate_all_core_titles = { #scope is character. Not full refund. Should be
     ordered_held_title = {
         limit = {
             is_title_core = yes
-            is_title_core_due_to_cti = yes
+            is_core_due_to_cti = yes
         }
         order_by = { # from lowest tier to highest
             value = 0

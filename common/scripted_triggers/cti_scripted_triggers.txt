@@ -110,13 +110,13 @@ is_title_core = { # Assume that this will only be called if the title is owned
             tier >= tier_county
             var:core = yes
         }
-        is_core_due_to_not_cti = yes
+        is_title_core_due_to_not_cti = yes
     }
 }
 
 is_core_due_to_cti = {
     has_variable = core # This condition means that it is technically possible (though it should never happen) that a title is considered neither core due to cti or core due to not cti.
-    is_core_due_to_not_cti = no
+    is_title_core_due_to_not_cti = no
 }
 
 is_title_county = {
@@ -179,7 +179,7 @@ will_core_loss_break_chain = { # scope is title
             }
             de_jure_liege = {
                 is_title_core = yes
-                is_title_core_due_to_cti = yes
+                is_core_due_to_cti = yes
             }
             NOT = {de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
         }
@@ -190,7 +190,7 @@ will_core_loss_break_chain = { # scope is title
             }
             de_jure_liege.de_jure_liege = {
                 is_title_core = yes
-                is_title_core_due_to_cti = yes
+                is_core_due_to_cti = yes
             }
             NOT = {de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
         }
@@ -201,7 +201,7 @@ will_core_loss_break_chain = { # scope is title
             }
             de_jure_liege.de_jure_liege.de_jure_liege = {
                 is_title_core = yes
-                is_title_core_due_to_cti = yes
+                is_core_due_to_cti = yes
             }
             NOT = {de_jure_liege.de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
         }
@@ -241,7 +241,7 @@ is_de_jure_liege_core = {
 is_core_de_jure_liege_consistent = { # scope is title # this does not check if this core is consistent. # need to check titles de-jure above by my def (allowing skipping levels.)
     OR = {
         # cores due to reasons other than the mod do not need their de-jure liege to be a core.
-        is_core_due_to_not_cti = yes
+        is_title_core_due_to_not_cti = yes
         is_de_jure_liege_core = yes
     }
 }

@@ -87,6 +87,14 @@ core_branches_character_display = {
     }
 }
 
+core_primary_title_display = {
+    scope = title
+    
+    is_shown = {
+        holder.primary_title = this
+    }
+}
+
 core_capital_chain_title_display = {
     scope = title
     
