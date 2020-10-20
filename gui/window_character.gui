@@ -3196,72 +3196,51 @@ window = {
                             }
                         }
                         
-                        vbox = { # primary
+                        vbox = { # leaves
                             layoutpolicy_horizontal = expanding
-                            datacontext = "[CharacterWindow.GetCharacter]"
-                            visible = "[ObjectsEqual(Character.GetPrimaryTitle.GetHeir.GetDynasty, Character.GetDynasty)]"
-                            text_label_center = { # merge primary and capital if they are the same to avoid duplication
-                                visible = "[ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetCounty.GetTitle)]"
-                                text = "CV_CORE_CAPITAL_PRIMARY"
+                            datacontext = "[GetScriptedGui( 'core_leaves_character_display' )]"
+                            visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
+                            text_label_center = {
+                                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
+                                text = "CV_CORES_LEAVES"
                             }
                             text_label_center = {
-                                visible = "[Not( ObjectsEqual( Character.GetPrimaryTitle, Character.GetCapitalLocation.GetCounty.GetTitle) )]"
-                                text = "CV_CORE_PRIMARY"
+                                visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End))]"
+                                text = "CV_CORES_LEAF"
                             }
-                            
-                            flowcontainer = {
-                                datacontext = "[Character.GetPrimaryTitle]"
-                                spacing = 5
 
-                                coa_title_small_crown = {
-                                    using = tooltip_ne
-                                    blockoverride "border" {
-                                        coa_title_frame = {
-                                            texture = "gfx/interface/coat_of_arms/title_primary_44.dds"
-                                            size = { 50 50 }
+
+                            datamodel = "[CharacterWindow.GetTitles]"
+
+                            item = {
+                                flowcontainer = {
+                                    datacontext = "[TitleItem.GetTitle]"
+                                    visible = "[GetScriptedGui('core_leaf_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
+                                    spacing = 5
+
+                                    coa_title_small_crown = {
+                                        using = tooltip_ne
+                                        
+                                        blockoverride "border" {
+                                            coa_title_frame = {
+                                                visible = "[ObjectsEqual(Title, CharacterWindow.GetCharacter.GetPrimaryTitle)]"
+                                                texture = "gfx/interface/coat_of_arms/title_primary_44.dds"
+                                                size = { 50 50 }
+                                            }
+                                            
+                                            coa_title_frame = {
+                                                visible = "[GetScriptedGui('core_capital_chain_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
+                                                texture = "gfx/interface/coat_of_arms/title_capital_chain_44.dds"
+                                                size = { 50 50 }
+                                            }
+                                            
+                                            coa_title_frame = {
+                                                visible = "[GetScriptedGui('core_special_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
+                                                texture = "gfx/interface/coat_of_arms/title_special_44.dds"
+                                                size = { 50 50 }
+                                            }
                                         }
                                     }
-                                }
-
-                                text_multi = {
-                                    text = "[Title.GetNameNoTooltip]"
-                                    parentanchor = vcenter
-                                    autoresize = yes
-                                    default_format = "#high"
-                                    using = Font_Size_Medium
-                                    max_width = 190
-                                    margin_top = 5
-                                }
-                            }
-                        }
-                        
-                        
-                        vbox = { # capital chain
-                            layoutpolicy_horizontal = expanding
-                            datacontext = "[GetScriptedGui( 'core_capital_chain_character_display' )]"
-                            visible = "[And(Not( ObjectsEqual( CharacterWindow.GetCharacter.GetPrimaryTitle, CharacterWindow.GetCharacter.GetCapitalLocation.GetCounty.GetTitle)), ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End))]"
-          
-                            text_label_center = {
-                                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
-                                text = "CV_CORES_CAPITAL_CHAIN"
-                            }
-                            text_label_center = {
-                                visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End))]"
-                                text = "CV_CORES_CAPITAL_CHAIN_SINGULAR"
-                            }
-
-                            
-                            datamodel = "[CharacterWindow.GetTitles]"
-
-                            item = {
-                                flowcontainer = {
-                                    datacontext = "[TitleItem.GetTitle]"
-                                    visible = "[GetScriptedGui('core_capital_chain_title_display').IsShown( GuiScope.SetRoot(Title.MakeScope).End)]"
-                                    spacing = 5
-
-                                    coa_title_small_crown = {
-                                        using = tooltip_ne
-                                    }
 
                                     text_multi = {
                                         text = "[Title.GetNameNoTooltip]"
@@ -3276,56 +3255,17 @@ window = {
                             }
                         }
                         
-                        vbox = { # special
+                        vbox = { # leaves
                             layoutpolicy_horizontal = expanding
-                            datacontext = "[GetScriptedGui('core_special_character_display')]"
+                            datacontext = "[GetScriptedGui( 'core_branches_character_display' )]"
                             visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
                             text_label_center = {
                                 visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
-                                text = "CV_CORES_SPECIAL"
-                            }
-                            text_label_center = {
-                                visible = "[Not( ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End))]"
-                                text = "CV_CORES_SPECIAL_SINGULAR"
-                            }
-
-                            
-                            datamodel = "[CharacterWindow.GetTitles]"
-
-                            item = {
-                                flowcontainer = {
-                                    datacontext = "[TitleItem.GetTitle]"
-                                    visible = "[GetScriptedGui('core_special_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
-                                    spacing = 5
-
-                                    coa_title_small_crown = {
-                                        using = tooltip_ne
-                                    }
-
-                                    text_multi = {
-                                        text = "[Title.GetNameNoTooltip]"
-                                        parentanchor = vcenter
-                                        autoresize = yes
-                                        default_format = "#high"
-                                        using = Font_Size_Medium
-                                        max_width = 190
-                                        margin_top = 5
-                                    }
-                                }
-                            }
-                        }
-                        
-                        vbox = { # cti
-                            layoutpolicy_horizontal = expanding
-                            datacontext = "[GetScriptedGui( 'core_mod_character_display' )]"
-                            visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
-                            text_label_center = {
-                                visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
-                                text = "CV_CORES_MOD"
+                                text = "CV_CORES_LEAVES"
                             }
                             text_label_center = {
                                 visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End))]"
-                                text = "CV_CORES_MOD_SINGULAR"
+                                text = "CV_CORES_LEAF"
                             }
 
 
@@ -3334,11 +3274,31 @@ window = {
                             item = {
                                 flowcontainer = {
                                     datacontext = "[TitleItem.GetTitle]"
-                                    visible = "[GetScriptedGui('core_mod_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
+                                    visible = "[GetScriptedGui('core_branch_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
                                     spacing = 5
 
                                     coa_title_small_crown = {
                                         using = tooltip_ne
+                                        
+                                        blockoverride "border" {
+                                            coa_title_frame = {
+                                                visible = "[ObjectsEqual(Title, CharacterWindow.GetCharacter.GetPrimaryTitle)]"
+                                                texture = "gfx/interface/coat_of_arms/title_primary_44.dds"
+                                                size = { 50 50 }
+                                            }
+                                            
+                                            coa_title_frame = {
+                                                visible = "[GetScriptedGui('core_capital_chain_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
+                                                texture = "gfx/interface/coat_of_arms/title_capital_chain_44.dds"
+                                                size = { 50 50 }
+                                            }
+                                            
+                                            coa_title_frame = {
+                                                visible = "[GetScriptedGui('core_special_title_display').IsShown( GuiScope.SetRoot( Title.MakeScope ).End)]"
+                                                texture = "gfx/interface/coat_of_arms/title_special_44.dds"
+                                                size = { 50 50 }
+                                            }
+                                        }
                                     }
 
                                     text_multi = {

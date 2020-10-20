@@ -19,9 +19,15 @@ core_county_impact = {
     alias = { core_benefit core_county_benefit}
 }
 
-core_title_tree = {
+core_title_forest = {
     texture = "gfx/interface/icons/character_interactions/dynast_claim_title_interaction.dds"
     parent = core_title
+    alias = {core_forest core_title_forests core_forests}
+}
+
+core_title_tree = {
+    texture = "gfx/interface/icons/character_interactions/dynast_claim_title_interaction.dds"
+    parent = core_forest
     alias = {core_tree core_title_trees core_trees}
 }
 
@@ -29,6 +35,12 @@ core_title_leaf = {
     texture = "gfx/interface/icons/character_interactions/dynast_claim_title_interaction.dds"
     parent = core_title_tree
     alias = {core_title_leaves core_leaf core_leaves}
+}
+
+core_title_branch = {
+    texture = "gfx/interface/icons/character_interactions/dynast_claim_title_interaction.dds"
+    parent = core_title_tree
+    alias = {core_title_branches core_branch core_branches}
 }
 
 core_title_leaf_impact = {

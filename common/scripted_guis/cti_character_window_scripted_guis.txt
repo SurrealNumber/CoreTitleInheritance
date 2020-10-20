@@ -57,15 +57,33 @@ core_limit_display = {
     }
 }
 
-core_capital_chain_character_display = {
+core_leaves_character_display = {
     scope = character
     
     is_shown = {
-        capital_county = {is_title_ineligible_due_to_title_law = no}
+        any_held_title = {
+            is_title_core = yes
+            is_core_leaf = yes
+        }
     }
     
-    is_valid = { # multiple capital chain cores
-        1 < count_core_due_to_capital
+    is_valid = { # multiple core leaves
+        1 < count_core_leaves
+    }
+}
+
+core_branches_character_display = {
+    scope = character
+    
+    is_shown = {
+        any_held_title = {
+            is_title_core = yes
+            is_core_leaf = no
+        }
+    }
+    
+    is_valid = { # multiple core branches
+        1 < count_core_branches
     }
 }
 
@@ -73,22 +91,8 @@ core_capital_chain_title_display = {
     scope = title
     
     is_shown = {
+        NOT = {holder.primary_title = this}
         is_title_core_due_to_capital = yes
-    }
-}
-
-core_special_character_display = {
-    scope = character
-    
-    is_shown = {
-        any_held_title = {
-            is_title_core = yes
-            is_title_special_core = yes
-        }
-    }
-    
-    is_valid = { # multiple special cores
-        1 < root.count_core_due_to_special
     }
 }
 
@@ -97,31 +101,8 @@ core_special_title_display = {
     
     
     is_shown = {
+        NOT = {holder.primary_title = this}
+        is_title_core_due_to_capital = no
         is_title_special_core = yes
-    }
-}
-
-core_mod_character_display = {
-    scope = character
-    
-    is_shown = {
-        any_held_title = {
-            is_title_core = yes
-            is_title_core_due_to_cti = yes
-        }
-    }
-    
-    is_valid = { # multiple special cores
-        1 < count_core_due_to_mod
-    }
-}
-
-core_mod_title_display = {
-    scope = title
-    
-    
-    is_shown = {
-        is_title_core = yes
-        is_title_core_due_to_cti = yes
     }
 }

@@ -47,40 +47,27 @@ val_core_titles = {
         }
     }
 }
-# Only used in one place, but think I need it here to accomodate it.
-count_core_due_to_capital = {
+# Only used in one place but I am putting it here so the code is easier to read (though not determine the exact calculations).
+count_core_leaves = {
     value = 0
     every_held_title = {
         if = {
             limit = {
                 is_title_core = yes
-                is_title_core_due_to_capital = yes
+                is_core_leaf = yes
             }
             add = 1
         }
     }
 }
 
-count_core_due_to_special = {
+count_core_branches = {
     value = 0
     every_held_title = {
         if = {
             limit = {
                 is_title_core = yes
-                is_title_special_core = yes
-                }
-            add = 1
-        }
-    }
-}
-
-count_core_due_to_mod = {
-    value = 0
-    every_held_title = { # if this does not exist this should quietly fail and the value will be 0
-        if = {
-            limit = {
-                is_title_core = yes
-                is_title_core_due_to_cti = yes
+                is_core_leaf = no
             }
             add = 1
         }

@@ -1874,7 +1874,7 @@ TODO:
 Debug
 Code cleanup (some triggers/effects might be left over from last architecture)
 Documentation for users (mod page/post etc)
-Change display on character window.
+xChange display on character window.
 xUpdate function calls from entrypoints.
 Localization work (game concepts and others)
 xGame rule name changes (did not do localization)
@@ -1902,6 +1902,10 @@ Will use colors defined in colors.gui - should be curated for the game. - will o
 Could I use a mask or something for it? - Do not know how to do it.
 How to communicate what the highlights mean? - should modify (add to) the tooltip if possible. <-  looks like it might be possible, but most likely not without a lot of work with the possibility of changing a lot of things.
 I don't like it, but I will have to communicate it in the encyclopedia and mod pages. It irks me that the information will not be available at a glance. On the plus side, once learned they should hopefully be easy to remember.
-
+2 lists. leaves and branches. Both are colored based on class.
+Will move primary check to gui language only. Others will force exclusivity.
+I believe I am done with the new character window display for now.
 
 Terminology: Core title forest (there can be multiple trees). Will have to change terminology to this.
+
+Focus will be on making things work - this also means just fixing localization to work not be finalized.
