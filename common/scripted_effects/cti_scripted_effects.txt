@@ -165,13 +165,15 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
             always = $INCREASE$
             will_coring_have_cost = yes
         }
-        if = {
-            limit = {has_game_rule = overtime_core_cost}
-            holder = {add_character_modifier = core_cost_modifier}
-        }
-        else_if = {
-            limit = {has_game_rule = flat_designate_core_cost}
-            add_prestige_no_experience = $COST$
+        holder = {
+            if = {
+                limit = {has_game_rule = overtime_core_cost}
+                add_character_modifier = core_cost_modifier
+            }
+            else_if = {
+                limit = {has_game_rule = flat_designate_core_cost}
+                add_prestige_no_experience = $COST$
+            }
         }
     }
     else_if = {
@@ -179,13 +181,15 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
             NOT = {always = $INCREASE$}
             will_de_coring_give_refund = yes
         }
-        if = {
-            limit = {has_game_rule = overtime_core_cost}
-            holder = {remove_character_modifier = core_cost_modifier}
-        }
-        else_if = {
-            limit = {has_game_rule = flat_designate_core_cost}
-            holder = {add_prestige_no_experience = $COST$}
+        holder = {
+            if = {
+                limit = {has_game_rule = overtime_core_cost}
+                remove_character_modifier = core_cost_modifier
+            }
+            else_if = {
+                limit = {has_game_rule = flat_designate_core_cost}
+                add_prestige_no_experience = $COST$
+            }
         }
     }
     # setting variables for display

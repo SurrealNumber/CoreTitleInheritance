@@ -1910,3 +1910,16 @@ Terminology: Core title forest (there can be multiple trees). Will have to chang
 
 Focus will be on making things work - this also means just fixing localization to work not be finalized.
 CK3 complaining about Title in ObjectsEqual. Changing to scripted gui.
+
+Everything appeared to be working except for the core leaf penalty. Also some script errors came up. <- core leaf penalty not appearing because the game rules are flat cost.
+Strange error Failed context switch for holder = {has_title = scope:_title}. Replacing with object equality check for now.
+
+Might have target_xxx or scope:target for triggers. Don't know.
+
+core leaf cost was not applied for a county. De-jure above was a non-core duchy and primary title kingdom
+same bug with duchy below primary title.
+need to rename scripted values.
+Problem was that the title was seeing itself as an ancestor that had a cost.
+
+Everything seems to be working except for `Data error in loc key 'PRIMARY_TITLE_EQUAL_TRIGGER'` <- will have to add custom desctiption to trigger or do something else to fix this.
+Next a bit more debugging, investigating head of faith titles, localization and code cleanup. After that is done look into documentation/presenting everything.

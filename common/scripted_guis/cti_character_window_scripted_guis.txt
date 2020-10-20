@@ -87,6 +87,25 @@ core_branches_character_display = {
     }
 }
 
+core_leaf_title_display = {
+    scope = title
+    
+    is_shown = {
+        is_title_core = yes
+        is_core_leaf = yes
+    }
+}
+
+core_branch_title_display = {
+    scope = title
+    
+    is_shown = {
+        is_title_core = yes
+        is_core_leaf = no
+    }
+}
+
+
 core_primary_title_display = {
     scope = title
     

@@ -20,6 +20,9 @@
  CORE_REFUND_TRIGGER:0 "De-designating [TITLE.GetName] as [core|E] will give a refund due to the change reducing the number of [core_leaves|E]"
  NOT_CORE_REFUND_TRIGGER:0 "De-designating [TITLE.GetName] as [core|E] will give a refund due to the change not effecting the number of [core_leaves|E]"
  
+ IS_CORE_LEAF:0 "[TITLE.GetName] is a [core_leaf|E]"
+ NOT_IS_CORE_LEAF:0 "[TITLE.GetName] is not a [core_leaf|E]"
+ 
  IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] is a [head_of_faith|E] [title|E]"
  NOT_IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] is not a [head_of_faith|E] [title|E]"
  

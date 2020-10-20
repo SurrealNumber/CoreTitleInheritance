@@ -3255,17 +3255,17 @@ window = {
                             }
                         }
                         
-                        vbox = { # leaves
+                        vbox = { # branches
                             layoutpolicy_horizontal = expanding
                             datacontext = "[GetScriptedGui( 'core_branches_character_display' )]"
                             visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
                             text_label_center = {
                                 visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End)]"
-                                text = "CV_CORES_LEAVES"
+                                text = "CV_CORES_BRANCHES"
                             }
                             text_label_center = {
                                 visible = "[Not(ScriptedGui.IsValid( GuiScope.SetRoot( CharacterWindow.GetCharacter.MakeScope ).End))]"
-                                text = "CV_CORES_LEAF"
+                                text = "CV_CORES_BRANCH"
                             }
 
 

@@ -105,8 +105,8 @@ is_title_core_due_to_not_cti = {# scope is title
 
 is_title_core = { # Assume that this will only be called if the title is owned
     OR = {
-        AND = { # can't move this out to is_core_due_to_cti because there is overlap between the two statements.
-            has_variable = core
+        trigger_if = { # can't move this out to is_core_due_to_cti because there is overlap between the two statements.
+            limit = {has_variable = core}
             tier >= tier_county
             var:core = yes
         }
@@ -247,12 +247,12 @@ is_core_de_jure_liege_consistent = { # scope is title # this does not check if t
 }
 
 has_child_core_excluding = {
-    save_temporary_scope_as = l_title
+    save_temporary_scope_as = c_title
     any_in_de_jure_hierarchy = {
         continue = {tier > tier_county} # hope this causes it to iterate through everything except baronies.
-        NOT = {this = scope:l_title}
+        NOT = {this = scope:c_title}
         NOT = {$EXCLUDED$ = this}
-        holder = {has_title = scope:l_title}
+        holder = scope:c_title.holder # same owner. Getting strange bug (Failed context switch) so I am deviating from normal practice for this line.
         is_title_core = yes
     }
 }
@@ -267,8 +267,11 @@ is_core_leaf_excluding = { # scope is title # also works with non-cores to check
 }
 
 is_core_leaf = { # scope is title # also works with non-cores to check if they have core descendants
-    save_temporary_scope_as = l_title
-    is_core_leaf_excluding = {EXCLUDED = scope:l_title}# Will techinally double up on ignoring this title, but want code to only be in one place.
+    custom_description = {
+            text = "IS_CORE_LEAF"
+        save_temporary_scope_as = l_title
+        is_core_leaf_excluding = {EXCLUDED = scope:l_title}# Will techinally double up on ignoring this title, but want code to only be in one place.
+    }
 }
 
 is_ancestor_leaf = { # scope is a title
@@ -283,7 +286,7 @@ is_ancestor_leaf = { # scope is a title
 is_ancestor_leaf_excluding_self = { # scope is a title
     save_temporary_scope_as = a_title
     any_this_title_or_de_jure_above = {
-        holder = {has_title = scope:a_title}
+        holder = scope:a_title.holder # same owner. Getting strange bug (Failed context switch) so I am deviating from normal practice for this line.
         is_title_core = yes
         is_core_leaf_excluding = {EXCLUDED = scope:a_title}
     }
@@ -295,7 +298,7 @@ does_core_have_cost = { # scope is title
     is_core_leaf = yes
 }
 
-does_core_have_cost_excluding = { # scope is title
+does_core_have_cost_excluding = { # scope is title # Telling this to exclude itself does nothing.
     # is_titular = no # titular titles will have a cost.
     is_core_due_to_cti = yes
     is_core_leaf_excluding = {EXCLUDED = $EXCLUDED$}
@@ -313,7 +316,8 @@ does_ancestor_have_cost = {
 does_ancestor_have_cost_excluding_self = {
     save_temporary_scope_as = a_title
     any_this_title_or_de_jure_above = {
-        holder = {has_title = scope:a_title}
+        NOT = {this = scope:a_title}
+        holder = scope:a_title.holder # same owner. Getting strange bug (Failed context switch) so I am deviating from normal practice for this line.
         is_title_core = yes
         does_core_have_cost_excluding = {EXCLUDED = scope:a_title}
     }
@@ -335,15 +339,15 @@ will_de_coring_give_refund = {
         NOT = {
             save_temporary_scope_as = r_title# label in comments will assume that this title is a county
             trigger_if ={# duchy
-                limit = {holder = {has_title = scope:d_title.de_jure_liege}}
+                limit = {holder = {has_title = scope:r_title.de_jure_liege}}
                 de_jure_liege = {is_core_leaf_excluding = {EXCLUDED = scope:r_title}}
             }
             trigger_else_if = {# kingdom
-                limit = {holder = {has_title = scope:d_title.de_jure_liege.de_jure_liege}}
+                limit = {holder = {has_title = scope:r_title.de_jure_liege.de_jure_liege}}
                 de_jure_liege.de_jure_liege = {is_core_leaf_excluding = {EXCLUDED = scope:r_title}}
             }
             trigger_else_if = {# empire
-                limit = {holder = {has_title = scope:d_title.de_jure_liege.de_jure_liege.de_jure_liege}}
+                limit = {holder = {has_title = scope:r_title.de_jure_liege.de_jure_liege.de_jure_liege}}
                 de_jure_liege.de_jure_liege.de_jure_liege = {is_core_leaf_excluding = {EXCLUDED = scope:r_title}}
             }
             trigger_else = {
