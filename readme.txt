@@ -1923,3 +1923,12 @@ Problem was that the title was seeing itself as an ancestor that had a cost.
 
 Everything seems to be working except for `Data error in loc key 'PRIMARY_TITLE_EQUAL_TRIGGER'` <- will have to add custom desctiption to trigger or do something else to fix this.
 Next a bit more debugging, investigating head of faith titles, localization and code cleanup. After that is done look into documentation/presenting everything.
+
+need primary_title_equal or look into de-designate core trigger localization.
+need to correct localization of title law to reflect current implementation.
+even during recalculation of cores, only one title is de-cored at a time when they are all ineligible due to a title laws.
+Looks like ordered in list only does the operation once by default. Will have to change to do all applicable.
+Looks like ordered_list_name also has a position variable which can be used to chose a particular one (also can be used in a while loop)
+Based on looking in code to make sure the iteration goes through all of them just set a quite high max.
+^ fixed problem.
+Need to reduce text or add image/portrait to cores removed toast.

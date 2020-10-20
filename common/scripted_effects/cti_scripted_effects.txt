@@ -258,6 +258,8 @@ remove_invalid_core_titles = { #scope is a character. full refund. Not meant to 
             value = 0
             subtract = tier
         }
+        max = 20000 # want this to do it for all, so setting an extremely high max - hopefully more than one could ever use.
+        check_range_bounds = no # this should always be of smaller size than max, so don't want it to be logged
         de_core_title = yes # inconsistent restricts all cores to being cti cores
         core_change_effect = {
             INCREASE = no
@@ -293,6 +295,8 @@ de_designate_all_core_titles = { #scope is character. Not full refund. Should be
             value = 0
             subtract = tier
         }
+        max = 20000 # want this to do it for all, so setting an extremely high max - hopefully more than one could ever use.
+        check_range_bounds = no # this should always be of smaller size than max, so don't want it to be logged
         de_designate_core_title = yes
     }
 }
@@ -313,6 +317,8 @@ core_parent_titles = { # scope is title. Should only be called on a core title.
                 value = 0
                 subtract = tier
             }
+            max = 20000 # want this to do it for all, so setting an extremely high max - hopefully more than one could ever use.
+            check_range_bounds = no # this should always be of smaller size than max, so don't want it to be logged
             if = {
                 limit = {is_title_core = yes}
                 yes = {save_temporary_scope_as = hit_core}

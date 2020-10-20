@@ -127,123 +127,13 @@ is_title_county = {
 ######################## End of "Primative" triggers ##################################
 #######################################################################################
 
-is_a_child_title_chain_core = {# scope is title. assumes that rules are being followed up to this point.
-    custom_description = {
-        text = CHILD_CHAIN_EXISTS
-        save_temporary_scope_as = _title
-        holder = {# Changes scope to holder
-            any_held_title = {
-                is_title_core = yes
-                NOT = {this = $EXCLUDED$} # excludes this title from consideration (used for checking breaking chains or adding cores)
-                target_is_de_jure_liege_or_above = scope:_title # de_jure_child of this title. Assume that this disqualifies the title I am calling this on.
-
-                NOT = { # need to make sure condition is true for every, so looking for one thing which does not meet it.
-                    any_this_title_or_de_jure_above = {
-                        trigger_if = {
-                            limit = {exists = holder} # limits to titles which exist.
-                            # nothing in chain is owned by holder (which implies it exists) but is not core.
-                            # will break if there is a title which is held by holder, but is not core between two titles.
-                            holder = {has_title = scope:_title} # held by owner.
-                            tier < scope:_title.tier #in chain between two titles <- because title itself is presumably in heirarchy
-                            OR = {
-                                this = $EXCLUDED$ # for the purposes of this function, excluded is not core.
-                                is_title_core = no # not core
-                            }
-                        }
-                        trigger_else = {
-                            always = no
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
 is_title_eligible_for_core = { # Assume that this will only be called if the title is owned
     is_title_core = no # not a core title - will rule out core titles due to non-cti.
     is_title_ineligible_due_to_title_law = no
 }
 
-# just checks "one up" so it assumes the rules are followed up to this point.
-# does not actually check that this title is a core.
-will_core_loss_break_chain = { # scope is title
-    custom_description = {
-        text = "CORE_LOSS_BREAK_CHAIN_TRIGGER"
-        # is_title_county = yes This would probably make things more efficient by short-circuiting, but will not use as I am not confident I have not forgotten an edge case.
-        save_temporary_scope_as = w_title# count in comments will assume that this title is a county
-        trigger_if ={# duchy
-            limit = {
-                de_jure_liege.tier <= holder.highest_held_title_tier
-                holder = {has_title = scope:w_title.de_jure_liege}
-            }
-            de_jure_liege = {
-                is_title_core = yes
-                is_core_due_to_cti = yes
-            }
-            NOT = {de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
-        }
-        trigger_else_if = {# kingdom
-            limit = {
-                de_jure_liege.de_jure_liege.tier <= holder.highest_held_title_tier
-                holder = {has_title = scope:w_title.de_jure_liege.de_jure_liege}
-            }
-            de_jure_liege.de_jure_liege = {
-                is_title_core = yes
-                is_core_due_to_cti = yes
-            }
-            NOT = {de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
-        }
-        trigger_else_if = {# empire
-            limit = {
-                de_jure_liege.de_jure_liege.de_jure_liege.tier <= holder.highest_held_title_tier
-                holder = {has_title = scope:w_title.de_jure_liege.de_jure_liege.de_jure_liege}
-            }
-            de_jure_liege.de_jure_liege.de_jure_liege = {
-                is_title_core = yes
-                is_core_due_to_cti = yes
-            }
-            NOT = {de_jure_liege.de_jure_liege.de_jure_liege = {is_a_child_title_chain_core = {EXCLUDED = scope:w_title}}}
-        }
-        trigger_else = {
-            always = no
-        }
-    }
-}
-
 is_core_consistent = {# scope is title
     is_title_ineligible_due_to_title_law = no
-}
-
-# just checks one title (not tier) up.
-is_de_jure_liege_core = {
-    custom_description = {
-        text = "IS_DE_JURE_LIEGE_CORE_TRIGGER"
-        save_temporary_scope_as = d_title# label in comments will assume that this title is a county
-        trigger_if ={# duchy
-            limit = {holder = {has_title = scope:d_title.de_jure_liege}}
-            de_jure_liege = {is_title_core = yes}
-        }
-        trigger_else_if = {# kingdom
-            limit = {holder = {has_title = scope:d_title.de_jure_liege.de_jure_liege}}
-            de_jure_liege.de_jure_liege = {is_title_core = yes}
-        }
-        trigger_else_if = {# empire
-            limit = {holder = {has_title = scope:d_title.de_jure_liege.de_jure_liege.de_jure_liege}}
-            de_jure_liege.de_jure_liege.de_jure_liege = {is_title_core = yes}
-        }
-        trigger_else = {
-            always = yes
-        }
-    }    
-}
-
-is_core_de_jure_liege_consistent = { # scope is title # this does not check if this core is consistent. # need to check titles de-jure above by my def (allowing skipping levels.)
-    OR = {
-        # cores due to reasons other than the mod do not need their de-jure liege to be a core.
-        is_title_core_due_to_not_cti = yes
-        is_de_jure_liege_core = yes
-    }
 }
 
 has_child_core_excluding = {
@@ -271,24 +161,6 @@ is_core_leaf = { # scope is title # also works with non-cores to check if they h
             text = "IS_CORE_LEAF"
         save_temporary_scope_as = l_title
         is_core_leaf_excluding = {EXCLUDED = scope:l_title}# Will techinally double up on ignoring this title, but want code to only be in one place.
-    }
-}
-
-is_ancestor_leaf = { # scope is a title
-    save_temporary_scope_as = a_title
-    any_this_title_or_de_jure_above = {
-        holder = {has_title = scope:a_title}
-        is_title_core = yes
-        is_core_leaf = yes
-    }
-}
-
-is_ancestor_leaf_excluding_self = { # scope is a title
-    save_temporary_scope_as = a_title
-    any_this_title_or_de_jure_above = {
-        holder = scope:a_title.holder # same owner. Getting strange bug (Failed context switch) so I am deviating from normal practice for this line.
-        is_title_core = yes
-        is_core_leaf_excluding = {EXCLUDED = scope:a_title}
     }
 }
 

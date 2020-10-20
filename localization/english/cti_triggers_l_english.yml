@@ -10,13 +10,7 @@
  
  CHILD_CHAIN_EXISTS:0 "There is a chain of [core_titles|E] from [TITLE.GetName] down to a [core_county|E]"
  NOT_CHILD_CHAIN_EXISTS:0 "There is not a chain of [core_titles|E] from [TITLE.GetName] down to a [core_county|E]"
- 
- CORE_LOSS_BREAK_CHAIN_TRIGGER:0 "De-coring this [core_title|E] would lead to a [core_title|E] [de_jure|E] above no longer having a [core_title|E] chain to a [core_county|E]"
- NOT_CORE_LOSS_BREAK_CHAIN_TRIGGER:0 "De-coring this [core_title|E] would not lead to a [core_title|E] without a chain of [core_titles|E] to a [core_county|E]"
- 
- IS_DE_JURE_LIEGE_CORE_TRIGGER:0 "The closest owned [de_jure|E] [title|E] above this [title|E] is [core|E] or does not exist"
- NOT_IS_DE_JURE_LIEGE_CORE_TRIGGER:0 "The closest owned [de_jure|E] [title|E] above this [title|E] is not [core|E]"
- 
+  
  CORE_REFUND_TRIGGER:0 "De-designating [TITLE.GetName] as [core|E] will give a refund due to the change reducing the number of [core_leaves|E]"
  NOT_CORE_REFUND_TRIGGER:0 "De-designating [TITLE.GetName] as [core|E] will give a refund due to the change not effecting the number of [core_leaves|E]"
  
