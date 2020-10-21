@@ -1943,3 +1943,31 @@ Documentation for users (mod page/post etc)
 xCheck to see if localization for over core limit alert is indeed duplicated and keep favorite version <- they are in fact duplicated. Assume duplicated version came from seeing an error and not seeing differently named localization.
 xLook into whether head of faith should be a special title. <- it has its own title law. Will make it special and make special overrule title law exclusion. Main reason is I want to see the special title border.
 
+Documentation items:
+New readme
+    - Should be minimal
+    - Should include changelog
+    - Should include instructions for reporting bug/problem
+    - will be markdown
+    - Should probably have links. <- problem: Need the readme done before links are created.
+paradox mod page
+steam mod page
+ck3 user mod forum post
+modding guide? (It would require condensing ~2000 lines ^ of brain dump) <- will do at some point, but not for release.
+Open question forum post? <- After release. Should definitely do.
+
+Common action items:
+- Decide whether I am sharing github link/making repository public. - I think I will but only on the forum post. It will probably have the least people going to it and the people on it will be more likely to get use out of the repository.
+- Decide on thumbnail(s) for mod
+- Write description
+    - Present purpose/usecase for mod
+    - Give overview of added mechanic
+    - Present some more details on how it works
+    - Mention in game encyclopedia
+    - Present known bugs
+    - Present future direction
+- Make screenshots to illustrate mod/differences from vanilla
+Forum:
+- Additionally mention scripting challenges I ran into
+- Make sure to mention ui challenge of fitting it in with excelent fine tuned existing ui.
+- Get permission for links to other pages?
