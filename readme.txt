@@ -1940,5 +1940,6 @@ TODO:
 Debug
 Code cleanup
 Documentation for users (mod page/post etc)
-Check to see if localization for over core limit alert is indeed duplicated and keep favorite version <- they are in fact duplicated. Assume duplicated version came from seeing an error and not seeing differently named localization.
-Look into whether head of faith should be a special title.
+xCheck to see if localization for over core limit alert is indeed duplicated and keep favorite version <- they are in fact duplicated. Assume duplicated version came from seeing an error and not seeing differently named localization.
+xLook into whether head of faith should be a special title. <- it has its own title law. Will make it special and make special overrule title law exclusion. Main reason is I want to see the special title border.
+

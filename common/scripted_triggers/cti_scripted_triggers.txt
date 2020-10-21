@@ -21,8 +21,8 @@ is_title_core_due_to_capital = { # scope is title
     tier < holder.highest_held_title_tier # not the same tier as the primary title
 }
 
-is_title_special_core = { # Incomplete until I can see the always_follows_primary_heir tag
-    always = no # head of faith was in this category, but it fits better in the category of having a title law that just happens to be always going to the primary heir.
+is_title_special_core = { # Incomplete until I can see the always_follows_primary_heir tag. For now will have this category overrule title laws.
+    is_head_of_faith = yes
 }
 
 has_any_title_law = { # scope is title (technically this means has a different title succession law than the realm succession law).
@@ -30,7 +30,6 @@ has_any_title_law = { # scope is title (technically this means has a different t
         text = "HAS_ANY_TITLE_LAW_TRIGGER"
         tier >= tier_duchy
         OR = {
-            is_head_of_faith = yes
             has_title_law_flag = elective_succession_law
             NOT = {
                 trigger_if = {
@@ -59,6 +58,7 @@ has_any_title_law = { # scope is title (technically this means has a different t
 
 is_title_ineligible_due_to_title_law  = { # scope is title
     save_temporary_scope_as = t_title
+    is_title_special_core = no # I am having special cores overrule the title law.
     custom_description = {
         text = "TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER"
         OR = {
