@@ -22,18 +22,13 @@
  de_designate_all_core_titles_decision_effect_tooltip_bullet4:0 "You will recieve a partial refund for core titles in line with individually de-designating if applicable."
  de_designate_all_core_titles_decision_confirm:0 "De-designate All Core Titles"
  
- # think that this is meant for the action_over core_limit. Will have to look into.
- over_core_title_limit:0 "Over Core Limit"
- over_core_title_limit_label:0 "You are over your [core_limit|E]"	
- over_core_title_limit_desc:0 "You are over your [core_limit|E]. A penalty is being applied. De-designate some [core_titles|E] to reduce the number of counting [core_leaves|E]. $over_core_title_limit_desc_cont$"
- over_core_title_limit_desc_cont:0 "You may use the de-designate all [core_titles|E] [decision|E] to bulk de-designate cores."
- over_core_title_limit_click:0 "#I Click to open your [character|E] window. Expand the [core_titles|E] tab of your [character|E] window for more information.#"
+ action_over_core_limit:0 "Over Core Limit"
+ action_over_core_limit_label:0 "You are over your [core_limit|E]"	
+ action_over_core_limit_desc:0 "You are over your [core_limit|E]. A penalty is being applied. De-designate some [core_titles|E] to reduce the number of counting [core_leaves|E]. $over_core_title_limit_desc_cont$"
+ action_over_core_limit_desc_cont:0 "You may use the de-designate all [core_titles|E] [decision|E] to bulk de-designate cores."
+ action_over_core_limit_click:0 "#I Click to open your [character|E] window. Expand the [core_titles|E] tab of your [character|E] window for more information.#"
  #desired effect -> over_core_title_limit_click:0 "#I Click to open your [character|E] window and the de-designate all [core_titles|E] decision. Expand the [core_titles|E] tab of your [character|E] window for more information.#"
- 
- action_over_core_limit:0 "Over [core_limit|E]"
- action_over_core_limit_desc:0 "You have too  many counting [core_leaves|E]. De-designate some. You can also use the De-Designate all [core_titles|E] [decision|E]."
- action_over_core_limit_click:0 "Opens [character|E] view where you can view your cores."
- 
+
  recalculate_cores_interaction:0 "Recalculate Core Titles"
  
  cores_titles_removed_toast_title:0 "Core Titles Were Removed"

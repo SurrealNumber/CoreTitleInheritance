@@ -1940,5 +1940,5 @@ TODO:
 Debug
 Code cleanup
 Documentation for users (mod page/post etc)
-Check to see if localization for over core limit alert is indeed duplicated and keep favorite version
+Check to see if localization for over core limit alert is indeed duplicated and keep favorite version <- they are in fact duplicated. Assume duplicated version came from seeing an error and not seeing differently named localization.
 Look into whether head of faith should be a special title.
