@@ -1951,6 +1951,7 @@ New readme
     - will be markdown
     - Should probably have links. <- problem: Need the readme done before links are created.
 paradox mod page
+    - looks like it has its own change log stuff.
 steam mod page
 ck3 user mod forum post
 modding guide? (It would require condensing ~2000 lines ^ of brain dump) <- will do at some point, but not for release.
@@ -1958,16 +1959,33 @@ Open question forum post? <- After release. Should definitely do.
 
 Common action items:
 - Decide whether I am sharing github link/making repository public. - I think I will but only on the forum post. It will probably have the least people going to it and the people on it will be more likely to get use out of the repository.
-- Decide on thumbnail(s) for mod
+- Decide on thumbnail(s) for mod <- think I will use commander_is_leader <- will make sure to say where the image is from.
 - Write description
     - Present purpose/usecase for mod
     - Give overview of added mechanic
     - Present some more details on how it works
     - Mention in game encyclopedia
+    - Game versions
+    - Not ironman
+    - Mention compatability guesses
     - Present known bugs
     - Present future direction
 - Make screenshots to illustrate mod/differences from vanilla
 Forum:
 - Additionally mention scripting challenges I ran into
 - Make sure to mention ui challenge of fitting it in with excelent fine tuned existing ui.
-- Get permission for links to other pages?
+- Get permission for links to other pages? <- looks like the three links in question should be ok. Relevant, not trying to sell something or linking to a forum Paradox does not have some control over.
+
+Post Strucure:
+Forum name: [Mod] Core Title Inheritance
+Picture
+Links
+Description with sections listed above.
+---Forum post divider
+Change log in second post under spoilers
+---Forum post divider
+screenshots (will be at top with thumbnail for steam)
+--forum post divider
+reserved
+----Forum post divider
+reserved
