@@ -1949,7 +1949,7 @@ New readme
     - Should include changelog
     - Should include instructions for reporting bug/problem
     - will be markdown
-    - Should probably have links. <- problem: Need the readme done before links are created.
+    - Should probably have links. <- problem: Need the readme done before links are created. <- will add links in first version >1.0.0, but not 1.0.0.
 paradox mod page
     - looks like it has its own change log stuff.
 steam mod page
@@ -1958,7 +1958,7 @@ modding guide? (It would require condensing ~2000 lines ^ of brain dump) <- will
 Open question forum post? <- After release. Should definitely do.
 
 Common action items:
-- Decide whether I am sharing github link/making repository public. - I think I will but only on the forum post. It will probably have the least people going to it and the people on it will be more likely to get use out of the repository.
+- Decide whether I am sharing github link/making repository public. - I think I will but only on the forum post. It will probably have the least people going to it and the people on it will be more likely to get use out of the repository. <- will not share repository at least initially. Will wait and see.
 - Decide on thumbnail(s) for mod <- think I will use commander_is_leader <- will make sure to say where the image is from.
 - Write description
     - Present purpose/usecase for mod
@@ -1989,3 +1989,57 @@ screenshots (will be at top with thumbnail for steam)
 reserved
 ----Forum post divider
 reserved
+
+
+Looking for readme for things I might have missed:
+- checking for de-jure titles above empire tier. Does this cause problems (I don't think so, but have not explicitly checked)
+- grace period for over core limit? <- no in general. Possibly yes when core persistence is true.
+- Posibly expand use of commander_is_leader
+- Need to mention commandeering expanded traits toggle
+Main picture will be commander_is_leader
+
+For forum addition to compatability:
+- This mod commandeers the CharacterWindow.ToggleExpandedTraits toggle and the CharacterWindow.AreTraitsExpanded check. The toggle appeared to not be called anywhere, so I decided to use it.
+
+For forum open scripting challenges:
+- I could not find a way to directly check if the property always_follows_primary_heir is set or its value. This property forms the basis of this mod, and the setter is exposed, but I could not find a getter.
+- I tried to create a sripted list like is shown in the common/scripted_lists/00_scripted_lists.txt for core titles, but it did not work. The every effect was not recognized in scripts, and in my testing the every effect was also not recognized for any of the scripted lists in that file either.
+- Gridboxes in the datatype language allocate a grid rectangle to every object in the list at the beginning, and will show holes if items are not visible.
+- There do not appear to be on_actions for moving the primary title or changing the realm capital.
+- They did such a good job on the UI that it is hard to add more to it without compromising how good it looks or how intuitively it functions.
+
+Description:
+This mod adds in a system to allow characters to retain more titles on succession under the partition succession laws. It achieves this goal by allowing them to designate titles as "core" which will cause them to be inherited by the character's heir. The user can optionally set a core title limit, add a cost to coring or holding core titles, or give core title counties a slight benefit.
+
+How to use the mod:
+- Owned titles of county tier or higher will have a designate core or de-designate core button on the title window.
+- Core titles can be seen in the character window for any character with cores (this should be any character with a title). To see them click on where it says Core Titles in the middle of the window next to the titles, claims and diplomacy. This will expand the core titles tab which will display the character's core titles split into the core leaves (core titles with no cores de-jure under them) and the core branches (all other core titles). The titles will have an outline according to the reason for them being core. If the reason is due to the player designating them they will not have a colored outline. The primary title will have a purple outline. The capital and titles de-jure above it (below the tier of the primary title) will have a blue outline. Special titles (currently only head of faith titles) will have a orange outline.
+- The in-game encyclopedia has descriptions of the mechanics and concepts introduced.
+- There is a decision to de-designate all designated cores
+- There is a character interaction to recalculate core titles. It should not have to be used except in some edge cases as described in the current bugs section.
+
+Some details of how the mod works:
+- A character's core titles are the (mostly) complete set of titles which their heir is guaranteed to inherit upon their death. There are some titles that will be core for every character just based on the base game mechanics (with a few exceptions due to title succession laws). These titles are a character's primary title, their realm capital and the titles de-jure above it up to one tier bellow their highest, and head of faith titles.
+- All other core titles will have been designated as core by the character. Designating a title core also designates all of the titles de-jure above it core up to an existing core title or the highest owned tier of title. This is required to guarantee inheritance based on how the game distributes titles for succession.
+- The only core titles which will count to the core limit or have a cost are the core leaves (the titles with no de-jure descendant core titles) which were designated as core by the character (as opposed to being core due to mechanics in the base game).
+- One cannot designate titles de-jure under at title with title succession laws as core (with limited exceptions)
+
+The mod words for game version 1.1.3, but should also work for 1.1.2. I have not tested it on earlier versions.
+
+The mod is *not* ironman compatible
+
+Known bugs:
+- Core titles are not recalculated when the primary title is changed or the realm capital is moved.
+- On loading a game sometimes (not consistent and unsure when) the variables used to display information on core titles are not loaded. The problem can be resolved by recalculating core  titles through the character interaction or waiting for the game to recalculate core titles on its own, something which happens at a minimum every quarter.
+- There are two known cases where it is possible to lose core titles:
+    1. If a character's primary title has title specific succession with an heir that is not of your dynasty and is unlanded. On inheriting the title they will take the de-jure capital of the title, possibly taking despite it being a core title of that or a different character.
+    2. If a character's primary title has title specific succession with an heir that is not of your dynasty. Any core titles designated by the character will go to the heir who inherits their capital, which can be different from their player heir who will be the one to inherit the first title in the title list of the highest remaining tier after the primary title is gone. In the case of partition succession with your children inheriting, your oldest child will be the one to recieve the capital, but you will not play as them after dying.
+
+Possible future features:
+- AI designation of core titles. Currently the AI will never designate titles core.
+- Changing the display of core titles in the character window to be a two wide grid like is seen when expanding titles.
+- Adding a way to remove core titles from a character/from a game (unsure which or if it will be both) after single heir succession laws have been passed.
+
+Mod compatability guesses:
+- This mod modifies the title window and character window guis. It will most likely be incompatible with other mods which also modify them, though in the case of the character window it's only purpose is to present information the the player and without it the mod should still be functional, just difficult to tell what is going on.
+- This mod adds calls to additional on_actions or in one case an additional effect to on_actions from the base game. This also has the potential to have/cause conflicts.
