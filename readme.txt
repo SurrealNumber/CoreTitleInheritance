@@ -1998,6 +1998,9 @@ Looking for readme for things I might have missed:
 - Need to mention commandeering expanded traits toggle
 Main picture will be commander_is_leader
 
+For forum known bugs:
+- In error.log it will complain that several variables are set but never used. This is because they are not used in the scripting language but are used by the gui to present numbers to the player.
+
 For forum addition to compatability:
 - This mod commandeers the CharacterWindow.ToggleExpandedTraits toggle and the CharacterWindow.AreTraitsExpanded check. The toggle appeared to not be called anywhere, so I decided to use it.
 
@@ -2024,12 +2027,15 @@ Some details of how the mod works:
 - The only core titles which will count to the core limit or have a cost are the core leaves (the titles with no de-jure descendant core titles) which were designated as core by the character (as opposed to being core due to mechanics in the base game).
 - One cannot designate titles de-jure under at title with title succession laws as core (with limited exceptions)
 
+The image for the mod is commander_is_leader.dds. It is located in the game in the folder gfx/interface/icons/
+
 The mod words for game version 1.1.3, but should also work for 1.1.2. I have not tested it on earlier versions.
 
 The mod is *not* ironman compatible
 
 Known bugs:
 - Core titles are not recalculated when the primary title is changed or the realm capital is moved.
+- The first overtime core leaf cost can take a day to apply.
 - On loading a game sometimes (not consistent and unsure when) the variables used to display information on core titles are not loaded. The problem can be resolved by recalculating core  titles through the character interaction or waiting for the game to recalculate core titles on its own, something which happens at a minimum every quarter.
 - There are two known cases where it is possible to lose core titles:
     1. If a character's primary title has title specific succession with an heir that is not of your dynasty and is unlanded. On inheriting the title they will take the de-jure capital of the title, possibly taking despite it being a core title of that or a different character.

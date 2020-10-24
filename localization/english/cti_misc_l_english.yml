@@ -24,7 +24,7 @@
  
  action_over_core_limit:0 "Over Core Limit"
  action_over_core_limit_label:0 "You are over your [core_limit|E]"	
- action_over_core_limit_desc:0 "You are over your [core_limit|E]. A penalty is being applied. De-designate some [core_titles|E] to reduce the number of counting [core_leaves|E]. $over_core_title_limit_desc_cont$"
+ action_over_core_limit_desc:0 "You are over your [core_limit|E]. A penalty is being applied. De-designate some [core_titles|E] to reduce the number of counting [core_leaves|E]. $action_over_core_limit_desc_cont$"
  action_over_core_limit_desc_cont:0 "You may use the de-designate all [core_titles|E] [decision|E] to bulk de-designate cores."
  action_over_core_limit_click:0 "#I Click to open your [character|E] window. Expand the [core_titles|E] tab of your [character|E] window for more information.#"
  #desired effect -> over_core_title_limit_click:0 "#I Click to open your [character|E] window and the de-designate all [core_titles|E] decision. Expand the [core_titles|E] tab of your [character|E] window for more information.#"

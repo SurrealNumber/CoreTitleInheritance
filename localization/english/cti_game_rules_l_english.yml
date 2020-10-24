@@ -18,8 +18,8 @@
  setting_domain_core_leaf_limit_desc:0 "Core leaf limit is equal to domain limit."
  setting_half_domain_core_leaf_limit:0 "Half Domain"
  setting_half_domain_core_leaf_limit_desc:0 "Core leaf limit is equal to half domain limit."
- setting_unlimited_core_leaf_limit:0 "Ludicrous"
- setting_unlimited_core_leaf_limit_desc:0 "Core leaf limit is ludicrously high"
+ setting_ludicrous_core_leaf_limit:0 "Ludicrous"
+ setting_ludicrous_core_leaf_limit_desc:0 "Core leaf limit is ludicrously high"
  
  rule_core_persist:0 "Core Persistence"
  setting_false_core_persist:0 "Expire"
