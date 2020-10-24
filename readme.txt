@@ -2000,6 +2000,7 @@ Main picture will be commander_is_leader
 
 For forum known bugs:
 - In error.log it will complain that several variables are set but never used. This is because they are not used in the scripting language but are used by the gui to present numbers to the player.
+- The error.log will complain that some characters do not have a capital_county. This does not effect the function of the mod.
 
 For forum addition to compatability:
 - This mod commandeers the CharacterWindow.ToggleExpandedTraits toggle and the CharacterWindow.AreTraitsExpanded check. The toggle appeared to not be called anywhere, so I decided to use it.
