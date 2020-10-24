@@ -2050,3 +2050,7 @@ Possible future features:
 Mod compatibility guesses:
 - This mod modifies the title window and character window guis. It will most likely be incompatible with other mods which also modify them, though in the case of the character window its only purpose is to present information to the player, and without it the mod should still be functional, just difficult to tell what is going on.
 - This mod adds calls to additional on_actions or in one case an additional effect to on_actions from the base game. This also has the potential to have/cause conflicts.
+
+
+
+Creating new location for development repository. Old one will just have essential files.
