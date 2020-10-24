@@ -2028,16 +2028,16 @@ Some details of how the mod works:
 - The only core titles which will count to the core limit or have a cost are the core leaves (the titles with no de-jure descendant core titles) which were designated as core by the character (as opposed to being core due to mechanics in the base game).
 - One cannot designate titles de-jure under at title with title succession laws as core (with limited exceptions)
 
-The image for the mod is commander_is_leader.dds. It is located in the game in the folder gfx/interface/icons/
+The image for the thumbnail is commander_is_leader.dds. It is located in the game in the folder gfx/interface/icons/
 
-The mod words for game version 1.1.3, but should also work for 1.1.2. I have not tested it on earlier versions.
+The mod words for game version 1.1.3, but should also work for 1.1.2. I have not tested it specifically for earlier versions.
 
-The mod is *not* ironman compatible
+The mod is *not* ironman compatible.
+The mod should be safe to add to an existing game, but it might take up to a quarter for it to be fully active.
 
 Known bugs:
 - Core titles are not recalculated when the primary title is changed or the realm capital is moved.
 - The first overtime core leaf cost can take a day to apply.
-- On loading a game sometimes (not consistent and unsure when) the variables used to display information on core titles are not loaded. The problem can be resolved by recalculating core  titles through the character interaction or waiting for the game to recalculate core titles on its own, something which happens at a minimum every quarter.
 - There are two known cases where it is possible to lose core titles:
     1. If a character's primary title has title specific succession with an heir that is not of your dynasty and is unlanded. On inheriting the title they will take the de-jure capital of the title, possibly taking despite it being a core title of that or a different character.
     2. If a character's primary title has title specific succession with an heir that is not of your dynasty. Any core titles designated by the character will go to the heir who inherits their capital, which can be different from their player heir who will be the one to inherit the first title in the title list of the highest remaining tier after the primary title is gone. In the case of partition succession with your children inheriting, your oldest child will be the one to recieve the capital, but you will not play as them after dying.
