@@ -2007,7 +2007,7 @@ For forum addition to compatability:
 
 For forum open scripting challenges:
 - I could not find a way to directly check if the property always_follows_primary_heir is set or its value. This property forms the basis of this mod, and the setter is exposed, but I could not find a getter.
-- I tried to create a sripted list like is shown in the common/scripted_lists/00_scripted_lists.txt for core titles, but it did not work. The every effect was not recognized in scripts, and in my testing the every effect was also not recognized for any of the scripted lists in that file either.
+- I tried to create a scripted list like is shown in the common/scripted_lists/00_scripted_lists.txt for core titles, but it did not work. The every effect was not recognized in scripts, and in my testing the every effect was also not recognized for any of the scripted lists in that file either.
 - Gridboxes in the datatype language allocate a grid rectangle to every object in the list at the beginning, and will show holes if items are not visible.
 - There do not appear to be on_actions for moving the primary title or changing the realm capital.
 - They did such a good job on the UI that it is hard to add more to it without compromising how good it looks or how intuitively it functions.
