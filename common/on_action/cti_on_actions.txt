@@ -66,7 +66,7 @@ cti_on_title_gain = { # assume this happens after the title changes hands. Also 
                 if = {
                     limit = {exists = this}
                         if = {
-                            zlimit = {exists = capital_county}
+                            limit = {exists = capital_county}
                             recalculate_cores = yes
                         }   
                     }
@@ -145,11 +145,13 @@ cti_on_game_start_after_lobby = {
 
 cti_on_death = { # believe this is right before the character actually dies.
     effect = {
-        limit = {
-            exists = this
-            exists = capital_county
+        if = {
+            limit = {
+                exists = this
+                exists = capital_county
+            }
+            recalculate_cores = yes
         }
-        recalculate_cores = yes
     }
 }
 
