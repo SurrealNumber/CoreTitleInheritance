@@ -71,7 +71,7 @@
  game_concept_core_limit:0 "Core Limit"
  game_concept_core_leaves_limit:0 ""
  game_concept_core_leaf_limit_desc:0 "$game_concept_core_leaf_limit_desc1$ $game_concept_core_leaf_limit_desc2$\n$game_concept_core_leaf_limit_desc3$\n$game_concept_core_leaf_limit_desc4$"
- game_concept_core_leaf_limit_desc1:0 "The core leaf limit determines how many [core_leaves|E] it is accepted for a [character|E] to have."
+ game_concept_core_leaf_limit_desc1:0 "The core leaf limit determines how many [core_leaves|E] it is accepted for a [character|E] to have. A [titular_title|E] does not count to the core leaf limit."
  game_concept_core_leaf_limit_desc2:0 "Going above the core leaf limit incurs a prestige penalty. The limit depends on the game rule:"
  game_concept_core_leaf_limit_desc3:0 "$EFFECT_LIST_BULLET$ Ludicrous: The limit is 10000.\n$EFFECT_LIST_BULLET$ Domain: The limit is equal to a [character_possessive|E] [domain_limit|E]."
  game_concept_core_leaf_limit_desc4:0 "$EFFECT_LIST_BULLET$ Half Domain: The limit is equal to half of a [character_possessive|E] [domain_limit|E]."

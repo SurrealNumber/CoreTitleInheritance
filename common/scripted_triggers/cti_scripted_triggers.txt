@@ -197,7 +197,7 @@ does_ancestor_have_cost_excluding_self = {
 
 does_core_count_to_limit = { # scope is title
     #is_core_due_to_cti = yes # will count capital and primary title to core limit unless they are titular
-    # is_titular = no # will count titular titles to core limit.
+    is_titular = no # will not count titular titles to core limit.
     is_core_leaf = yes
 }
 
