@@ -2054,3 +2054,15 @@ Mod compatibility guesses:
 
 
 Creating new location for development repository. Old one will just have essential files.
+
+Paradox Mods short description:
+Adds in a system to allow characters to retain more titles on succession under partition. It enables them to designate titles as "core" which will cause them to be inherited by the character's heir.
+
+
+Possibly use an interface similar to granting titles to designate core titles.
+Possibly expand to making a will - grant specific titles (or quantities of gold to characters)
+- Would work by giving titles on death but before succession.
+- Would work by having benefactor as variable on title
+- Would not play nicely with my_realm succession tab
+- Might break who is liege of whom upon inheritance
+- Strong chance of breaking who primary heir is - need to add ability to designate an heir.
