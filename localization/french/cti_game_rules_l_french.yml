@@ -1,0 +1,34 @@
+﻿l_french:
+ rule_core_title_cost:0 "Coût du titre clé"
+ setting_no_core_cost:0 "Aucune"
+ setting_no_core_cost_desc:0 "Les titres clés n'ont aucun coût individuel."
+ setting_overtime_core_cost:0 "Au fil du temps"
+ setting_overtime_core_cost_desc:0 "Désigner une feuille clé applique une pénalité de prestige mensuelle."
+ setting_flat_designate_core_cost:0 "Net"
+ setting_flat_designate_core_cost_desc:0 "Désigner plus de feuilles clées coûtent un montant net de prestige." 
+ 
+ rule_core_county_benefit:0 "Bénéfice d'un compté clé"
+ setting_none_core_county_benefit:0 "Aucune"
+ setting_none_core_county_benefit_desc:0 "Les comptés clés n'ont aucun bénéfice supplémentaire."
+ setting_control_core_county_benefit:0 "Contrôle"
+ setting_control_core_county_benefit_desc:0 "Les comptés clés ont un gain de contrôle additionel supplémentaire par mois."
+ 
+ rule_core_leaf_limit:0 "Limite de feuilles clées"
+ setting_domain_core_leaf_limit:0 "Domaine"
+ setting_domain_core_leaf_limit_desc:0 "La limite des feuilles clées est égale à la limite du domaine"
+ setting_half_domain_core_leaf_limit:0 "Moitié du domaine"
+ setting_half_domain_core_leaf_limit_desc:0 "La limite des feuilles clées est égale à la moitié de la limite du domaine."
+ setting_ludicrous_core_leaf_limit:0 "Grotesque"
+ setting_ludicrous_core_leaf_limit_desc:0 "La limite des feuilles clées est incroyablement haute."
+ 
+ rule_core_persist:0 "Persistance des clés
+ setting_false_core_persist:0 "Expire"
+ setting_false_core_persist_desc:0 "Les titres clés expire (ne sont pas destitué) à la succesion."
+ setting_true_core_persist:0 "Persiste"
+ setting_true_core_persist_desc:0 "Les titres clés sont conservés à la succesion."
+ 
+ rule_ai_designate_cores:0 "IA Designation des clés"
+ setting_false_ai_designate_cores:0 "Non-autorisé"
+ setting_false_ai_designate_cores_desc:0 "L'IA ne désignera pas de titres clés."
+ setting_true_ai_designate_cores:0 "Autorisé"
+ setting_true_ai_designate_cores_desc:0 "L'IA désignera ds titres clés. Non implémenté."

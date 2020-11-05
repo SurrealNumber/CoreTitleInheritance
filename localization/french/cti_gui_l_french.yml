@@ -1,0 +1,29 @@
+﻿l_french:
+ PRINTING_TITLE:0 "[_title.GetName]"
+ 
+ TITLE_VIEW_DESIGNATE_CORE:0 "Rendre clé"
+ TITLE_DESIGNATE_CORE_TOOLTIP:0 "Destitué [_title.GetName] un [core_title|E]"
+ 
+ TITLE_VIEW_DE_DESIGNATE_CORE:0 "Destitué la clé"
+ TITLE_DE_DESIGNATE_CORE_TOOLTIP:0 "Destitué [_title.GetName] en tant que [core_title|E]"
+  
+ CV_CORE_TITLES:0 "[core_titles|E]"
+ CV_CORE_TITLES_SINGULAR:0 "[core_title|E]"
+ 
+ CORE_LIMIT_C_L:0 "[Character.MakeScope.Var('_core_count').GetValue|0]/[Character.MakeScope.Var('_core_limit').GetValue|0]"
+ CV_CORE_TITLES_NUMBER:0 "([Character.MakeScope.Var('_num_core_titles').GetValue|0])"
+ 
+ CORE_LIMIT_TOOLTIP_HEADER:0 "#T [core_limit|E]: [THIS.Var('_core_count').GetValue|0]/[THIS.Var('_core_limit').GetValue|0]#!"
+ CORE_LIMIT_EXCEEDED_TOOLTIP:0 "@warning_icon!#X Au dessus de la [core_limit|E]. Destitué quelques [core_titles|E] pour réduire le nombre de [core_leaves|E].#!\n"
+ CORE_LIMIT_OVER_EFFECTS_HEADING_TOOLTIP:0 "Effets pour être [THIS.Var('_num_over_core_limit').GetValue|0] compté [core_leaves|E] au dessus de la limite:"
+ CORE_LIMIT_OVER_EFFECTS_SINGULAR_HEADING_TOOLTIP:0 "Effets pour être [THIS.Var('_num_over_core_limit').GetValue|0] [core_leaf|E] au dessus de la limite:"
+ CORE_LIMIT_OVERRUN_EFFECT:0 "   [prestige|E] Gain Multiplier: [THIS.Var('_val_over_core_limit_penalty').GetValue]"
+ 
+ CV_CORES_LEAVES:0 "[core_leaves|E]"
+ CV_CORES_LEAF:0 "[core_leaf|E]"
+ CV_CORES_BRANCHES:0 "[core_branches|E]"
+ CV_CORES_BRANCH:0 "[core_branch|E]"
+ CV_CORE_TITLES_HIDE_CTT:0 "#I Clique pour cacher les objets du [core_title|E]#!"
+ CV_CORE_TITLES_SHOW_CTT:0 "#I Clique pour montrer les objets du [core_title|E]#!"
+ CV_CORE_TITLE_TAB_HEADER:0 "[core_titles|E]"
+ CV_CORE_TITLE_TAB_HEADER_SINGULAR:0 "[core_title|E]"

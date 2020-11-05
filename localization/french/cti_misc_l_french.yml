@@ -1,0 +1,39 @@
+﻿l_french:
+ core_cost_modifier:0 "[core_cost|E]" 
+ core_county_benefit_modifier:0 "[core_county_benefit|E]"
+ 1_over_core_limit_modifier:0 "Au delà de la [core_limit|E] de 1 Pénalité"
+ 2_over_core_limit_modifier:0 "Au delà de la [core_limit|E] de 2 Pénalité"
+ 3_over_core_limit_modifier:0 "Au delà de la [core_limit|E] de 3 Pénalité"
+ 4_over_core_limit_modifier:0 "Au delà de la [core_limit|E] de 4 Pénalité"
+ 5_over_core_limit_modifier:0 "Au delà de la [core_limit|E] de 5 Pénalité"
+ 6_over_core_limit_modifier:0 "Au delà de la [core_limit|E] de 6 Pénalité"
+ 7_over_core_limit_modifier:0 "Au delà de la [core_limit|E] de 7 Pénalité"
+ 8_over_core_limit_modifier:0 "Au delà de la [core_limit|E] de 8 Pénalité"
+ 9_over_core_limit_modifier:0 "Au delà de la [core_limit|E] de 9 Pénalité"
+ 10_plus_over_core_limit_modifier:0 "Au delà de la [core_limit|E] de 10+ Pénalité"
+ 
+ de_designate_all_core_titles_decision:0 "Déstituer Tous les titres clés"
+ de_designate_all_core_titles_decision_tooltip:0 "Déstituer tous les [core_titles|E]"
+ de_designate_all_core_titles_decision_desc:0 "Déstituer tous les [core_titles|E]."
+ de_designate_all_core_titles_decision_effect_tooltip_start:0 "Va déstituer tous les [core_titles|E]. Tous les [core_titles|E] ne sont pas éligible à être destitué."
+ de_designate_all_core_titles_decision_effect_tooltip_bullet1:0 "Votre [primary_title|E] est inéligible à être retiré des clés."
+ de_designate_all_core_titles_decision_effect_tooltip_bullet2:0 "Votre [realm_capital|E] et tous les titres [de_jure|E] au dessus du [title_tier|E] en dessous du [primary_title|E] sont inéligible à être retiré des clés."
+ de_designate_all_core_titles_decision_effect_tooltip_bullet3:0 "Le [titles|E] de [head_of_faith|E] est inéligible à être retiré des clés."
+ de_designate_all_core_titles_decision_effect_tooltip_bullet4:0 "Vous receverez un remboursement partiel des titres clés suivant individuellement retiré si cela est applicable."
+ de_designate_all_core_titles_decision_confirm:0 "Déstituer Tous les titres clés"
+ 
+ action_over_core_limit:0 "Au dessus de la limite clée"
+ action_over_core_limit_label:0 "Vous êtes au dessus de votre [core_limit|E]"	
+ action_over_core_limit_desc:0 "Vous êtes au dessus de votre [core_limit|E]. Une pénalité est appliqué. Retirer quelques [core_titles|E] pour réduire le nombre de [core_leaves|E]. $action_over_core_limit_desc_cont$"
+ action_over_core_limit_desc_cont:0 "Vous pouvez utiliser la [decision|E] Déstituer Tous les [core_titles|E] pour considerer les clés à retirer."
+ action_over_core_limit_click:0 "#I Cliquer pour ouvrir la fenêtre du [character|E]. Elargisser le panneau des [core_titles|E] de votre fenêtre du [character|E] pour plus d'information.#"
+ #desired effect -> over_core_title_limit_click:0 "#I Click to open your [character|E] window and the de-designate all [core_titles|E] decision. Expand the [core_titles|E] tab of your [character|E] window for more information.#"
+
+ recalculate_cores_interaction:0 "Recalculer les titres clés"
+ 
+ cores_titles_removed_toast_title:0 "Les titres clés ont été supprimés"
+ cores_titles_removed_toast_desc:0 "Les [core_titles|E] ont été déstitués à cause de leur inéligibilité à l'être. Un remboursement complet est donné si cela est applicable."
+ 
+ CORE_TITLE_EFFECT:0 "Deviens un [core_title|E]"
+ DE_CORE_TITLE_EFFECT:0 "N'est plus un [core_title|E]"
+ 

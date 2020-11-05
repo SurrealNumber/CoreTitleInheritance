@@ -1,0 +1,23 @@
+﻿l_french: 
+ HAS_ANY_TITLE_LAW_TRIGGER:0 "[TITLE.GetName] a un [title_succession|E] qui est différend de la [succession_laws] [rulerpossessive|E]"
+ NOT_HAS_ANY_TITLE_LAW_TRIGGER:0 "[TITLE.GetName] suit la [succession_laws] [rulerpossessive|E]"
+ 
+ TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER:0 "Il y a un [title|E] appartenant à ce [title|E] ou [de_jure|E] au dessus du [TITLE.GetName] avec [title_succession|E] qui n'est pas le [primary_title|E] avec un [title_heir|E] de la [dynasty|E] [rulerpossessive|E]"
+ NOT_TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER:0 "Le propriétaire des [titles|E] du [title|E] ou [de_jure|E] au dessus du [TITLE.GetName] correspondant à la [succession_laws] [rulerpossessive|E] ou est un [primary_title|E] avec un [title_heir|E]  de la [dynasty|E] [rulerpossessive|E]"
+ 
+ TITLE_DE_JURE_ABOVE_CAPITAL_TRIGGER:0 "[TITLE.GetName] est [de_jure|E] au dessus de la [realm_capital|E] d'un [title_tier|E] plus petit que celui du [primary_title|E]"
+ NOT_TITLE_DE_JURE_ABOVE_CAPITAL_TRIGGER:0 "[TITLE.GetName] n'est pas [de_jure|E] au dessus de la [realm_capital|E] ou est de même [title_tier|E] que le [primary_title|E]"
+  
+ CORE_REFUND_TRIGGER:0 "Destituer [TITLE.GetName] en tant que [core|E] donnera un remboursement du au changement effectif du nombre de [core_leaves|E]"
+ NOT_CORE_REFUND_TRIGGER:0 "Destituer [TITLE.GetName] en tant que [core|E] donnera un remboursement du au changement non-effectif du nombre de [core_leaves|E]"
+ 
+ IS_CORE_LEAF:0 "[TITLE.GetName] est une [core_leaf|E]"
+ NOT_IS_CORE_LEAF:0 "[TITLE.GetName] n'est pas une [core_leaf|E]"
+ 
+ IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] est un [title|E] [head_of_faith|E]"
+ NOT_IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] n'est pas [title|E] [head_of_faith|E]"
+ 
+ PRIMARY_TITLE_EQUAL_TRIGGER:0 "[TARGET_TITLE.GetName] est un [primary_title|E]"
+ NOT_PRIMARY_TITLE_EQUAL_TRIGGER:0 "[TARGET_TITLE.GetName] n'est pas un [primary_title|E]"
+ 
+ NOT_TITLE_TIER_TRIGGER_THIRD:0 "Le rang n'est pas $COMPARATOR$ $TIER|V$"
