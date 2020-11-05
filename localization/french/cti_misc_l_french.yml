@@ -26,7 +26,7 @@
  action_over_core_limit_label:0 "Vous êtes au dessus de votre [core_limit|E]"	
  action_over_core_limit_desc:0 "Vous êtes au dessus de votre [core_limit|E]. Une pénalité est appliqué. Retirer quelques [core_titles|E] pour réduire le nombre de [core_leaves|E]. $action_over_core_limit_desc_cont$"
  action_over_core_limit_desc_cont:0 "Vous pouvez utiliser la [decision|E] Déstituer Tous les [core_titles|E] pour considerer les clés à retirer."
- action_over_core_limit_click:0 "#I Cliquer pour ouvrir la fenêtre du [character|E]. Elargisser le panneau des [core_titles|E] de votre fenêtre du [character|E] pour plus d'information.#"
+ action_over_core_limit_click:0 "#I Cliquer pour ouvrir la fenêtre du [character|E]\nElargisser le panneau des [core_titles|E] de votre fenêtre du [character|E] pour plus d'information#!"
  #desired effect -> over_core_title_limit_click:0 "#I Click to open your [character|E] window and the de-designate all [core_titles|E] decision. Expand the [core_titles|E] tab of your [character|E] window for more information.#"
 
  recalculate_cores_interaction:0 "Recalculer les titres clés"
