@@ -2066,3 +2066,14 @@ Possibly expand to making a will - grant specific titles (or quantities of gold 
 - Would not play nicely with my_realm succession tab
 - Might break who is liege of whom upon inheritance
 - Strong chance of breaking who primary heir is - need to add ability to designate an heir.
+
+Seems like there might be interest in granting all titles manually on succession. This should be possible, one just needs to trigger an event or open a window or something on player death, and have the player manually grant titles without restrictions.
+
+How would the AI designate titles? <- either fill out capital duchy and then move to next duchy or core titles with most income/levies or combination.
+^ For overtime will make them always go up to the cap (possibly change for tribal) (possibly add exception if it would put them at negative prestige gain).
+^ How to deal with cost when cores have a cost? <- AI probably has way to decide when to spend gold, should mirror that except for prestige.
+When would AI re-evaluate core titles?
+- Some set time period (quarter to 5 years)
+- When they aquire a title
+- Problem again of when capital or primary title changes. <- This needs to be dealt with by time period. Possible solution is cache these titles and check if they changed each quarter. This would be more performance friendly than re-evaluating each quarter. Could probably do the same thing for recalculating cores.
+- For flat cost how does the AI decide when it is worth it to de-core and re-core? For now will do stupid behavior - Will only do it if they have enough prestige, but will always try.
