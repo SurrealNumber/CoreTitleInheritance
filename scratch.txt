@@ -2077,3 +2077,42 @@ When would AI re-evaluate core titles?
 - When they aquire a title
 - Problem again of when capital or primary title changes. <- This needs to be dealt with by time period. Possible solution is cache these titles and check if they changed each quarter. This would be more performance friendly than re-evaluating each quarter. Could probably do the same thing for recalculating cores.
 - For flat cost how does the AI decide when it is worth it to de-core and re-core? For now will do stupid behavior - Will only do it if they have enough prestige, but will always try.
+
+Tying capital duchies/counties to higher tier titles.
+- Problem of pre-mature game over.
+- Main use case would be elective succession - get duchy along with empire.
+- Mechanically this will already happen (more or less) if another equivalent tier title is owned.
+- I believe you can always revoke the capital of your primary title.
+- Unlanded characters get the capital county.
+- I don't see an easy way to do it beyond forcibly granting the titles on death
+- Possibly could look into adding custom elective succession on lower titles in direct line
+
+
+- One possible approach is to grant the titles on the current holder's death (this is different from inheritance). This would not be reflected in the succession window, but I don't think it would be that hard to implement.
+    - The other approach I can think of is that it might be possible to give the lower titles a custom elective succession law which is tied to the higher title. This approach would be reflected in the succession window, but I am not sure how much work it would take, or even if it is possible.
+
+    - Bypassing the succession system for players and granting the titles on the player's death. This should be possible, but would not be reflected in the succession window and would require a few other things like enabling heir designation.
+    - Making a custom elective succession law with only one elector (the player) and applying it to every player owned title. I believe this should be possible, but I think the player heir would still be forced to follow the primary title.    
+
+Summary of above:
+@Hendrixx
+Good concept and it makes sense logically (applying real-world logic).
+The challenges I see are based on how the game works.
+- I would imagine the mechanic would feel good when the player is receiving the elected title, but could lead to frustration or game over if the player is losing the elected title. This could be mitigated by adding in a game rule to make it asymmetric.
+- Implementing it as a mod would be somewhat difficult due to some limited modding access to succession, but I can think of two approaches that might work.
+If you want I could look into it more, but it might take me a while to get to it.
+
+@vargasax23
+I understand that border gore due to AI inheritance can be frustrating or look bad, but I personally do not mind it much as I tend to focus mostly on my realm when playing the game. Because of this, I think it is unlikely I will create a mod which will improve the situation, and even if I were to try to do that it would be very difficult as the border gore is the result of some core game mechanics. The only thing I can think of now which might help is the enclave independence game rule.
+@vargasax23
+As far as the example you gave with the king and their child, I agree that titles you granted to potential heirs should probably be taken into account when considering their inheritance. However, I don't know how one would go about adding it into the game with a mod. Much of succession is hardcoded and inaccessible to mods, so I don't think a mod can make the game consider the titles you granted the character as inherited when it comes time for succession. The only way I could see of doing it would be bypassing and reimplementing the succession system for players, which would be a lot of work. I think the best way to try to get this or something similar in the game would be to make a suggestion on the [url=https://forum.paradoxplaza.com/forum/forums/crusader-kings-iii-suggestions.1082/] CKIII Paradox Forum [/url]
+@vargasax23
+I have been considering making a mod for assigning titles to specific characters either on death or in a will before death and can think of two possible approaches to implement this. If I do implement this I would most likely do so in a different (possibly incompatible) mod as it would behave very differently from core titles.
+
+    
+
+- For the suggestions about assigning titles to specific characters on death or in a will, or making the game consider granted titles when assigning titles for succession I don't think a mod can implement them without bypassing the succession system in the game for the player. Mods have very limited ability to modify succesion with most of it being hard coded. It would probably be possible, but would take a lot of work. I have thought about the player assigning titles on succession before, but don't think I am likely to pursue it in the near future. I think the best way to try to get this or something similar in the game would be to make a suggestion on the CKIII Paradox Forum https://forum.paradoxplaza.com/forum/forums/crusader-kings-iii-suggestions.1082/
+
+border gore due to inheritance by AI
+child of equal tier who recieved a title inheriting more titles. <- Have to look into this.
+Assigning specific titles to specific heirs(on death or while alive)
