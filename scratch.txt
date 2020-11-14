@@ -2116,3 +2116,117 @@ I have been considering making a mod for assigning titles to specific characters
 border gore due to inheritance by AI
 child of equal tier who recieved a title inheriting more titles. <- Have to look into this.
 Assigning specific titles to specific heirs(on death or while alive)
+
+
+Elective laws for succession - essentially designate inheritor.
+- can_title_have_law_general_trigger changed to allow counties and baronies, or changed only for new law. <- law_triggers
+- New election type, only holder is elector, possible characters are all. <- succession_election/
+- New title succession law <- laws/title_succession_laws
+    - can have = player
+    - can_pass = standard
+    - can_title_have = custom allowing all titles
+    - pass and revoke cost - tbd
+- Heir designation as any of dynasty
+    - allow heir designation for all.
+    - on death grant primary tier title, make primary, revoke after succession
+        - To make succession work make old primary title core. (currently looks like mod is compatible, and this will do nothing if primary title has title succession law)
+        - This will still throw succession out of whack (number of highest tier titles will change). It will also not allow one to become vassal of primary title heir.
+        - Needed to solve situation where desired heir is set to become vassal to character of your dynasty who will inherit the primary title. <- need to check if this is actually problem
+        - Possibly forcibly vassilize
+- Possible method:
+    - give all titles in realm title law matching realm succession law (unless their title law has been changed manually or by event)
+    - add flag/variable to titles which have different succession designated.
+    - Still need to deal with how to play as a character who is not primary heir when they are of your dynasty. Will need to look into interaction of designating succession.
+
+Possibly advise also using non-dynastic succession mod as well. <- might have to look into to see if it only triggers if there is an invalid heir.
+
+
+Switching back to looking at AI using core titles.
+Copied from above.
+How would the AI designate titles? <- either fill out capital duchy and then move to next duchy or core titles with most income/levies or combination.
+^ For overtime will make them always go up to the cap (possibly change for tribal) (possibly add exception if it would put them at negative prestige gain).
+^ How to deal with cost when cores have a cost? <- AI probably has way to decide when to spend gold, should mirror that except for prestige.
+When would AI re-evaluate core titles?
+- Some set time period (quarter to 5 years)
+- When they aquire a title
+- Problem again of when capital or primary title changes. <- This needs to be dealt with by time period. Possible solution is cache these titles and check if they changed each quarter. This would be more performance friendly than re-evaluating each quarter. Could probably do the same thing for recalculating cores.
+- For flat cost how does the AI decide when it is worth it to de-core and re-core? For now will do stupid behavior - Will only do it if they have enough prestige, but will always try.
+
+How to implement?
+Events have AI weights
+is_ai trigger exists
+Can use AI (personality values) to weight things like lists
+Decisions have AI will do, check frequency, if it is a goal, and chance of doing.
+exists short_term_gold
+character interactions have ai_potential, and I assume others.
+I only see short_term_gold, not short_term_prestige. Might have to just manually implement.
+AI has men at arms prestige expense goal and max
+
+I think I will use a list and weight the different titles.
+I will probably need to use multiple lists.
+duchy -> kingdom -> empire
+^ will need to exclude or have logic for ignoring other titles.
+in list weight levies and gold produced. Also add weight to duchy capitals and counties with special building slots.
+Ordered list ordered by scripted modifier as in line above.
+Add core titles up to core limit and as long as prestige is above 0/prestige gain is above 0.6 times total.
+One list, add weight to capital/primary title titles.
+
+2 systems for determining when:
+- Limit to core limit or price.
+- keep track of total count - check if core, if yes count + do nothing. If no, core, count +.
+- after done de-core all other titles.
+- at beginning calculate budget count
+Flat:
+    - > amount determined by tier.
+        - count: medium
+        - duke: major
+        - king: massive
+        - emperor: massive
+    - * multiplier for tribal - 1.5 <- arbitrarily chosen
+    - Only will do down to amount (need check when looking to core).
+    - If not at limit, will not de-core others.
+    - For budget count do not count if it was not cored.
+Overtime:
+    - < percent allocated<- arbitrarily deciding on 20% (1/2 goal for man at arms)
+    - / multiplier for tribal  - 1.5 <- arbitrarily chosen
+    - Will always de-core others.
+    
+Tasks:
+- scripted value for flat amount reserved
+- scripted value for tribal multiplier
+- scripted value for percent allocated
+- scripted modifier? for title priority
+- scripted effect for coring
+
+calculation for title priority:
+- Only consider when it is a leaf title.
+- Don't consider titles which are not county or primary title tier.
+- +1000 for capital duchy
+- +500 for capital kingdom
+- +250 for capital empire
+- +500 for under primary title
+- +x*levies from county
+- +y*gold from county
+
+Values I need to find:
+- character's current prestige
+- character's current prestige gain
+- character's prestige gain excluding core titles <- can ignore this and simply de-core and re-core every time recalculating for overtime.
+- levies from county (might need to sum over baronies)
+- gold from county (might need to sum over boundaries)
+
+custom_automated_stats.log sounds awesome. I wonder if I could write to it.
+need to be careful about de-coring all (might trigger titles de-cored alert even if it is triggered for AI)
+.gold might work <- gold does work *as a trigger* for comparison (for a character)
+prestige exists as a trigger value for comparison.
+exists building_levies and building_garison. Amount in county or province from buildings.
+exists monthly_income for a province
+exists development_level for a county
+exists highest_held_title_tier (I think I have had some trouble with this in the past)
+exist monthly_character_balance, monthly_character_expenses, and monthly_character_income. I assume that all of them are for gold.
+
+Calues I could not find (or at least find substitute for):
+- current prestige gain
+^ Opened Github issue. Will determine work around.
+For overtime cost, make the AI go up to their core limit cap
+Separate core limit cap for AI? - Relevant especially on ludicrous.
