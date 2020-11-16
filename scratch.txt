@@ -2200,13 +2200,14 @@ Tasks:
 
 calculation for title priority:
 - Only consider when it is a leaf title.
-- Don't consider titles which are not county or primary title tier.
+- Don't consider titles which are not county or primary title tier. (no reason to keep these titles)
 - +1000 for capital duchy
 - +500 for capital kingdom
 - +250 for capital empire
 - +500 for under primary title
 - +x*levies from county
 - +y*gold from county
+Because the tiers stack, duchy will give 500, kingdom will give 250 and empire will give 250. Could also do else if, but I like this better.
 
 Values I need to find:
 - character's current prestige
@@ -2230,3 +2231,84 @@ Calues I could not find (or at least find substitute for):
 ^ Opened Github issue. Will determine work around.
 For overtime cost, make the AI go up to their core limit cap
 Separate core limit cap for AI? - Relevant especially on ludicrous.
+
+The will stuff should definitely be made as a different mod. It is hopeful that it will be compatible.
+
+Tasks:
+- scripted value for flat amount reserved
+- scripted value for tribal multiplier
+- scripted modifier? for title priority - Would probably work, but I will be using a scripted value.
+- scripted effect for coring
+
+Ordered has limit as well as order_by
+Assuming that using duchy, kingdom, empire on a title give the de-jure lieges. If not then I will need to change code. Will have to test this.
+Assuming that building_levies is for whole county not just capital barony. Will have to test this.
+from wiki for feudal characters development increases levies and tax by 0.5% Will have to see if this is taken into account for building_levies or monthly_income.
+In 00_defines.txt there are these two values (100 is max development):
+LEVIES_AT_MAX_COUNTY_DEVELOPMENT = 0.5
+TAX_AT_MAX_COUNTY_DEVELOPMENT = 0.5
+^ Unsure if I can reference these values. For now I will just hard code it.
+Need to check if multipliers like development are already being accounted for in monthly_income.
+There is every_province, but it is only used in the code with the scope of faith.
+
+For title priority want to take into account vassal income for titles of primary title tier.
+Need to deal with primary tier titles with counties or other lower titles beneath them.
+Will add new game rule wide or narrow core titles.
+
+checking the approximate order of magnitude of levies and income. Will have to check how values I have access to in the code compare.
+1066 - tax income for a barony appears to be around 1.25-3.34
+1066 - levies for a barony appear to be around 75 - 700 with outliers like constantinople with 2101
+867 - tax income for a barony appears to be around 0.5-2.7 tend to be about 1.5
+867 - levies for a barony appear to be around 75 - 500 with ouliers like constantinople with 1486
+
+Want levies and taxes to be approximately equally valued. Want their cap to be slightly above 250 - not enough to overcome de-jure priority except in rare cases.
+
+These numbers should probably be dynamic with year, but that adds to much complexity for now.
+The numbers should not pass 500.
+Also have to deal with multiple baronies. Counties can have up to 8 baronies
+want each to be scaled to be less than 125 with some exceptions for high values.
+Will assume that max tax for a single barony would be about 7.5 or so.
+Will assume that max levies for a single barony would be about 5000 or so.
+This gives a maximum for a county of about 60 for tax and 40000 for levies.
+Ideally would use logarithm or the like for the scale.
+Will use poor man's version. Will use one coefficient and then cap it at about 225. I will then use a different coefficient and cap it at 250
+
+Will consider 1250 levies to be a good number to map to 125.
+Will consider 3 income to be a good number to map to 125. (might change from 3 if a different number makes the math easier)
+I would consider 10000 levies to be about the number I would want to map to 250
+I would consider 10 income to be a good number to map to 250
+
+pass 1: levy multiplier of 0.1 capped at 125. Then levy multiplier of 0.01 capped at 250.
+100 -> 10 + 1 = 11
+500 -> 50 + 5 = 55
+700 -> 70 + 7 = 77
+1000 -> 100 + 10 = 110
+1250 -> 125 + 12.5 = 137.5
+12500 -> 125 + 125 = 250
+^ seems about right.
+
+pass 1: tax multiplier of 40 capped at 125 then tax multiplier of 12 capped at 250
+1 -> 40 + 12 = 52
+2 -> 80 + 24 = 124
+3 -> 120 + 36 = 156
+4 -> 125 + 48 = 173
+5 -> 125 + 60 = 185
+10 -> 125 + 120 = 245
+10 5/12 -> 125 + 125 = 250
+^ Low numbers are scoring too high.
+pass 2: tax multiplier of 35 capped at 125 then tax multiplier of 8 capped at 250
+1 -> 35 + 8 = 43
+2 -> 70 + 16 = 86
+3 -> 105 + 24 = 129
+4 -> 125 + 32 = 157
+5 -> 125 + 40 = 165
+10 -> 125 + 80 = 205
+15 -> 125 + 120 = 245
+15.625 -> 125 + 125 = 250
+^ looks good.
+
+for low numbers I need to think of both multipliers together (they work additively up to the first cap)
+Might want to change cap to 502. Will change combined cap to 502 to allow for extremely good counties in kingdom to overcome duchy.
+Final values (for now)
+levy multipliers: 0.1 capped at 125, 0.01 capped at 126
+tax multipliers: 35 capped at 125, 8 capped at 250

@@ -41,3 +41,20 @@ ai_designate_cores = {
     
     true_ai_designate_cores = {}
 }
+
+ai_core_leaf_limit = {
+    default = half_domain_ai_core_leaf_limit
+
+    half_domain_ai_core_leaf_limit = {}
+    
+    domain_ai_core_leaf_limit = {}
+    
+    ludicrous_ai_core_leaf_limit = {}
+}
+
+ai_core_strategy = {
+    default = narrow_core_titles
+    narrow_core_titles = {}
+    
+    wide_core_titles = {}
+}
