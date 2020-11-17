@@ -53,8 +53,8 @@ ai_core_leaf_limit = {
 }
 
 ai_core_strategy = {
-    default = narrow_core_titles
-    narrow_core_titles = {}
+    default = ai_narrow_core_titles
+    ai_narrow_core_titles = {}
     
-    wide_core_titles = {}
+    ai_wide_core_titles = {}
 }

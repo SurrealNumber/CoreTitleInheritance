@@ -94,7 +94,11 @@ title_coring_priority = {# scope is title
         }
         add = county_resource_priority
     }
-    else = {# In this case it should be of the same tier as the primary title and should have no owned counties under it.
-        value = 2000
+    else = {# In this case it should be of the same tier as the primary title if the primary title is above county tier
+        if = {
+            limit = {has_game_rule = ai_wide_core_titles}
+            add = 2000 # puts it at the top of the list
+        }
+        # if the game rule is ai_narrow_core_titles then this type of title should be at the bottom of the list.
     }
 }

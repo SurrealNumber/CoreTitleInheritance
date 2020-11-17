@@ -2312,3 +2312,11 @@ Might want to change cap to 502. Will change combined cap to 502 to allow for ex
 Final values (for now)
 levy multipliers: 0.1 capped at 125, 0.01 capped at 126
 tax multipliers: 35 capped at 125, 8 capped at 250
+
+************* Need to add logic to core title of minimum tier under cored high tier title under wide ai strategy.******
+
+Tasks:
+- create AI coring effect
+- add in calls to said effect
+- update workshop description
+- localization
