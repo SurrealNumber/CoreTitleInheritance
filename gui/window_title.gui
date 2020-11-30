@@ -13,10 +13,10 @@ window = {
 		name = _show
 		position = { 0 0 }
 		on_start = "[GetVariableSystem.Clear( 'display_allegiance' )]"
-		on_start = "[GetVariableSystem.Set( 'left_sidebar_open', 'true' )]"
 		on_start = "[GetVariableSystem.Set( 'hide_bottom_left_HUD', 'true' )]"
 
-		using = Animation_FadeIn_Standard
+		using = Animation_FadeIn_Quick
+		using = Sound_WindowShow_Standard
 	}
 
 	state = {
@@ -24,15 +24,8 @@ window = {
 		position_x = -60
 		on_start = "[GetVariableSystem.Clear( 'hide_bottom_left_HUD' )]"
 
-		using = Animation_FadeOut_Standard
-	}
-
-	state = {
-		name = hide
-		next = _hide
-
-		trigger_when = "[GetVariableSystem.Exists( 'county_view_open' )]"
-		position_x = 0
+		using = Animation_FadeOut_Quick
+		using = Sound_WindowHide_Standard
 	}
 
 	vbox = {
@@ -71,6 +64,7 @@ window = {
 					margin_bottom = 10
 					spriteType = Corneredtiled
 					spriteborder = { 0 18 }
+					texture_density = 2
 
 					modify_texture = {
 						name = "mask"
@@ -167,6 +161,8 @@ window = {
 									blockoverride "button_close"
 									{
 										onclick = "[TitleViewWindow.Close]"
+										onclick = "[TitleViewWindow.CloseHistory]"
+										onclick = "[TitleViewWindow.CloseClaimants]"
 									}
 
 									blockoverride "button_back"
@@ -175,13 +171,18 @@ window = {
 										onclick = "[OpenFromViewHistory]"
 										tooltip = "[GetViewHistoryTooltip]"
 									}
+
+									blockoverride "button_me"
+									{
+										onclick = "[DefaultOnCharacterClick(GetPlayer.GetID)]"
+									}
 								}
 
 								expand = {}
 							}
 						}
 
-						divider = {
+						divider_light = {
 							layoutpolicy_horizontal = expanding
 						}
 
@@ -198,6 +199,7 @@ window = {
 
 							vbox = {
 								layoutpolicy_horizontal = expanding
+								layoutpolicy_vertical = expanding
 
 								text_single = {
 									layoutpolicy_horizontal = expanding
@@ -234,44 +236,53 @@ window = {
 										visible = "[And(NotEqualTo_uint32( Title.GetHolder.GetID, GetPlayer.GetID ), GetPlayer.HasClaimOnTitle(TitleViewWindow.GetTitle ))]"
 									}
 								}
+
+								expand = {}
+
 							}
 
-							expand = {}
+							flowcontainer = {
+								direction = vertical
+								ignoreinvisible = yes
+								spacing = 3
 
-							button_round = {
-								name = "history_button_hide"
-								visible = "[And( Not( Title.IsBarony ), Not( Title.HasFaction ) )]"
-								onclick = "[TitleViewWindow.ToggleHistory]"
-								tooltip = "SHOW_TITLE_HISTORY"
+								button_sidepanel_right = {
+									name = "view_claimants"
+									parentanchor = right
+									onclick = "[TitleViewWindow.ToggleClaimants]"
+									tooltip = "TITLE_CLAIMANTS_TOOLTIP"
+									visible = "[Title.CanHaveClaim]"
+									enabled = "[GreaterThan_int32( TitleViewWindow.GetNumberOfClaimants, '(int32)0' )]"
 
-								using = tooltip_se
-
-								button_history = {
-									parentanchor = center
-									alwaystransparent = yes
+									blockoverride "button_text"
+									{
+										text = "TITLE_VIEW_CLAIMANTS"
+									}
 								}
-							}
 
-							button_sidepanel_right = {
-								name = "view_claimants"
-								onclick = "[TitleViewWindow.ToggleClaimants]"
-								tooltip = "TITLE_CLAIMANTS_TOOLTIP"
-								using = tooltip_se
-								visible = "[Title.CanHaveClaim]"
-								enabled = "[GreaterThan_int32( TitleViewWindow.GetNumberOfClaimants, '(int32)0' )]"
+								button_sidepanel_right = {
+									name = "title history"
+									parentanchor = right
+									visible = "[And( Not( Title.IsBarony ), Not( Title.HasFaction ) )]"
+									onclick = "[TitleViewWindow.ToggleHistory]"
 
-								blockoverride "button_text"
-                                {
-                                    text = "TITLE_VIEW_CLAIMANTS"
-                                }
-							}
+									tooltip = "SHOW_TITLE_HISTORY"
 
-							text_single = {
-								align = left
-								visible = "[Not(Title.CanHaveClaim)]"
-								text = "TITLE_VIEW_NO_CLAIMANTS"
-								tooltip = "TITLE_VIEW_NO_CLAIMANTS_TOOLTIP"
-								default_format = "#high"
+									blockoverride "button_text"
+									{
+										text = "TITLE_HISTORY"
+									}
+								}
+
+
+								text_single = {
+									align = right
+									parentanchor = right
+									visible = "[Not(Title.CanHaveClaim)]"
+									text = "TITLE_VIEW_NO_CLAIMANTS"
+									tooltip = "TITLE_VIEW_NO_CLAIMANTS_TOOLTIP"
+									default_format = "#weak"
+								}
 							}
 						}
 
@@ -321,27 +332,17 @@ window = {
 								text_single = {
 									margin_left = 5
 									layoutpolicy_horizontal = expanding
-									align = left
+									align = center
 									max_width = 180
 									text = "[TitleViewWindow.GetTypeOfLanded]:"
 								}
 
-							button_standard_list = {
-								maximumsize = { 180 -1 }
-								minimumsize = { 0 33 }
-
-								datacontext = "[TitleViewWindow.GetHolding]"
-								tooltip = "TITLE_VIEW_GO_TO_HOLDING"
-								onclick = "[TitleViewWindow.GoToHolding]"														
-
-									text_single = {
-										layoutpolicy_horizontal = expanding
-										parentanchor = center
-										margin_bottom = 5
-										max_width = 160
-										text = " [Holding.GetProvince.GetNameNoTooltip]"
-										default_format = "#high"
-									}
+								button_tertiary = {
+									datacontext = "[TitleViewWindow.GetHolding]"
+									tooltip = "TITLE_VIEW_GO_TO_HOLDING"
+									onclick = "[TitleViewWindow.GoToHolding]"
+									size = { 120 30 }
+									text = " [Holding.GetProvince.GetNameNoTooltip]"
 								}
 							}
 						}
@@ -855,9 +856,18 @@ window = {
 							button_standard = {
 								name = "toggle_find_vassal"
 								text = "FIND_VASSAL_HEADER"
-								visible = "[And( And( Title.IsHeldBy( GetPlayer ), TitleViewWindow.GetTitle.CanUseFindVassal( GetPlayer ) ), Not( Title.IsBarony ) )]"
+								visible = "[And( And( And( ObjectsEqual( Title.GetHolder, GetPlayer ), TitleViewWindow.GetTitle.CanUseFindVassal( GetPlayer ) ), Not( Title.IsBarony ) ), Not( Title.IsLeasedOut))]"
+
 								onclick = "[TitleViewWindow.ToggleFindVassalListWindow]"
 								tooltip = "FIND_VASSAL_BUTTON_TOOLTIP"
+							}
+
+							button_standard = {
+								name = "grant_to_local_noble"
+								visible = "[And( And( And( ObjectsEqual( Title.GetHolder, GetPlayer ), TitleViewWindow.GetTitle.CanUseFindVassal( GetPlayer ) ), Title.IsBarony ), Not( Title.IsLeasedOut))]"
+								text = "GRANT_TO_LOCAL_NOBLE_HEADER"
+								onclick = "[TitleViewWindow.GetTitle.CreateHolderForBarony]"
+								tooltip = "GRANT_TO_LOCAL_NOBLE_BUTTON_HOLDING_VIEW_TOOLTIP"
 							}
 						}
 
@@ -883,7 +893,7 @@ window = {
 								onclick = "[TitleViewWindow.MakePrimary]"
 								tooltip = "TITLE_MAKE_PRIMARY_TOOLTIP"
 							}
-                            
+
 							button_primary = {
 								name = "usurp_title"
 								text = "TITLE_VIEW_USURP_TITLE"
@@ -921,239 +931,6 @@ window = {
 }
 
 ######################################################
-################# CLAIMANTS WINDOW ###################
-######################################################
-
-window = {
-	name = "claimants_window"
-	widgetanchor = top
-	size = { 580 90% }
-	resizable = no
-	movable = yes
-	layer = windows_layer
-
-	using = title_view_window_side_pop_out
-	using = Window_Decoration
-	using = Window_Background
-
-	# Sort dropdown
-	vbox = {
-		using = Window_Margins
-
-		header_pattern = {
-			layoutpolicy_horizontal = expanding
-
-			blockoverride "header_text"
-			{
-				text = "TITLE_CLAIMANTS_HEADER"
-			}
-
-			blockoverride "button_close"
-			{
-				onclick = "[ClaimantsWindow.Close]"
-			}
-		}
-
-		vbox = {
-			layoutpolicy_horizontal = expanding
-			layoutpolicy_vertical = expanding
-
-			vbox_character_list = {
-				layoutpolicy_horizontal = expanding
-				layoutpolicy_vertical = expanding
-
-				blockoverride "sort_buttons" {
-
-					hbox = {
-						layoutpolicy_horizontal = expanding
-						margin_left = 10
-						margin_right = 20
-						margin_top = 5
-						spacing = 5
-
-						text_single = {
-							text = "TITLE_SORT_BY"
-							align = nobaseline
-						}
-
-						dropDown_sort = {
-							alwaystransparent = no
-							name = "sort_dropdown"
-
-							active_item = {
-								widget = {
-									alwaystransparent = no
-									size = { 100% 100% }
-
-									button_drop = {
-										button_trigger = none
-										text = "[ClaimantSortOption.GetName]"
-									}
-								}
-							}
-
-							item = {
-								widget = {
-									alwaystransparent = no
-									size = { 215 33 }
-
-									button_dropdown = {
-										size = { 100% 33 }
-										button_trigger = none
-										text = "[ClaimantSortOption.GetName]"
-									}
-								}
-							}
-
-							list = {
-								scrollarea = {
-									position = { 5 33 }
-									maximumsize = { 215 250 }
-									autoresizescrollarea = yes
-									scrollbarpolicy_horizontal = always_off
-
-									using = Background_DropDown
-
-									scrollwidget = {
-										dynamicgridbox = {
-											alwaystransparent = no
-										}
-									}
-
-									scrollbar_vertical = {
-										using = editor_vertical_scrollbar
-									}
-								}
-							}
-						}
-
-						expand = {}
-					}
-				}
-
-				blockoverride "container_implementation" {
-					fixedgridbox = {
-						addcolumn = 470
-						addrow = 160
-						name = "claimants_scroll_area"
-						datamodel = "[ClaimantsWindow.GetClaimants]"
-
-						item = {
-							widget = {
-								size = { 470 160 }
-
-								vbox = {
-									datacontext = "[GuiClaimant.GetCharacter]"
-									layoutpolicy_horizontal = expanding
-
-									background = {
-										using = Background_Area_With_Header
-									}
-
-									text_single = {
-										name = "holder_name"
-										layoutpolicy_horizontal = expanding
-										margin_left = 15
-										margin_top = 3
-										text = "[Character.GetUINameNotMeNoTooltip]"
-									}
-
-									hbox = {
-										layoutpolicy_horizontal = expanding
-
-										portrait_head = {}
-
-										vbox = {
-											layoutpolicy_horizontal = expanding
-											layoutpolicy_vertical = expanding
-											margin = { 10 10 }
-
-											hbox = {
-												layoutpolicy_horizontal = expanding
-
-												text_single = {
-													name = "unpressed"
-													visible = "[And(Not(GuiClaimant.IsPressed), Not(GuiClaimant.IsImplicit))]"
-													text = "WEAK_CLAIM"
-												}
-
-												text_single = {
-													name = "pressed"
-													visible = "[And(GuiClaimant.IsPressed, Not(GuiClaimant.IsImplicit))]"
-													text = "STRONG_CLAIM"
-												}
-
-												text_single = {
-													name = "implicit"
-													visible = "[GuiClaimant.IsImplicit]"
-													text = "IMPLICIT_CLAIM"
-												}
-
-												icon = {
-													name = "not_threat"
-													visible = "[GuiClaimant.IsAlly]"
-													texture = "gfx/interface/icons/icon_retreat.dds"
-													size = { 30 30 }
-													tooltip = "CLAIMANT_NOT_A_THREAT"
-													using = tooltip_ne
-												}
-
-												expand = {}
-											}
-
-											hbox = {
-												layoutpolicy_horizontal = expanding
-												margin_left = -10
-												margin_top = 10
-
-												strength_balance = {
-													name = "strength_balance"
-													datacontext = "[GuiClaimant.GetMilitaryStrengthInfo]"
-													using = tooltip_ne
-												}
-
-												expand = {}
-											}
-
-											expand = {}
-										}
-
-										vbox = {
-											layoutpolicy_horizontal = expanding
-											maximumsize = { 0 -1 }
-											margin_right = 10
-
-											visible = "[Character.HasDynasty]"
-
-											coa_house_small = {
-												datacontext = "[Character.GetHouse]"
-											}
-
-											text_multi = {
-												name = "type"
-												text = "[Character.GetHouse.GetNameNoTooltip]"
-												layoutpolicy_horizontal = expanding
-												align = top|hcenter
-												minimumsize = { 100 0 }
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-
-				blockoverride "character_count" {}
-
-				#this window cannot be openend if there are no claimants
-				blockoverride "scrollbox_empty_visibility" {}
-			}
-		}
-	}
-}
-
-######################################################
 ################ TYPES AND TEMPLATES #################
 ######################################################
 
@@ -1161,6 +938,7 @@ window = {
 template title_view_window_side_pop_out
 {
 	position = { 0 80 }
+
 
 	state = {
 		name = _show
