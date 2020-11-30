@@ -57,4 +57,6 @@ ai_core_strategy = {
     ai_narrow_core_titles = {}
     
     ai_wide_core_titles = {}
+    
+    ai_county_only_core_titles = {}
 }

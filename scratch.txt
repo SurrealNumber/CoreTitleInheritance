@@ -2226,7 +2226,7 @@ exists development_level for a county
 exists highest_held_title_tier (I think I have had some trouble with this in the past)
 exist monthly_character_balance, monthly_character_expenses, and monthly_character_income. I assume that all of them are for gold.
 
-Calues I could not find (or at least find substitute for):
+Values I could not find (or at least find substitute for):
 - current prestige gain
 ^ Opened Github issue. Will determine work around.
 For overtime cost, make the AI go up to their core limit cap
@@ -2320,3 +2320,52 @@ Tasks:
 - add in calls to said effect
 - update workshop description
 - localization
+
+NOT_has_variable_trigger - noticed in a video of this mod. Will have to loook into (in fact it looks like the conditions are broken)
+***************Need to swap AI to using ai core title limit**********************
+^ will do by modifying core limit scripted value.
+
+local variables can be referenced with local_var:name
+
+To core titles of minimum tier under high tier title under wide ai strategy will core when it has no cost/does not count to core limit - under wide lower titles will be encountered after primary tier.
+will cache budgeted cores as otherwise prestige might be gained from dedesignating cores wihich will core out of order.
+Need to also run if ai is over core limit.
+Will I ever run into a situation where I run into a higher tier core title before its child?
+Order under wide:
+primary tier
+county
+duchy
+kingdom
+empire
+
+Order under narrow:
+county
+primary tier
+duchy
+kingdom
+empire
+
+problem: primary_tier + lower tiers already cored will lead to lower tier titles possibly being de-cored and possible over core limit
+primary tier and none below it will not lead to problems - primary tier is core leaf & others encountered after. (or encountered before and cored)
+
+primary tier + title below it ->
+if primary tier is core it will not be a leaf and not count to core limit. This could lead to being out of core limit by the time it comes to lower titles. These would then be de-cored and leave character over core limit due to primary tier title.
+need to essentially reserve space in core limit for primary title in this case - but this might be unecessary if under narrow strategy.
+to do this will add in primary tier reserve - if it is of primary tier, is a core, but does not count to core limit it will be added to this and core_counter will be incremented
+If a core title has a parent in primary tier reserve, it removes the title from the reserve and nothing is incremented.
+If a non-core title has a parent in primary tier reserve, it is cored, possibly adds to designated core count, and the title is removed from the reserve.
+
+will add in very narrow:
+only considers counties
+
+variable_list_size can be used to compare the size of the list like this:
+variable_list_size = {
+    name = v_name
+    value > x
+}
+
+Exists is_target_in_variable_list = {name = v_name target = scope}
+can use add_to_local_variable_list (I believe)
+exists has_variable_list
+
+New problem if telling when a primary title is before its children.

@@ -1,0 +1,92 @@
+﻿ai_manage_cores = { # scope is character
+    # check for being ai
+    set_local_variable = {
+        name = _budgeted_cores
+        value = budgeted_cores
+    }
+    if = {
+        limit = {
+            is_ai = yes
+            local_var:_budgeted_cores > 0
+            is_over_core_limit = yes
+        }
+        set_local_variable = {
+            name = _core_limit
+            value = val_core_limit
+        }
+        # initialize counter for cored titles
+        set_local_variable = {
+            name = core_counter
+            value = 0
+        }
+        set_local_variable = {
+            name = d_core_counter
+            value = 0
+        }
+        # do coring
+        # will have a local variable list primary_tier_reserve
+        ordered_held_title = {
+            limit = {
+                NOT = {has_game_rule = ai_county_only_core_titles}
+                tier = tier_county
+            }
+            order_by = title_coring_priority
+            max = 20000
+            check_range_bounds = no
+            if = {
+                limit = {is_title_core = yes}
+                if = {
+                    limit = {does_core_count_to_limit = yes}
+                    if = { # primary tier reserve above
+                        limit = {
+                            any_this_title_or_de_jure_above = {
+                                is_target_in_local_variable_list = {
+                                    name = primary_tier_reserve
+                                    target = this
+                                }
+                            }
+                        }
+                        every_in_this_title_or_de_jure_above = { # possibly should be changed to any. Might return yes only if it is removed.
+                            remove_local_list_variable = {
+                                name = primary_tier_reserve
+                                target = this
+                            }
+                        }
+                    }
+                    else if = {
+                        limit = {local_var:core_counter >= local_var:_core_limit}
+                        de_designate_core_title = yes
+                    }
+                }
+                else if = {
+                    limit = {
+                        local_var:core_counter >= local_var:_core_limit
+                    }
+                    de
+                }
+            }
+            # if core
+                # if counts to limit
+                    # if >= core limit
+                        # de-designate chain until limit lowers.
+                    # else
+                        # increment core_counter
+            # else if no cost to core
+                # if no added core limit
+                    # core no increment
+                # else
+                    # core if under core_limit and increment core_counter
+            # else if no added core limit 
+                # if under budget
+                    # core and increment d_core_counter
+            # else menas it has a cost to core and adds to core limit
+                # if under budget and under core limit
+                    # core and increment both
+            # if over d_core_counter do not core anything that has a cost
+            # if over core_counter de-core everything which counts to limit (and above until removed cost)
+            # increment d_core counter if a core is designated which has a cost
+            # increment core_counter if a core is designated (which adds to core limit) or a core leaf is encountered
+        }
+        # 
+    }
+}
