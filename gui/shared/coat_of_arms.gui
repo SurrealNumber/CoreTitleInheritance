@@ -12,6 +12,7 @@ types CoATypes
 		gfxtype = coatofarmsgfx
 		shaderfile = "gfx/FX/gui_coatofarms.shader"
 		alwaystransparent = yes
+		allow_outside = yes
 	}
 
 	####################################
@@ -223,8 +224,13 @@ types CoATypes
 				coat_of_arms_icon = {
 					parentanchor = center
 					size = { 62 62 }
-					coat_of_arms = "[Character.GetPrimaryTitle.GetTitleCoA.GetTexture('(int32)124','(int32)124')]"
-					coat_of_arms_slot = "[Character.GetPrimaryTitle.GetTitleCoA.GetSlot('(int32)124','(int32)124')]"
+
+					block "coat_of_arms"
+					{
+						coat_of_arms = "[Character.GetPrimaryTitle.GetTitleCoA.GetTexture('(int32)124','(int32)124')]"
+						coat_of_arms_slot = "[Character.GetPrimaryTitle.GetTitleCoA.GetSlot('(int32)124','(int32)124')]"
+					}
+
 					coat_of_arms_mask = "[Character.GetGovernment.GetRealmMask]"
 
 					using = CoA_Realm_Hover_Glow
@@ -300,8 +306,11 @@ types CoATypes
 				coat_of_arms_icon = {
 					parentanchor = center
 					size = { 86 86 }
-					coat_of_arms = "[Character.GetPrimaryTitle.GetTitleCoA.GetTexture('(int32)172','(int32)172')]"
-					coat_of_arms_slot = "[Character.GetPrimaryTitle.GetTitleCoA.GetSlot('(int32)172','(int32)172')]"
+					block "coat_of_arms"
+					{
+						coat_of_arms = "[Character.GetPrimaryTitle.GetTitleCoA.GetTexture('(int32)172','(int32)172')]"
+						coat_of_arms_slot = "[Character.GetPrimaryTitle.GetTitleCoA.GetSlot('(int32)172','(int32)172')]"
+					}
 					coat_of_arms_mask = "[Character.GetGovernment.GetRealmMask]"
 
 					using = CoA_Realm_Hover_Glow
@@ -909,7 +918,10 @@ types CoATypes
 		name = "house_frame"
 		parentanchor = center
 
-		frame = "[Dynasty.GetPrestigeFrame]"
+		block "frame_override"
+		{
+			frame = "[Dynasty.GetPrestigeFrame]"
+		}
 		texture = "gfx/interface/coat_of_arms/dynasty_115.dds"
 		framesize = { 169 172 }
 		size = { 169 172 }
@@ -1356,6 +1368,42 @@ types CoATypes
 						frame = "[BookmarkCharacterGUI.GetTier]"
 					}
 				}
+			}
+		}
+	}
+
+	####################################
+	########## RULER DESIGNER ##########
+	####################################
+
+	type coa_dynasty_ruler_designer = widget
+	{
+		size = { 125 130 }
+
+		button_group = {
+			layoutpolicy_horizontal = expanding
+			size = { 82 81 }
+			using = CoA_Dynasty_Defaults
+			parentanchor = center
+
+			coat_of_arms_icon = {
+				parentanchor = center
+				size = { 86 86 }
+				coat_of_arms = "[RulerDesignerCoA.GetCoA.GetTexture('(int32)124','(int32)124')]"
+				coat_of_arms_slot = "[RulerDesignerCoA.GetCoA.GetSlot('(int32)124','(int32)124')]"
+				coat_of_arms_mask = "gfx/interface/coat_of_arms/house_mask.dds"
+
+				modify_texture = {
+					texture = "gfx/interface/coat_of_arms/coa_overlay.dds"
+					blend_mode = overlay
+					alpha = @overlay_alpha
+				}
+			}
+
+			coa_dynasty_frame = {
+				framesize = { 125 130 }
+				size = { 125 130 }
+				texture = "gfx/interface/coat_of_arms/dynasty_86.dds"
 			}
 		}
 	}

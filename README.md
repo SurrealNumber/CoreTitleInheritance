@@ -1,6 +1,6 @@
 # Core Title Inheritance
 
-# Version 1.0.3
+# Version 1.0.4
 
 ## Credits
 Mod creator: SurrealNumber
@@ -31,3 +31,6 @@ To report a bug or request a new feature please reach out on one of the followin
 
 **Version 1.0.3:**
 - French Localization added
+
+**Version 1.0.4:**
+- Updated for game version 1.2.1
