@@ -14,37 +14,50 @@
             name = _core_limit
             value = val_core_limit
         }
-        # initialize counter for cored titles
-        set_local_variable = {
-            name = core_counter
-            value = 0
-        }
-        set_local_variable = {
-            name = d_core_counter
-            value = 0
-        }
         # do coring
         # will have a local variable list primary_tier_reserve
         ordered_held_title = {
             limit = {
-                NOT = {has_game_rule = ai_county_only_core_titles}
-                tier = tier_county
+                OR = {
+                    NOT = {has_game_rule = ai_county_only_core_titles}
+                    tier = tier_county
+                }
             }
             order_by = title_coring_priority
-            max = 20000
+            max = 20000 # chosen to be much larger than the number of titles in the game
             check_range_bounds = no
             if = {
-                limit = {is_title_core = yes}
-                if = {
-                    limit = {does_core_count_to_limit = yes}
-                    if = { # primary tier reserve above
-                        limit = {
-                            any_this_title_or_de_jure_above = {
-                                is_target_in_local_variable_list = {
-                                    name = primary_tier_reserve
-                                    target = this
-                                }
+                limit = { does_core_count_to_limit = yes} # means the core is a leaf
+                if = { # primary tier reserve parent
+                    limit = {
+                        any_this_title_or_de_jure_above = {
+                            is_target_in_local_variable_list = {
+                                name = primary_tier_reserve
+                                target = this
                             }
+                        }
+                    }
+                    if = {
+                        limit = {# budget exists to core the title
+                            OR = {
+                                AND = {
+                                    is_title_core = yes
+                                    has_game_rule = flat_designate_core_cost
+                                }
+                                will_coring_have_cost = no
+                                local_var:_budgeted_cores > 0
+                            }
+                        }
+                        if = {# decrement remaining budgeted cores
+                            limit = {will_coring_have_cost = yes}
+                            change_local_variable = {
+                                name = _budgeted_cores
+                                subtract = 1
+                            }
+                        }
+                        if = { # core title
+                            limit = {is_title_core = no}
+                            designate_core_title = yes
                         }
                         every_in_this_title_or_de_jure_above = { # possibly should be changed to any. Might return yes only if it is removed.
                             remove_local_list_variable = {
@@ -53,40 +66,136 @@
                             }
                         }
                     }
-                    else if = {
-                        limit = {local_var:core_counter >= local_var:_core_limit}
+                    else if = {# no budget for title (will only do things if there is overtime_designate_core_cost due to already core titles having no cost above otherwise)
+                        limit = {can_de_core_title = yes}
                         de_designate_core_title = yes
-                    }
+                    }# there should ideally be no more cases
                 }
-                else if = {
-                    limit = {
-                        local_var:core_counter >= local_var:_core_limit
+                else if = { # room in core limit
+                    limit = {local_var:_core_limit > 0}
+                    if = {
+                        limit = {# budget exists to core the title
+                            OR = {
+                                AND = {
+                                    is_title_core = yes
+                                    has_game_rule = flat_designate_core_cost
+                                }
+                                will_coring_have_cost = no
+                                local_var:_budgeted_cores > 0
+                            }
+                        }
+                        if = {# decrement remaining budgeted cores
+                            limit = {will_coring_have_cost = yes}
+                            change_local_variable = {
+                                name = _budgeted_cores
+                                subtract = 1
+                            }
+                        }
+                        if = { # core title
+                            limit = {is_title_core = no}
+                            designate_core_title = yes
+                        }
+                        change_local_variable = { # decrement remaining core limit
+                            name = _core_limit
+                            subtract = 1
+                        }
                     }
-                    de
+                    else if = {# no budget for title (will only do things if there is overtime_designate_core_cost due to already core titles having no cost above otherwise)
+                        limit = {can_de_core_title = yes}
+                        de_designate_core_title = yes
+                    }# there should ideally be no more cases
                 }
+                else if = {# no room in core limit or primary reserve parent
+                    limit = {can_de_core_title = yes}
+                    de_designate_core_title = yes
+                }# there should ideally be no more cases
             }
-            # if core
-                # if counts to limit
-                    # if >= core limit
-                        # de-designate chain until limit lowers.
-                    # else
-                        # increment core_counter
-            # else if no cost to core
-                # if no added core limit
-                    # core no increment
-                # else
-                    # core if under core_limit and increment core_counter
-            # else if no added core limit 
-                # if under budget
-                    # core and increment d_core_counter
-            # else menas it has a cost to core and adds to core limit
-                # if under budget and under core limit
-                    # core and increment both
-            # if over d_core_counter do not core anything that has a cost
-            # if over core_counter de-core everything which counts to limit (and above until removed cost)
-            # increment d_core counter if a core is designated which has a cost
-            # increment core_counter if a core is designated (which adds to core limit) or a core leaf is encountered
+            else if = { # primary tier titles, any with no children cores would have been caught above
+                limit = {tier = holder.highest_held_title_tier}
+                if = {
+                    limit = {
+                        AND = {
+                            local_var:_core_limit > 0
+                            OR = {
+                                has_game_rule = ai_wide_core_titles
+                                AND = {
+                                    has_game_rule = ai_narrow_core_titles
+                                    has_child_county_core = no
+                                }
+                            }
+                        }
+                    }
+                    if = {
+                        limit = {# budget exists to core the title
+                            OR = {
+                                AND = {
+                                    is_title_core = yes
+                                    has_game_rule = flat_designate_core_cost
+                                }
+                                will_coring_have_cost = no
+                                local_var:_budgeted_cores > 0
+                            }
+                        }
+                        if = {# decrement remaining budgeted cores
+                            limit = {will_coring_have_cost = yes}
+                            change_local_variable = {
+                                name = _budgeted_cores
+                                subtract = 1
+                            }
+                        }
+                        if = { # core title
+                            limit = {is_title_core = no}
+                            designate_core_title = yes
+                        }
+                        change_local_variable = { # decrement remaining core limit
+                            name = _core_limit
+                            subtract = 1
+                        }
+                    }
+                    else if = {# no budget for title (will only do things if there is overtime_designate_core_cost due to already core titles having no cost above otherwise)
+                        limit = {can_de_core_title = yes}
+                        de_designate_core_title = yes# RECURSIVE DE_CORING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    }# there should ideally be no more cases
+                }
+                else if = {# no room in core limit
+                    limit = {can_de_core_title = yes}
+                    de_designate_core_title = yes # RECURSIVE DE_CORING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                }# there should ideally be no more cases
+            }
+            else = {# coring does not count towards limit
+                if = {
+                    limit = {# budget exists to core the title
+                        OR = {
+                            AND = {
+                                is_title_core = yes
+                                has_game_rule = flat_designate_core_cost
+                            }
+                            will_coring_have_cost = no
+                            local_var:_budgeted_cores > 0
+                        }
+                    }
+                    if = {# decrement remaining budgeted cores
+                        limit = {will_coring_have_cost = yes}
+                        change_local_variable = {
+                            name = _budgeted_cores
+                            subtract = 1
+                        }
+                    }
+                    if = { # core title
+                        limit = {is_title_core = no}
+                        designate_core_title = yes
+                    }
+                    change_local_variable = { # decrement remaining core limit
+                        name = _core_limit
+                        subtract = 1
+                    }
+                }
+                else if = {# no budget for title (will only do things if there is overtime_designate_core_cost due to already core titles having no cost above otherwise)
+                    limit = {can_de_core_title = yes}
+                    de_designate_core_title = yes# RECURSIVE DE_CORING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                }# there should ideally be no more cases
+            }
         }
-        # 
     }
+    remove_local_variable_list = primary_tier_reserve
 }

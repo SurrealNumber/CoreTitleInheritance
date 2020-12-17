@@ -203,6 +203,7 @@ does_core_count_to_limit = { # scope is title
 
 will_coring_have_cost = { # scope is title # can be called before or after title is cored.
     does_ancestor_have_cost_excluding_self = no
+    NOT = {has_game_rule = no_core_cost}
 }
 
 will_de_coring_give_refund = {

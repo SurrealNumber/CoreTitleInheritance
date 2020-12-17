@@ -89,6 +89,10 @@ county_resource_priority = {# scope is a title
 title_coring_priority = {# scope is title
     value = 0
     if = {
+        limit = {is_title_core_due_to_not_cti = yes}
+        add = 4000
+    }
+    if = {
         limit = {tier = tier_county}
         add = 4
         if = {
@@ -113,7 +117,7 @@ title_coring_priority = {# scope is title
         limit = {tier = holder.highest_held_title_tier}
         if = {
             limit = {has_game_rule = ai_wide_core_titles}
-            add = 2000 # puts it at the top of the list
+            add = 3000 # puts it at the top of the list
         }
         else = {
             add = 3

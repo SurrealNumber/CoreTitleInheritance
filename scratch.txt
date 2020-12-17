@@ -2328,7 +2328,7 @@ NOT_has_variable_trigger - noticed in a video of this mod. Will have to loook in
 local variables can be referenced with local_var:name
 
 To core titles of minimum tier under high tier title under wide ai strategy will core when it has no cost/does not count to core limit - under wide lower titles will be encountered after primary tier.
-will cache budgeted cores as otherwise prestige might be gained from dedesignating cores wihich will core out of order.
+will cache budgeted cores as otherwise prestige might be gained from dedesignating cores which will core out of order.
 Need to also run if ai is over core limit.
 Will I ever run into a situation where I run into a higher tier core title before its child?
 Order under wide:
@@ -2369,3 +2369,94 @@ can use add_to_local_variable_list (I believe)
 exists has_variable_list
 
 New problem if telling when a primary title is before its children.
+
+primary_reserve -> parent reserve
+Should it check parents or children?
+parent: - most likely fewer titles above
+children: - if have the limit for it will most likely not have many titles below.
+
+I prefer checking parents.
+
+Add titles of non-county tier to parent_reserve.
+check for parent in parent_reserve. (also add check for the list not being empty)
+if in reserve, if no children add to 
+
+change from parent_reserve to list_to_core
+when coring, check for parent in to_core, if so replace elemnt of to_core. Otherwise add to to_core.
+At end core all titles in to_core which are not already cores.
+
+
+core?, count to limit?, cost to core?, 
+cost, limit, core:
+yes,   yes,  yes: check limit, check budget
+no,    yes,  yes: check limit
+yes,    no,  yes: check budget
+no,     no,  yes: core
+yes,   yes,   no:
+no,    yes,   no:
+yes,    no,   no:
+no,     no,   no:
+Being core is irrelevant here. Will just use the limit and cost
+This chart is asking the questions about the cores situation at that point in re-coring (if cores were reset)
+
+problem with full de-core and re-core is that AI would be able to swap core titles for free.
+
+with check for de-core eligibility cannot de-core titles which are not core leaves
+after limit is reached de-core rest of titles
+Possible senarios:
+- child is core title: add in check for if that title can be de-cored to deal with this (need to deal with if child will be eventually de-cored)
+- parent is core title with child cores: still de-core (need to be sure other cores will be kept)
+- parent is core title with no child cores: core as it will have no cost and not count to the limit
+
+Assuming blank slate, everything works. Problems arise from existing cores.
+possibly create new triggers which work with if the title is core in blank slate senario (can keep track of core titles with a list) - not really feasible - would take too much coding
+Only going up tiers: county, duchy, kingdom, empire. Higher tiers will be core already due to lower tiers unless they have no children. Problems will only arise if higher tiers are previously a core and have no children. In that case the title will not show up as having a cost to core (though it will still show up as counting to the core limit). - In this case not a problem. It actually does not have a cost to core. In this version I would use counting to core limit as opposed to adding to core limit and it should work out.
+Mixed tiers: county, kingdom, duchy - counties cored first. No problems there. Problems if kingdom shows up as core due to a duchy which will not have been set for coring yet. If that duchy is then de-cored the character will not be guaranteed to lose the core limit impact.
+
+Mixed tiers will not cause a problem due to cost, only with core limit.
+Only primary tier titles are out of order, so only they should be in reserve - name back tp primary_tier_reserve
+wide -> in reserve always (unless counties optional)
+narrow -> in reserve unless child county is core
+
+accuracy of counting to limit and costing to core?
+using will_coring_have_cost - accurate to current situation if not already core.
+using does_core_count_to_limit - innacturate for primary tier titles. will have to manually increment in that case and pass on incrementing if parent in reserve. Need check for is_titular in this case. Due to note below also need to add check for is_title_de_jure_above_capital.
+
+Need to consider primary tier above capital! - has a cost, but will not count to core limit.
+
+Will do budget checks in step where looking to actually core. (might want to short-circuit?)
+* = prestige budget check
+
+Will put auto-cores at top of list (will allow for accurate core limit budgeting)
+
+if county game rule check:
+    if does_core_count_to_limit:
+        if parent in reserve:
+            core title if not already core*, remove parent from reserve.
+        else if has room in limit:
+            #if primary tier and (wide or (narrow and no child county cores)) # not actually necessary - child farther along which will not have cost or count to core limit.
+            #    add to primary reserve
+            core title if not already core*, increment core limit budget
+        else: # no room in limit
+            de-designate core if possible
+    else if title is primary tier:
+        if has room in limit:
+            if wide or (narrow and no child county cores)
+                core if not already core*, increment core limit budget, add to primary reserve
+        else:
+            de-designate core if possible
+    else:
+        core title if not already core*
+
+What if a county with higher priority is not cored because sibling is currently core, but is a lower priority? - Will not happen due to using does_count_to_core_limit which only considers titular status and if it has child cores. Both that core and its sibling will have the same core limit cost truth value. The difference will be in prestige cost which is how it should be.
+
+coring trigger including budget:
+(is_core = no and and will_coring_have_cost = yes and cost_num < budget)
+increment limit if that or is core
+
+Will make change to decrementing budget variables.
+
+what if can't de-designate core primary tier titles due to children being core?
+need to recursively de-designate core titles in that case
+
+really should be using does_coring_have_cost for flat and does_core_have_cost for overtime

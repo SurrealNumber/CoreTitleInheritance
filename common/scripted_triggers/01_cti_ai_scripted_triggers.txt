@@ -1,0 +1,9 @@
+﻿has_child_county_core = {
+    save_temporary_scope_as = c_title
+    any_in_de_jure_hierarchy = {
+        continue = {tier > tier_county} # hope this causes it to iterate through everything except baronies.
+        tier = tier_county
+        holder = scope:c_title.holder # same owner. Getting strange bug (Failed context switch) so I am deviating from normal practice for this line.
+        is_title_core = yes
+    }
+}
