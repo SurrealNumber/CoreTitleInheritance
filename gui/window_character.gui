@@ -80,7 +80,7 @@ window = {
 				}
 
 				blockoverride "button_me"
-                {
+				{
 					visible = "[Not(Character.IsLocalPlayer)]"
 					onclick = "[DefaultOnCharacterClick(GetPlayer.GetID)]"
 				}
@@ -663,6 +663,7 @@ window = {
 
 					size = { 35 35 }
 
+					visible = "[Or( Character.GetFocus.IsValid, Character.PlayerCanManageFocus )]"
 					tooltip = "PLAYER_LIFESTYLE_TOOLTIP"
 					using = tooltip_ne
 
@@ -2796,7 +2797,8 @@ window = {
 
 						text_label_center = {
 							text = "TRAITS"
-                        }
+						}
+
 						fixedgridbox = {
 							name = "personality_traits_grid"
 							datamodel = "[CharacterWindow.GetPersonalityTraits]"
