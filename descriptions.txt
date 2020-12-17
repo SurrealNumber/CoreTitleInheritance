@@ -30,8 +30,6 @@ Some details of how the mod works:
 
 The image for the thumbnail is commander_is_leader.dds. It is located in the game in the folder gfx/interface/icons/
 
-The mod words for game version 1.1.3, but should also work for 1.1.2. I have not tested it specifically for earlier versions.
-
 The mod is *not* achievement compatible.
 The mod should be safe to add to an existing game, but it might take up to a quarter for it to be fully active.
 
