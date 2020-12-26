@@ -304,7 +304,7 @@ de_designate_all_core_titles = { #scope is character. Not full refund. Should be
 core_parent_titles = { # scope is title. Should only be called on a core title.
     if = {
         limit = {is_core_due_to_cti = yes}
-        no = {save_temporary_scope_as = hit_core}
+        no = {save_temporary_scope_as = hit_core} # possibly should be replaced with a local variable - this is essentially just being used as a boolean
         save_temporary_scope_as = p_title
         ordered_this_title_or_de_jure_above = {
             limit = {

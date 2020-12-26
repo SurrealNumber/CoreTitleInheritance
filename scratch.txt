@@ -2460,3 +2460,45 @@ what if can't de-designate core primary tier titles due to children being core?
 need to recursively de-designate core titles in that case
 
 really should be using does_coring_have_cost for flat and does_core_have_cost for overtime
+
+conditions for a core having a cost
+1. game rule is not no cost
+2. ancestor is not a core leaf-ish (has a cost)
+3. not both game rule is flat cost and the title is a core
+
+When will a title with a parent in the primary tier reserve not have the budget to be cored?
+- other child which is lower priority is already a core.
+^ how to deal with this situation?
+- flat - leave as is and do not remove primary tier title from primary tier reserve list. This way the lower priority already core child will be assigned the core limit room and budget will be met
+- overtime - core the title and leave the lower priority core title to be de-cored.
+What will happen if I deal with overtime cores like flat cores as described above?
+- priority will never be swapped
+with overtime will_coring_have_cost's function here should be replaced by does_core_have_cost - no because the cost of a parent core can be passed down to a child. will_coring_have_cost is still proper.
+
+
+
+recursively de-coring parents to a fork
+
+Do not see "continue" for ordered_this_title_or_de_jure_above
+if one cannot de-core a title, one cannot de-core it's parents - parents of core titles can never be de-cored unless they are the primary tier title above the capital county
+If a title cannot be de-cored, I will count it as hitting a core fork.
+
+call the ai_manage_cores effect when previously would recalculate cores and:
+and
+    the character is an ai
+    or
+        or
+            flat and spare budget 
+            overtime (currently overtime will always have spare budget)
+        over core budget
+
+Might need to check if characters who lose titles still have any titles. - do not have to for recalculating cores. Most likely do for ai mangagement of cores.
+
+exists has_primary_title and has_title trigger
+exists is_landless_ruler and is_ruler triggers
+exists holds_landed_title and is_landed triggers - appear to be equivalent
+
+* Making the decision that if a character is no longer landed then they should no longer be cared about when it comes to recalculating cores
+* Making the decision that if a character is not of tier at least count then they should no longer be cared about when it comes to recalculating cores
+^ these are similar but not exactly like the conditions for being playable - Theocracies and republics should still care about cores
+exists trigger highest_held_title_tier

@@ -166,12 +166,14 @@ is_core_leaf = { # scope is title # also works with non-cores to check if they h
 
 does_core_have_cost = { # scope is title
     # is_titular = no # titular titles will have a cost.
+    NOT = {has_game_rule = no_core_cost}
     is_core_due_to_cti = yes
     is_core_leaf = yes
 }
 
 does_core_have_cost_excluding = { # scope is title # Telling this to exclude itself does nothing.
     # is_titular = no # titular titles will have a cost.
+    NOT = {has_game_rule = no_core_cost}
     is_core_due_to_cti = yes
     is_core_leaf_excluding = {EXCLUDED = $EXCLUDED$}
 }
@@ -202,8 +204,12 @@ does_core_count_to_limit = { # scope is title
 }
 
 will_coring_have_cost = { # scope is title # can be called before or after title is cored.
+    NOT = {has_game_rule = no_core_cost} # possibly a redundant check
+    NAND = { # this is necessary to deal with titles at the top of a tree
+        has_game_rule = flat_designate_core_cost
+        is_title_core = yes
+    }
     does_ancestor_have_cost_excluding_self = no
-    NOT = {has_game_rule = no_core_cost}
 }
 
 will_de_coring_give_refund = {
@@ -251,3 +257,7 @@ has_core_titles = { # scope is character
     }
 }
 
+should_recalculate_cores = { # scope is a character
+    holds_landed_title = yes
+    highest_held_title_tier >= tier_county
+}
