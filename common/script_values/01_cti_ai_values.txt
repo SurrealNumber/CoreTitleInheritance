@@ -11,11 +11,11 @@ prestige_reserve = {# scope is character
         limit = {highest_held_title_tier = tier_county}
         value = medium_prestige_value
     }
-    else if = {
+    else_if = {
         limit = {highest_held_title_tier = tier_duchy}
         value = major_prestige_value
     }
-    else if = {
+    else_if = {
         limit = {highest_held_title_tier >= tier_kingdom}
         value = massive_prestige_value
     }
@@ -37,9 +37,8 @@ budgeted_cores = {# scope is a character
 
 county_tax = {
     value = 0
-    save_temporary_scope_as = p_title
     every_county_province = {
-        limit = {holder = scope:t_title.holder}
+        limit = {barony_controller = county_controller}# might throw an error for provinces without a barony
         add = monthly_income
     }
     multiply = county_resource_development_multiplier
@@ -113,7 +112,7 @@ title_coring_priority = {# scope is title
         }
         add = county_resource_priority
     }
-    else if = {# In this case it should be of the same tier as the primary title if the primary title is above county tier
+    else_if = {# In this case it should be of the same tier as the primary title if the primary title is above county tier
         limit = {tier = holder.highest_held_title_tier}
         if = {
             limit = {has_game_rule = ai_wide_core_titles}
@@ -124,15 +123,15 @@ title_coring_priority = {# scope is title
         }
         # if the game rule is ai_narrow_core_titles then this type of title should be at the bottom of the list.
     }
-    else if = {
+    else_if = {
         limit = {tier = tier_duchy}
         add = 2
     }
-    else if = {
+    else_if = {
         limit = {tier = tier_kingdom}
         add = 1
     }
-    else if = {
+    else_if = {
         limit = {tier = tier_empire}
         add = 0
     }

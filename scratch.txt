@@ -2502,3 +2502,6 @@ exists holds_landed_title and is_landed triggers - appear to be equivalent
 * Making the decision that if a character is not of tier at least count then they should no longer be cared about when it comes to recalculating cores
 ^ these are similar but not exactly like the conditions for being playable - Theocracies and republics should still care about cores
 exists trigger highest_held_title_tier
+
+Possible Godherja compatability patch - things which need to be checked are on_actions and window_character.gui
+Possibly add in event to display some core title information to aid information availability for mods which change the character window.
