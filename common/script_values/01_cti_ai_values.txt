@@ -27,7 +27,7 @@ budgeted_cores = {# scope is a character
         limit = {has_game_rule = flat_designate_core_cost}
         value = prestige
         subtract = prestige_reserve
-        divide = coring_cost_flat
+        divide = coring_refund_flat_full
         floor = yes
     }
     else = {
@@ -38,7 +38,18 @@ budgeted_cores = {# scope is a character
 county_tax = {
     value = 0
     every_county_province = {
-        limit = {barony_controller = county_controller}# might throw an error for provinces without a barony
+        limit = {
+            OR = {
+                AND = {
+                    is_leased_out = no
+                    barony.holder = county.holder
+                }
+                AND = {
+                    is_leased_out = yes
+                    barony.lessee = county.holder
+                }
+            }
+        }
         add = monthly_income
     }
     multiply = county_resource_development_multiplier
@@ -56,7 +67,22 @@ county_tax_priority = {
 }
 
 county_levies = {
-    value = building_levies # might leave out base levies if they exist
+    value = 0
+    every_county_province = {
+        limit = {
+            OR = {
+                AND = {
+                    is_leased_out = no
+                    barony.holder = county.holder
+                }
+                AND = {
+                    is_leased_out = yes
+                    barony.lessee = county.holder
+                }
+            }
+        }
+        add = building_levies
+    }
     multiply = county_resource_development_multiplier
 }
 

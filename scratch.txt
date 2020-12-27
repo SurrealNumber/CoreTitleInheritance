@@ -2505,3 +2505,70 @@ exists trigger highest_held_title_tier
 
 Possible Godherja compatability patch - things which need to be checked are on_actions and window_character.gui
 Possibly add in event to display some core title information to aid information availability for mods which change the character window.
+
+Testing:
+
+Broken toast icon for over core limit
+Broken core limit calculation for player (0 when it should be 3)- same bug for AI.
+^ nothing in the error log for either of these
+Problem for broken core limit might be that there is an implied AND for limits, not an implied OR
+
+Localization to do:
+Game rules
+Update encyclopedia
+ai_manage_cores_interaction
+
+
+for king of lotharingia, county of vaucouleurs should have been cored before county of bar
+^ most likely due to problem with considering all baronies as opposed to just those you own.
+Loud error about local_var not being set
+
+
+set_variable = {
+    name = from_county
+    value = building_levies
+}
+
+set_variable = {
+    name = from_provinces
+    value = {
+        value = 0
+        every_county_province = {
+            limit = {barony.holder = county.holder}
+            add = 1
+        }
+    }
+}
+
+barony.holder = county.holder works for castles, but not for churches. still need to test republics
+for temples need to use lessee instead of holder.
+need to check if the barony is_leased_out
+
+set_variable = {
+    name = from_county
+    value = building_levies
+}
+
+set_variable = {
+    name = from_provinces
+    value = {
+        value = 0
+        every_county_province = {
+            limit = {
+                OR = {
+                    AND = {
+                        is_leased_out = no
+                        barony.holder = county.holder
+                    }
+                    AND = {
+                        is_leased_out = yes
+                        barony.lessee = county.holder
+                    }
+                }
+            }
+            add = 1
+        }
+    }
+}
+
+Still need to look into loud error

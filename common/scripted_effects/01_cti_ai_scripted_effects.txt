@@ -38,7 +38,7 @@ ai_manage_cores = { # scope is character
         if = {
             limit = {
                 OR = {
-                    local_var:_budgeted_cores > 0 # currently overtime core cost will always have budget over 0
+                    0 < local_var:_budgeted_cores # currently overtime core cost will always have budget over 0
                     is_over_core_limit = yes
                 }
             }
