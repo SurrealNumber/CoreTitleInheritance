@@ -2639,3 +2639,25 @@ recalculate_cores interaction disappeared for player character. - looks like a l
 
 Over core leaf limit alerg icon is bugged (looks to be too large/offset)
 Fixed icon bug
+
+
+What to do with non-partition succession? all titles core?
+
+Still TODO before update:
+- Test more
+    - Test different gamerules
+    - Test changing gamerules in save file
+- Debug or make known:
+    - observer core limit 0 display bug
+    - faulty errors - also submit bug report on it
+- Clean up description
+    - bump version
+    - update README
+    - trim down fluff/redundant info
+    - add in steam formatting
+    - add section on AI behavior
+    - add section on next updates (and clean up some) - mention adding decision based interface for mod compatability
+    - Emphasize in game encyclopedia
+    - Emphasize titles are designated through title window
+- Community outreach
+    - ask if there should be a decision to auto core player titles like the AI does.
