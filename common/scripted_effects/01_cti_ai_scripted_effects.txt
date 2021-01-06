@@ -51,15 +51,31 @@ ai_manage_cores = { # scope is character
             ordered_held_title = { # cores due to not cti will be put at the top of the list
                 limit = {
                     tier >= tier_county
-                    OR = {
-                        NOT = {has_game_rule = ai_county_only_core_titles}
-                        tier = tier_county
-                    }
                 }
                 order_by = title_coring_priority
                 max = 20000 # chosen to be much larger than the number of titles in the game
                 check_range_bounds = no
-                if = { # cores counting towards core limit
+                if = {# non-county core with county only coring game rule
+                    limit = {
+                        has_game_rule = ai_county_only_core_titles
+                        tier > tier_county
+                    }
+                    if = {# distinct if because those which pass above but fail this should not be passed to the else_if
+                        limit = {
+                            OR = {
+                                AND = {
+                                    has_game_rule = overtime_core_cost
+                                    does_core_have_cost = yes
+                                }
+                                does_core_count_to_limit = yes
+                            }
+                            can_de_core_title = yes
+                        }
+                        de_designate_core_title = yes
+                    }
+                    # else do nothing
+                }
+                else_if = { # cores counting towards core limit
                     limit = { does_core_count_to_limit = yes} # means the core is a leaf
                     if = { # primary tier reserve parent
                         limit = {

@@ -31,4 +31,15 @@
  setting_false_ai_designate_cores:0 "Not Allowed"
  setting_false_ai_designate_cores_desc:0 "The AI will not designate core titles."
  setting_true_ai_designate_cores:0 "Allowed"
- setting_true_ai_designate_cores_desc:0 "The AI will designate core titles. Not implemented."
+ setting_true_ai_designate_cores_desc:0 "The AI will designate core titles."
+ 
+ rule_ai_core_leaf_limit:0 "AI Core Leaf Limit"
+ setting_player_matching_ai_core_leaf_limit:0 "The AI core leaf limit rule is the same as the player one."
+ setting_half_domain_ai_core_leaf_limit:0 "The AI core leaf limit is equal to half their domain limit."
+ setting_domain_ai_core_leaf_limit:0 "The AI core leaf limit is equal to their domain limit."
+ setting_ludicrous_ai_core_leaf_limit:0 "The AI core leaf limit is ludicrously high."
+ 
+ rule_ai_core_strategy:0 "AI Coring Strategy"
+ setting_ai_narrow_core_titles:0 "The AI will attempt to core as many counties as possible."
+ setting_ai_wide_core_titles:0 "The AI will attempt to core as many primary tier titles as possible. This will lead to AI realms breaking up less."
+ setting_ai_county_only_core_titles:0 "The AI will only consider coring county tier titles."

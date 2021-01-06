@@ -2604,6 +2604,32 @@ Seems to be some performance impact, but does not look too significant- 6-2/3 ye
 Things seem to be working
 
 Errors due to what looks like characters without capitals having core_count called on them (calls trigger is_title_core)
-[character.cpp:194]: Character 'null' is not valid in 'TitleRelationToMe'
-Assertion failed: assert_if has triggered an assert: check_auto_core_title: County title passed. They should never be created, and that is currently the only entry point.
+[character.cpp:194]: Character 'null' is not valid in 'TitleRelationToMe' - possibly due to being observer?
+Assertion failed: assert_if has triggered an assert: check_auto_core_title: County title passed. They should never be created, and that is currently the only entry point. - unsure where this occured - could possibly occur if the top barony in the county changed?
 faulty error appears to be raised less than expected.
+
+County title and capital barony title are actually seperate titles, it is just that the capital barony title is inaccessible in game.
+
+Localization to do:
+xGame rules
+Update encyclopedia
+xai_manage_cores_interaction
+
+Additional documentation:
+description - clean up and make fancy
+
+Raise question of whether people want me to give option to apply ai coring logic to the players.
+Might at least want to make decision to trigger it.
+
+Next update: add decision/event interface with mod to increase mod compatability.
+Need to test changing ai coring game rule in save game.
+possible problem with county only core strategy: cores county then loses county. Duchy above is still core, but will not be de-cored. Will have to fix bug.
+^ add in if gamerule and not county, attempt to de-core. - what about primary tier title above capital? - will not be considered. Could lead to border gore.
+should it be if gamerule and not county de-core if ongoing cost or counts to limit?
+For that gamerule order will always be non-cti -> county -> duchy -> kingdom -> empire
+Will still need two passes in order to correct mistake.
+
+if counts_to_core_limit or ongoing_cost:
+de-designate (non-recursive)
+else:
+pass
