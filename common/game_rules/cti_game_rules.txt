@@ -35,7 +35,7 @@ core_persist = {
 }
 
 ai_designate_cores = {
-    default = false_ai_designate_cores
+    default = true_ai_designate_cores
     
     false_ai_designate_cores = {}
     
@@ -43,7 +43,9 @@ ai_designate_cores = {
 }
 
 ai_core_leaf_limit = {
-    default = half_domain_ai_core_leaf_limit
+    default = player_matching_ai_core_leaf_limit
+
+    player_matching_ai_core_leaf_limit = {}
 
     half_domain_ai_core_leaf_limit = {}
     

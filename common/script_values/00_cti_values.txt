@@ -3,7 +3,10 @@
         limit={
             OR = {
                 AND = {
-                    is_ai = no
+                    OR = {
+                        is_ai = no
+                        has_game_rule = player_matching_ai_core_leaf_limit
+                    }
                     has_game_rule = half_domain_core_leaf_limit
                 }
                 AND = {
@@ -20,7 +23,10 @@
         limit={
             OR = {
                 AND = {
-                    is_ai = no
+                    OR = {
+                        is_ai = no
+                        has_game_rule = player_matching_ai_core_leaf_limit
+                    }
                     has_game_rule = domain_core_leaf_limit
                 }
                 AND = {
@@ -35,7 +41,10 @@
         limit={
             OR = {
                 AND = {
-                    is_ai = no
+                    OR = {
+                        is_ai = no
+                        has_game_rule = player_matching_ai_core_leaf_limit
+                    }
                     has_game_rule = ludicrous_core_leaf_limit
                 }
                 AND = {

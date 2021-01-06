@@ -3,7 +3,7 @@
     save_temporary_scope_as = p_title
     ordered_this_title_or_de_jure_above = {
         limit = {
-            scope:hit_core = no
+            scope:hit_core_fork = no
             exists = holder
             holder = {has_title = scope:p_title}
         }
@@ -15,7 +15,7 @@
         check_range_bounds = no # this should always be of smaller size than max, so don't want it to be logged
         if = {
             limit = {can_de_core_title = no}# hitting a core fork means that the title cannot be de-cored even though on your branch everything was already de-cored.
-            yes = {save_temporary_scope_as = hit_core}
+            yes = {save_temporary_scope_as = hit_core_fork}
         }
         else = {
             de_designate_core_title = yes
@@ -38,7 +38,7 @@ ai_manage_cores = { # scope is character
         if = {
             limit = {
                 OR = {
-                    0 < local_var:_budgeted_cores # currently overtime core cost will always have budget over 0
+                    local_var:_budgeted_cores > 0# currently overtime core cost will always have budget over 0
                     is_over_core_limit = yes
                 }
             }
@@ -50,6 +50,7 @@ ai_manage_cores = { # scope is character
             # will have a local variable list primary_tier_reserve
             ordered_held_title = { # cores due to not cti will be put at the top of the list
                 limit = {
+                    tier >= tier_county
                     OR = {
                         NOT = {has_game_rule = ai_county_only_core_titles}
                         tier = tier_county

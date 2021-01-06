@@ -2557,11 +2557,11 @@ set_variable = {
             limit = {
                 OR = {
                     AND = {
-                        is_leased_out = no
+                        barony = {is_leased_out = no}
                         barony.holder = county.holder
                     }
                     AND = {
-                        is_leased_out = yes
+                        barony = {is_leased_out = yes}
                         barony.lessee = county.holder
                     }
                 }
@@ -2572,3 +2572,38 @@ set_variable = {
 }
 
 Still need to look into loud error
+
+The problem appears to be something along the lines of variables not being available to use in triggers
+^ it looks like the comparison still occurs, it just throws an error.
+Looking farther it appears that the variable is not seen (at least by the error logging as being defined until later)
+It looks like the error logging does not count variables as being defined if they are re-used within the same top scope. Does not seem to be a problem in actuality.
+
+Want:
+if (player_rule and (not_ai or player_match)) or (ai and ai_rule)
+currently:
+if (not_ai and player_rule) or (ai and ai_rule)
+
+for commit:
+- adding player_matching_ai core limit.
+
+King of France 867 - when doing ai coring gains 150 prestige and nothing is cored.
+Samanid - no change in prestive or coring of titles.
+Bug is in de-designating some things (perhaps too agressively)
+Error logging is the faulty part
+in if statements limits have implied ANDs
+Suspect that problem is due to running over baronies as well. Will add to limit.
+
+possible bug when observing: core limit is displayed as 0 in core titles tab of character window. Behind the scenes seems to be working - no over core limit modifiers, and the correct number of cores counting to the limit.
+
+Game speed 5 for 1 minute from 867 observing:
+ai narrow coring: 873-8-10
+ai coring off: 874-1-1
+
+Seems to be some performance impact, but does not look too significant- 6-2/3 years to 7 years (some of which is most likely due to human error) 20/21 or about 95% of the speed.
+
+Things seem to be working
+
+Errors due to what looks like characters without capitals having core_count called on them (calls trigger is_title_core)
+[character.cpp:194]: Character 'null' is not valid in 'TitleRelationToMe'
+Assertion failed: assert_if has triggered an assert: check_auto_core_title: County title passed. They should never be created, and that is currently the only entry point.
+faulty error appears to be raised less than expected.

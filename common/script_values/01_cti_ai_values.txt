@@ -9,15 +9,15 @@
 prestige_reserve = {# scope is character
     if = {
         limit = {highest_held_title_tier = tier_county}
-        value = medium_prestige_value
+        value = medium_prestige_value # 150 in vanilla
     }
     else_if = {
         limit = {highest_held_title_tier = tier_duchy}
-        value = major_prestige_value
+        value = major_prestige_value # 350 in vanilla
     }
     else_if = {
         limit = {highest_held_title_tier >= tier_kingdom}
-        value = massive_prestige_value
+        value = massive_prestige_value # 750 in vanilla
     }
     multiply = tribal_reserve_multiplier
 }
@@ -41,11 +41,11 @@ county_tax = {
         limit = {
             OR = {
                 AND = {
-                    is_leased_out = no
+                    barony = {is_leased_out = no}
                     barony.holder = county.holder
                 }
                 AND = {
-                    is_leased_out = yes
+                    barony = {is_leased_out = yes}
                     barony.lessee = county.holder
                 }
             }
@@ -72,11 +72,11 @@ county_levies = {
         limit = {
             OR = {
                 AND = {
-                    is_leased_out = no
+                    barony = {is_leased_out = no}
                     barony.holder = county.holder
                 }
                 AND = {
-                    is_leased_out = yes
+                    barony = {is_leased_out = yes}
                     barony.lessee = county.holder
                 }
             }
