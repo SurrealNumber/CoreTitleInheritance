@@ -2612,7 +2612,7 @@ County title and capital barony title are actually seperate titles, it is just t
 
 Localization to do:
 xGame rules
-Update encyclopedia
+xUpdate encyclopedia
 xai_manage_cores_interaction
 
 Additional documentation:
@@ -2633,3 +2633,9 @@ if counts_to_core_limit or ongoing_cost:
 de-designate (non-recursive)
 else:
 pass
+
+
+recalculate_cores interaction disappeared for player character. - looks like a localization error (proabably forgot to change the key in localization file)
+
+Over core leaf limit alerg icon is bugged (looks to be too large/offset)
+Fixed icon bug
