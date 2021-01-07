@@ -137,6 +137,22 @@ initialize_cores = {# scope is a character
         name = _num_core_titles
         value = val_core_titles
     }
+    # These are for the gui in the core titles tab of the character window. They are also set when opening it, setting it in this location to account for the observer not triggering effects.
+    set_variable = {
+        name = _core_limit
+        value = val_core_limit
+    }
+    set_variable = {
+        name = _num_over_core_limit
+        value = amount_over_core_limit
+    }
+    set_variable = {
+        name = _val_over_core_limit_penalty
+        value = {
+            value = -0.05
+            multiply = root.amount_over_core_limit
+        }
+    }
 }
 
 core_change_effect = { # scope is title. Additionaly expects a value and a boolean. should be called after batch of cores is done if cores are batched.
