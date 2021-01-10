@@ -18,6 +18,8 @@ core_county_benefit = {
 
 core_leaf_limit = {
     default = half_domain_core_leaf_limit
+    
+    quarter_domain_core_leaf_limit = {}
 
     half_domain_core_leaf_limit = {}
     
@@ -46,7 +48,9 @@ ai_core_leaf_limit = {
     default = player_matching_ai_core_leaf_limit
 
     player_matching_ai_core_leaf_limit = {}
-
+    
+    quarter_domain_ai_core_leaf_limit = {}
+    
     half_domain_ai_core_leaf_limit = {}
     
     domain_ai_core_leaf_limit = {}

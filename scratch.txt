@@ -2698,3 +2698,5 @@ Add deference to county priority when primary tier is county tier. - dealt with 
 
 Should not check for budget with primary tier parent - budget already allocated.
 Believe I have fixed problems with primary tier reserve.
+Some small bugs, but everything seems to be working.
+Will add 1/4 domain limit option and then call code good.

@@ -27,6 +27,26 @@
                         is_ai = no
                         has_game_rule = player_matching_ai_core_leaf_limit
                     }
+                    has_game_rule = quarter_domain_core_leaf_limit
+                }
+                AND = {
+                    is_ai = yes
+                    has_game_rule = quarter_domain_ai_core_leaf_limit
+                }
+            }
+        }
+        value = domain_limit
+        divide = 4
+        ceiling = yes
+    }
+    else_if = {
+        limit={
+            OR = {
+                AND = {
+                    OR = {
+                        is_ai = no
+                        has_game_rule = player_matching_ai_core_leaf_limit
+                    }
                     has_game_rule = domain_core_leaf_limit
                 }
                 AND = {
