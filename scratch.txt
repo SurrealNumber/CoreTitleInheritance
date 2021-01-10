@@ -2676,3 +2676,25 @@ The reasoning behind including 2 is that players might not want to have to think
 Personally I don't think I would use either feature when playing, but I am not your average person - I have thought a lot about core titles and am heavily biased towards managing them myself.
 
 
+King Arnulf of East Francia - only non-cti cores. Every time ai_manage_cores is run on him he gains 75 prestige, but does not core anything new. - for context coring costs 150 and refunding a core gives 75
+game rule is wide.
+Are title law titles causing the problem? - cannot be cored but might be encountered.
+problem still occured even with title law removed.
+Even with faulty de_designate removed, kingdom of bavaria is left as a core leaf instead of a child county being cored. - looks like primary title reserve is not working as intended - behavior could be explained by titles not being taken care of by that.
+ - not quite would still get another core due to having room in the core limit for one more.
+I just noticed that I actually never add to the primary_tier_reserve.
+To fix put if for primary titles before if for core counting to limit.
+
+checks on counting to limit - parent in primary_tier_reserve or has budget to do stuff
+checks on primary_tier - room in core limit and budget, with check for child county cores as well.
+
+what is happening now:
+bavaria is tripping counting to limit. Nothing is added to primary_tier_reserve. Core limit left -> 1. Unsure what happened to the core limit.
+What I think should have happened: budget not problem. capital takes 1 core limit. non-cti cores done (capital, duchy, primary in chain). Bavaria takes 1 core limit. Next would be county under primary title - this should take last core limit. Finally counties under Bavaria are hit and de_designate parents. Then duchies and same happens. Unsure why county under capital does not appear as a core at the end. Also unsure why 75 prestige is gained.
+Will come back to later. test_game_2 has example.
+
+Will have to deal with title laws. - added to limit on loop
+Add deference to county priority when primary tier is county tier. - dealt with by having county tier check before the primary tier check.
+
+Should not check for budget with primary tier parent - budget already allocated.
+Believe I have fixed problems with primary tier reserve.

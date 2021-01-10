@@ -142,12 +142,12 @@ title_coring_priority = {# scope is title
         limit = {tier = holder.highest_held_title_tier}
         if = {
             limit = {has_game_rule = ai_wide_core_titles}
-            add = 3000 # puts it at the top of the list
+            add = 3000 # puts it at the top of the list after non-cti cores
         }
         else = {
             add = 3
         }
-        # if the game rule is ai_narrow_core_titles then this type of title should be at the bottom of the list.
+        # if the game rule is ai_narrow_core_titles then this type of title should be after counties
     }
     else_if = {
         limit = {tier = tier_duchy}

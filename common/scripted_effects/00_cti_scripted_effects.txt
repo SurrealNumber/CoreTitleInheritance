@@ -150,7 +150,7 @@ initialize_cores = {# scope is a character
         name = _val_over_core_limit_penalty
         value = {
             value = -0.05
-            multiply = root.amount_over_core_limit
+            multiply = amount_over_core_limit
         }
     }
 }

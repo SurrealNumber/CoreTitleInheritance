@@ -51,6 +51,7 @@ ai_manage_cores = { # scope is character
             ordered_held_title = { # cores due to not cti will be put at the top of the list
                 limit = {
                     tier >= tier_county
+                    is_title_ineligible_due_to_title_law = no # allows using is_title_core instead of is_title_eligible_for_core within the loop
                 }
                 order_by = title_coring_priority
                 max = 20000 # chosen to be much larger than the number of titles in the game
@@ -75,6 +76,59 @@ ai_manage_cores = { # scope is character
                     }
                     # else do nothing
                 }
+                else_if = { # primary tier titles
+                    limit = {tier = holder.highest_held_title_tier}
+                    if = { # narrow coring strategy and child county cores means that the child cores are correctly cored. The title should be cored unless it is the primary tier title above the capital and is not the primary title. This means the title should be cored if not and should have no (additional) cost not should it count to the core limit.
+                        limit = {
+                            has_game_rule = ai_narrow_core_titles
+                            has_child_county_core = yes
+                        }
+                        if = {
+                            limit = {can_core_title = yes}
+                            designate_core_title = yes
+                        }
+                    }
+                    else_if = { # room in core limit
+                        limit = {
+                            local_var:_core_limit > 0
+                        }
+                        if = {
+                            limit = {# budget exists to core the title
+                                OR = {
+                                    local_var:_budgeted_cores > 0
+                                    will_coring_have_cost = no # works because this is primary tier - there will be no held titles de-jure above.
+                                }
+                            }
+                            if = {# decrement remaining budgeted cores # will still have cost if wide and child is core for over-time. Possibly also cost (though discounted) if child core is switched and flat cost. - Think this is good enough for now.
+                                limit = {will_coring_have_cost = yes}
+                                change_local_variable = {
+                                    name = _budgeted_cores
+                                    subtract = 1
+                                }
+                            }
+                            if = { # core title
+                                limit = {is_title_core = no}# not is_title_eligible_for_core due to title law ineligibility already being checked.
+                                designate_core_title = yes
+                            }
+                            change_local_variable = { # decrement remaining core limit
+                                name = _core_limit
+                                subtract = 1
+                            }
+                            add_to_local_variable_list = {
+                                name = primary_tier_reserve
+                                target = this # Think this will run into problems as before when using this in a scope. Will have to look watch out for.
+                            }
+                        }
+                        else_if = {# no budget for title (will only do things if there is overtime_core_cost due to already core titles having no cost above otherwise)
+                            limit = {can_de_core_title = yes}
+                            de_designate_core_title = yes# Not recursive due to no parent titles being owned
+                        }# there should ideally be no more cases
+                    }
+                    else_if = {# no room in core limit
+                        limit = {can_de_core_title = yes}
+                        de_designate_core_title = yes # Not recursive due to no parent titles being owned
+                    }# there should ideally be no more cases
+                }
                 else_if = { # cores counting towards core limit
                     limit = { does_core_count_to_limit = yes} # means the core is a leaf
                     if = { # primary tier reserve parent
@@ -86,39 +140,15 @@ ai_manage_cores = { # scope is character
                                 }
                             }
                         }
-                        if = {
-                            limit = {# budget exists to core the title or overtime cost
-                                OR = {
-                                    local_var:_budgeted_cores > 0
-                                    will_coring_have_cost = no
-                                    has_game_rule = overtime_core_cost
-                                }
-                            }
-                            if = {# decrement remaining budgeted cores
-                                limit = {
-                                    AND = {
-                                        will_coring_have_cost = yes
-                                        NOT = {has_game_rule = overtime_core_cost} # already budgeted when adding parent core. - no cost to swap other core to this
-                                    }
-                                }
-                                change_local_variable = {
-                                    name = _budgeted_cores
-                                    subtract = 1
-                                }
-                            }
-                            if = { # core title
-                                limit = {is_title_core = no}
-                                designate_core_title = yes
-                            }
-                            every_this_title_or_de_jure_above = { # possibly should be changed to any. Might return yes only if it is removed.
-                                remove_list_local_variable = {
-                                    name = primary_tier_reserve
-                                    target = this
-                                }
-                            }
+                        if = { # core title - budget is already allocated when adding primary tier parent to the list
+                            limit = {is_title_core = no}# not is_title_eligible_for_core due to title law ineligibility already being checked.
+                            designate_core_title = yes
                         }
-                        else = {# no budget for title (will only trigger for flat core cost)
-                            de_designate_core_parent_titles = yes
+                        every_this_title_or_de_jure_above = { # possibly should be changed to any. Might return yes only if it is removed.
+                            remove_list_local_variable = {
+                                name = primary_tier_reserve
+                                target = this
+                            }
                         }
                     }
                     else_if = { # room in core limit
@@ -138,7 +168,7 @@ ai_manage_cores = { # scope is character
                                 }
                             }
                             if = { # core title
-                                limit = {is_title_core = no}
+                                limit = {is_title_core = no}# not is_title_eligible_for_core due to title law ineligibility already being checked.
                                 designate_core_title = yes
                             }
                             change_local_variable = { # decrement remaining core limit
@@ -151,56 +181,8 @@ ai_manage_cores = { # scope is character
                         }
                     }
                     else = {# no room in core limit or primary reserve parent
-                        de_designate_core_parent_titles = yes
+                        de_designate_core_parent_titles = yes # this one is causing a problem - giving +75 improperly
                     }
-                }
-                else_if = { # primary tier titles, any with no children cores would have been caught above
-                    limit = {tier = holder.highest_held_title_tier}
-                    if = {
-                        limit = {
-                            AND = {
-                                local_var:_core_limit > 0
-                                OR = {
-                                    has_game_rule = ai_wide_core_titles
-                                    AND = {
-                                        has_game_rule = ai_narrow_core_titles
-                                        has_child_county_core = no
-                                    }
-                                }
-                            }
-                        }
-                        if = {
-                            limit = {# budget exists to core the title
-                                OR = {
-                                    local_var:_budgeted_cores > 0
-                                    will_coring_have_cost = no
-                                }
-                            }
-                            if = {# decrement remaining budgeted cores
-                                limit = {will_coring_have_cost = yes}
-                                change_local_variable = {
-                                    name = _budgeted_cores
-                                    subtract = 1
-                                }
-                            }
-                            if = { # core title
-                                limit = {is_title_core = no}
-                                designate_core_title = yes
-                            }
-                            change_local_variable = { # decrement remaining core limit
-                                name = _core_limit
-                                subtract = 1
-                            }
-                        }
-                        else_if = {# no budget for title (will only do things if there is overtime_core_cost due to already core titles having no cost above otherwise)
-                            limit = {can_de_core_title = yes}
-                            de_designate_core_title = yes# Not recursive due to no parent titles being owned
-                        }# there should ideally be no more cases
-                    }
-                    else_if = {# no room in core limit
-                        limit = {can_de_core_title = yes}
-                        de_designate_core_title = yes # Not recursive due to no parent titles being owned
-                    }# there should ideally be no more cases
                 }
                 else = {# coring does not count towards limit - this is either a title above an already core title (nothing will occur) or titular title
                     if = {
@@ -218,7 +200,7 @@ ai_manage_cores = { # scope is character
                             }
                         }
                         if = { # core title
-                            limit = {is_title_core = no}
+                            limit = {is_title_core = no}# not is_title_eligible_for_core due to title law ineligibility already being checked.
                             designate_core_title = yes
                         }
                     }
