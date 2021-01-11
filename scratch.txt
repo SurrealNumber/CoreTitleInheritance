@@ -2696,7 +2696,34 @@ Will come back to later. test_game_2 has example.
 Will have to deal with title laws. - added to limit on loop
 Add deference to county priority when primary tier is county tier. - dealt with by having county tier check before the primary tier check.
 
+Single heir inheritance reduce core cost - TODO
+
 Should not check for budget with primary tier parent - budget already allocated.
 Believe I have fixed problems with primary tier reserve.
 Some small bugs, but everything seems to be working.
 Will add 1/4 domain limit option and then call code good.
+
+Dealing with single heir inheritance:
+- reduce cost to core
+- AI will change to acting like county only coring
+- AI will not core if there is no core county benefit
+single heir + no core county benefit = do not core
+core with partition or core county benefit
+
+Need to think about scopes for the dynamic values
+Exists `switch` unsure of how to use, but looks useful.
+I don't see a trigger for checking what type of scope is being passed.
+I could artificially enforce one of the scopes to be passed in.
+^ I will enforce a character being passed in because it varies depending on the character's realm laws.
+Need to check if holder.value works
+
+need to look into duchess matilda of tuscany not having duchy of tuscany as a core
+holder.value_name works
+Reason for duchy of tuscany not being a core title is because its heir is not of the same dynasty and it is the primary title. - For the most part this is a moot point.
+This does nor effect gameplay except for if one is a count with no heir (I think also a different primary title and capital). Will raise issue in github but leave problem be.
+
+character scope is actually being passed - the text is actually used in core_change_effect where the scope is character
+^ this makes me see why this worked when adding to a variable list, but not when passing.
+Designating a title core for some reason does not have a cost (even though it does display the correct cost in the tooltip)
+It also looks like the correct cost is being used for calculating the budget for core titles.
+The problem is I am coring the title before applying the cost. I should do it the other way around.

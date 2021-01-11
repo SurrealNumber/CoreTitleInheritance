@@ -77,11 +77,23 @@
     }
 }
 
-coring_cost_flat = {value = medium_prestige_loss}
+coring_cost_flat = { # scope is character
+    value = 0
+    if = {
+        limit = {has_realm_law_flag = partition_succession_law}
+        add = medium_prestige_loss
+    }
+    else = {
+        add = minor_prestige_loss # intentionally not changing refund under single heir
+    }
+}
 coring_refund_flat = {value = minor_prestige_gain}
-coring_refund_flat_full = {value = medium_prestige_gain}
+coring_refund_flat_full = { # scope is character
+    value = 0
+    subtract = coring_cost_flat
+}
 
-core_count = {
+core_count = { # scope is character
     value = 0
     every_held_title = {
         if = {

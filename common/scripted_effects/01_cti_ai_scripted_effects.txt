@@ -29,6 +29,10 @@ ai_manage_cores = { # scope is character
             AND = {
                 has_game_rule = true_ai_designate_cores
                 is_ai = yes
+                OR = {
+                    has_realm_law_flag = partition_succession_law
+                    NOT = {has_game_rule = none_core_county_benefit}
+                }
             }
         }
         set_local_variable = {
@@ -58,7 +62,10 @@ ai_manage_cores = { # scope is character
                 check_range_bounds = no
                 if = {# non-county core with county only coring game rule
                     limit = {
-                        has_game_rule = ai_county_only_core_titles
+                        OR = {
+                            has_game_rule = ai_county_only_core_titles
+                            NOT = {holder = {has_realm_law_flag = partition_succession_law}}
+                        }
                         tier > tier_county
                     }
                     if = {# distinct if because those which pass above but fail this should not be passed to the else_if
@@ -116,7 +123,7 @@ ai_manage_cores = { # scope is character
                             }
                             add_to_local_variable_list = {
                                 name = primary_tier_reserve
-                                target = this # Think this will run into problems as before when using this in a scope. Will have to look watch out for.
+                                target = this
                             }
                         }
                         else_if = {# no budget for title (will only do things if there is overtime_core_cost due to already core titles having no cost above otherwise)
