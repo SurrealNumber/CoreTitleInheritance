@@ -1,0 +1,18 @@
+textformatting = {	
+    # Core Title Inheritance
+    format = {
+		name = cti_primary
+		format = "color:{0.53,0.19,0.66}"
+	}
+
+	format = {
+		name = cti_capital
+		format = "color:{0.16,0.50,0.75}"
+	}
+		
+	format = {
+		name = cti_special
+		format = "color:{0.72,0.70,0.3}"
+	}
+
+}

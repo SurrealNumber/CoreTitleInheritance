@@ -2761,8 +2761,8 @@ Still TODO before update:
     - faulty errors - also submit bug report on it
     - bug report on misnomer of always_follows_primary_heir
 - Clean up description
-    - bump version
-    - update README
+    - xbump version
+    - xupdate README
     - trim down fluff/redundant info
     - add in steam formatting
     - add section on AI behavior
@@ -2779,3 +2779,41 @@ Need to deal with funky logic. Will warn about cases where title order means cor
 
 Increasing ludicrous limit to 100000. Reason is that https://steamcommunity.com/sharedfiles/filedetails/?id=2299077068&searchtext=earth has about 16000 provinces.
 Should add warning about core titles possibly not going to player heir - possible future feature.
+There is a concept in the encyclopedia for a realm heir, but I do not see how I would get it. It also does not seem to map exactly to who will inherit core titles.
+
+localization #xxx text# meanings (formatting queues) looks like it is not case sensitive
+different queues can be separated by ;
+EMP, emp, emphasis: emphasis
+T: tooltip?
+warning: warning (red and italics I think)
+bold: bold
+D, DEBUG: debug (purple and italic)
+weak: weak (lighter colored and italic I think)
+V: value?
+high: ?
+medium: ?
+difficulty_easy: ?
+difficulty_hard: ?
+difficulty_medium: ?
+P, positive_value: green
+N, negative_value: red
+I?, italic: italic
+low: ?
+X: disallowed? (lighter color and italic?)
+TOOLTIP:NUMBER_OF_MEN_DESC: self descriptive (?)
+indent_newline:2: ?
+attacker_color: ?
+defender_color: ?
+S: tooltip subheader?
+F, flavor?: ?
+tooltip:$TOOLTIP$: seems to be wildcard. Maybe flavors of tooltips.
+credits_title: credits title (?)
+credits_subheader: credits subheader (?)
+credits_header: credits header (?)
+Z: health value slightly negative (parchment color)
+
+some of these are found in gui\shared\fonts.gui
+could look into gui\shared\colors.gui
+Also seem some in jomini\gui\jomini\basetextformatting.gui <- this one
+Also gui/textformatting.gui <- actually base it off this one.
+looks like formatting tags are actually #TAG text#!

@@ -1,6 +1,6 @@
 # Core Title Inheritance
 
-# Version 1.0.5
+# Version 1.1.0
 
 ## Credits
 Mod creator: SurrealNumber
@@ -37,3 +37,9 @@ To report a bug or request a new feature please reach out on one of the followin
 
 **Version 1.0.5:**
 - Updated for game version 1.2.2
+
+**Version 1.1.0:**
+- Added in AI core designation
+- Single hier inheritance realms now get a discount on designating core titles, and AI will only designate core titles in that case if there is a core county benefit.
+- Some bugfixes
+- Documentation Update
