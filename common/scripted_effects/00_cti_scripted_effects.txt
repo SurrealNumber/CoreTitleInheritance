@@ -339,7 +339,8 @@ core_parent_titles = { # scope is title. Should only be called on a core title.
                 limit = {is_title_core = yes}
                 yes = {save_temporary_scope_as = hit_core}
             }
-            else = {
+            else_if = {
+                limit = {can_core_title = yes}
                 set_title_core = yes # should never effect core limit, core costs, or be called on a county.
             }
         }

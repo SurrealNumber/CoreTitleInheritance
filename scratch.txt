@@ -2727,3 +2727,55 @@ character scope is actually being passed - the text is actually used in core_cha
 Designating a title core for some reason does not have a cost (even though it does display the correct cost in the tooltip)
 It also looks like the correct cost is being used for calculating the budget for core titles.
 The problem is I am coring the title before applying the cost. I should do it the other way around.
+
+Due to exploit for infinite prestige found with primary titles with no heirs not being core, I need to fix it.
+
+reason for problem: when coring up it looks like primary title is cored - need to check why this is happening.
+Thinking about senarios where primary title has a heir of a different dynasty:
+- No player heir
+- 1st child of other dynasty, subsequent of mine
+- title law
+
+The 2nd and third cases should most likely be treated similarly. Need to check behavior in 2nd case.
+2nd senario core titles do not work - primary heir is not player heir.
+In case where primary heir is not player heir it only works "nicely" if the primary title is elective.
+Need to stop coring primary tier title with title law/other problems
+
+primary title has law -> same dynasty = works.
+primary title has law -> different dynasty works (but have to prevent coring primary tier title)
+no player heirs -> moot except for core county benefits. Do not consider them to be worth granting the ability to core over (for example look at titles under non-primary title laws)
+player heir is not primary heir and no title law -> core titles go to primary heir.
+
+Guess as to why this happens: primary heir is determined by realm succession laws. Title laws are outside of this.
+To fix:
+- prevent coring of primary tier title
+- prevent coring if primary heir != player heir (might be better way to deal with things for primary title overall)
+
+Still TODO before update:
+- Test more
+    - Test different gamerules
+    - Test changing gamerules in save file
+        - change removing modifiers for provinces to always occur to allow for removal of mod.
+- Debug or make known:
+    - primary title with non-primary heir
+    - faulty errors - also submit bug report on it
+    - bug report on misnomer of always_follows_primary_heir
+- Clean up description
+    - bump version
+    - update README
+    - trim down fluff/redundant info
+    - add in steam formatting
+    - add section on AI behavior
+    - add section on next updates (and clean up some) - mention adding decision based interface for mod compatability
+    - Emphasize in game encyclopedia
+    - Emphasize titles are designated through title window
+- Community outreach
+    - 
+    
+Matilda of tuscany - senario looked at above has player heir != primary heir (characters as expected)
+Same is true for Kaiser Heinrich, but core titles work. - always_follows_primary_heir is definitely a misnomer. It more accurately always follows the realm succession heir (seen instances of it following inheritor of first title in list. This is not necessarily the player heir) unless the primary heir is also the player heir. 
+
+Need to deal with funky logic. Will warn about cases where title order means core titles are funky (will not at this point add in a check for it). At some point might add in a warning saying that core titles might not follow the player heir.
+
+Increasing ludicrous limit to 100000. Reason is that https://steamcommunity.com/sharedfiles/filedetails/?id=2299077068&searchtext=earth has about 16000 provinces.
+Should add warning about core titles possibly not going to player heir - possible future feature.
