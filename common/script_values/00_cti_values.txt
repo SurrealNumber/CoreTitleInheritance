@@ -92,7 +92,7 @@ coring_refund_flat_full = { # scope is character
     value = 0
     subtract = coring_cost_flat
 }
-z
+
 core_count = { # scope is character
     value = 0
     every_held_title = {
