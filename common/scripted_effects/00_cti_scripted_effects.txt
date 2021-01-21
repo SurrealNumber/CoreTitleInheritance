@@ -38,7 +38,7 @@ remove_core_county_modifier = { # scope is a title
 set_core_cost_modifier = {
     if = {
         limit = {has_game_rule = overtime_core_cost}
-        remove_all_character_modifier_instances = core_cost_modifier_partition
+        remove_all_character_modifier_instances = core_cost_modifier
         remove_all_character_modifier_instances = core_cost_modifier_non_partition
         every_held_title = {
             limit = {
@@ -48,7 +48,7 @@ set_core_cost_modifier = {
             holder = {
                 if = {
                     limit = {has_realm_law_flag = partition_succession_law}
-                    add_character_modifier = core_cost_modifier_partition
+                    add_character_modifier = core_cost_modifier
                 }
                 else = {
                     add_character_modifier = core_cost_modifier_non_partition
@@ -195,7 +195,7 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
                 limit = {has_game_rule = overtime_core_cost}
                 if = {
                     limit = {has_realm_law_flag = partition_succession_law}
-                    add_character_modifier = core_cost_modifier_partition
+                    add_character_modifier = core_cost_modifier
                 }
                 else = {
                     add_character_modifier = core_cost_modifier_non_partition
@@ -217,7 +217,7 @@ core_change_effect = { # scope is title. Additionaly expects a value and a boole
                 limit = {has_game_rule = overtime_core_cost}
                 if = {
                     limit = {has_realm_law_flag = partition_succession_law}
-                    remove_character_modifier = core_cost_modifier_partition
+                    remove_character_modifier = core_cost_modifier
                 }
                 else = {
                     remove_character_modifier = core_cost_modifier_non_partition

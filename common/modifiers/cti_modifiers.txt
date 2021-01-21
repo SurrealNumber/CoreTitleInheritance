@@ -1,4 +1,4 @@
-﻿core_cost_modifier_partition = {
+﻿core_cost_modifier = {
     monthly_prestige = -0.1 # This should be half the prestige gain from holding a county
     stacking = yes
 }
