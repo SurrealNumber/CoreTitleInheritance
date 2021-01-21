@@ -93,6 +93,17 @@ coring_refund_flat_full = { # scope is character
     subtract = coring_cost_flat
 }
 
+overtime_core_cost = { # scope is character
+    value = 0
+    if = {
+        limit = {has_realm_law_flag = partition_succession_law}
+        subtract = 0.1 # This should be half the prestige gain from holding a county
+    }
+    else = {
+        subtract = 0.25
+    }
+}
+
 core_count = { # scope is character
     value = 0
     every_held_title = {

@@ -2823,7 +2823,7 @@ Things left to do:
 - Test more
     - Test different gamerules (will probably not do as much of this as I should)
     - Test changing gamerules in save file - This is critical information
-        - change removing modifiers for provinces to always occur to allow for removal of mod (add new effects and add to on game start on_action)
+        - xchange removing modifiers for provinces to always occur to allow for removal of mod (add new effects and add to on game start on_action)
 - Debug or make known:
     - primary title with non-primary heir - document problems
     - faulty errors for variables - submit bug report
@@ -2835,3 +2835,5 @@ Things left to do:
     - add section on next updates (and clean up some) - mention adding decision based interface for mod compatability
     - Emphasize in game encyclopedia
     - Emphasize titles are designated through title window
+    
+Changing ovetime cost to reduce when out of partition.
