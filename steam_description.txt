@@ -1,45 +1,53 @@
-Summary:
+[h1]Summary[/h1]
 This mod adds in a system to allow characters to retain more titles on succession under the partition succession laws. It achieves this goal by allowing them to designate titles as "core" which will cause them to be inherited by the character's heir. The user can optionally set a core title limit, add a cost to coring or holding core titles, or give core title counties a slight benefit.
 
-How to use the mod:
-- Owned titles of county tier or higher will have a designate core or de-designate core button on the title window.
-- Core titles can be seen in the character window for any character with cores (this should be any character with a title). To see them click on where it says Core Titles in the middle of the window next to the titles, claims, and diplomacy.
-- The in-game encyclopedia has descriptions of the mechanics and concepts introduced.
-- There is a decision to de-designate all designated cores
-- There is a character interaction to recalculate core titles. It should not have to be used except in some edge cases as described in the current bugs section.
-- There is a character interaction to force an AI re-evaluate their core titles.
+[h1]How to use the mod[/h1]
+[list]
+[*]Owned titles of county tier or higher will have a designate core or de-designate core button on the title window.
+[*]Core titles can be seen in the character window for any character with cores (this should be any character with a title). To see them click on where it says Core Titles in the middle of the window next to the titles, claims, and diplomacy.
+[*]The in-game encyclopedia has descriptions of the mechanics and concepts introduced.
+[*]There is a decision to de-designate all designated cores
+[*]There is a character interaction to recalculate core titles. It should not have to be used except in some edge cases as described in the current bugs section.
+[*]There is a character interaction to force an AI re-evaluate their core titles.
+[/list]
 
-Some details of how the mod works:
-- A character's core titles are the (mostly) complete set of titles which their heir is guaranteed to inherit upon their death. Some titles will be core for every character just based on the base game mechanics while others will be core due to the titles or a title de-jure beneath it being designated as core by the character.
-- The only core titles which will count to the core limit or have a cost are the non-titular core leaves (the titles with no de-jure descendant core titles) which were designated as core by the character.
-- One cannot designate titles de-jure under at title with title succession laws as core (with limited exceptions for a title succession law on the primary title).
+[h1]Some details of how the mod works[/h1]
+[list]
+[*]A character's core titles are the (mostly) complete set of titles which their heir is guaranteed to inherit upon their death. Some titles will be core for every character just based on the base game mechanics while others will be core due to the titles or a title de-jure beneath it being designated as core by the character.
+[*]The only core titles which will count to the core limit or have a cost are the non-titular core leaves (the titles with no de-jure descendant core titles) which were designated as core by the character.
+[*]One cannot designate titles de-jure under at title with title succession laws as core (with limited exceptions for a title succession law on the primary title).
+[/list]
 
 The image for the thumbnail is commander_is_leader.dds. It is located in the game in the folder gfx/interface/icons/
 
 The mod is *not* achievement compatible.
 The mod should be safe to add to an existing game, but it might take up to a quarter for it to be fully active.
 
-Known bugs:
-- Core titles are not recalculated when the primary title is changed or the realm capital is moved.
-- The first overtime core leaf cost can take a day to apply.
-- Overtime core leaf costs might behave strangely for up to a quarter when changing to or from a partition realm succession law.
-- There are two known cases where it is possible to lose core titles:
-    1. If a character's primary title has title specific succession with an heir that is not of your dynasty and is unlanded. On inheriting the title they will take the de-jure capital of the title, possibly taking despite it being a core title of that or a different character.
-    2. If a character's primary title has title specific succession with an heir that is not of your dynasty. Any core titles designated by the character will go to the heir who inherits their capital, which can be different from their player heir who will be the one to inherit the first title in the title list of the highest remaining tier after the primary title is gone. In the case of partition succession with your children inheriting, your oldest child will be the one to receive the capital, but you will not play as them after dying.
-    3. Without a title specific succession law on the primary title if the primary heir is not your dynasty, core titles will not go to the player heir.
+[h1]Known bugs[/h1]
+[list]
+[*]Core titles are not recalculated when the primary title is changed or the realm capital is moved.
+[*]The first overtime core leaf cost can take a day to apply.
+[*]Overtime core leaf costs might behave strangely for up to a quarter when changing to or from a partition realm succession law.
+[*]There are two known cases where it is possible to lose core titles:
+    [olist]
+    [*]If a character's primary title has title specific succession with an heir that is not of your dynasty and is unlanded. On inheriting the title they will take the de-jure capital of the title, possibly taking despite it being a core title of that or a different character.
+    [*]If a character's primary title has title specific succession with an heir that is not of your dynasty. Any core titles designated by the character will go to the heir who inherits their capital, which can be different from their player heir who will be the one to inherit the first title in the title list of the highest remaining tier after the primary title is gone. In the case of partition succession with your children inheriting, your oldest child will be the one to receive the capital, but you will not play as them after dying.
+    [*]Without a title specific succession law on the primary title if the primary heir is not your dynasty, core titles will not go to the player heir.
+    [/olist]
+[/list]
 
-Credits:
+[h1]Credits[/h1]
 Mod Creator: SurrealNumber
 French Localization: Al3xell
 
-Possible future features:
-- Adding a decision/event interface to the mod to provide a fallback and increase mod compatability
-- Adding a way to remove core titles from a game to remove mod from game
+[h1]Possible future features[/h1]
+[list]
+[*]Adding a decision/event interface to the mod to provide a fallback and increase mod compatability
+[*]Adding a way to remove core titles from a game to remove mod from game
+[/list]
 
-Mod compatibility guesses:
-- This mod modifies the title window and character window guis. If other mods modify them the user will be missing the interface to the mod - designating core titles and seeing which titles are core respectively. AI coring should still work even if these are overwritten
-- This mod adds calls to additional on_actions or in one case an additional effect to on_actions from the base game. If other mods overwrite this then triggers for AIs to manage cores or for cores to be recalculated might be missing.
-
-
-Paradox Mods short description:
-Adds in a system to allow characters to retain more titles on succession under partition. It enables them to designate titles as "core" which will cause them to be inherited by the character's heir.
+[h1]Mod compatibility guesses[/h1]
+[list]
+[*]This mod modifies the title window and character window guis. If other mods modify them the user will be missing the interface to the mod - designating core titles and seeing which titles are core respectively. AI coring should still work even if these are overwritten
+[*]This mod adds calls to additional on_actions or in one case an additional effect to on_actions from the base game. If other mods overwrite this then triggers for AIs to manage cores or for cores to be recalculated might be missing.
+[/list]
