@@ -1,5 +1,10 @@
-﻿core_cost_modifier = {
-    monthly_prestige = overtime_core_cost
+﻿core_cost_modifier_partition = {
+    monthly_prestige = 0.1 # This should be half the prestige gain from holding a county
+    stacking = yes
+}
+
+core_cost_modifier_non_partition = {
+    monthly_prestige = 0.5
     stacking = yes
 }
 

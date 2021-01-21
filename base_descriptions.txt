@@ -37,6 +37,7 @@ The mod should be safe to add to an existing game, but it might take up to a qua
 Known bugs:
 - Core titles are not recalculated when the primary title is changed or the realm capital is moved.
 - The first overtime core leaf cost can take a day to apply.
+- Overtime core leaf costs might behave strangely for up to a quarter when changing to or from a partition realm succession law.
 - There are two known cases where it is possible to lose core titles:
     1. If a character's primary title has title specific succession with an heir that is not of your dynasty and is unlanded. On inheriting the title they will take the de-jure capital of the title, possibly taking despite it being a core title of that or a different character.
     2. If a character's primary title has title specific succession with an heir that is not of your dynasty. Any core titles designated by the character will go to the heir who inherits their capital, which can be different from their player heir who will be the one to inherit the first title in the title list of the highest remaining tier after the primary title is gone. In the case of partition succession with your children inheriting, your oldest child will be the one to receive the capital, but you will not play as them after dying.
@@ -47,11 +48,12 @@ Mod Creator: SurrealNumber
 French Localization: Al3xell
 
 Possible future features:
-- Adding a way to remove core titles from a game in order to 
+- Adding a decision/event interface to the mod to provide a fallback and increase mod compatability
+- Adding a way to remove core titles from a game to remove mod from game
 
 Mod compatibility guesses:
-- This mod modifies the title window and character window guis. It will most likely be incompatible with other mods which also modify them, though in the case of the character window its only purpose is to present information to the player, and without it the mod should still be functional, just difficult to tell what is going on.
-- This mod adds calls to additional on_actions or in one case an additional effect to on_actions from the base game. This also has the potential to have/cause conflicts.
+- This mod modifies the title window and character window guis. If other mods modify them the user will be missing the interface to the mod - designating core titles and seeing which titles are core respectively. AI coring should still work even if these are overwritten
+- This mod adds calls to additional on_actions or in one case an additional effect to on_actions from the base game. If other mods overwrite this then triggers for AIs to manage cores or for cores to be recalculated might be missing.
 
 
 Paradox Mods short description:

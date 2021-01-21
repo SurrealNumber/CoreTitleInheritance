@@ -2837,3 +2837,7 @@ Things left to do:
     - Emphasize titles are designated through title window
     
 Changing ovetime cost to reduce when out of partition.
+I think I ran into a problem using scripted values as modifiers. Changing to apply different modfiers.
+Don't see on_action for changing realm law. - will need to add this to bugs.
+Will need to test overtime cost things.
+Likely bug when first changing over between partition and non-partition.
