@@ -1,5 +1,6 @@
 ﻿l_english:
- core_cost_modifier:0 "[core_cost|E]" 
+ core_cost_modifier_partition:0 "[core_cost|E]"
+ core_cost_modifier_non_partition:0 "[core_cost|E]" 
  core_county_benefit_modifier:0 "[core_county_benefit|E]"
  1_over_core_limit_modifier:0 "Over [core_limit|E] by 1 Penalty"
  2_over_core_limit_modifier:0 "Over [core_limit|E] by 2 Penalty"
