@@ -17,6 +17,15 @@ Some details of how the mod works:
 - The only core titles which will count to the core limit or have a cost are the non-titular core leaves (the titles with no de-jure descendant core titles) which were designated as core by the character.
 - One cannot designate titles de-jure under at title with title succession laws as core (with limited exceptions for a title succession law on the primary title).
 
+AI Coring Strategies:
+- The AI will attempt to core titles up to their core limit as long as they have budgeted prestige for it (they try to keep a prestige reserve). Budgeting is currently not implemented for overtime core costs.
+- The AI will core in this order of title tiers based on the game rule:
+    - Narrow: counties, primary tier titles, duchies, kingdoms, empires
+    - Wide: primary tier titles, counties, duchies, kingdoms, empires
+    - County Only: counties
+- Within a tier the titles other than counties are arbitrarily ordered (most likely the order they appear in the character window)
+- Within the county tier, titles are ordered by how close they are de-jure to the character's capital (in the de-jure duchy, kingdom, empire) with ordering within the tiers determined by how valuable the county is. Extremely valuable provinces are able to jump the de-jure closeness ordering in some cases.
+
 The image for the thumbnail is commander_is_leader.dds. It is located in the game in the folder gfx/interface/icons/
 
 The mod is *not* achievement compatible.
@@ -42,7 +51,3 @@ Possible future features:
 Mod compatibility guesses:
 - This mod modifies the title window and character window guis. If other mods modify them the user will be missing the interface to the mod - designating core titles and seeing which titles are core respectively. AI coring should still work even if these are overwritten
 - This mod adds calls to additional on_actions or in one case an additional effect to on_actions from the base game. If other mods overwrite this then triggers for AIs to manage cores or for cores to be recalculated might be missing.
-
-
-Paradox Mods short description:
-Adds in a system to allow characters to retain more titles on succession under partition. It enables them to designate titles as "core" which will cause them to be inherited by the character's heir.

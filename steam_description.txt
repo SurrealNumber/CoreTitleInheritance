@@ -18,6 +18,19 @@ This mod adds in a system to allow characters to retain more titles on successio
 [*]One cannot designate titles de-jure under at title with title succession laws as core (with limited exceptions for a title succession law on the primary title).
 [/list]
 
+[h1]AI Coring Strategies[/h1]
+[list]
+[*]The AI will attempt to core titles up to their core limit as long as they have budgeted prestige for it (they try to keep a prestige reserve). Budgeting is currently not implemented for overtime core costs.
+[*]The AI will core in this order of title tiers based on the game rule:
+    [list]
+    [*]Narrow: counties, primary tier titles, duchies, kingdoms, empires
+    [*]Wide: primary tier titles, counties, duchies, kingdoms, empires
+    [*]County Only: counties
+    [/list]
+[*]Within a tier the titles other than counties are arbitrarily ordered (most likely the order they appear in the character window)
+[*]Within the county tier, titles are ordered by how close they are de-jure to the character's capital (in the de-jure duchy, kingdom, empire) with ordering within the tiers determined by how valuable the county is. Extremely valuable provinces are able to jump the de-jure closeness ordering in some cases.
+[/list]
+
 The image for the thumbnail is commander_is_leader.dds. It is located in the game in the folder gfx/interface/icons/
 
 The mod is *not* achievement compatible.
