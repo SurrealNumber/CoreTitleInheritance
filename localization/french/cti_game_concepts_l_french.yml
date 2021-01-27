@@ -78,4 +78,4 @@
  
  game_concept_core_title_persistence:0 "Persistence des titres clés"
  game_concept_core_persistence:0 "Persistence clée"
- game_concept_core_title_persistence_desc:0 "Si les [core_titles|E] reste des [core_titles|E] après avoir été hérité par l'[primary_heir|E]. Cela dépend des règles du jeu."
+ game_concept_core_title_persistence_desc:0 "Les [core_titles|E] précédants sont conservés ou non après avoir été hérité par l'[primary_heir|E]. Cela dépend des règles du jeu."
