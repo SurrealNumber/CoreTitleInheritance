@@ -43,3 +43,6 @@ To report a bug or request a new feature please reach out on one of the followin
 - Single hier inheritance realms now get a discount on designating core titles, and AI will only designate core titles in that case if there is a core county benefit.
 - Some bugfixes
 - Documentation Update
+
+**Version 1.1.1:**
+- Updated French Localization
