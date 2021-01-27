@@ -1,5 +1,6 @@
 ﻿l_french:
  core_cost_modifier:0 "[core_cost|E]" 
+ core_cost_modifier_non_partition:0 "[core_cost|E]" 
  core_county_benefit_modifier:0 "[core_county_benefit|E]"
  1_over_core_limit_modifier:0 "Au delà de la [core_limit|E] de 1 Pénalité"
  2_over_core_limit_modifier:0 "Au delà de la [core_limit|E] de 2 Pénalité"
@@ -30,6 +31,7 @@
  #desired effect -> over_core_title_limit_click:0 "#I Click to open your [character|E] window and the de-designate all [core_titles|E] decision. Expand the [core_titles|E] tab of your [character|E] window for more information.#"
 
  recalculate_cores_interaction:0 "Recalculer les titres clés"
+ ai_manage_cores_interaction:0 "Contrôler les titres clés de l'IA"
  
  cores_titles_removed_toast_title:0 "Les titres clés ont été supprimés"
  cores_titles_removed_toast_desc:0 "Les [core_titles|E] ont été déstitués à cause de leur inéligibilité à l'être. Un remboursement complet est donné si cela est applicable."
