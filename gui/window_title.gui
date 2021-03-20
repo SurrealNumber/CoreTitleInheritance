@@ -366,7 +366,7 @@ window = {
 						layoutpolicy_horizontal = expanding
 						name = "show_vassals"
 						text = "TITLE_VIEW_DE_JURE"
-						default_format = "#low"
+						default_format = "#weak"
 						down = "[Not( GetVariableSystem.Exists( 'display_allegiance' ) )]"
 						onclick = "[GetVariableSystem.Clear( 'display_allegiance' )]"
 					}
@@ -375,7 +375,7 @@ window = {
 						layoutpolicy_horizontal = expanding
 						name = "show_allegiance"
 						text = "TITLE_VIEW_VASSALS"
-						default_format = "#low"
+						default_format = "#weak"
 						down = "[GetVariableSystem.Exists( 'display_allegiance' )]"
 						onclick = "[GetVariableSystem.Set( 'display_allegiance', 'true' )]"
 					}
@@ -480,13 +480,13 @@ window = {
 								text_single = {
 									visible = "[Not(TitleViewWindow.GetTitle.IsBarony)]"
 									text = "TITLE_VIEW_TITULAR"
-									default_format = "#low"
+									default_format = "#weak"
 								}
 
 								text_single = {
 									visible = "[TitleViewWindow.GetTitle.IsBarony]"
 									text = "TITLE_VIEW_BARONY_NO_DEJURE"
-									default_format = "#low"
+									default_format = "#weak"
 								}
 							}
 						}
