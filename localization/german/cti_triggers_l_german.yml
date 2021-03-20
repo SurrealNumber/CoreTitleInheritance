@@ -1,0 +1,23 @@
+﻿l_german: 
+ HAS_ANY_TITLE_LAW_TRIGGER:0 "[TITLE.GetName] hat [title_succession|E] welche sich von [rulerpossessive|E] [succession_laws] unterscheidet."
+ NOT_HAS_ANY_TITLE_LAW_TRIGGER:0 "[TITLE.GetName] folgt den [rulerpossessive|E] [succession_laws]."
+ 
+ TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER:0 "Du besitzt einen [title|E], diesen [title|E] oder einen [de_jure|E] [title|E] über [TITLE.GetName], der eine [title_succession|E] hat, die nicht der [primary_title|E] eines [title_heir|E] [rulerpossessive|E] [dynasty|E] ist."
+ NOT_TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER:0 "Die [titles|E] im Besitz, dieser [title|E] oder ein [de_jure|E] [title|E] über [TITLE.GetName], entsprecht [rulerpossessive|E] [succession_laws] oder ist der [primary_title|E] eines [title_heir|E] [rulerpossessive|E] [dynasty|E]."
+ 
+ TITLE_DE_JURE_ABOVE_CAPITAL_TRIGGER:0 "[TITLE.GetName] ist [de_jure|E] über dem [realm_capital|E] und vom [title_tier|E] niedriger als der [primary_title|E]."
+ NOT_TITLE_DE_JURE_ABOVE_CAPITAL_TRIGGER:0 "[TITLE.GetName] ist nicht [de_jure|E] über dem [realm_capital|E] oder ist vom selben [title_tier|E] wie der [primary_title|E]."
+  
+ CORE_REFUND_TRIGGER:0 "Den [core|E] von [TITLE.GetName] zu entfernen, wird eine Erstattung bringen, da die Änderung die Zahl der [core_leaves|E] reduziert."
+ NOT_CORE_REFUND_TRIGGER:0 "Den [core|E] von [TITLE.GetName] zu entfernen, wird eine Erstattung bringen, da die Änderung die Zahl der [core_leaves|E] nicht verändert."
+ 
+ IS_CORE_LEAF:0 "[TITLE.GetName] ist ein [core_leaf|E]."
+ NOT_IS_CORE_LEAF:0 "[TITLE.GetName] ist kein [core_leaf|E]."
+ 
+ IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] ist ein [head_of_faith|E] [title|E]."
+ NOT_IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] ist kein [head_of_faith|E] [title|E]."
+ 
+ PRIMARY_TITLE_EQUAL_TRIGGER:0 "[TARGET_TITLE.GetName] ist der [primary_title|E]."
+ NOT_PRIMARY_TITLE_EQUAL_TRIGGER:0 "[TARGET_TITLE.GetName] ist nicht der [primary_title|E]."
+ 
+ NOT_TITLE_TIER_TRIGGER_THIRD:0 "Rang ist nicht $COMPARATOR$ $TIER|V$."

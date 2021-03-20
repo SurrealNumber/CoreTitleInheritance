@@ -1,0 +1,41 @@
+﻿l_german:
+ core_cost_modifier:0 "[core_cost|E]"
+ core_cost_modifier_non_partition:0 "[core_cost|E]" 
+ core_county_benefit_modifier:0 "[core_county_benefit|E]"
+ 1_over_core_limit_modifier:0 "Abzug für 1 über [core_limit|E]."
+ 2_over_core_limit_modifier:0 "Abzug für 2 über [core_limit|E]."
+ 3_over_core_limit_modifier:0 "Abzug für 3 über [core_limit|E]."
+ 4_over_core_limit_modifier:0 "Abzug für 4 über [core_limit|E]."
+ 5_over_core_limit_modifier:0 "Abzug für 5 über [core_limit|E]."
+ 6_over_core_limit_modifier:0 "Abzug für 6 über [core_limit|E]."
+ 7_over_core_limit_modifier:0 "Abzug für 7 über [core_limit|E]."
+ 8_over_core_limit_modifier:0 "Abzug für 8 über [core_limit|E]."
+ 9_over_core_limit_modifier:0 "Abzug für 9 über [core_limit|E]."
+ 10_plus_over_core_limit_modifier:0 "Abzug für 10+ über [core_limit|E]."
+ 
+ de_designate_all_core_titles_decision:0 "Entferne alle Kerntitel"
+ de_designate_all_core_titles_decision_tooltip:0 "Entferne alle [core_titles|E]"
+ de_designate_all_core_titles_decision_desc:0 "Entferne alle [core_titles|E]."
+ de_designate_all_core_titles_decision_effect_tooltip_start:0 "Wird alle [core_titles|E] entfernen. Nicht alle [core_titles|E] sind dafür geeigner, entfernt zu werden."
+ de_designate_all_core_titles_decision_effect_tooltip_bullet1:0 "Der Kern kann nicht von deinem [primary_title|E] entfernt werden."
+ de_designate_all_core_titles_decision_effect_tooltip_bullet2:0 "Bei deinem [realm_capital|E] und allen [de_jure|E] Titeln darüber, die vom [title_tier|E] niedriger als dein [primary_title|E] sind, kann der Kern nicht entfernt werden."
+ de_designate_all_core_titles_decision_effect_tooltip_bullet3:0 "Der Kern kann nicht von [head_of_faith|E] [titles|E] entfernt werden."
+ de_designate_all_core_titles_decision_effect_tooltip_bullet4:0 "Falls zutreffend, wirst du eine teilweise Kostenrückerstattung zusammen mit dem Entfernen der einzelenen Kerne bekommen."
+ de_designate_all_core_titles_decision_confirm:0 "Entferne alle Kerntitel"
+ 
+ action_over_core_limit:0 "Über der Kernschwelle"
+ action_over_core_limit_label:0 "Du bist über deiner [core_limit|E]"	
+ action_over_core_limit_desc:0 "Du bist über deiner [core_limit|E]. Ein Abzug wird angewendet. Entferne einen oder mehrere [core_titles|E], um die Zahl der [core_leaves|E] zu reduzieren. $action_over_core_limit_desc_cont$"
+ action_over_core_limit_desc_cont:0 "Du kannst die <Entferne alle [core_titles|E]> [decision|E] verwenden, um alle Kerne zu entfernen."
+ action_over_core_limit_click:0 "#I Klicke, um dein [character|E] Fenster zu öffnen.\nGeh zum [core_titles|E]-Reiter deines [character|E] Fensters für mehr Informationen.#!"
+ #just in case   -> over_core_title_limit_click:0 "#I Klicke, um dein [character|E] Fenster zu öffnen und dann die <Entferne alle [core_titles|E]> [decision|E]. Geh zum [core_titles|E]-Reiter deines [character|E] Fensters für mehr Informationen.#"
+
+ recalculate_cores_interaction:0 "Kerntitel neu berechnen"
+ ai_manage_cores_interaction:0 "KI verwaltete Kerntitel"
+ 
+ cores_titles_removed_toast_title:0 "Kerntitel wurden entfernt."
+ cores_titles_removed_toast_desc:0 "[core_titles|E] Kerne wurden entfernt, da sie ungeeigent waren. Wenn zutreffend, wurde die vollen Kosten erstattet."
+ 
+ CORE_TITLE_EFFECT:0 "Wird zum [core_title|E]"
+ DE_CORE_TITLE_EFFECT:0 "Ist nicht länger ein [core_title|E]"
+ 

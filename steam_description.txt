@@ -52,6 +52,7 @@ The mod should be safe to add to an existing game, but it might take up to a qua
 [h1]Credits[/h1]
 Mod Creator: SurrealNumber
 French Localization: Al3xell
+German Localization: Thodin
 
 [h1]Possible future features[/h1]
 [list]

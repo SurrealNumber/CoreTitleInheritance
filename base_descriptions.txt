@@ -55,6 +55,7 @@ Known bugs:
 Credits:
 Mod Creator: SurrealNumber
 French Localization: Al3xell
+German Localization: Thodin
 
 Possible future features:
 - Adding a decision/event interface to the mod to provide a fallback and increase mod compatability

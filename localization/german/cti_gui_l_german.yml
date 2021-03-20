@@ -1,0 +1,29 @@
+﻿l_german:
+ PRINTING_TITLE:0 "[_title.GetName]"
+ 
+ TITLE_VIEW_DESIGNATE_CORE:0 "Kern festlegen"
+ TITLE_DESIGNATE_CORE_TOOLTIP:0 "Lege [_title.GetName] als [core_title|E] fest."
+ 
+ TITLE_VIEW_DE_DESIGNATE_CORE:0 "Kern entfernen"
+ TITLE_DE_DESIGNATE_CORE_TOOLTIP:0 "Entferne [core_title|E] von [_title.GetName]."
+  
+ CV_CORE_TITLES:0 "[core_titles|E]"
+ CV_CORE_TITLES_SINGULAR:0 "[core_title|E]"
+ 
+ CORE_LIMIT_C_L:0 "[Character.MakeScope.Var('_core_count').GetValue|0]/[Character.MakeScope.Var('_core_limit').GetValue|0]"
+ CV_CORE_TITLES_NUMBER:0 "([Character.MakeScope.Var('_num_core_titles').GetValue|0])"
+ 
+ CORE_LIMIT_TOOLTIP_HEADER:0 "#T [core_limit|E]: [THIS.Var('_core_count').GetValue|0]/[THIS.Var('_core_limit').GetValue|0]#!"
+ CORE_LIMIT_EXCEEDED_TOOLTIP:0 "@warning_icon!#X Above [core_limit|E]. Entferne einige [core_titles|E] , um die Zahl der zählenden [core_leaves|E] zu reduzieren.#!\n"
+ CORE_LIMIT_OVER_EFFECTS_HEADING_TOOLTIP:0 "Effecte, [THIS.Var('_num_over_core_limit').GetValue|0] zählenden [core_leaves|E] über der Schwelle zu sein:"
+ CORE_LIMIT_OVER_EFFECTS_SINGULAR_HEADING_TOOLTIP:0 "Effects, [THIS.Var('_num_over_core_limit').GetValue|0] [core_leaf|E] über der Schwelle zu sein:"
+ CORE_LIMIT_OVERRUN_EFFECT:0 "   [prestige|E]zuwachs Multiplikator: [THIS.Var('_val_over_core_limit_penalty').GetValue]"
+ 
+ CV_CORES_LEAVES:0 "[core_leaves|E]"
+ CV_CORES_LEAF:0 "[core_leaf|E]"
+ CV_CORES_BRANCHES:0 "[core_branches|E]"
+ CV_CORES_BRANCH:0 "[core_branch|E]"
+ CV_CORE_TITLES_HIDE_CTT:0 "#I Klicke zum verstecken der [core_title|E].#!"
+ CV_CORE_TITLES_SHOW_CTT:0 "#I Klicke zum Anzeigen der [core_title|E].#!"
+ CV_CORE_TITLE_TAB_HEADER:0 "[core_titles|E]"
+ CV_CORE_TITLE_TAB_HEADER_SINGULAR:0 "[core_title|E]"
