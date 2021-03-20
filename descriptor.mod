@@ -1,8 +1,8 @@
-version="1.1.1"
+version="1.1.2"
 tags={
 	"Balance"
 	"Gameplay"
 }
 name="Core Title Inheritance"
-supported_version="1.2.2"
+supported_version="1.3.0"
 remote_file_id="2267085343"
