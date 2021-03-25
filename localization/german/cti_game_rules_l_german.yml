@@ -5,9 +5,9 @@
  setting_overtime_core_cost:0 "Über die Zeit"
  setting_overtime_core_cost_desc:0 "Festgelegte Kernblätter führen zu einem monatlichen Prestigeverlust."
  setting_flat_designate_core_cost:0 "Gleich"
- setting_flat_designate_core_cost_desc:0 "Überschreitet man die Kernblattschwelle, fürht es zu einem gleichbleibenden Prestigeverlust." 
+ setting_flat_designate_core_cost_desc:0 "Überschreitet man die Kernblattschwelle, führt es zu einem gleichbleibenden Prestigeverlust." 
  
- rule_core_county_benefit:0 "Kerngrafschaftvorzüge"
+ rule_core_county_benefit:0 "Kerngrafschaftsvorzüge"
  setting_none_core_county_benefit:0 "Keine"
  setting_none_core_county_benefit_desc:0 "Kerngrafschaften bieten keine zusätzlichen Vorzüge."
  setting_control_core_county_benefit:0 "Kontrolle"
@@ -49,7 +49,7 @@
  
  rule_ai_core_strategy:0 "KI Kernstrategie"
  setting_ai_narrow_core_titles:0 "Begrenzt"
- setting_ai_narrow_core_titles_desc:0 "Die KI wird versuchen, soviele Grafschaften wie möglich zu Kernen zu machen."
+ setting_ai_narrow_core_titles_desc:0 "Die KI wird versuchen, so viele Grafschaften wie möglich zu Kernen zu machen."
  setting_ai_wide_core_titles:0 "Weit"
  setting_ai_wide_core_titles_desc:0 "Die KI wird versuchen, so viele Haupttitel wie möglich zu Kernen zu machen. Das wird dazu führen, dass KI Reiche weniger zerbrechen."
  setting_ai_county_only_core_titles:0 "Nur Grafschaften"

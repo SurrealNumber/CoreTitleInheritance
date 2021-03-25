@@ -15,8 +15,8 @@
  
  CORE_LIMIT_TOOLTIP_HEADER:0 "#T [core_limit|E]: [THIS.Var('_core_count').GetValue|0]/[THIS.Var('_core_limit').GetValue|0]#!"
  CORE_LIMIT_EXCEEDED_TOOLTIP:0 "@warning_icon!#X Above [core_limit|E]. Entferne einige [core_titles|E] , um die Zahl der zählenden [core_leaves|E] zu reduzieren.#!\n"
- CORE_LIMIT_OVER_EFFECTS_HEADING_TOOLTIP:0 "Effecte, [THIS.Var('_num_over_core_limit').GetValue|0] zählenden [core_leaves|E] über der Schwelle zu sein:"
- CORE_LIMIT_OVER_EFFECTS_SINGULAR_HEADING_TOOLTIP:0 "Effects, [THIS.Var('_num_over_core_limit').GetValue|0] [core_leaf|E] über der Schwelle zu sein:"
+ CORE_LIMIT_OVER_EFFECTS_HEADING_TOOLTIP:0 "Effekte, [THIS.Var('_num_over_core_limit').GetValue|0] zählenden [core_leaves|E] über der Schwelle zu sein:"
+ CORE_LIMIT_OVER_EFFECTS_SINGULAR_HEADING_TOOLTIP:0 "Effekte, [THIS.Var('_num_over_core_limit').GetValue|0] [core_leaf|E] über der Schwelle zu sein:"
  CORE_LIMIT_OVERRUN_EFFECT:0 "   [prestige|E]zuwachs Multiplikator: [THIS.Var('_val_over_core_limit_penalty').GetValue]"
  
  CV_CORES_LEAVES:0 "[core_leaves|E]"
