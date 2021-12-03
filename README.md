@@ -1,6 +1,6 @@
 # Core Title Inheritance
 
-# Version 1.1.4
+# Version 1.1.5
 
 ## Credits
 Mod creator: SurrealNumber
@@ -56,4 +56,8 @@ To report a bug or request a new feature please reach out on one of the followin
 
 **Version 1.1.4:**
 - Updated for game version 1.3.1
+- Fixed German Localization
+
+**Version 1.1.5:**
+- Updated for game version 1.4.4
 - Fixed German Localization
