@@ -60,4 +60,3 @@ To report a bug or request a new feature please reach out on one of the followin
 
 **Version 1.1.5:**
 - Updated for game version 1.4.4
-- Fixed German Localization
