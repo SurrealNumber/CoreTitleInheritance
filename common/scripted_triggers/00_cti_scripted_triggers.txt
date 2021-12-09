@@ -2,7 +2,7 @@
 
 is_title_de_jure_above_capital = { # scope is title
     custom_description = {
-        text = "TITLE_DE_JURE_ABOVE_CAPITAL_TRIGGER"
+        text = "title_de_jure_above_capital_trigger"
         trigger_if = {
             limit = {exists = holder}
             OR = {
@@ -57,36 +57,38 @@ has_any_title_law = { # scope is title (technically this means has a different t
 }
 
 is_title_ineligible_due_to_title_law  = { # scope is title
-    save_temporary_scope_as = t_title
-    is_title_special_core = no # I am having special cores overrule the title law.
-    custom_description = {
-        text = "TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER"
-        OR = {
-            AND = { # title is primary going to different dynasty
-                holder.primary_title = this # is primary
-                NOT = {current_heir.dynasty = holder.dynasty} #title heir is of different dynasty # have to investigate what this does with lowborn characters.
-            }
-            any_this_title_or_de_jure_above = {
-                trigger_if = { # should be an implied and
-                    limit = {exists = holder}
-                    holder = {has_title = scope:t_title} # held by owner
-                    has_any_title_law = yes # title has a title law
-                    OR = {
-                        NOT = {holder.primary_title = this} # this title is not the primary title
-                        AND = { # title is primary going to different dynasty and with peer title.
-                            holder.primary_title = this # is primary
-                            NOT = {current_heir.dynasty = holder.dynasty} #title heir is of different dynasty # have to investigate what this does with lowborn characters.
-                            holder = { # other title of same tier as primary
-                                any_held_title = {
-                                    tier = holder.primary_title.tier
-                                    NOT = {holder.primary_title = this}
+    AND = {
+        is_title_special_core = no # I am having special cores overrule the title law.
+        custom_description = {
+            text = "title_ineligible_due_to_title_law_trigger"
+            save_temporary_scope_as = t_title
+            OR = {
+                AND = { # title is primary going to different dynasty
+                    holder.primary_title = this # is primary
+                    NOT = {current_heir.dynasty = holder.dynasty} #title heir is of different dynasty # have to investigate what this does with lowborn characters.
+                }
+                any_this_title_or_de_jure_above = {
+                    trigger_if = { # should be an implied and
+                        limit = {exists = holder}
+                        holder = {has_title = scope:t_title} # held by owner
+                        has_any_title_law = yes # title has a title law
+                        OR = {
+                            NOT = {holder.primary_title = this} # this title is not the primary title
+                            AND = { # title is primary going to different dynasty and with peer title.
+                                holder.primary_title = this # is primary
+                                NOT = {current_heir.dynasty = holder.dynasty} #title heir is of different dynasty # have to investigate what this does with lowborn characters.
+                                holder = { # other title of same tier as primary
+                                    any_held_title = {
+                                        tier = holder.primary_title.tier
+                                        NOT = {holder.primary_title = this}
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                trigger_else = {
-                    always = no
+                    trigger_else = {
+                        always = no
+                    }
                 }
             }
         }
@@ -104,13 +106,16 @@ is_title_core_due_to_not_cti = {# scope is title
 }
 
 is_title_core = { # Assume that this will only be called if the title is owned
-    OR = {
-        trigger_if = { # can't move this out to is_core_due_to_cti because there is overlap between the two statements.
-            limit = {has_variable = core}
-            tier >= tier_county
-            var:core = yes
+    custom_description = {
+        text = "IS_TITLE_CORE"
+        OR = {
+            trigger_if = { # can't move this out to is_core_due_to_cti because there is overlap between the two statements.
+                limit = {has_variable = core}
+                tier >= tier_county
+                var:core = yes
+            }
+            is_title_core_due_to_not_cti = yes
         }
-        is_title_core_due_to_not_cti = yes
     }
 }
 
@@ -158,7 +163,7 @@ is_core_leaf_excluding = { # scope is title # also works with non-cores to check
 
 is_core_leaf = { # scope is title # also works with non-cores to check if they have core descendants
     custom_description = {
-            text = "IS_CORE_LEAF"
+        text = "IS_CORE_LEAF"
         save_temporary_scope_as = l_title
         is_core_leaf_excluding = {EXCLUDED = scope:l_title}# Will techinally double up on ignoring this title, but want code to only be in one place.
     }

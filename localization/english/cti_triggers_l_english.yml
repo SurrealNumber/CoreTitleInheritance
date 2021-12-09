@@ -2,6 +2,11 @@
  HAS_ANY_TITLE_LAW_TRIGGER:0 "[TITLE.GetName] has [title_succession|E] which is different from the [rulerpossessive|E] [succession_laws]"
  NOT_HAS_ANY_TITLE_LAW_TRIGGER:0 "[TITLE.GetName] follows the [rulerpossessive|E] [succession_laws]"
  
+ IS_TITLE_CORE:0 "Is a [core_title|E]"
+ NOT_IS_TITLE_CORE:0 "Is not a [core_title|E]"
+ IS_TITLE_CORE_THIRD:0 "[TITLE.GetName] is a [core_title|E]"
+ NOT_IS_TITLE_CORE_THIRD:0 "[TITLE.GetName] is not a [core_title|E]"
+ 
  TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER:0 "There is a owned [title|E] this [title|E] or [de_jure|E] above [TITLE.GetName] with [title_succession|E] that is not the [primary_title|E] with a [title_heir|E] of the [rulerpossessive|E] [dynasty|E]"
  NOT_TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER:0 "The owned [titles|E] this [title|E] or [de_jure|E] above [TITLE.GetName] match the [rulerpossessive|E] [succession_laws] or is the [primary_title|E] with a [title_heir|E] of the [rulerpossessive|E] [dynasty|E]"
  
@@ -14,8 +19,10 @@
  IS_CORE_LEAF:0 "[TITLE.GetName] is a [core_leaf|E]"
  NOT_IS_CORE_LEAF:0 "[TITLE.GetName] is not a [core_leaf|E]"
  
- IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] is a [head_of_faith|E] [title|E]"
- NOT_IS_HEAD_OF_FAITH_TRIGGER:0 "[TITLE.GetName] is not a [head_of_faith|E] [title|E]"
+ IS_HEAD_OF_FAITH_TRIGGER:0 "Is a [head_of_faith|E] [title|E]"
+ NOT_IS_HEAD_OF_FAITH_TRIGGER:0 "Is not a [head_of_faith|E] [title|E]"
+ IS_HEAD_OF_FAITH_TRIGGER_THIRD:0 "[TITLE.GetName] is a [head_of_faith|E] [title|E]"
+ NOT_IS_HEAD_OF_FAITH_TRIGGER_THIRD:0 "[TITLE.GetName] is not a [head_of_faith|E] [title|E]"
  
  PRIMARY_TITLE_EQUAL_TRIGGER:0 "[TARGET_TITLE.GetName] is [primary_title|E]"
  NOT_PRIMARY_TITLE_EQUAL_TRIGGER:0 "[TARGET_TITLE.GetName] is not [primary_title|E]"

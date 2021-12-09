@@ -60,3 +60,7 @@ To report a bug or request a new feature please reach out on one of the followin
 
 **Version 1.1.5:**
 - Updated for game version 1.4.4
+
+**Version 1.1.6:**
+- Added `CTI_is_loaded` global variable
+- Small changes to localization of triggers

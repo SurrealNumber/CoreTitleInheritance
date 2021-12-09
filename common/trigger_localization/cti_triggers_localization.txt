@@ -1,7 +1,20 @@
 ﻿is_head_of_faith = {
     global = IS_HEAD_OF_FAITH_TRIGGER
+    global_not = NOT_IS_HEAD_OF_FAITH_TRIGGER
+    third = IS_HEAD_OF_FAITH_TRIGGER_THIRD
+    third_not = NOT_IS_HEAD_OF_FAITH_TRIGGER_THIRD
 }
 
 primary_title_equal = {
     global = PRIMARY_TITLE_EQUAL_TRIGGER
+}
+
+title_de_jure_above_capital_trigger = {
+    global = TITLE_DE_JURE_ABOVE_CAPITAL_TRIGGER
+    global_not = NOT_TITLE_DE_JURE_ABOVE_CAPITAL_TRIGGER
+}
+
+title_ineligible_due_to_title_law_trigger = {
+    global = TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER
+    global_not = NOT_TITLE_INELIGIBLE_DUE_TO_TITLE_LAW_TRIGGER
 }

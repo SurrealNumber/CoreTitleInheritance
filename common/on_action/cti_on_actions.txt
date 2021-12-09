@@ -2,6 +2,13 @@
 ####### Adding calls to mod on_actions to existing on_actions ########
 ######################################################################
 
+
+on_game_start = {
+    on_action = {
+        on_cti_start
+    }
+}
+
 on_title_destroyed = {
     on_actions = {
         cti_on_title_destroyed
@@ -42,6 +49,15 @@ quarterly_playable_pulse = {
 #####################################################################
 ######### Mod on_actions which call the rest of code. ###############
 #####################################################################
+on_cti_start = {
+    effect = {
+        set_global_variable = {
+	    name = CTI_is_loaded
+	    value = yes
+	}
+    }
+}
+
 cti_on_title_destroyed = { # assume this happens after destruction
     effect = {
         scope:landed_title = {de_core_title = yes} # should never be called on a county, other effects taken care of in recalculate_cores
