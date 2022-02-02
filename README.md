@@ -64,3 +64,6 @@ To report a bug or request a new feature please reach out on one of the followin
 **Version 1.1.6:**
 - Added `CTI_is_loaded` global variable
 - Small changes to localization of triggers
+
+**Version 1.1.7:**
+- Fixed typo in cti_on_actions.txt
