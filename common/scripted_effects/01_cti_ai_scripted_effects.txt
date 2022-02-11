@@ -30,6 +30,10 @@ ai_manage_cores = { # scope is character
                 has_game_rule = true_ai_designate_cores
                 is_ai = yes
                 OR = {
+                    has_game_rule = true_ai_tribal_designate_cores
+                    NOT = {has_government = tribal_government}
+                }
+                OR = {
                     has_realm_law_flag = partition_succession_law
                     NOT = {has_game_rule = none_core_county_benefit}
                 }

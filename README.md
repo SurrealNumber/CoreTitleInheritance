@@ -70,3 +70,6 @@ To report a bug or request a new feature please reach out on one of the followin
 
 **Version 1.1.8:**
 - Updated for game version 1.5.0.1
+
+**Version 1.1.9:**
+- Added AI Tribal coring game rule

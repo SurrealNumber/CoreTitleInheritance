@@ -44,6 +44,14 @@ ai_designate_cores = {
     true_ai_designate_cores = {}
 }
 
+ai_tribal_designate_cores = {
+    default = false_ai_tribal_designate_cores
+    
+    false_ai_tribal_designate_cores = {}
+    
+    true_ai_tribal_designate_cores = {}
+}
+
 ai_core_leaf_limit = {
     default = player_matching_ai_core_leaf_limit
 

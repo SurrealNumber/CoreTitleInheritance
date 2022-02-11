@@ -35,6 +35,12 @@
  setting_true_ai_designate_cores:0 "Allowed"
  setting_true_ai_designate_cores_desc:0 "The AI will designate core titles."
  
+ rule_ai_tribal_designate_cores:0 "AI Tribal Core Designation"
+ setting_false_ai_tribal_designate_cores:0 "Not Allowed"
+ setting_false_ai_tribal_designate_cores_desc:0 "Tribal AI will not designate core titles. Overrules AI Core Designation rule."
+ setting_true_ai_tribal_designate_cores:0 "Allowed"
+ setting_true_ai_tribal_designate_cores_desc:0 "Tribal AI will designate core titles. Does not overrule AI Core Designation rule."
+ 
  rule_ai_core_leaf_limit:0 "AI Core Leaf Limit"
  setting_player_matching_ai_core_leaf_limit:0 "Match Player Rule"
  setting_player_matching_ai_core_leaf_limit_desc:0 "The AI core leaf limit rule is the same as the player one."

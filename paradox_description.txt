@@ -32,6 +32,7 @@ The mod is *not* achievement compatible.
 The mod should be safe to add to an existing game, but it might take up to a quarter for it to be fully active.
 
 Known bugs:
+- A bug introduced in when updating mod with existing savegame from a version before 1.2.8 and below to 1.2.9 and above. Tribal AI will no longer manage their cores, meaning the cores will persist until they are removed in some way. This means that if cores are set to persist through inheritance, a tribal AI could keep their cores forever. If cores do not persist through inheritance (default), then this will sort itself out when they all die.
 - Core titles are not recalculated when the primary title is changed or the realm capital is moved.
 - The first overtime core leaf cost can take a day to apply.
 - Overtime core leaf costs might behave strangely for up to a quarter when changing to or from a partition realm succession law.
