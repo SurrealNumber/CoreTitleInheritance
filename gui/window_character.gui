@@ -3638,8 +3638,8 @@ window = {
 				}
 			}
 		}
-        
-        window_character_filter = {
+
+		window_character_filter = {
 			name = "vassal_filter_window"
 			datacontext = "[CharacterWindow.GetVassals]"
 			position = { 525 275 }
@@ -3658,7 +3658,7 @@ window = {
 					blockoverride "filters" {
 						filter_item = {
 							layoutpolicy_horizontal = expanding
-							datacontext = "[CharacterSelectionList.GetFilter('adult_filter')]"       
+							datacontext = "[CharacterSelectionList.GetFilter('adult_filter')]"
 						}
 					}
 				}
@@ -3700,7 +3700,7 @@ window = {
 				}
 			}
 		}
-    }
+	}
 
 
 	######################################################
