@@ -1,6 +1,6 @@
 # Core Title Inheritance
 
-# Version 1.1.10
+# Version 1.1.12
 
 ## Credits
 Mod creator: SurrealNumber
@@ -18,6 +18,7 @@ To report a bug or request a new feature please reach out on one of the followin
 - Paradox Forum:
 - Paradox Mods: https://mods.paradoxplaza.com/mods/14885/Any
 - Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=2267085343
+- GitHub: https://github.com/SurrealNumber/CoreTitleInheritance
 
 ## Changelog
 
@@ -76,3 +77,9 @@ To report a bug or request a new feature please reach out on one of the followin
 
 **Version 1.1.10:**
 - Updated for game version 1.5.0.2
+
+**Version 1.1.11:**
+- Updated for game version 1.5.1.1
+
+**Version 1.1.12:**
+- Updated for game version 1.6.0

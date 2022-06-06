@@ -165,7 +165,8 @@ window = {
 
 				widget = {
 					parentanchor = bottom|hcenter
-					size = { 250 40 }
+					allow_outside = yes
+					size = { 250 60 }
 
 					flowcontainer = {
 						parentanchor = bottom|hcenter
@@ -173,15 +174,28 @@ window = {
 						position = { -25 -3 }
 						ignoreinvisible = yes
 
-						text_label_center = {
-							text = "[CharacterWindow.GetSpouseText]"
-							align = nobaseline
+						flowcontainer = {
+							direction = vertical
+							datacontext = "[CharacterWindow.GetSpouse]"
+							parentanchor = bottom
+
+							portrait_opinion = {
+								block "portrait_opinion" {}
+								parentanchor = hcenter
+							}
+
+							text_label_center = {
+								text = "[CharacterWindow.GetSpouseText]"
+								max_width = 120
+								align = nobaseline
+							}
 						}
 
 						flowcontainer = {
 							visible = "[CharacterWindow.ShouldShowSpouseButtons]"
-							margin_top = 2
+							margin_bottom = 4
 							spacing = -5
+							parentanchor = bottom
 
 							using = Animation_ShowHide_Standard
 
@@ -200,13 +214,29 @@ window = {
 								tooltip = "[CharacterWindow.GetNextSpouseTooltip]"
 							}
 						}
+
+						flowcontainer = {
+							datacontext = "[CharacterWindow.GetSpouse]"
+							parentanchor = vcenter
+
+							coa_realm_small = {
+								visible = "[Character.HasLandedTitles]"
+								using = Animation_ShowHide_Standard
+								parentanchor = bottom
+							}
+
+							portrait_status_icons = {
+								parentanchor = bottom
+								margin_bottom = 2
+							}
+						}
 					}
 
 					icon = {
 						name = "marriage_type_icon"
 						visible = "[CharacterWindow.ShowMarriageIcon]"
-						position = { 68 7 }
-
+						parentanchor = bottom
+						position = { 68 -3 }
 						size = { 30 30 }
 						framesize = { 60 60 }
 						texture = "gfx/interface/icons/marriage_types.dds"
@@ -466,6 +496,8 @@ window = {
 				using = Animation_Character_Window_Refresh
 
 				portrait_head_small = {
+					parentanchor = right
+
 					blockoverride "portrait_transformation"
 					{
 						portrait_scale = { -1 1 }
@@ -702,6 +734,7 @@ window = {
 				}
 
 				button_open_inventory = {
+					visible = "[Character.IsAlive]"
 					name = "open_inventory"
 					size = { 35 35 }
 				}
@@ -806,6 +839,12 @@ window = {
 									frame = "[Character.GetHealthIconFrame]"
 									texture = "gfx/interface/icons/character_status/icon_health.dds"
 									tooltip = "[Character.GetHealthInfo]"
+								}
+								icon = {
+									visible = "[Character.IsDeadAndValid]"
+									size = { 23 23 }
+									texture = "gfx/interface/icons/character_status/icon_dead.dds"
+									tooltip = "CHARACTER_DEAD_TOOLTIP"
 								}
 							}
 
@@ -1384,8 +1423,9 @@ window = {
 						fittype = centercrop
 
 						modify_texture = {
-							texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
+							texture = "gfx/interface/component_masks/mask_fade_vertical.dds"
 							blend_mode = alphamultiply
+							mirror = vertical
 						}
 
 						using = Mask_Rough_Edges
@@ -2902,6 +2942,7 @@ window = {
 
 					blockoverride "scrollbox_margins" {
 						margin_right = 15
+						margin_top = 10
 					}
 
 					blockoverride "container_implementation" {
@@ -2909,7 +2950,7 @@ window = {
 							name = "characters_grid"
 							datamodel = "[CharacterSelectionList.GetList]"
 							visible = "[Not(CharacterSelectionList.IsBuildingList)]"
-							addcolumn = 585
+							addcolumn = 560
 							addrow = 125
 							setitemsizefromcell = yes
 
@@ -3332,6 +3373,7 @@ window = {
 											}
 
 											coa_realm_medium = {
+												visible = "[Not(DiplomacyItem.IsStruggle)]"
 												datacontext = "[DiplomacyItem.GetTargetCharacter]"
 												tooltip = "[DiplomacyItem.GetTooltip]"
 												parentanchor = hcenter
@@ -3343,6 +3385,40 @@ window = {
 													position = { 0 -20 }
 													text = "[DiplomacyItem.GetWarScoreFraction|0%=+]"
 													using = Font_Size_Medium
+												}
+											}
+
+											button = {
+												visible = "[DiplomacyItem.IsStruggle]"
+												datacontext = "[DiplomacyItem.GetStruggle]"
+												position = { 0 -3 }
+												size = { 70 90 }
+												onclick = "[DiplomacyItem.OnClick]"
+
+												datacontext = "[DiplomacyItem.GetTargetCharacter]"
+												tooltipwidget = struggle_tooltip
+												using = tooltip_es
+												tooltip_offset = { 0 22 }
+
+												icon = {
+													name = "involved_banner"
+													visible = "[Struggle.IsInvolvedCharacter(Character.Self)]"
+													size = { 70 90 }
+													texture = "gfx/interface/icons/struggle_banners/involved_banner.dds"
+												}
+
+												icon = {
+													name = "interloper_banner"
+													visible = "[Struggle.IsInterloperCharacter(Character.Self)]"
+													size = { 70 90 }
+													texture = "gfx/interface/icons/struggle_banners/interloper_banner.dds"
+												}
+
+												icon = {
+													parentanchor = center
+													position = { 0 -7 }
+													texture = "[Struggle.GetCurrentPhase.GetIcon]"
+													size = { 40 40 }
 												}
 											}
 										}
@@ -3711,7 +3787,6 @@ window = {
 	{
 		type skill_icon_label_vertical = widget {
 			size = { 40 60 }
-			datacontext = "[SkillItem]"
 
 			icon = {
 				name = "skill_icon"
@@ -4164,7 +4239,11 @@ window = {
 
 					item = {
 						container = {
+							onmousehierarchyenter = "[DiplomacyItem.MouseEnter]"
+							onmousehierarchyleave = "[DiplomacyItem.MouseLeave]"
+
 							button = {
+								visible = "[Not(DiplomacyItem.IsStruggle)]"
 								parentanchor = top|hcenter
 								position = { 0 -22 }
 								texture = "gfx/interface/icons/diplomatic_icons.dds"
@@ -4184,6 +4263,7 @@ window = {
 							}
 
 							coa_realm_small = {
+								visible = "[Not(DiplomacyItem.IsStruggle)]"
 								datacontext = "[DiplomacyItem.GetTargetCharacter]"
 								tooltip = "[DiplomacyItem.GetTooltip]"
 								using = tooltip_es
@@ -4201,6 +4281,56 @@ window = {
 								{
 									onclick = "[DiplomacyItem.OnClick]"
 									button_ignore = none
+								}
+							}
+
+							button = {
+								datacontext = "[DiplomacyItem.GetStruggle]"
+								visible = "[DiplomacyItem.IsStruggle]"
+								position = { 0 -3 }
+								size = { 50 60 }
+								onclick = "[DiplomacyItem.OnClick]"
+
+								datacontext = "[DiplomacyItem.GetTargetCharacter]"
+								tooltipwidget = struggle_tooltip;
+								using = tooltip_es
+								tooltip_offset = { 0 22 }
+
+								icon = {
+									name = "involved_banner"
+									visible = "[Struggle.IsInvolvedCharacter(Character.Self)]"
+									size = { 50 65 }
+									texture = "gfx/interface/icons/struggle_banners/involved_banner_tiny.dds"
+								}
+
+								icon = {
+									visible = "[Struggle.IsInvolvedCharacter(Character.Self)]"
+									parentanchor = center
+									position = { 0 2 }
+									size = { 34 34 }
+									texture = "gfx/interface/icons/struggle_banners/icon_background_02.dds"
+								}
+
+								icon = {
+									name = "interloper_banner"
+									visible = "[Struggle.IsInterloperCharacter(Character.Self)]"
+									size = { 50 65 }
+									texture = "gfx/interface/icons/struggle_banners/interloper_banner_tiny.dds"
+								}
+
+								icon = {
+									visible = "[Struggle.IsInterloperCharacter(Character.Self)]"
+									parentanchor = center
+									position = { 0 2 }
+									size = { 34 34 }
+									texture = "gfx/interface/icons/struggle_banners/icon_background_01.dds"
+								}
+
+								icon = {
+									parentanchor = center
+									position = { 0 2 }
+									size = { 30 30 }
+									texture = "[Struggle.GetCurrentPhase.GetIcon]"
 								}
 							}
 						}
