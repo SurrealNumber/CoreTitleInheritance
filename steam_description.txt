@@ -63,6 +63,9 @@ German Localization: Thodin
 
 [h1]Mod compatibility guesses[/h1]
 [list]
+[*]This mod is compatible with 
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2768734977] Unified UI [/url] and 
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2826829936] Gamerule Gadget [/url]
 [*]This mod modifies the title window and character window guis. If other mods modify them the user will be missing the interface to the mod - designating core titles and seeing which titles are core respectively. AI coring should still work even if these are overwritten
 [*]This mod adds calls to additional on_actions or in one case an additional effect to on_actions from the base game. If other mods overwrite this then triggers for AIs to manage cores or for cores to be recalculated might be missing.
 [/list]

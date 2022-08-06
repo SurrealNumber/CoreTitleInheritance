@@ -64,6 +64,7 @@ To report a bug or request a new feature please reach out on one of the followin
 
 **Version 1.1.6:**
 - Added `CTI_is_loaded` global variable
+- Above change enables compatibility with Unified UI: https://steamcommunity.com/sharedfiles/filedetails/?id=2768734977
 - Small changes to localization of triggers
 
 **Version 1.1.7:**
@@ -83,3 +84,7 @@ To report a bug or request a new feature please reach out on one of the followin
 
 **Version 1.1.12:**
 - Updated for game version 1.6.0
+
+**Version 1.1.13:**
+- Added compatibility with Gamerule Gadget: https://steamcommunity.com/sharedfiles/filedetails/?id=2826829936
+- Added icon for over core limit modifier

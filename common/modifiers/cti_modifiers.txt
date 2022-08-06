@@ -1,9 +1,11 @@
 ﻿core_cost_modifier = {
+    icon = prestige_negative
     monthly_prestige = -0.1 # This should be half the prestige gain from holding a county
     stacking = yes
 }
 
 core_cost_modifier_non_partition = {
+    icon = prestige_negative
     monthly_prestige = -0.5
     stacking = yes
 }
@@ -17,32 +19,42 @@ core_county_benefit_modifier = {
 
 # The formula should be a prestige gain multiplier of -0.05 * amount over the core limit with a limit of -0.5
 1_over_core_limit_modifier = {
+    icon = prestige_negative
     monthly_prestige_gain_mult = -0.05
 }
 2_over_core_limit_modifier = {
+    icon = prestige_negative
     monthly_prestige_gain_mult = -0.10
 }
 3_over_core_limit_modifier = {
+    icon = prestige_negative
     monthly_prestige_gain_mult = -0.15
 }
 4_over_core_limit_modifier = {
+    icon = prestige_negative
     monthly_prestige_gain_mult = -0.20
 }
 5_over_core_limit_modifier = {
+    icon = prestige_negative
     monthly_prestige_gain_mult = -0.25
 }
 6_over_core_limit_modifier = {
+    icon = prestige_negative
     monthly_prestige_gain_mult = -0.30
 }
 7_over_core_limit_modifier = {
+    icon = prestige_negative
     monthly_prestige_gain_mult = -0.35
 }
 8_over_core_limit_modifier = {
+    icon = prestige_negative
     monthly_prestige_gain_mult = -0.40
 }
 9_over_core_limit_modifier = {
+    icon = prestige_negative
     monthly_prestige_gain_mult = -0.45
 }
 10_plus_over_core_limit_modifier = {
+    icon = prestige_negative
     monthly_prestige_gain_mult = -0.50
 }

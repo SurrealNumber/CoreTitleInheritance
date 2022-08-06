@@ -1,0 +1,35 @@
+# Copy/paste this file in your mod, in the gui/ folder, and rename it to GG_<your mod name>.gui (example: GG_Inherichance.gui)
+# Mass replace YourMod with < your mod name> in this file
+# Send the author of Gamerule Gadget GG_<your mode name> so it can be properly suppported
+# Check comments below for other changes to make for full integration
+
+types GG_CTI
+{
+	type GG_CTI = GG_rulegroup {
+		blockoverride "GG_rulegroup" {
+			onclick = "[GetVariableSystem.Toggle('GG_CTI')]"
+		}
+		blockoverride "GG_expand_button" {
+			frame = "[Select_int32( GetVariableSystem.Exists('GG_CTI'), '(int32)2', '(int32)1' )]"
+		}
+		blockoverride "GG_icon" {
+			texture = "gfx/interface/icons/commander_is_leader.dds"
+		}
+		blockoverride "GG_rulegroup_name" {
+			text = "GG_CTI"
+		}
+		blockoverride "GG_rulegroup_visibility" {
+			visible = "[GetVariableSystem.Exists('GG_CTI')]"
+		}
+		blockoverride "gamerules" {
+			GG_gamerule = { datacontext = "[JominiGameRules.AccessNamedGameRule( 'core_title_cost' )]" }
+            GG_gamerule = { datacontext = "[JominiGameRules.AccessNamedGameRule( 'core_county_benefit' )]" }
+            GG_gamerule = { datacontext = "[JominiGameRules.AccessNamedGameRule( 'core_leaf_limit' )]" }
+            GG_gamerule = { datacontext = "[JominiGameRules.AccessNamedGameRule( 'core_persist' )]" }
+            GG_gamerule = { datacontext = "[JominiGameRules.AccessNamedGameRule( 'ai_designate_cores' )]" }
+            GG_gamerule = { datacontext = "[JominiGameRules.AccessNamedGameRule( 'ai_tribal_designate_cores' )]" }
+            GG_gamerule = { datacontext = "[JominiGameRules.AccessNamedGameRule( 'ai_core_leaf_limit' )]" }
+            GG_gamerule = { datacontext = "[JominiGameRules.AccessNamedGameRule( 'ai_core_strategy' )]" }
+		}
+	}
+}

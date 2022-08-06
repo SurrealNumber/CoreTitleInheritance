@@ -1,4 +1,6 @@
 ﻿l_english:
+ GG_CTI:0 "Core Title Inheritance"
+
  rule_core_title_cost:0 "Core Title Cost"
  setting_no_core_cost:0 "None"
  setting_no_core_cost_desc:0 "Core titles have no individual cost."
