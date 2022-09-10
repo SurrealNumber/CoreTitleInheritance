@@ -1,6 +1,6 @@
 # Core Title Inheritance
 
-# Version 1.1.12
+# Version 1.1.14
 
 ## Credits
 Mod creator: SurrealNumber
@@ -88,3 +88,6 @@ To report a bug or request a new feature please reach out on one of the followin
 **Version 1.1.13:**
 - Added compatibility with Gamerule Gadget: https://steamcommunity.com/sharedfiles/filedetails/?id=2826829936
 - Added icon for over core limit modifier
+
+**Version 1.1.14:**
+- Updated for game version 1.7.0
